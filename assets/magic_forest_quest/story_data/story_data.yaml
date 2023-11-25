@@ -1,0 +1,257 @@
+title: Magic Forest Quest
+first_page: page1
+pages:
+
+  # Level 1
+
+  page1:
+    text: "Welcome to the Magic Forest! You find a mysterious path. Where do you want to go?"
+    imageFileName: "cover_image.jpg"
+    choices:
+      choice1:
+        text: "Explore the Enchanted Grove"
+        nextPageId: "page2A"
+      choice2:
+        text: "Follow the Whimsical River"
+        nextPageId: "page2B"
+      choice3:
+        text: "Enter the Mystic Meadow"
+        nextPageId: "page2C"
+
+  # Level 2
+
+  page2A:
+    text: "You explore the Enchanted Grove, where magical creatures reside. What's your next move?"
+    imageFileName: "cover_image.jpg"
+    choices:
+      choice1:
+        text: "Meet the talking squirrels"
+        nextPageId: "page3A"
+      choice2:
+        text: "Discover a hidden fairy circle"
+        nextPageId: "page3B"
+      choice3:
+        text: "Climb the Giant Oak Tree"
+        nextPageId: "page3C"
+
+  page2B:
+    text: "You follow the Whimsical River, its water sparkling with magic. What's your next adventure?"
+    imageFileName: "cover_image.jpg"
+    choices:
+      choice1:
+        text: "Ride on a friendly water sprite"
+        nextPageId: "page3D"
+      choice2:
+        text: "Explore the Crystal Cave behind the waterfall"
+        nextPageId: "page3E"
+      choice3:
+        text: "Build a bridge with magical stones"
+        nextPageId: "page3F"
+
+  page2C:
+    text: "You enter the Mystic Meadow, where flowers bloom in different colors. What's your next move?"
+    imageFileName: "cover_image.jpg"
+    choices:
+      choice1:
+        text: "Dance with the Meadow Fairies"
+        nextPageId: "page3G"
+      choice2:
+        text: "Follow the Glow Butterflies"
+        nextPageId: "page3H"
+      choice3:
+        text: "Rest under the Enchanted Tree"
+        nextPageId: "page3I"
+
+  # Level 3
+
+  page3A:
+    text: "You meet the talking squirrels who offer to guide you. What's your next move?"
+    imageFileName: "cover_image.jpg"
+    choices:
+      choice1:
+        text: "Follow the squirrel guide to the Hidden Glade"
+        nextPageId: "page4A"
+      choice2:
+        text: "Ask the squirrels about the Magic Crystal location"
+        nextPageId: "page4B"
+
+  page3B:
+    text: "You discover a hidden fairy circle. The fairies invite you to join their dance. What's your next adventure?"
+    imageFileName: "cover_image.jpg"
+    choices:
+      choice1:
+        text: "Join the fairy dance"
+        nextPageId: "page4C"
+      choice2:
+        text: "Ask the fairies about the Magic Crystal location"
+        nextPageId: "page4D"
+
+  page3C:
+    text: "You climb the Giant Oak Tree and spot a magical panorama. What's your next move?"
+    imageFileName: "cover_image.jpg"
+    choices:
+      choice1:
+        text: "Slide down with a magical leaf"
+        nextPageId: "page4E"
+      choice2:
+        text: "Ask the ancient tree about the Magic Crystal location"
+        nextPageId: "page4F"
+
+  page3D:
+    text: "You ride on a friendly water sprite, feeling the magic of the river. What's your next adventure?"
+    imageFileName: "cover_image.jpg"
+    choices:
+      choice1:
+        text: "Explore the underwater Crystal Cavern"
+        nextPageId: "page4G"
+      choice2:
+        text: "Ask the water sprite about the Magic Crystal location"
+        nextPageId: "page4H"
+
+  page3E:
+    text: "You explore the Crystal Cave behind the waterfall, discovering shimmering crystals. What's your next move?"
+    imageFileName: "cover_image.jpg"
+    choices:
+      choice1:
+        text: "Gather some magical crystals"
+        nextPageId: "page4I"
+      choice2:
+        text: "Ask the cave spirits about the Magic Crystal location"
+        nextPageId: "page4J"
+
+  page3F:
+    text: "You build a bridge with magical stones, creating a path across the river. What's your next adventure?"
+    imageFileName: "cover_image.jpg"
+    choices:
+      choice1:
+        text: "Cross the bridge to the Whispering Woods"
+        nextPageId: "page4K"
+      choice2:
+        text: "Ask the stones about the Magic Crystal location"
+        nextPageId: "page4L"
+
+  page3G:
+    text: "You dance with the Meadow Fairies, creating a symphony of colors. What's your next move?"
+    imageFileName: "cover_image.jpg"
+    choices:
+      choice1:
+        text: "Follow the Glow Butterflies to the Starlight Glade"
+        nextPageId: "page4M"
+      choice2:
+        text: "Ask the fairies about the Magic Crystal location"
+        nextPageId: "page4N"
+
+  page3H:
+    text: "You follow the Glow Butterflies, who lead you to a magical clearing. What's your next adventure?"
+    imageFileName: "cover_image.jpg"
+    choices:
+      choice1:
+        text: "Watch the Glow Butterflies create a constellation"
+        nextPageId: "page4O"
+      choice2:
+        text: "Ask the Glow Butterflies about the Magic Crystal location"
+        nextPageId: "page4P"
+
+  page3I:
+    text: "You rest under the Enchanted Tree, feeling its soothing magic. What's your next move?"
+    imageFileName: "cover_image.jpg"
+    choices:
+      choice1:
+        text: "Listen to the whispers of the Enchanted Tree"
+        nextPageId: "page4Q"
+      choice2:
+        text: "Ask the tree about the Magic Crystal location"
+        nextPageId: "page4R"
+
+
+  # Level 4 (Terminal Pages)
+
+  page4A:
+    text: "You follow the squirrel guide to the Hidden Glade, where the Magic Crystal awaits. Congratulations, you're a Hidden Glade Discoverer!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"
+
+  page4B:
+    text: "You ask the squirrels about the Magic Crystal location. They guide you to the Whispering Woods, where the crystal awaits. Congratulations, you're a Crystal Seeker!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"
+
+  page4C:
+    text: "You join the fairy dance and receive a Magic Crystal as a gift. Congratulations, you're a Crystal Dancer!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"
+
+  page4D:
+    text: "You ask the fairies about the Magic Crystal location. They guide you to the Starlight Glade, where the crystal awaits. Congratulations, you're a Starlight Explorer!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"
+
+  page4E:
+    text: "You slide down with a magical leaf and find the Magic Crystal at the base of the Giant Oak Tree. Congratulations, you're a Crystal Slider!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"
+
+  page4F:
+    text: "You ask the ancient tree about the Magic Crystal location. The tree points you to the Crystal Cave, where the crystal awaits. Congratulations, you're a Crystal Sage!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"
+
+  page4G:
+    text: "You explore the underwater Crystal Cavern, finding the Magic Crystal sparkling in its depths. Congratulations, you're a Crystal Diver!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"
+
+  page4H:
+    text: "You ask the water sprite about the Magic Crystal location. The sprite leads you to the Crystal Cave, where the crystal awaits. Congratulations, you're a Crystal Seeker!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"
+
+  page4I:
+    text: "You gather some magical crystals from the Crystal Cave. Congratulations, you're a Crystal Gatherer!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"
+
+  page4J:
+    text: "You ask the cave spirits about the Magic Crystal location. They guide you to the Whispering Woods, where the crystal awaits. Congratulations, you're a Crystal Seeker!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"
+
+  page4K:
+    text: "You cross the bridge to the Whispering Woods, where the Magic Crystal awaits. Congratulations, you're a Whispering Woods Explorer!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"
+
+  page4L:
+    text: "You ask the stones about the Magic Crystal location. They guide you to the Hidden Glade, where the crystal awaits. Congratulations, you're a Crystal Seeker!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"
+
+  page4M:
+    text: "You follow the Glow Butterflies to the Starlight Glade, where the Magic Crystal awaits. Congratulations, you're a Starlight Explorer!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"
+
+  page4N:
+    text: "You ask the fairies about the Magic Crystal location. They guide you to the Hidden Glade, where the crystal awaits. Congratulations, you're a Crystal Seeker!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"
+
+  page4O:
+    text: "You watch the Glow Butterflies create a constellation, revealing the Magic Crystal at its center. Congratulations, you're a Crystal Stargazer!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"
+
+  page4P:
+    text: "You ask the Glow Butterflies about the Magic Crystal location. They guide you to the Whispering Woods, where the crystal awaits. Congratulations, you're a Crystal Seeker!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"
+
+  page4Q:
+    text: "You listen to the whispers of the Enchanted Tree, and it grants you the Magic Crystal. Congratulations, you're a Crystal Listener!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"
+
+  page4R:
+    text: "You ask the tree about the Magic Crystal location. The tree points you to the Mystic Meadow, where the crystal awaits. Congratulations, you're a Crystal Seeker!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"

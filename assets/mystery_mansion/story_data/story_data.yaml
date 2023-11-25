@@ -1,0 +1,192 @@
+title: Mystery Mansion
+first_page: page1
+pages:
+
+  # Level 1
+
+  page1:
+    text: "You're in front of a mysterious mansion. What do you want to do?"
+    imageFileName: "cover_image.jpg"
+    choices:
+      choice1:
+        text: "Enter the mansion"
+        nextPageId: "page2A"
+      choice2:
+        text: "Ring the doorbell"
+        nextPageId: "page2B"
+
+  # Level 2
+
+  page2A:
+    text: "You enter the mansion. It's dark inside. What's your next move?"
+    imageFileName: "cover_image.jpg"
+    choices:
+      choice1:
+        text: "Explore the grand hallway"
+        nextPageId: "page3A"
+      choice2:
+        text: "Check the spooky library"
+        nextPageId: "page3B"
+      choice3:
+        text: "Go up the creaky stairs"
+        nextPageId: "page3C"
+
+  page2B:
+    text: "You ring the doorbell, and the door slowly opens. What's your next move?"
+    imageFileName: "cover_image.jpg"
+    choices:
+      choice1:
+        text: "Step inside cautiously"
+        nextPageId: "page3D"
+      choice2:
+        text: "Call out 'Hello'"
+        nextPageId: "page3E"
+      choice3:
+        text: "Wait outside"
+        nextPageId: "page3F"
+
+  # Level 3
+
+  page3A:
+    text: "You explore the grand hallway. It has many doors. What's your next move?"
+    imageFileName: "cover_image.jpg"
+    choices:
+      choice1:
+        text: "Open the golden door"
+        nextPageId: "page4A"
+      choice2:
+        text: "Investigate the mysterious painting"
+        nextPageId: "page4B"
+
+  page3B:
+    text: "You check the spooky library. There are ancient books. What's your next adventure?"
+    imageFileName: "cover_image.jpg"
+    choices:
+      choice1:
+        text: "Read the dusty spellbook"
+        nextPageId: "page4C"
+      choice2:
+        text: "Search for hidden passages"
+        nextPageId: "page4D"
+
+  page3C:
+    text: "You go up the creaky stairs. They lead to a dark corridor. What's your next move?"
+    imageFileName: "cover_image.jpg"
+    choices:
+      choice1:
+        text: "Enter the mysterious room"
+        nextPageId: "page4E"
+      choice2:
+        text: "Follow the flickering candlelight"
+        nextPageId: "page4F"
+      choice3:
+        text: "Go back downstairs"
+        nextPageId: "page4G"
+
+  page3D:
+    text: "You step inside cautiously. The room is filled with antique furniture. What's your next adventure?"
+    imageFileName: "cover_image.jpg"
+    choices:
+      choice1:
+        text: "Examine the dusty piano"
+        nextPageId: "page4H"
+      choice2:
+        text: "Check the old portraits"
+        nextPageId: "page4I"
+
+  page3E:
+    text: "You call out 'Hello.' No response. What's your next move?"
+    imageFileName: "cover_image.jpg"
+    choices:
+      choice1:
+        text: "Continue exploring the mansion"
+        nextPageId: "page4J"
+      choice2:
+        text: "Check the backyard"
+        nextPageId: "page4K"
+
+  page3F:
+    text: "You wait outside. The door slowly closes. What's your next adventure?"
+    imageFileName: "cover_image.jpg"
+    choices:
+      choice1:
+        text: "Knock on the door again"
+        nextPageId: "page4L"
+      choice2:
+        text: "Look through the windows"
+        nextPageId: "page4M"
+      choice3:
+        text: "Leave the mansion"
+        nextPageId: "page4N"
+
+  # Level 4 (Terminal Pages)
+
+  page4A:
+    text: "You open the golden door and discover a hidden treasure room. Congratulations, you're a master treasure hunter!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"
+
+  page4B:
+    text: "You investigate the mysterious painting and find a secret passage. Congratulations, you're a skilled detective!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"
+
+  page4C:
+    text: "You read the dusty spellbook and gain magical powers. Congratulations, you're a mystical wizard!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"
+
+  page4D:
+    text: "You search for hidden passages and unveil a hidden library. Congratulations, you're a secret librarian!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"
+
+  page4E:
+    text: "You enter the mysterious room and solve a puzzle. Congratulations, you're a puzzle-solving expert!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"
+
+  page4F:
+    text: "You follow the flickering candlelight and discover a haunted ballroom. Congratulations, you're a brave ghost hunter!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"
+
+  page4G:
+    text: "You go back downstairs and exit the mansion. Congratulations, you're a cautious adventurer!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"
+
+  page4H:
+    text: "You examine the dusty piano and play a haunting melody. Congratulations, you're a musical maestro!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"
+
+  page4I:
+    text: "You check the old portraits and reveal a family secret. Congratulations, you're a skilled investigator!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"
+
+  page4J:
+    text: "You continue exploring the mansion and uncover its mysteries. Congratulations, you're a true explorer!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"
+
+  page4K:
+    text: "You check the backyard and find a hidden garden. Congratulations, you're a nature detective!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"
+
+  page4L:
+    text: "You knock on the door again and meet the mysterious owner. Congratulations, you're a persistent investigator!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"
+
+  page4M:
+    text: "You look through the windows and see a magical night sky. Congratulations, you're a stargazing enthusiast!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"
+
+  page4N:
+    text: "You leave the mansion and venture into the moonlit night. Congratulations, you're an adventurer with a sense of mystery!"
+    isTerminal: true
+    imageFileName: "cover_image.jpg"

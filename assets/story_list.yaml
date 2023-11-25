@@ -1,0 +1,16 @@
+story_list:
+  adventure_in_the_jungle:
+    title: Adventure in the Jungle
+    first_page: page1
+  space_odyssey:
+    title: Space Odyssey
+    first_page: page1
+  mystery_mansion:
+    title: Mystery Mansion
+    first_page: page1
+  dinoquest_journey:
+    title: "DinoQuest: Journey through the Jurassic"
+    first_page: page1
+  magic_forest_quest:
+    title: "Magic Forest Quest"
+    first_page: page1
