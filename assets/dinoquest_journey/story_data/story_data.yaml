@@ -156,6 +156,17 @@ pages:
         text: "Continue exploring the cave system"
         nextPageId: "page4R"
 
+  page3I:
+    text: "You rest under the Enchanted Tree, feeling its soothing magic. What's your next move?"
+    imageFileName: "cover_image.jpg"
+    choices:
+      choice1:
+        text: "Listen to the whispers of the Enchanted Tree"
+        nextPageId: "page4Q"
+      choice2:
+        text: "Ask the tree about the Magic Crystal location"
+        nextPageId: "page4R"
+
   # Level 4 (Terminal Pages)
 
   page4A:

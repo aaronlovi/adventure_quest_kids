@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:adventure_quest_kids/model/story.dart';
+import 'package:flutter/services.dart';
 import 'package:yaml/yaml.dart';
 
 class StoryMetaData {
@@ -12,9 +13,10 @@ class StoryMetaData {
       required this.title,
       required this.firstPageId});
 
-  Future<Story> getStory() async {
-    String yamlString =
-        await File('$storyDataFolder/story_data.yaml').readAsString();
+  Future<Story> getStory({bool isUnitTest = false}) async {
+    String yamlString = isUnitTest
+        ? await File('$storyDataFolder/story_data.yaml').readAsString()
+        : await rootBundle.loadString('$storyDataFolder/story_data.yaml');
     YamlMap yamlMap = loadYaml(yamlString);
     return Story.fromYaml(this, yamlMap);
   }

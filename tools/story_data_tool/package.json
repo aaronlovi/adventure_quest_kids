@@ -1,0 +1,17 @@
+{
+  "name": "story_data_tool",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dry-run": "node yamlModifier.js ../../assets/adventure_in_the_jungle/story_data/story_data.yaml"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  },
+  "type": "module"
+}

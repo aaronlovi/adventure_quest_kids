@@ -62,6 +62,9 @@ void main() {
         for (MapEntry<String, StoryChoice> choice
             in currentPage.choices.entries) {
           StoryPage? nextPage = story.pages[choice.value.nextPageId];
+
+          expect(nextPage, isNotNull);
+
           if (nextPage != null) {
             pageStack.add(Tuple2<StoryPage, int>(nextPage, currentLevel + 1));
             pageIds.remove(choice.value.nextPageId);

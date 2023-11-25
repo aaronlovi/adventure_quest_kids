@@ -1,0 +1,36 @@
+# Dependency directories
+node_modules/
+
+# Optional: Include this line if you are using npm
+npm-debug.log
+
+# Optional: Include this line if you are using Yarn
+#yarn-error.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+.idea/
+.vscode/
+
+# Build files
+/build/
+/dist/
+
+# Logs
+*.log
+
+# Environment variables file
+.env
+
+# Optional: Uncomment the following line if you are using TypeScript
+# tsconfig.json
+
+# Optional: Uncomment the following line if you are using JavaScript Standard Style
+# .eslintrc
+
+# Optional: Uncomment the following line if you are using Prettier
+# .prettierrc
+# .prettierignore
