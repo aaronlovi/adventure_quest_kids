@@ -22,6 +22,8 @@ class Story {
   }
 
   String get title => storyMetaData.title;
+  String get subTitle => storyMetaData.subTitle;
+  String get fullTitle => storyMetaData.fullTitle;
 
   String get firstPageId => storyMetaData.firstPageId;
 

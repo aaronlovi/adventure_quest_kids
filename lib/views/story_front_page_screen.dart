@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../model/story.dart';
 import '../model/story_meta_data.dart';
 import '../model/story_page.dart';
+import 'app_bar_title_widget.dart';
 import 'story_page_screen.dart';
 
 class StoryFrontPageScreen extends StatelessWidget {
@@ -17,7 +18,8 @@ class StoryFrontPageScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(storyMetadata.title),
+          title: AppBarTitleWidget(
+              title: storyMetadata.title, subTitle: storyMetadata.subTitle),
           actions: [
             IconButton(
               tooltip: 'Story list',
@@ -91,9 +93,6 @@ class StoryFrontPageScreen extends StatelessWidget {
           parent: animation,
           curve: Curves.ease,
         );
-
-        // playSoundOnPageTransition(
-        //     storyPage, curvedAnimation, getSoundPath(storyPage));
 
         return SlideTransition(
           position: tween.animate(curvedAnimation),

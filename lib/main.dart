@@ -41,10 +41,12 @@ Future<void> loadStoryList() async {
 StoryMetaData getStoryMetadataFromYaml(YamlMap yamlMap, story) {
   var entry = yamlMap['story_list'][story];
   String title = entry['title'];
+  String subTitle = entry['subtitle'] ?? '';
   String firstPage = entry['first_page'];
   StoryMetaData storyMetaData = StoryMetaData(
     assetName: story,
     title: title,
+    subTitle: subTitle,
     firstPageId: firstPage,
   );
   return storyMetaData;
@@ -111,7 +113,7 @@ class MainScreen extends StatelessWidget {
             var storyName = storyNames[index];
             StoryMetaData storyMetaData = registry.storyList[storyName]!;
             return ListTile(
-                title: Text(storyMetaData.title),
+                title: Text(storyMetaData.fullTitle),
                 onTap: () async {
                   Navigator.push(
                     context,

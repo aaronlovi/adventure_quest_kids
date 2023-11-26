@@ -8,6 +8,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
+import 'app_bar_title_widget.dart';
+
 class StoryPageScreen extends StatefulWidget {
   final Story story;
   final StoryPage storyPage;
@@ -54,7 +56,8 @@ class StoryPageScreenState extends State<StoryPageScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.story.title),
+        title: AppBarTitleWidget(
+            title: widget.story.title, subTitle: widget.story.subTitle),
         actions: [
           IconButton(
             tooltip: 'Start of story',
@@ -96,7 +99,10 @@ class StoryPageScreenState extends State<StoryPageScreen> {
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: _startAnimation,
-          tooltip: 'Start Animation',
+          tooltip: 'Read Aloud',
+          mini: true,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
           child: const Icon(Icons.play_arrow)),
     );
   }
@@ -104,82 +110,10 @@ class StoryPageScreenState extends State<StoryPageScreen> {
   void _addStoryTextWidgets(List<Widget> widgets) {
     List<String> words = widget.storyPage.text.split(' ');
 
-    AnimatedBuilder pageTextWidget = _buildAnimatedStoryText(words);
+    var pageTextWidget =
+        AnimatedStoryText(words: words, currentWordIndex: _currentWordIndex);
 
     widgets.add(Center(child: pageTextWidget));
-  }
-
-  AnimatedBuilder _buildAnimatedStoryText(List<String> words) {
-    return AnimatedBuilder(
-      animation: _currentWordIndex,
-      builder: (context, _) {
-        return RichText(
-          textAlign: TextAlign.center,
-          text: TextSpan(
-            style: const TextStyle(
-                fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
-            children: words
-                .expand((word) =>
-                    _buildStoryTextWordSpan(word, words.indexOf(word)))
-                .toList(),
-          ),
-        );
-      },
-    );
-  }
-
-  List<InlineSpan> _buildStoryTextWordSpan(String word, int index) {
-    return [
-      WidgetSpan(child: _buildStoryTextStack(word, index)),
-      const TextSpan(text: ' '),
-    ];
-  }
-
-  Stack _buildStoryTextStack(String word, int index) {
-    return Stack(
-      children: [
-        // Base story page text
-        Text(word,
-            style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: Colors.black)),
-
-        // Story page text that glows and underlines when animated
-        _buildStoryTextAnimatedOpacity(word, index),
-      ],
-    );
-  }
-
-  AnimatedOpacity _buildStoryTextAnimatedOpacity(String word, int index) {
-    return AnimatedOpacity(
-      opacity: index == _currentWordIndex.value && _currentWordIndex.value != -1
-          ? 1.0
-          : 0.0,
-      duration: const Duration(milliseconds: 500),
-      child: _buildStoryTextContainer(word),
-    );
-  }
-
-  Container _buildStoryTextContainer(String word) {
-    return Container(
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.yellow.withOpacity(0.6),
-            spreadRadius: 5,
-            blurRadius: 7,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Text(word,
-          style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-              decoration: TextDecoration.underline)),
-    );
   }
 
   List<Widget> _addStoryChoiceWidgets(
@@ -282,5 +216,92 @@ class StoryPageScreenState extends State<StoryPageScreen> {
         _currentWordIndex.value = -1;
       }
     });
+  }
+}
+
+class AnimatedStoryText extends StatelessWidget {
+  final List<String> words;
+  final ValueNotifier<int> currentWordIndex;
+
+  const AnimatedStoryText(
+      {super.key, required this.words, required this.currentWordIndex});
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: currentWordIndex,
+      builder: (context, _) {
+        return RichText(
+          textAlign: TextAlign.center,
+          text: TextSpan(
+            style: const TextStyle(
+                fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black),
+            children: words.asMap().entries.expand((entry) {
+              int index = entry.key;
+              String word = entry.value;
+              return [
+                WidgetSpan(
+                  child: StoryText(
+                      word: word,
+                      index: index,
+                      currentWordIndex: currentWordIndex),
+                ),
+                const TextSpan(text: ' '),
+              ];
+            }).toList(),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class StoryText extends StatelessWidget {
+  final String word;
+  final int index;
+  final ValueNotifier<int> currentWordIndex;
+
+  const StoryText(
+      {super.key,
+      required this.word,
+      required this.index,
+      required this.currentWordIndex});
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Text(word,
+            style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                color: Colors.black)),
+        AnimatedOpacity(
+          opacity:
+              index == currentWordIndex.value && currentWordIndex.value != -1
+                  ? 1.0
+                  : 0.0,
+          duration: const Duration(milliseconds: 500),
+          child: Container(
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.yellow.withOpacity(0.6),
+                  spreadRadius: 5,
+                  blurRadius: 7,
+                  offset: const Offset(0, 3),
+                ),
+              ],
+            ),
+            child: Text(word,
+                style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black,
+                    decoration: TextDecoration.underline)),
+          ),
+        ),
+      ],
+    );
   }
 }

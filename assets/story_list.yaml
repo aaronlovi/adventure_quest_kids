@@ -9,7 +9,8 @@ story_list:
     title: Mystery Mansion
     first_page: page1
   dinoquest_journey:
-    title: "DinoQuest: Journey through the Jurassic"
+    title: "DinoQuest"
+    subtitle: "Journey through the Jurassic"
     first_page: page1
   magic_forest_quest:
     title: "Magic Forest Quest"
