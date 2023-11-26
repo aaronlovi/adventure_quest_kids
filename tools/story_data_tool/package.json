@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "fluent-ffmpeg": "^2.1.2",
     "js-yaml": "^4.1.0"
   },
   "type": "module"

@@ -6,7 +6,8 @@ pages:
 
   page1:
     text: "You find yourself in a dense jungle. What do you want to do?"
-    imageFileName: "cover_image.jpg"
+    imageFileName: "1.jpg"
+    soundFileName: "418337__sieuamthanh__tu-hu-1.mp3"
     choices:
       choice1:
         text: "Follow the winding path"
@@ -22,7 +23,7 @@ pages:
 
   page2A:
     text: "You follow the winding path deeper into the jungle. What's your next move?"
-    imageFileName: "cover_image.jpg"
+    imageFileName: "2a.jpg"
     choices:
       choice1:
         text: "Discover a hidden waterfall"
@@ -36,7 +37,7 @@ pages:
 
   page2B:
     text: "You climb the tall tree and see the jungle from above. What's your next adventure?"
-    imageFileName: "cover_image.jpg"
+    imageFileName: "2b.jpg"
     choices:
       choice1:
         text: "Swing from the vines"
@@ -50,7 +51,7 @@ pages:
 
   page2C:
     text: "You listen to jungle sounds and hear a distant roar. What's your next move?"
-    imageFileName: "cover_image.jpg"
+    imageFileName: "2c.jpg"
     choices:
       choice1:
         text: "Follow the roar to find the source"
@@ -66,7 +67,7 @@ pages:
 
   page3A:
     text: "You discover a hidden waterfall. It sparkles in the sunlight. What's your next move?"
-    imageFileName: "cover_image.jpg"
+    imageFileName: "3a.jpg"
     choices:
       choice1:
         text: "Take a refreshing swim"
@@ -77,7 +78,7 @@ pages:
 
   page3B:
     text: "You spot colorful birds. They lead you to a magical clearing. What's your next adventure?"
-    imageFileName: "cover_image.jpg"
+    imageFileName: "3b.jpg"
     choices:
       choice1:
         text: "Join the birds in a dance"
@@ -91,7 +92,7 @@ pages:
 
   page3C:
     text: "You explore a mysterious cave. It's filled with glowing crystals. What's your next move?"
-    imageFileName: "cover_image.jpg"
+    imageFileName: "3c.jpg"
     choices:
       choice1:
         text: "Collect the glowing crystals"
@@ -102,7 +103,7 @@ pages:
 
   page3D:
     text: "You swing from the vines with skill. What's your next adventure?"
-    imageFileName: "cover_image.jpg"
+    imageFileName: "3d.jpg"
     choices:
       choice1:
         text: "Discover a hidden treehouse"
@@ -113,7 +114,7 @@ pages:
 
   page3E:
     text: "You spot a family of monkeys playing. What's your next move?"
-    imageFileName: "cover_image.jpg"
+    imageFileName: "3e.jpg"
     choices:
       choice1:
         text: "Join the monkey fun"
@@ -124,7 +125,7 @@ pages:
 
   page3F:
     text: "You slide down the tree trunk with excitement. What's your next move?"
-    imageFileName: "cover_image.jpg"
+    imageFileName: "3f.jpg"
     choices:
       choice1:
         text: "Discover a hidden jungle slide"
@@ -135,7 +136,7 @@ pages:
 
   page3G:
     text: "You follow the roar and discover a majestic lion. What's your next adventure?"
-    imageFileName: "cover_image.jpg"
+    imageFileName: "3g.jpg"
     choices:
       choice1:
         text: "Offer a friendly gesture to the lion"
@@ -146,7 +147,7 @@ pages:
 
   page3H:
     text: "You build a shelter for the night. It's cozy. What's your next move?"
-    imageFileName: "cover_image.jpg"
+    imageFileName: "3h.jpg"
     choices:
       choice1:
         text: "Watch the stars from your shelter"
@@ -157,7 +158,7 @@ pages:
 
   page3I:
     text: "You climb a tree for safety. From above, you see a magical glow. What's your next adventure?"
-    imageFileName: "cover_image.jpg"
+    imageFileName: "3i.jpg"
     choices:
       choice1:
         text: "Slide down the tree trunk to investigate"
@@ -171,94 +172,94 @@ pages:
   page4A:
     text: "You take a refreshing swim in the hidden waterfall. Congratulations, you're a jungle water adventurer!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4a.jpg"
 
   page4B:
     text: "You climb behind the waterfall and discover a secret cave. Congratulations, you're a waterfall explorer!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4b.jpg"
 
   page4C:
     text: "You join the birds in a dance. It's a magical moment. Congratulations, you're a jungle dance partner!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4c.jpg"
 
   page4D:
     text: "You discover a hidden nest in the magical clearing. Congratulations, you're a jungle nest detective!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4d.jpg"
 
   page4E:
     text: "You listen to the bird songs and learn their melodies. Congratulations, you're a jungle song apprentice!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4e.jpg"
 
   page4F:
     text: "You collect the glowing crystals and feel their magical energy. Congratulations, you're a jungle crystal collector!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4f.jpg"
 
   page4G:
     text: "You follow a secret tunnel and discover a hidden chamber. Congratulations, you're a jungle explorer extraordinaire!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4g.jpg"
 
   page4H:
     text: "You discover a hidden treehouse and make it your jungle home. Congratulations, you're a jungle treehouse dweller!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4h.jpg"
 
   page4I:
     text: "You race through the jungle canopy and feel the thrill of adventure. Congratulations, you're a jungle canopy racer!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4i.jpg"
 
   page4J:
     text: "You join the monkey fun and swing through the trees. Congratulations, you're a jungle monkey companion!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4j.jpg"
 
   page4K:
     text: "You share your snacks with the monkeys and become their jungle friend. Congratulations, you're a jungle snack sharer!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4k.jpg"
 
   page4L:
     text: "You discover a hidden jungle slide and slide into a magical pond. Congratulations, you're a jungle slider!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4l.jpg"
 
   page4M:
     text: "You build a treehouse and host jungle gatherings. Congratulations, you're a jungle treehouse architect!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4m.jpg"
 
   page4N:
     text: "You offer a friendly gesture to the lion and become jungle friends. Congratulations, you're a jungle lion whisperer!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4n.jpg"
 
   page4O:
     text: "You climb a tree for safety and witness a jungle sunset. Congratulations, you're a jungle sunset observer!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4o.jpg"
 
   page4P:
     text: "You watch the stars from your shelter and feel the magic of the jungle night. Congratulations, you're a jungle stargazer!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4p.jpg"
 
   page4Q:
     text: "You light a campfire and tell jungle stories. Congratulations, you're a jungle storyteller!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4q.jpg"
 
   page4R:
     text: "You slide down the tree trunk to investigate and discover a hidden treasure. Congratulations, you're a jungle treasure hunter!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4r.jpg"
 
   page4S:
     text: "You continue climbing to the treetop and see the entire jungle. Congratulations, you're a jungle heights conqueror!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4s.jpg"

@@ -10,6 +10,9 @@ class StoryFrontPageScreen extends StatelessWidget {
 
   const StoryFrontPageScreen({super.key, required this.storyMetadata});
 
+  String getSoundPath(StoryPage storyPage) =>
+      '${storyMetadata.soundsFolder}/${storyPage.soundFileName}';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +35,7 @@ class StoryFrontPageScreen extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * 0.4,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                      fit: BoxFit.cover,
+                      fit: BoxFit.contain,
                       image: AssetImage(
                           '${storyMetadata.imagesFolder}/cover_image.jpg')),
                 )),
@@ -62,27 +65,7 @@ class StoryFrontPageScreen extends StatelessWidget {
 
                         Navigator.push(
                           context,
-                          PageRouteBuilder(
-                              pageBuilder:
-                                  (context, animation, secondaryAnimation) =>
-                                      StoryPageScreen(story, storyPage),
-                              transitionsBuilder: (context, animation,
-                                  secondaryAnimation, child) {
-                                var begin = const Offset(1.0, 0.0);
-                                var end = Offset.zero;
-                                var tween = Tween(begin: begin, end: end);
-                                var curvedAnimation = CurvedAnimation(
-                                  parent: animation,
-                                  curve: Curves.ease,
-                                );
-
-                                return SlideTransition(
-                                  position: tween.animate(curvedAnimation),
-                                  child: child,
-                                );
-                              },
-                              transitionDuration:
-                                  const Duration(milliseconds: 1000)),
+                          getPageTransition(story, storyPage),
                         );
                       },
                       child: const Text('Begin Adventure'),
@@ -93,5 +76,31 @@ class StoryFrontPageScreen extends StatelessWidget {
             ),
           ],
         ));
+  }
+
+  PageRouteBuilder<dynamic> getPageTransition(
+      Story story, StoryPage storyPage) {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) =>
+          StoryPageScreen(story, storyPage),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        var begin = const Offset(1.0, 0.0);
+        var end = Offset.zero;
+        var tween = Tween(begin: begin, end: end);
+        var curvedAnimation = CurvedAnimation(
+          parent: animation,
+          curve: Curves.ease,
+        );
+
+        // playSoundOnPageTransition(
+        //     storyPage, curvedAnimation, getSoundPath(storyPage));
+
+        return SlideTransition(
+          position: tween.animate(curvedAnimation),
+          child: child,
+        );
+      },
+      transitionDuration: const Duration(milliseconds: 1000),
+    );
   }
 }

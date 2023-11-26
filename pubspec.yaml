@@ -38,6 +38,8 @@ dependencies:
   yaml: ^3.0.0
   get_it: ^7.6.4
   tuple: ^2.0.0
+  audioplayers: ^5.2.0
+  # just_audio: ^0.9.17
 
 dev_dependencies:
   flutter_test:
@@ -73,6 +75,7 @@ flutter:
   assets:
     - assets/
     - assets/adventure_in_the_jungle/images/
+    - assets/adventure_in_the_jungle/sounds/
     - assets/adventure_in_the_jungle/story_data/
     - assets/dinoquest_journey/images/
     - assets/dinoquest_journey/story_data/

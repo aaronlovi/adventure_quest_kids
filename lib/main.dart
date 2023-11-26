@@ -1,17 +1,23 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:yaml/yaml.dart';
 
-import 'model/registry.dart';
 import 'model/story_meta_data.dart';
+import 'registry.dart';
 import 'views/story_front_page_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   var getIt = GetIt.instance;
+
+  // Remove the asset prefix for all audio players (the default is '/assets')
+  AudioCache.instance = AudioCache(prefix: '');
+
   getIt.registerSingleton<Registry>(Registry());
+  getIt.registerSingleton<AudioPlayer>(AudioPlayer());
 
   // Load the list of stories
   await loadStoryList();
@@ -44,8 +50,19 @@ StoryMetaData getStoryMetadataFromYaml(YamlMap yamlMap, story) {
   return storyMetaData;
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  MyAppState createState() => MyAppState();
+}
+
+class MyAppState extends State<MyApp> {
+  @override
+  void dispose() {
+    GetIt.I<AudioPlayer>().dispose();
+    super.dispose();
+  }
 
   // This widget is the root of your application.
   @override

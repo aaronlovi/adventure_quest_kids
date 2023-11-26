@@ -26,4 +26,5 @@ class Story {
   String get firstPageId => storyMetaData.firstPageId;
 
   String get imagesFolder => storyMetaData.imagesFolder;
+  String get soundsFolder => storyMetaData.soundsFolder;
 }

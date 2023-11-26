@@ -4,12 +4,14 @@ import 'story_choice.dart';
 
 class StoryPage {
   final String imageFileName;
+  final String soundFileName;
   final String text;
   final Map<String, StoryChoice> choices;
   final bool isTerminal;
 
   const StoryPage({
     required this.imageFileName,
+    required this.soundFileName,
     required this.text,
     required this.choices,
     this.isTerminal = false,
@@ -17,6 +19,7 @@ class StoryPage {
 
   factory StoryPage.fromYaml(YamlMap yamlMap) {
     String imageFileName = yamlMap['imageFileName'];
+    String soundFileName = yamlMap['soundFileName'] ?? '';
     String text = yamlMap['text'];
     Map<String, StoryChoice> choices = {};
 
@@ -35,6 +38,7 @@ class StoryPage {
 
     return StoryPage(
       imageFileName: imageFileName,
+      soundFileName: soundFileName,
       text: text,
       choices: choices,
       isTerminal: isTerminal,

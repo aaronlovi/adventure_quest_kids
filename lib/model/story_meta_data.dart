@@ -25,5 +25,7 @@ class StoryMetaData {
 
   String get imagesFolder => '$assetsFolder/images';
 
+  String get soundsFolder => '$assetsFolder/sounds';
+
   String get storyDataFolder => '$assetsFolder/story_data';
 }
