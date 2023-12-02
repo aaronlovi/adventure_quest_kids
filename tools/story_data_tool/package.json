@@ -5,14 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dry-run": "node yamlModifier.js ../../assets/adventure_in_the_jungle/story_data/story_data.yaml"
+    "dry-run": "node yamlModifier.js ../../assets/adventure_in_the_jungle/story_data/story_data.yaml",
+    "resize-images": "node resizeImages.js ../../assets/dinoquest_journey/images/originals/ ../../assets/dinoquest_journey/images/"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "fluent-ffmpeg": "^2.1.2",
-    "js-yaml": "^4.1.0"
+    "js-yaml": "^4.1.0",
+    "sharp": "^0.32.6"
   },
   "type": "module"
 }
