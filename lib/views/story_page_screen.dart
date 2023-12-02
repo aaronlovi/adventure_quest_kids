@@ -3,12 +3,15 @@ import 'dart:async';
 import 'package:adventure_quest_kids/model/story.dart';
 import 'package:adventure_quest_kids/model/story_choice.dart';
 import 'package:adventure_quest_kids/model/story_page.dart';
+import 'package:adventure_quest_kids/utils/navigator_utils.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
-import 'app_bar_title_widget.dart';
+import '../utils/constants.dart';
+import 'animated_story_text.dart';
+import 'story_page_screen_common.dart';
 
 class StoryPageScreen extends StatefulWidget {
   final Story story;
@@ -50,60 +53,93 @@ class StoryPageScreenState extends State<StoryPageScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var bottomHalfWidgets = <Widget>[];
-    _addStoryTextWidgets(bottomHalfWidgets);
-    _addStoryChoiceWidgets(context, bottomHalfWidgets);
+    final double w = context.width;
+    final double h = context.height;
 
     return Scaffold(
-      appBar: AppBar(
-        title: AppBarTitleWidget(
-            title: widget.story.title, subTitle: widget.story.subTitle),
-        actions: [
-          IconButton(
-            tooltip: 'Start of story',
-            onPressed: () {
-              Navigator.popUntil(context, ModalRoute.withName('front-page'));
-            },
-            icon: const Icon(Icons.home),
-          ),
-          IconButton(
-            tooltip: 'Story list',
-            onPressed: () {
-              Navigator.popUntil(context, (route) => route.isFirst);
-            },
-            icon: const Icon(Icons.list),
-          ),
-        ],
-      ),
+      appBar: _getAppBar(context),
       body: Column(
         children: [
-          // Top half: Container for Image
-          Container(
-              height: MediaQuery.of(context).size.height * 0.4,
+          _getStoryImageWidgets(w, h),
+          _getStoryTextAndChoicesWidgets(w, h, context),
+        ],
+      ),
+    );
+  }
+
+  PreferredSize _getAppBar(BuildContext context) {
+    return PreferredSize(
+        preferredSize: const Size.fromHeight(kToolbarHeight),
+        child: Hero(
+            tag: 'appBar',
+            child: getAppBar(context,
+                title: widget.story.title,
+                subTitle: widget.story.subTitle,
+                isStartPage: false)));
+  }
+
+  SizedBox _getStoryImageWidgets(double w, double h) {
+    return SizedBox(
+      height: h * 0.4,
+      child: Stack(
+        alignment: Alignment.center,
+        children: <Widget>[
+          Align(
+            alignment: Alignment.center,
+            child: Container(
+              height: h * 0.4,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.contain,
                   image: AssetImage(imagePath),
                 ),
-              )),
-          // Bottom half: Text and Choices
-          Container(
-            height: MediaQuery.of(context).size.height * 0.4,
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: bottomHalfWidgets,
+              ),
+            ),
+          ),
+          Positioned(
+            right: w * 0.1 / 2,
+            bottom: 0,
+            child: FloatingActionButton(
+              onPressed: _startAnimation,
+              tooltip: 'Read Aloud',
+              mini: true,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0)),
+              heroTag: null,
+              child: const Icon(Icons.play_arrow),
             ),
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-          onPressed: _startAnimation,
-          tooltip: 'Read Aloud',
-          mini: true,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-          child: const Icon(Icons.play_arrow)),
+    );
+  }
+
+  Container _getStoryTextAndChoicesWidgets(
+    double w,
+    double h,
+    BuildContext context,
+  ) {
+    var widgets = <Widget>[];
+    _addStoryTextWidgets(widgets);
+    _addStoryChoiceWidgets(context, widgets);
+
+    return Container(
+      height: h * 0.4,
+      padding: const EdgeInsets.fromLTRB(4, 8, 4, 0),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          return FittedBox(
+            fit: BoxFit.scaleDown,
+            child: SizedBox(
+              width: constraints.maxWidth,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: widgets,
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 
@@ -117,75 +153,43 @@ class StoryPageScreenState extends State<StoryPageScreen> {
   }
 
   List<Widget> _addStoryChoiceWidgets(
-      BuildContext context, List<Widget> widgets) {
+    BuildContext context,
+    List<Widget> widgets,
+  ) {
     widgets.add(const SizedBox(height: 16));
 
     for (String choiceName in widget.storyPage.choices.keys) {
       StoryChoice choice = widget.storyPage.choices[choiceName]!;
 
-      widgets.add(const Padding(padding: EdgeInsets.only(top: 16)));
+      widgets.add(const Padding(padding: EdgeInsets.only(top: 12)));
       widgets.add(ElevatedButton(
-        onPressed: () async {
-          if (!context.mounted) return;
+        onPressed: () {
           StoryPage nextPage = widget.story.pages[choice.nextPageId]!;
-
-          Navigator.push(
-            context,
-            _getPageTransition(nextPage),
-          );
+          Navigator.push(context, getPageTransition(widget.story, nextPage));
         },
-        child: Text(choice.text),
+        child: Text(choice.text, textAlign: TextAlign.center),
       ));
     }
 
     if (widget.storyPage.isTerminal) {
-      widgets.add(const Padding(padding: EdgeInsets.only(top: 16)));
+      widgets.add(const Padding(padding: EdgeInsets.only(top: 12)));
       widgets.add(const Text('The End',
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)));
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)));
 
-      widgets.add(const Padding(padding: EdgeInsets.only(top: 24)));
+      widgets.add(const Padding(padding: EdgeInsets.only(top: 12)));
       widgets.add(ElevatedButton(
-        onPressed: () async {
-          if (!context.mounted) return;
-
-          Navigator.popUntil(context, ModalRoute.withName('front-page'));
-        },
+        onPressed: () => popUntilNamedRoute(context, 'front-page'),
         child: Text('Restart ${widget.story.title}'),
       ));
 
       widgets.add(const Padding(padding: EdgeInsets.only(top: 16)));
       widgets.add(ElevatedButton(
-        onPressed: () async {
-          if (!context.mounted) return;
-
-          Navigator.popUntil(context, (route) => route.isFirst);
-        },
+        onPressed: () => popUntilFirstRoute(context),
         child: const Text('Back to Story List'),
       ));
     }
 
     return widgets;
-  }
-
-  PageRouteBuilder<dynamic> _getPageTransition(StoryPage nextPage) {
-    return PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) =>
-            StoryPageScreen(widget.story, nextPage),
-        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          var begin = const Offset(1.0, 0.0);
-          var end = Offset.zero;
-          var tween = Tween(begin: begin, end: end);
-          var curvedAnimation = CurvedAnimation(
-            parent: animation,
-            curve: Curves.ease,
-          );
-
-          return SlideTransition(
-            position: tween.animate(curvedAnimation),
-            child: child,
-          );
-        },
-        transitionDuration: const Duration(milliseconds: 1000));
   }
 
   Future<void> _playPageLoadSound() async {
@@ -208,7 +212,7 @@ class StoryPageScreenState extends State<StoryPageScreen> {
     _timer?.cancel();
     _currentWordIndex.value = 0;
 
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(Constants.oneSecond, (timer) {
       if (_currentWordIndex.value < words.length - 1) {
         _currentWordIndex.value++;
       } else {
@@ -216,92 +220,5 @@ class StoryPageScreenState extends State<StoryPageScreen> {
         _currentWordIndex.value = -1;
       }
     });
-  }
-}
-
-class AnimatedStoryText extends StatelessWidget {
-  final List<String> words;
-  final ValueNotifier<int> currentWordIndex;
-
-  const AnimatedStoryText(
-      {super.key, required this.words, required this.currentWordIndex});
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: currentWordIndex,
-      builder: (context, _) {
-        return RichText(
-          textAlign: TextAlign.center,
-          text: TextSpan(
-            style: const TextStyle(
-                fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black),
-            children: words.asMap().entries.expand((entry) {
-              int index = entry.key;
-              String word = entry.value;
-              return [
-                WidgetSpan(
-                  child: StoryText(
-                      word: word,
-                      index: index,
-                      currentWordIndex: currentWordIndex),
-                ),
-                const TextSpan(text: ' '),
-              ];
-            }).toList(),
-          ),
-        );
-      },
-    );
-  }
-}
-
-class StoryText extends StatelessWidget {
-  final String word;
-  final int index;
-  final ValueNotifier<int> currentWordIndex;
-
-  const StoryText(
-      {super.key,
-      required this.word,
-      required this.index,
-      required this.currentWordIndex});
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Text(word,
-            style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: Colors.black)),
-        AnimatedOpacity(
-          opacity:
-              index == currentWordIndex.value && currentWordIndex.value != -1
-                  ? 1.0
-                  : 0.0,
-          duration: const Duration(milliseconds: 500),
-          child: Container(
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.yellow.withOpacity(0.6),
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: const Offset(0, 3),
-                ),
-              ],
-            ),
-            child: Text(word,
-                style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black,
-                    decoration: TextDecoration.underline)),
-          ),
-        ),
-      ],
-    );
   }
 }

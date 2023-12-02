@@ -7,9 +7,7 @@ class Registry {
   AudioPlayer backgroundAudioPlayer;
   StoryMetaData? currentStoryMetaData;
 
-  Registry()
-      : storyList = {},
-        backgroundAudioPlayer = AudioPlayer();
+  Registry(this.backgroundAudioPlayer) : storyList = {};
 
   void dispose() {
     backgroundAudioPlayer.dispose();

@@ -8,6 +8,12 @@ import 'model/story_meta_data.dart';
 import 'registry.dart';
 import 'views/story_front_page_screen.dart';
 
+typedef AssetSourceFactory = AssetSource Function(String assetPath);
+
+AssetSource createAssetSource(String assetPath) {
+  return AssetSource(assetPath);
+}
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -16,8 +22,11 @@ Future<void> main() async {
   // Remove the asset prefix for all audio players (the default is '/assets')
   AudioCache.instance = AudioCache(prefix: '');
 
-  getIt.registerSingleton<Registry>(Registry());
+  AudioPlayer backgroundAudioPlayer = AudioPlayer();
+  getIt.registerSingleton<Registry>(Registry(backgroundAudioPlayer));
   getIt.registerSingleton<AudioPlayer>(AudioPlayer());
+  getIt.registerSingleton<AssetSourceFactory>(
+      (assetPath) => AssetSource(assetPath));
 
   // Load the list of stories
   await loadStoryList();

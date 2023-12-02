@@ -1,16 +1,17 @@
 import 'dart:async';
 
+import 'package:adventure_quest_kids/utils/constants.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
+import '../main.dart';
 import '../model/story.dart';
 import '../model/story_meta_data.dart';
 import '../model/story_page.dart';
 import '../registry.dart';
-import 'app_bar_title_widget.dart';
-import 'story_page_screen.dart';
+import 'story_page_screen_common.dart';
 
 class StoryFrontPageScreen extends StatefulWidget {
   final StoryMetaData storyMetadata;
@@ -22,11 +23,19 @@ class StoryFrontPageScreen extends StatefulWidget {
 }
 
 class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
+  final AssetSourceFactory assetSourceFactory;
+  late AssetSource soundAsset;
+
+  StoryFrontPageScreenState()
+      : assetSourceFactory = GetIt.I.get<AssetSourceFactory>();
+
   @override
   initState() {
     super.initState();
     _playStoryBackgroundSound();
     GetIt.I.get<Registry>().currentStoryMetaData = widget.storyMetadata;
+    soundAsset = assetSourceFactory(
+        '${widget.storyMetadata.soundsFolder}/${widget.storyMetadata.backgroundSoundFilename}');
   }
 
   @override
@@ -38,93 +47,97 @@ class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final double w = context.width;
+    final double h = context.height;
     final storyMetadata = widget.storyMetadata;
 
     return Scaffold(
-        appBar: AppBar(
-          title: AppBarTitleWidget(
-              title: storyMetadata.title, subTitle: storyMetadata.subTitle),
-          actions: [
-            IconButton(
-              tooltip: 'Story list',
-              onPressed: () {
-                Navigator.popUntil(context, (route) => route.isFirst);
-              },
-              icon: const Icon(Icons.list),
-            ),
-          ],
-        ),
-        body: Column(
-          children: [
-            // Top half: Container for Image
-            Container(
-                height: MediaQuery.of(context).size.height * 0.4,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                      fit: BoxFit.contain,
-                      image: AssetImage(
-                          '${storyMetadata.imagesFolder}/cover_image.jpg')),
-                )),
-            // Bottom half: Text and Choices
-            Container(
-              height: MediaQuery.of(context).size.height * 0.4,
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // Text for this page
-                  Center(
-                    child: Text(storyMetadata.title,
-                        style: const TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold)),
-                  ),
-                  const SizedBox(height: 16),
-                  // Add your choice buttons/widgets here
-                  Center(
-                    child: ElevatedButton(
-                      onPressed: () async {
-                        Story story = await storyMetadata.getStory();
-                        StoryPage storyPage =
-                            story.pages[storyMetadata.firstPageId]!;
-
-                        if (!context.mounted) return;
-
-                        Navigator.push(
-                          context,
-                          _getPageTransition(story, storyPage),
-                        );
-                      },
-                      child: const Text('Begin Adventure'),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ));
+        appBar: getAppBar(context,
+            title: storyMetadata.title,
+            subTitle: storyMetadata.subTitle,
+            isStartPage: true),
+        body: _getBodyWidgets(w, h, context, storyMetadata));
   }
 
-  PageRouteBuilder<dynamic> _getPageTransition(
-      Story story, StoryPage storyPage) {
-    return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) =>
-          StoryPageScreen(story, storyPage),
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        var begin = const Offset(1.0, 0.0);
-        var end = Offset.zero;
-        var tween = Tween(begin: begin, end: end);
-        var curvedAnimation = CurvedAnimation(
-          parent: animation,
-          curve: Curves.ease,
-        );
+  Column _getBodyWidgets(
+    final double w,
+    final double h,
+    BuildContext context,
+    StoryMetaData storyMetadata,
+  ) {
+    var bodyChildWidgets = _createBodyChildWidgets(storyMetadata, context);
 
-        return SlideTransition(
-          position: tween.animate(curvedAnimation),
-          child: child,
-        );
-      },
-      transitionDuration: const Duration(milliseconds: 1000),
+    return Column(
+      children: [
+        // Top half: Container for Image
+        Container(
+            height: h * 0.4,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  fit: BoxFit.contain,
+                  image: AssetImage(
+                      '${storyMetadata.imagesFolder}/cover_image.jpg')),
+            )),
+        // Bottom half: Text and Choices
+        Container(
+          height: h * 0.4,
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: bodyChildWidgets,
+          ),
+        ),
+      ],
     );
+  }
+
+  List<Widget> _createBodyChildWidgets(
+      StoryMetaData storyMetadata, BuildContext context) {
+    final bodyChildWidgets = <Widget>[];
+
+    // Text for this page
+    bodyChildWidgets.add(
+      Center(
+        child: Text(
+          storyMetadata.title,
+          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+      ),
+    );
+
+    if (storyMetadata.subTitle.isNotEmpty) {
+      bodyChildWidgets.add(
+        Center(
+          child: Text(
+            storyMetadata.subTitle,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+          ),
+        ),
+      );
+    }
+
+    bodyChildWidgets.add(const SizedBox(height: 16));
+    bodyChildWidgets.add(
+      // Add your choice buttons/widgets here
+      Center(
+        child: ElevatedButton(
+          onPressed: () async {
+            Story story = await storyMetadata.getStory();
+            StoryPage storyPage = story.pages[storyMetadata.firstPageId]!;
+
+            if (!context.mounted) return;
+
+            Navigator.push(
+              context,
+              getPageTransition(story, storyPage),
+            );
+          },
+          child: const Text('Begin Adventure'),
+        ),
+      ),
+    );
+
+    return bodyChildWidgets;
   }
 
   Future<void> _playStoryBackgroundSound() async {
@@ -137,8 +150,6 @@ class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
     try {
       await player.stop();
       player.setReleaseMode(ReleaseMode.release);
-      var soundAsset = AssetSource(
-          '${storyMetaData.soundsFolder}/${storyMetaData.backgroundSoundFilename}');
       await soundAsset.setOnPlayer(player);
 
       // Create a loop that plays the sound, waits for it to complete, waits for an additional delay, and then repeats

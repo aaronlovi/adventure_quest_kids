@@ -13,20 +13,27 @@ class AppBarTitleWidget extends StatelessWidget {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-          ),
-          Text(subTitle,
-              style:
-                  const TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
+          FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(
+                title,
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+              )),
+          FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(subTitle,
+                  style: const TextStyle(
+                      fontSize: 14, fontWeight: FontWeight.w500))),
         ],
       );
     } else {
-      return Text(
-        title,
-        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-      );
+      return FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(
+            title,
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+          ));
     }
   }
 }

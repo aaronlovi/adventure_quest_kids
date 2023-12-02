@@ -183,7 +183,7 @@ pages:
   page4C:
     text: "You quietly leave the nest and continue exploring. You discover a hidden canyon. Congratulations, you're a canyon explorer!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4c.jpg"
 
   page4D:
     text: "You join the herbivores and mimic their eating habits, creating a bond. Congratulations, you're a herbivore companion!"
@@ -198,62 +198,62 @@ pages:
   page4F:
     text: "You climb a tree to watch the herbivores from above. Congratulations, you're a tree-perched observer!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4f.jpg"
 
   page4G:
     text: "You discover a hidden dinosaur community and become part of their prehistoric world. Congratulations, you're a dino-community member!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4g.jpg"
 
   page4H:
     text: "You follow the vines deeper into the jungle and uncover a hidden dinosaur temple. Congratulations, you're a jungle temple explorer!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4h.jpg"
 
   page4I:
     text: "You stand still and observe the velociraptors. They acknowledge your presence and move on. Congratulations, you're a dino-observer!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4i.jpg"
 
   page4J:
     text: "You slowly back away from the velociraptors and find an alternate path. Congratulations, you're a dino-safety expert!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4j.jpg"
 
   page4K:
     text: "You join the dinosaurs for a refreshing drink at the oasis. Congratulations, you're a dino-oasis companion!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4k.jpg"
 
   page4L:
     text: "You explore the surrounding area and discover dinosaur footprints leading to a hidden cave. Congratulations, you're a cave explorer!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4l.jpg"
 
   page4M:
     text: "You observe the T-Rex from a safe distance and marvel at its majesty. Congratulations, you're a T-Rex admirer!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4m.jpg"
 
   page4N:
     text: "You quietly retreat without being noticed by the T-Rex. Congratulations, you're a stealthy dino-explorer!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4n.jpg"
 
   page4O:
     text: "You land on a high mountain peak and enjoy the breathtaking view. Congratulations, you're a mountain explorer!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4o.jpg"
 
   page4P:
     text: "You dive down to explore the valley below and discover a hidden dino-canyon. Congratulations, you're a valley explorer!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4p.jpg"
 
   page4Q:
     text: "You try to decipher the meaning of the ancient dinosaur paintings and uncover a prehistoric secret. Congratulations, you're a dino-historian!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4q.jpg"
 
   page4R:
     text: "You continue exploring the cave system and find a hidden dino-sanctuary. Congratulations, you're a cave sanctuary discoverer!"

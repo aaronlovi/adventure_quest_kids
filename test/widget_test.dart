@@ -5,26 +5,104 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
+import 'package:adventure_quest_kids/registry.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:adventure_quest_kids/main.dart';
+import 'package:get_it/get_it.dart';
+import 'package:mocktail/mocktail.dart';
+
+class MockAudioPlayer extends Mock implements AudioPlayer {
+  @override
+  Future<void> stop() async {}
+
+  @override
+  Future<void> setReleaseMode(ReleaseMode releaseMode) async {}
+
+  @override
+  Future<void> setPlaybackRate(double playbackRate) async {}
+
+  @override
+  Future<void> setVolume(double volume) async {}
+
+  @override
+  Future<void> play(
+    Source source, {
+    double? volume,
+    double? balance,
+    AudioContext? ctx,
+    Duration? position,
+    PlayerMode? mode,
+  }) async {}
+
+  @override
+  Stream<void> get onPlayerComplete => const Stream.empty();
+}
+
+class MockAssetSource extends AssetSource {
+  MockAssetSource(String path) : super('');
+
+  @override
+  Future<void> setOnPlayer(AudioPlayer player) async {}
+}
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  TestWidgetsFlutterBinding.ensureInitialized();
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  setUp(() {
+    GetIt getIt = GetIt.instance;
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    final mockAudioPlayer = MockAudioPlayer();
+    getIt.registerSingleton<Registry>(Registry(mockAudioPlayer));
+    getIt.registerSingleton<AudioPlayer>(mockAudioPlayer);
+    getIt.registerSingleton<AssetSourceFactory>(
+        (assetPath) => MockAssetSource(assetPath));
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
-  }, skip: true);
+    // Load the list of stories
+    // await loadStoryList(); // Note: You can't use async/await in setUp. Consider moving async operations to the tests themselves.
+  });
+
+  testWidgets('Check if any widget overflows', (WidgetTester tester) async {
+    tester.view.physicalSize = const Size(320, 480);
+    tester.view.devicePixelRatio = 1.0;
+
+    await loadStoryList();
+
+    // Build your widget
+    var mainWidget = const MaterialApp(home: MainScreen());
+    await tester.pumpWidget(mainWidget);
+
+    // Iterate over all widgets
+    for (final widget in tester.allWidgets) {
+      // Get the RenderBox of the widget
+      final element = tester.element(find.byWidget(widget));
+      final renderObject = element.renderObject;
+
+      if (renderObject is RenderBox) {
+        // Get the Rect of the RenderBox
+        final rect =
+            renderObject.localToGlobal(Offset.zero) & renderObject.size;
+
+        // Check if the Rect is within the screen bounds
+        expect(rect.left >= 0, isTrue);
+        expect(rect.top >= 0, isTrue);
+        expect(rect.right <= tester.view.physicalSize.width, isTrue);
+        expect(rect.bottom <= tester.view.physicalSize.height, isTrue);
+      }
+    }
+
+    // Check for overflow errors
+    expect(tester.takeException(), isNull);
+
+    await tester.tap(find.byType(ListTile).first);
+    await tester.pumpAndSettle();
+    // Check for overflow errors
+    expect(tester.takeException(), isNull);
+
+    // Clear the screen size settings after the test
+    tester.view.resetDevicePixelRatio();
+    tester.view.resetPhysicalSize();
+  });
 }
