@@ -43,11 +43,18 @@ StoryMetaData getStoryMetadataFromYaml(YamlMap yamlMap, story) {
   String title = entry['title'];
   String subTitle = entry['subtitle'] ?? '';
   String firstPage = entry['first_page'];
+  String backgroundSoundFilename = entry['background_sound_filename'] ?? '';
+  double backgroundSoundVolume = entry['background_sound_volume'] ?? 1.0;
+  double backgroundSoundPlaybackRate =
+      entry['background_sound_playback_rate'] ?? 1.0;
   StoryMetaData storyMetaData = StoryMetaData(
     assetName: story,
     title: title,
     subTitle: subTitle,
     firstPageId: firstPage,
+    backgroundSoundFilename: backgroundSoundFilename,
+    backgroundSoundVolume: backgroundSoundVolume,
+    backgroundSoundPlaybackRate: backgroundSoundPlaybackRate,
   );
   return storyMetaData;
 }
@@ -63,6 +70,7 @@ class MyAppState extends State<MyApp> {
   @override
   void dispose() {
     GetIt.I<AudioPlayer>().dispose();
+    GetIt.I<Registry>().dispose();
     super.dispose();
   }
 

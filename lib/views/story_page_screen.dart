@@ -194,7 +194,7 @@ class StoryPageScreenState extends State<StoryPageScreen> {
     try {
       var soundAsset = AssetSource(soundPath);
       await soundAsset.setOnPlayer(_player);
-      await _player.play(AssetSource(soundPath));
+      await _player.play(soundAsset);
     } catch (e) {
       if (kDebugMode) {
         print('Error playing sound: $e');

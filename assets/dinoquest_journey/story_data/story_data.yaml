@@ -6,7 +6,7 @@ pages:
   # Level 1
   page1:
     text: "You find yourself in a prehistoric world filled with dinosaurs. What do you want to do?"
-    imageFileName: "cover_image.jpg"
+    imageFileName: "1.jpg"
     choices:
       choice1:
         text: "Explore the dense jungle"
@@ -21,7 +21,7 @@ pages:
   # Level 2
   page2A:
     text: "You explore the dense jungle, home to various dinosaurs. What's your next move?"
-    imageFileName: "cover_image.jpg"
+    imageFileName: "2a.jpg"
     choices:
       choice1:
         text: "Discover a hidden dinosaur nest"
@@ -35,7 +35,7 @@ pages:
 
   page2B:
     text: "You cross the vast plains where dinosaurs roam freely. What's your next adventure?"
-    imageFileName: "cover_image.jpg"
+    imageFileName: "2b.jpg"
     choices:
       choice1:
         text: "Encounter a herd of velociraptors"
@@ -49,7 +49,7 @@ pages:
 
   page2C:
     text: "You climb the rocky mountains, where flying dinosaurs soar above. What's your next move?"
-    imageFileName: "cover_image.jpg"
+    imageFileName: "2c.jpg"
     choices:
       choice1:
         text: "Glide with the pterodactyls"
@@ -65,7 +65,7 @@ pages:
 
   page3A:
     text: "You discover a hidden dinosaur nest. It's filled with dinosaur eggs. What's your next move?"
-    imageFileName: "cover_image.jpg"
+    imageFileName: "3a.jpg"
     choices:
       choice1:
         text: "Observe the baby dinosaurs hatching"
@@ -79,7 +79,7 @@ pages:
 
   page3B:
     text: "You observe a group of herbivores peacefully grazing. What's your next adventure?"
-    imageFileName: "cover_image.jpg"
+    imageFileName: "3b.jpg"
     choices:
       choice1:
         text: "Join the herbivores and mimic their eating habits"
@@ -93,7 +93,7 @@ pages:
 
   page3C:
     text: "You navigate through dinosaur vines. They lead to a mysterious clearing. What's your next move?"
-    imageFileName: "cover_image.jpg"
+    imageFileName: "3c.jpg"
     choices:
       choice1:
         text: "Discover a hidden dinosaur community"
@@ -104,7 +104,7 @@ pages:
 
   page3D:
     text: "You encounter a herd of velociraptors. They seem curious. What's your next adventure?"
-    imageFileName: "cover_image.jpg"
+    imageFileName: "3d.jpg"
     choices:
       choice1:
         text: "Stand still and observe them"
@@ -115,7 +115,7 @@ pages:
 
   page3E:
     text: "You search for a watering hole and find a dinosaur oasis. What's your next move?"
-    imageFileName: "cover_image.jpg"
+    imageFileName: "3e.jpg"
     choices:
       choice1:
         text: "Join the dinosaurs for a refreshing drink"
@@ -126,7 +126,7 @@ pages:
 
   page3F:
     text: "You follow a distant roar and discover a mighty T-Rex. What's your next adventure?"
-    imageFileName: "cover_image.jpg"
+    imageFileName: "3f.jpg"
     choices:
       choice1:
         text: "Observe the T-Rex from a safe distance"
@@ -137,7 +137,7 @@ pages:
 
   page3G:
     text: "You glide with the pterodactyls over the mountains. What's your next move?"
-    imageFileName: "cover_image.jpg"
+    imageFileName: "3g.jpg"
     choices:
       choice1:
         text: "Land on a high mountain peak"
@@ -148,7 +148,7 @@ pages:
 
   page3H:
     text: "You explore the mountain caves and discover ancient dinosaur paintings. What's your next adventure?"
-    imageFileName: "cover_image.jpg"
+    imageFileName: "3h.jpg"
     choices:
       choice1:
         text: "Try to decipher the meaning of the paintings"
@@ -159,7 +159,7 @@ pages:
 
   page3I:
     text: "You rest under the Enchanted Tree, feeling its soothing magic. What's your next move?"
-    imageFileName: "cover_image.jpg"
+    imageFileName: "3i.jpg"
     choices:
       choice1:
         text: "Listen to the whispers of the Enchanted Tree"
@@ -173,12 +173,12 @@ pages:
   page4A:
     text: "You observe the baby dinosaurs hatching and witness the miracle of new life. Congratulations, you're a dino-nursery guardian!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4a.jpg"
 
   page4B:
     text: "You gently touch a dinosaur egg, and it responds with a gentle vibration. Congratulations, you're a dino-whisperer!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4b.jpg"
 
   page4C:
     text: "You quietly leave the nest and continue exploring. You discover a hidden canyon. Congratulations, you're a canyon explorer!"
@@ -188,12 +188,12 @@ pages:
   page4D:
     text: "You join the herbivores and mimic their eating habits, creating a bond. Congratulations, you're a herbivore companion!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4d.jpg"
 
   page4E:
     text: "You follow the herbivores to a hidden oasis and discover a peaceful haven. Congratulations, you're an oasis explorer!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
+    imageFileName: "4e.jpg"
 
   page4F:
     text: "You climb a tree to watch the herbivores from above. Congratulations, you're a tree-perched observer!"

@@ -1,21 +1,45 @@
+import 'dart:async';
+
+import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 import '../model/story.dart';
 import '../model/story_meta_data.dart';
 import '../model/story_page.dart';
+import '../registry.dart';
 import 'app_bar_title_widget.dart';
 import 'story_page_screen.dart';
 
-class StoryFrontPageScreen extends StatelessWidget {
+class StoryFrontPageScreen extends StatefulWidget {
   final StoryMetaData storyMetadata;
 
   const StoryFrontPageScreen({super.key, required this.storyMetadata});
 
-  String getSoundPath(StoryPage storyPage) =>
-      '${storyMetadata.soundsFolder}/${storyPage.soundFileName}';
+  @override
+  StoryFrontPageScreenState createState() => StoryFrontPageScreenState();
+}
+
+class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
+  @override
+  initState() {
+    super.initState();
+    _playStoryBackgroundSound();
+    GetIt.I.get<Registry>().currentStoryMetaData = widget.storyMetadata;
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    var registry = GetIt.I.get<Registry>();
+    registry.backgroundAudioPlayer.stop();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final storyMetadata = widget.storyMetadata;
+
     return Scaffold(
         appBar: AppBar(
           title: AppBarTitleWidget(
@@ -67,7 +91,7 @@ class StoryFrontPageScreen extends StatelessWidget {
 
                         Navigator.push(
                           context,
-                          getPageTransition(story, storyPage),
+                          _getPageTransition(story, storyPage),
                         );
                       },
                       child: const Text('Begin Adventure'),
@@ -80,7 +104,7 @@ class StoryFrontPageScreen extends StatelessWidget {
         ));
   }
 
-  PageRouteBuilder<dynamic> getPageTransition(
+  PageRouteBuilder<dynamic> _getPageTransition(
       Story story, StoryPage storyPage) {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) =>
@@ -101,5 +125,63 @@ class StoryFrontPageScreen extends StatelessWidget {
       },
       transitionDuration: const Duration(milliseconds: 1000),
     );
+  }
+
+  Future<void> _playStoryBackgroundSound() async {
+    var storyMetaData = widget.storyMetadata;
+    if (storyMetaData.backgroundSoundFilename.isEmpty) return;
+
+    var registry = GetIt.I.get<Registry>();
+    var player = registry.backgroundAudioPlayer;
+
+    try {
+      await player.stop();
+      player.setReleaseMode(ReleaseMode.release);
+      var soundAsset = AssetSource(
+          '${storyMetaData.soundsFolder}/${storyMetaData.backgroundSoundFilename}');
+      await soundAsset.setOnPlayer(player);
+
+      // Create a loop that plays the sound, waits for it to complete, waits for an additional delay, and then repeats
+      while (registry.currentStoryMetaData == storyMetaData) {
+        // Check if the current story meta data is still the same
+        await player.setPlaybackRate(storyMetaData.backgroundSoundPlaybackRate);
+        await player.setVolume(0); // Start with volume 0
+        await player.play(soundAsset, mode: PlayerMode.mediaPlayer);
+
+        // Fade in the volume over the period of 1 second
+        const fadeInDuration = Duration(seconds: 1);
+        const stepTime = Duration(milliseconds: 100);
+        var steps = fadeInDuration.inMilliseconds ~/ stepTime.inMilliseconds;
+        var volumeStep = storyMetaData.backgroundSoundVolume / steps;
+        for (var i = 0; i < steps; i++) {
+          // Allow cancellation
+          if (registry.currentStoryMetaData != storyMetaData) break;
+
+          await Future.delayed(stepTime);
+          await player.setVolume((i + 1) * volumeStep);
+        }
+
+        // Allow cancellation
+        if (registry.currentStoryMetaData != storyMetaData) break;
+
+        // Wait for the audio to finish playing
+        var completer = Completer();
+        StreamSubscription playerCompletionSubscription =
+            player.onPlayerComplete.listen((_) {});
+
+        playerCompletionSubscription = player.onPlayerComplete.listen((event) {
+          playerCompletionSubscription.cancel(); // Unregister the listener
+          completer.complete();
+        });
+        await completer.future;
+
+        await Future.delayed(
+            const Duration(milliseconds: 500)); // Wait for an additional delay
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print('Error playing background sound: $e');
+      }
+    }
   }
 }
