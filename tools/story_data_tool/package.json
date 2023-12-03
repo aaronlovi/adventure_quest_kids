@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dry-run": "node yamlModifier.js ../../assets/adventure_in_the_jungle/story_data/story_data.yaml",
-    "resize-images": "node resizeImages.js ../../assets/dinoquest_journey/images/originals/ ../../assets/dinoquest_journey/images/"
+    "trim-mp3": "node trimMp3File.js ../../assets/magic_forest_quest/sounds/originals/background.mp3 ../../assets/magic_forest_quest/sounds/background-8s.mp3 51 8",
+    "resize-images": "node resizeImages.js ../../assets/magic_forest_quest/images/originals/ ../../assets/magic_forest_quest/images/",
+    "mp4-to-mp3": "node convertWavToMp3.js ../../../../temp/ ../../assets/magic_forest_quest/sounds/"
   },
   "keywords": [],
   "author": "",

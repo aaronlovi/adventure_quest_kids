@@ -10,6 +10,7 @@ abstract class IUserSettingsService {
 class UserSettingsService implements IUserSettingsService {
   static const _backgroundVolumeKey = 'backgroundVolume';
   static const _foregroundVolumeKey = 'foregroundVolume';
+  static const _speechVolumeKey = 'speechVolume';
 
   @override
   Future<UserSettings> loadSettings() async {
@@ -19,6 +20,8 @@ class UserSettingsService implements IUserSettingsService {
           UserSettings.defaultBackgroundVolume,
       foregroundVolume: prefs.getDouble(_foregroundVolumeKey) ??
           UserSettings.defaultForegroundVolume,
+      speechVolume:
+          prefs.getDouble(_speechVolumeKey) ?? UserSettings.defaultSpeechVolume,
     );
   }
 
@@ -27,5 +30,6 @@ class UserSettingsService implements IUserSettingsService {
     final prefs = await SharedPreferences.getInstance();
     prefs.setDouble(_backgroundVolumeKey, settings.backgroundVolume);
     prefs.setDouble(_foregroundVolumeKey, settings.foregroundVolume);
+    prefs.setDouble(_speechVolumeKey, settings.speechVolume);
   }
 }

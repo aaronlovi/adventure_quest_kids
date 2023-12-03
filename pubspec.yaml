@@ -103,6 +103,7 @@ flutter:
     - assets/space_odyssey/images/
     - assets/space_odyssey/story_data/
     - assets/magic_forest_quest/images/
+    - assets/magic_forest_quest/sounds/
     - assets/magic_forest_quest/story_data/
 
   # An image asset can refer to one or more resolution-specific "variants", see

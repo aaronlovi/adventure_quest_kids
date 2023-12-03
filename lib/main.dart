@@ -25,11 +25,12 @@ Future<void> main() async {
   AudioCache.instance = AudioCache(prefix: '');
 
   AudioPlayer backgroundAudioPlayer = AudioPlayer();
+  AudioPlayer speechAudioPlayer = AudioPlayer();
   IUserSettingsService settingsService = UserSettingsService();
   UserSettings settings = await settingsService.loadSettings();
 
-  getIt.registerSingleton<Registry>(
-      Registry(backgroundAudioPlayer, settings, settingsService));
+  getIt.registerSingleton<Registry>(Registry(
+      backgroundAudioPlayer, speechAudioPlayer, settings, settingsService));
   getIt.registerSingleton<AudioPlayer>(AudioPlayer());
   getIt.registerSingleton<AssetSourceFactory>(
       (assetPath) => AssetSource(assetPath));
@@ -117,7 +118,7 @@ class MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MainScreen(),
+      home: MainScreen(),
     );
   }
 }

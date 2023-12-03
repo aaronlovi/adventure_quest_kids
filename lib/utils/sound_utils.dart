@@ -6,6 +6,40 @@ import 'package:adventure_quest_kids/utils/constants.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
 
+import '../main.dart';
+
+Future<void> stopSpeech(Registry registry) async {
+  try {
+    var player = registry.speechAudioPlayer;
+    await player.stop();
+  } catch (e) {
+    if (kDebugMode) {
+      print('Error stopping speech: $e');
+    }
+  }
+}
+
+Future<void> playSpeech(
+  String speechAssetPath,
+  final AssetSourceFactory assetSourceFactory,
+  Registry registry,
+) async {
+  if (speechAssetPath.isEmpty) return;
+
+  try {
+    var player = registry.speechAudioPlayer;
+    player.setReleaseMode(ReleaseMode.release);
+    AssetSource speechAsset = assetSourceFactory(speechAssetPath);
+    await speechAsset.setOnPlayer(player);
+    await player.setVolume(registry.speechVolume);
+    await player.play(speechAsset, mode: PlayerMode.lowLatency);
+  } catch (e) {
+    if (kDebugMode) {
+      print('Error playing speech: $e');
+    }
+  }
+}
+
 Future<void> playStoryBackgroundSound(
   StoryMetaData storyMetaData,
   AssetSource soundAsset,
@@ -25,7 +59,7 @@ Future<void> playStoryBackgroundSound(
       // Check if the current story meta data is still the same
       await player.setPlaybackRate(storyMetaData.backgroundSoundPlaybackRate);
       await player.setVolume(0); // Start with volume 0
-      await player.play(soundAsset, mode: PlayerMode.mediaPlayer);
+      await player.play(soundAsset, mode: PlayerMode.lowLatency);
 
       // Fade in the volume over the period of 1 second
       const fadeInDuration = Constants.oneSecond;

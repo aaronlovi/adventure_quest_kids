@@ -1,13 +1,16 @@
 import 'package:adventure_quest_kids/model/story_meta_data.dart';
 import 'package:adventure_quest_kids/registry.dart';
 import 'package:adventure_quest_kids/utils/navigation_utils.dart';
+import 'package:adventure_quest_kids/utils/sound_utils.dart';
 import 'package:adventure_quest_kids/views/story_front_page_screen.dart';
 import 'package:adventure_quest_kids/views/user_settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+  final Registry registry;
+
+  MainScreen({super.key}) : registry = GetIt.I.get<Registry>();
 
   @override
   MainScreenState createState() => MainScreenState();
@@ -17,6 +20,12 @@ class MainScreenState extends State<MainScreen> {
   late int _colorIndex;
 
   MainScreenState() : _colorIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    stopSpeech(widget.registry);
+  }
 
   @override
   Widget build(BuildContext context) {

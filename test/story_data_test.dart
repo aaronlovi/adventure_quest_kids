@@ -5,6 +5,7 @@ import 'package:adventure_quest_kids/model/story.dart';
 import 'package:adventure_quest_kids/model/story_choice.dart';
 import 'package:adventure_quest_kids/model/story_meta_data.dart';
 import 'package:adventure_quest_kids/model/story_page.dart';
+import 'package:adventure_quest_kids/services/yaml_factory.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tuple/tuple.dart';
@@ -27,7 +28,7 @@ void main() {
           File('${storyMetaData.storyDataFolder}/story_data.yaml')
               .readAsStringSync();
       YamlMap storyYamlMap = loadYaml(storyYamlString);
-      Story story = Story.fromYaml(storyMetaData, storyYamlMap);
+      Story story = YamlFactory.toStory(storyMetaData, storyYamlMap);
 
       if (kDebugMode) {
         print('Story: ${storyMetaData.title} (${storyMetaData.assetName}');

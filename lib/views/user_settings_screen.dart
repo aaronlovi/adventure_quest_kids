@@ -1,3 +1,4 @@
+import 'package:adventure_quest_kids/utils/sound_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
@@ -16,13 +17,16 @@ class SettingsScreen extends StatefulWidget {
 class SettingsScreenState extends State<SettingsScreen> {
   late double _backgroundVolume;
   late double _foregroundVolume;
+  late double _speechVolume;
   late bool _isDirty;
 
   @override
   void initState() {
     super.initState();
+    stopSpeech(widget.registry);
     _backgroundVolume = widget.registry.backgroundVolume;
     _foregroundVolume = widget.registry.foregroundVolume;
+    _speechVolume = widget.registry.speechVolume;
     _isDirty = false;
   }
 
@@ -51,6 +55,8 @@ class SettingsScreenState extends State<SettingsScreen> {
     _getBackgroundVolumeSlider(widgets);
     _getForegroundVolumeLabel(widgets);
     _getForegroundVolumeSlider(widgets);
+    _getSpeechVolumeLabel(widgets);
+    _getSpeechVolumeSlider(widgets);
     _getSaveCancelButtons(context, widgets);
 
     return Padding(
@@ -89,6 +95,24 @@ class SettingsScreenState extends State<SettingsScreen> {
       max: 1.0,
       onChanged: (value) {
         _foregroundVolume = value;
+        _isDirty = true;
+        setState(() {});
+      },
+    ));
+  }
+
+  void _getSpeechVolumeLabel(List<Widget> widgets) {
+    widgets.add(
+        Text('Speech Volume: ${(_speechVolume * 100).toStringAsFixed(0)}%'));
+  }
+
+  void _getSpeechVolumeSlider(List<Widget> widgets) {
+    widgets.add(Slider(
+      value: _speechVolume,
+      min: 0.0,
+      max: 1.0,
+      onChanged: (value) {
+        _speechVolume = value;
         _isDirty = true;
         setState(() {});
       },
@@ -145,6 +169,7 @@ class SettingsScreenState extends State<SettingsScreen> {
   void _cancelChanges(BuildContext context, {bool closeAlertDialog = false}) {
     _backgroundVolume = widget.registry.backgroundVolume;
     _foregroundVolume = widget.registry.foregroundVolume;
+    _speechVolume = widget.registry.speechVolume;
     _isDirty = false;
     if (closeAlertDialog) popOnce(context); // Close the alert dialog
     popOnce(context); // Close the SettingsScreen (this widget)
@@ -153,6 +178,7 @@ class SettingsScreenState extends State<SettingsScreen> {
   Future<void> _saveSettings() async {
     widget.registry.backgroundVolume = _backgroundVolume;
     widget.registry.foregroundVolume = _foregroundVolume;
+    widget.registry.speechVolume = _speechVolume;
     await widget.registry.saveSettings();
     _isDirty = false;
     setState(() {});

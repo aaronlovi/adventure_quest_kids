@@ -70,8 +70,8 @@ void main() {
     final mockUserSettingsService = MockUserSettingsService();
     final mockUserSettings = await mockUserSettingsService.loadSettings();
     final mockAudioPlayer = MockAudioPlayer();
-    getIt.registerSingleton<Registry>(
-        Registry(mockAudioPlayer, mockUserSettings, mockUserSettingsService));
+    getIt.registerSingleton<Registry>(Registry(mockAudioPlayer, mockAudioPlayer,
+        mockUserSettings, mockUserSettingsService));
     getIt.registerSingleton<AudioPlayer>(mockAudioPlayer);
     getIt.registerSingleton<AssetSourceFactory>(
         (assetPath) => MockAssetSource(assetPath));
@@ -87,7 +87,7 @@ void main() {
     await loadStoryList();
 
     // Build your widget
-    var mainWidget = const MaterialApp(home: MainScreen());
+    var mainWidget = MaterialApp(home: MainScreen());
     await tester.pumpWidget(mainWidget);
 
     // Iterate over all widgets

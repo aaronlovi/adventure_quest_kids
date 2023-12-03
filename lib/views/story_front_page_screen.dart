@@ -1,3 +1,4 @@
+import 'package:adventure_quest_kids/services/yaml_factory.dart';
 import 'package:adventure_quest_kids/utils/constants.dart';
 import 'package:adventure_quest_kids/utils/navigation_utils.dart';
 import 'package:adventure_quest_kids/utils/sound_utils.dart';
@@ -37,6 +38,7 @@ class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
     soundAsset = _assetSourceFactory(
         '${widget.storyMetadata.soundsFolder}/${widget.storyMetadata.backgroundSoundFilename}');
     _registry.currentStoryMetaData = widget.storyMetadata;
+    stopSpeech(_registry);
     playStoryBackgroundSound(widget.storyMetadata, soundAsset, _registry);
   }
 
@@ -127,7 +129,7 @@ class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(padding: const EdgeInsets.all(24)),
           onPressed: () async {
-            Story story = await storyMetadata.getStory();
+            Story story = await YamlFactory.getStory(storyMetadata);
             StoryPage storyPage = story.pages[storyMetadata.firstPageId]!;
 
             if (!context.mounted) return;

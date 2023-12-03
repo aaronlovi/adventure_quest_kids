@@ -4,11 +4,13 @@ import 'package:adventure_quest_kids/model/story.dart';
 import 'package:adventure_quest_kids/model/story_choice.dart';
 import 'package:adventure_quest_kids/model/story_page.dart';
 import 'package:adventure_quest_kids/utils/navigation_utils.dart';
+import 'package:adventure_quest_kids/utils/sound_utils.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
+import '../main.dart';
 import '../registry.dart';
 import '../utils/constants.dart';
 import 'animated_story_text.dart';
@@ -43,6 +45,7 @@ class StoryPageScreenState extends State<StoryPageScreen> {
 
     _player = GetIt.I.get<AudioPlayer>();
 
+    stopSpeech(_registry);
     _playPageLoadSound();
   }
 
@@ -217,6 +220,12 @@ class StoryPageScreenState extends State<StoryPageScreen> {
 
     _timer?.cancel();
     _currentWordIndex.value = 0;
+
+    if (widget.storyPage.speechFileName.isNotEmpty) {
+      String speechAssetPath =
+          '${widget.story.soundsFolder}/${widget.storyPage.speechFileName}';
+      playSpeech(speechAssetPath, GetIt.I.get<AssetSourceFactory>(), _registry);
+    }
 
     _timer = Timer.periodic(Constants.oneSecond, (timer) {
       if (_currentWordIndex.value < words.length - 1) {

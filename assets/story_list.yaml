@@ -19,3 +19,8 @@ story_list:
   magic_forest_quest:
     title: "Magic Forest Quest"
     first_page: page1
+    icon: list-icon.png
+    background_sound_filename: background-8s.mp3
+    background_sound_volume_factor: 1.0
+    background_sound_playback_rate: 0.8
+
