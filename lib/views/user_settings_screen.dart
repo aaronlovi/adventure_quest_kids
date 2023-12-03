@@ -98,19 +98,22 @@ class SettingsScreenState extends State<SettingsScreen> {
   void _getSaveCancelButtons(BuildContext context, List<Widget> widgets) {
     widgets.add(Row(mainAxisAlignment: MainAxisAlignment.center, children: [
       const Spacer(),
-      Expanded(
-        child: ElevatedButton(
-            onPressed: _isDirty ? _saveSettings : null,
-            child: const Text('Save')),
-      ),
+      _getOneLineFittedTextButton('Save'),
       const SizedBox(width: 16),
-      Expanded(
-        child: ElevatedButton(
-            onPressed: () => _cancelChanges(context),
-            child: const Text('Cancel')),
-      ),
+      _getOneLineFittedTextButton('Cancel'),
       const Spacer(),
     ]));
+  }
+
+  Widget _getOneLineFittedTextButton(final String text) {
+    return Expanded(
+        child: ElevatedButton(
+            style: ElevatedButton.styleFrom(padding: const EdgeInsets.all(2)),
+            onPressed: _isDirty ? _saveSettings : null,
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(text, style: const TextStyle(fontSize: 16)),
+            )));
   }
 
   void _onBackButtonPressed(BuildContext context) async {

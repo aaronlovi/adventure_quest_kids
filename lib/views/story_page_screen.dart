@@ -166,6 +166,7 @@ class StoryPageScreenState extends State<StoryPageScreen> {
 
       widgets.add(const Padding(padding: EdgeInsets.only(top: 12)));
       widgets.add(ElevatedButton(
+        style: ElevatedButton.styleFrom(padding: const EdgeInsets.all(8)),
         onPressed: () {
           StoryPage nextPage = widget.story.pages[choice.nextPageId]!;
           pushRouteWithTransition(

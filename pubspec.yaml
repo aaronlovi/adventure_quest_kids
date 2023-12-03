@@ -92,6 +92,7 @@ flutter:
 
   assets:
     - assets/
+    - assets/icon/
     - assets/adventure_in_the_jungle/images/
     - assets/adventure_in_the_jungle/sounds/
     - assets/adventure_in_the_jungle/story_data/

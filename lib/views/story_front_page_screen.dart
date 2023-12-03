@@ -53,10 +53,12 @@ class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
     final storyMetadata = widget.storyMetadata;
 
     return Scaffold(
-        appBar: getAppBar(context,
-            title: storyMetadata.title,
-            subTitle: storyMetadata.subTitle,
-            isStartPage: true),
+        appBar: getAppBar(
+          context,
+          title: storyMetadata.title,
+          subTitle: storyMetadata.subTitle,
+          isStartPage: true,
+        ),
         body: _getBodyWidgets(w, h, context, storyMetadata));
   }
 
@@ -101,6 +103,7 @@ class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
       Center(
         child: Text(
           storyMetadata.title,
+          textAlign: TextAlign.center,
           style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
       ),
@@ -122,6 +125,7 @@ class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
       // Add your choice buttons/widgets here
       Center(
         child: ElevatedButton(
+          style: ElevatedButton.styleFrom(padding: const EdgeInsets.all(24)),
           onPressed: () async {
             Story story = await storyMetadata.getStory();
             StoryPage storyPage = story.pages[storyMetadata.firstPageId]!;
@@ -130,7 +134,8 @@ class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
 
             pushRouteWithTransition(context, StoryPageScreen(story, storyPage));
           },
-          child: const Text('Begin Adventure'),
+          child: const Text('Begin Adventure',
+              textAlign: TextAlign.center, style: TextStyle(fontSize: 16)),
         ),
       ),
     );

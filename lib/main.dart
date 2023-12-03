@@ -1,5 +1,4 @@
 import 'package:adventure_quest_kids/services/user_settings_service.dart';
-import 'package:adventure_quest_kids/views/user_settings_screen.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,8 +8,7 @@ import 'package:yaml/yaml.dart';
 import 'model/story_meta_data.dart';
 import 'model/user_settings.dart';
 import 'registry.dart';
-import 'utils/navigation_utils.dart';
-import 'views/story_front_page_screen.dart';
+import 'views/main_screen.dart';
 
 typedef AssetSourceFactory = AssetSource Function(String assetPath);
 
@@ -61,6 +59,7 @@ StoryMetaData getStoryMetadataFromYaml(YamlMap yamlMap, story) {
   String title = entry['title'];
   String subTitle = entry['subtitle'] ?? '';
   String firstPage = entry['first_page'];
+  String listIcon = entry['icon'] ?? '';
   String backgroundSoundFilename = entry['background_sound_filename'] ?? '';
   double backgroundSoundVolumeFactor =
       entry['background_sound_volume_factor'] ?? 1.0;
@@ -71,6 +70,7 @@ StoryMetaData getStoryMetadataFromYaml(YamlMap yamlMap, story) {
     title: title,
     subTitle: subTitle,
     firstPageId: firstPage,
+    listIcon: listIcon,
     backgroundSoundFilename: backgroundSoundFilename,
     backgroundVolumeAdjustmentFactor: backgroundSoundVolumeFactor,
     backgroundSoundPlaybackRate: backgroundSoundPlaybackRate,
@@ -119,49 +119,5 @@ class MyAppState extends State<MyApp> {
       ),
       home: const MainScreen(),
     );
-  }
-}
-
-class MainScreen extends StatelessWidget {
-  const MainScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    var registry = GetIt.I.get<Registry>();
-    List<String> storyNames = registry.storyList.keys.toList()..sort();
-
-    return Scaffold(
-      appBar: _getAppBar(context),
-      body: _getBody(storyNames, registry, context),
-    );
-  }
-
-  AppBar _getAppBar(BuildContext context) {
-    return AppBar(title: const Text('Adventure Quest Kids'), actions: [
-      IconButton(
-          icon: const Icon(Icons.settings),
-          onPressed: () => pushRouteWithTransition(
-                context,
-                SettingsScreen(),
-                routeName: 'settings',
-              ))
-    ]);
-  }
-
-  ListView _getBody(
-      List<String> storyNames, Registry registry, BuildContext context) {
-    return ListView.builder(
-        itemCount: storyNames.length,
-        itemBuilder: (content, index) {
-          var storyName = storyNames[index];
-          StoryMetaData storyMetaData = registry.storyList[storyName]!;
-          return ListTile(
-              title: Text(storyMetaData.fullTitle),
-              onTap: () => pushRouteWithTransition(
-                    context,
-                    StoryFrontPageScreen(storyMetadata: storyMetaData),
-                    routeName: 'front-page',
-                  ));
-        });
   }
 }

@@ -2,6 +2,7 @@ story_list:
   adventure_in_the_jungle:
     title: Adventure in the Jungle
     first_page: page1
+    icon: list-icon.png
     background_sound_filename: background-15s.mp3
     background_sound_volume_factor: 1.0
     background_sound_playback_rate: 0.75
