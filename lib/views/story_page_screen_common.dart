@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../model/story.dart';
-import '../model/story_page.dart';
 import '../utils/constants.dart';
-import '../utils/navigator_utils.dart';
+import '../utils/navigation_utils.dart';
 import 'app_bar_title_widget.dart';
-import 'story_page_screen.dart';
+import 'user_settings_screen.dart';
 
 AppBar getAppBar(
   BuildContext context, {
@@ -28,46 +26,46 @@ List<Widget> getAppBarActionButtons(
   BuildContext context, {
   required bool isStartPage,
 }) {
+  const right8 = Padding(padding: EdgeInsets.only(right: 8));
+  const all2 = EdgeInsets.all(2);
+
   final widgets = <Widget>[];
 
   if (!isStartPage) {
     widgets.add(IconButton(
       visualDensity: Constants.mostDense,
-      padding: const EdgeInsets.only(right: 8),
+      padding: all2,
       tooltip: 'Start of story',
       onPressed: () => popUntilNamedRoute(context, 'front-page'),
       icon: const Icon(Icons.home),
     ));
+
+    widgets.add(right8);
   }
 
   widgets.add(IconButton(
     visualDensity: Constants.mostDense,
-    padding: EdgeInsets.zero,
+    padding: all2,
     tooltip: 'Story list',
     onPressed: () => popUntilFirstRoute(context),
     icon: const Icon(Icons.list),
   ));
 
+  widgets.add(right8);
+
+  widgets.add(IconButton(
+    visualDensity: Constants.mostDense,
+    padding: all2,
+    tooltip: 'Settings',
+    onPressed: () => pushRouteWithTransition(
+      context,
+      SettingsScreen(),
+      routeName: 'settings',
+    ),
+    icon: const Icon(Icons.settings),
+  ));
+
+  widgets.add(right8);
+
   return widgets;
-}
-
-PageRouteBuilder<dynamic> getPageTransition(Story story, StoryPage nextPage) {
-  return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) =>
-          StoryPageScreen(story, nextPage),
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        var begin = const Offset(1.0, 0.0);
-        var end = Offset.zero;
-        var tween = Tween(begin: begin, end: end);
-        var curvedAnimation = CurvedAnimation(
-          parent: animation,
-          curve: Curves.ease,
-        );
-
-        return SlideTransition(
-          position: tween.animate(curvedAnimation),
-          child: child,
-        );
-      },
-      transitionDuration: Constants.oneSecond);
 }

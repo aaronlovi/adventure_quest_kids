@@ -9,7 +9,7 @@ class StoryMetaData {
   final String subTitle;
   final String firstPageId;
   final String backgroundSoundFilename;
-  final double backgroundSoundVolume;
+  final double backgroundVolumeAdjustmentFactor;
   final double backgroundSoundPlaybackRate;
 
   StoryMetaData(
@@ -18,7 +18,7 @@ class StoryMetaData {
       required this.firstPageId,
       required this.subTitle,
       required this.backgroundSoundFilename,
-      required this.backgroundSoundVolume,
+      required this.backgroundVolumeAdjustmentFactor,
       required this.backgroundSoundPlaybackRate});
 
   Future<Story> getStory({bool isUnitTest = false}) async {

@@ -1,3 +1,5 @@
+import 'package:adventure_quest_kids/services/user_settings_service.dart';
+import 'package:adventure_quest_kids/views/user_settings_screen.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -5,7 +7,9 @@ import 'package:get_it/get_it.dart';
 import 'package:yaml/yaml.dart';
 
 import 'model/story_meta_data.dart';
+import 'model/user_settings.dart';
 import 'registry.dart';
+import 'utils/navigation_utils.dart';
 import 'views/story_front_page_screen.dart';
 
 typedef AssetSourceFactory = AssetSource Function(String assetPath);
@@ -23,10 +27,15 @@ Future<void> main() async {
   AudioCache.instance = AudioCache(prefix: '');
 
   AudioPlayer backgroundAudioPlayer = AudioPlayer();
-  getIt.registerSingleton<Registry>(Registry(backgroundAudioPlayer));
+  IUserSettingsService settingsService = UserSettingsService();
+  UserSettings settings = await settingsService.loadSettings();
+
+  getIt.registerSingleton<Registry>(
+      Registry(backgroundAudioPlayer, settings, settingsService));
   getIt.registerSingleton<AudioPlayer>(AudioPlayer());
   getIt.registerSingleton<AssetSourceFactory>(
       (assetPath) => AssetSource(assetPath));
+  getIt.registerSingleton<UserSettingsService>(UserSettingsService());
 
   // Load the list of stories
   await loadStoryList();
@@ -53,7 +62,8 @@ StoryMetaData getStoryMetadataFromYaml(YamlMap yamlMap, story) {
   String subTitle = entry['subtitle'] ?? '';
   String firstPage = entry['first_page'];
   String backgroundSoundFilename = entry['background_sound_filename'] ?? '';
-  double backgroundSoundVolume = entry['background_sound_volume'] ?? 1.0;
+  double backgroundSoundVolumeFactor =
+      entry['background_sound_volume_factor'] ?? 1.0;
   double backgroundSoundPlaybackRate =
       entry['background_sound_playback_rate'] ?? 1.0;
   StoryMetaData storyMetaData = StoryMetaData(
@@ -62,7 +72,7 @@ StoryMetaData getStoryMetadataFromYaml(YamlMap yamlMap, story) {
     subTitle: subTitle,
     firstPageId: firstPage,
     backgroundSoundFilename: backgroundSoundFilename,
-    backgroundSoundVolume: backgroundSoundVolume,
+    backgroundVolumeAdjustmentFactor: backgroundSoundVolumeFactor,
     backgroundSoundPlaybackRate: backgroundSoundPlaybackRate,
   );
   return storyMetaData;
@@ -121,42 +131,37 @@ class MainScreen extends StatelessWidget {
     List<String> storyNames = registry.storyList.keys.toList()..sort();
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Adventure Quest Kids'),
-      ),
-      body: ListView.builder(
-          itemCount: storyNames.length,
-          itemBuilder: (content, index) {
-            var storyName = storyNames[index];
-            StoryMetaData storyMetaData = registry.storyList[storyName]!;
-            return ListTile(
-                title: Text(storyMetaData.fullTitle),
-                onTap: () async {
-                  Navigator.push(
-                    context,
-                    PageRouteBuilder(
-                        settings: const RouteSettings(name: 'front-page'),
-                        pageBuilder: (context, animation, secondaryAnimation) =>
-                            StoryFrontPageScreen(storyMetadata: storyMetaData),
-                        transitionsBuilder:
-                            (context, animation, secondaryAnimation, child) {
-                          var begin = const Offset(1.0, 0.0);
-                          var end = Offset.zero;
-                          var tween = Tween(begin: begin, end: end);
-                          var curvedAnimation = CurvedAnimation(
-                            parent: animation,
-                            curve: Curves.ease,
-                          );
-
-                          return SlideTransition(
-                            position: tween.animate(curvedAnimation),
-                            child: child,
-                          );
-                        },
-                        transitionDuration: const Duration(milliseconds: 1000)),
-                  );
-                });
-          }),
+      appBar: _getAppBar(context),
+      body: _getBody(storyNames, registry, context),
     );
+  }
+
+  AppBar _getAppBar(BuildContext context) {
+    return AppBar(title: const Text('Adventure Quest Kids'), actions: [
+      IconButton(
+          icon: const Icon(Icons.settings),
+          onPressed: () => pushRouteWithTransition(
+                context,
+                SettingsScreen(),
+                routeName: 'settings',
+              ))
+    ]);
+  }
+
+  ListView _getBody(
+      List<String> storyNames, Registry registry, BuildContext context) {
+    return ListView.builder(
+        itemCount: storyNames.length,
+        itemBuilder: (content, index) {
+          var storyName = storyNames[index];
+          StoryMetaData storyMetaData = registry.storyList[storyName]!;
+          return ListTile(
+              title: Text(storyMetaData.fullTitle),
+              onTap: () => pushRouteWithTransition(
+                    context,
+                    StoryFrontPageScreen(storyMetadata: storyMetaData),
+                    routeName: 'front-page',
+                  ));
+        });
   }
 }

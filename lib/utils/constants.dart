@@ -7,6 +7,7 @@ abstract class Constants {
   );
 
   static const oneSecond = Duration(milliseconds: 1000);
+  static const hundredMilliseconds = Duration(milliseconds: 100);
 }
 
 extension BuildContextExtensions on BuildContext {

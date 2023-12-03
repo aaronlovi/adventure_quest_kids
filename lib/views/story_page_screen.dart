@@ -3,12 +3,13 @@ import 'dart:async';
 import 'package:adventure_quest_kids/model/story.dart';
 import 'package:adventure_quest_kids/model/story_choice.dart';
 import 'package:adventure_quest_kids/model/story_page.dart';
-import 'package:adventure_quest_kids/utils/navigator_utils.dart';
+import 'package:adventure_quest_kids/utils/navigation_utils.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
+import '../registry.dart';
 import '../utils/constants.dart';
 import 'animated_story_text.dart';
 import 'story_page_screen_common.dart';
@@ -17,8 +18,7 @@ class StoryPageScreen extends StatefulWidget {
   final Story story;
   final StoryPage storyPage;
 
-  const StoryPageScreen(this.story, this.storyPage, {Key? key})
-      : super(key: key);
+  const StoryPageScreen(this.story, this.storyPage, {super.key});
 
   @override
   StoryPageScreenState createState() => StoryPageScreenState();
@@ -27,17 +27,20 @@ class StoryPageScreen extends StatefulWidget {
 class StoryPageScreenState extends State<StoryPageScreen> {
   late AudioPlayer _player;
   final ValueNotifier<int> _currentWordIndex = ValueNotifier<int>(-1);
+  final Registry _registry;
   Timer? _timer;
 
-  String get imagePath =>
+  StoryPageScreenState() : _registry = GetIt.I.get<Registry>();
+
+  String get _imagePath =>
       '${widget.story.imagesFolder}/${widget.storyPage.imageFileName}';
-  String get soundPath =>
+  String get _soundPath =>
       '${widget.story.soundsFolder}/${widget.storyPage.soundFileName}';
 
   @override
   void initState() {
     super.initState();
-    // _player = AudioPlayer();
+
     _player = GetIt.I.get<AudioPlayer>();
 
     _playPageLoadSound();
@@ -91,7 +94,7 @@ class StoryPageScreenState extends State<StoryPageScreen> {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.contain,
-                  image: AssetImage(imagePath),
+                  image: AssetImage(_imagePath),
                 ),
               ),
             ),
@@ -125,7 +128,7 @@ class StoryPageScreenState extends State<StoryPageScreen> {
 
     return Container(
       height: h * 0.4,
-      padding: const EdgeInsets.fromLTRB(4, 8, 4, 0),
+      padding: const EdgeInsets.fromLTRB(6, 8, 6, 0),
       child: LayoutBuilder(
         builder: (context, constraints) {
           return FittedBox(
@@ -165,7 +168,8 @@ class StoryPageScreenState extends State<StoryPageScreen> {
       widgets.add(ElevatedButton(
         onPressed: () {
           StoryPage nextPage = widget.story.pages[choice.nextPageId]!;
-          Navigator.push(context, getPageTransition(widget.story, nextPage));
+          pushRouteWithTransition(
+              context, StoryPageScreen(widget.story, nextPage));
         },
         child: Text(choice.text, textAlign: TextAlign.center),
       ));
@@ -196,8 +200,9 @@ class StoryPageScreenState extends State<StoryPageScreen> {
     if (widget.storyPage.soundFileName.isEmpty) return;
 
     try {
-      var soundAsset = AssetSource(soundPath);
+      var soundAsset = AssetSource(_soundPath);
       await soundAsset.setOnPlayer(_player);
+      await _player.setVolume(_registry.foregroundVolume);
       await _player.play(soundAsset);
     } catch (e) {
       if (kDebugMode) {

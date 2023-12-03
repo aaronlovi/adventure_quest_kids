@@ -5,7 +5,9 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
+import 'package:adventure_quest_kids/model/user_settings.dart';
 import 'package:adventure_quest_kids/registry.dart';
+import 'package:adventure_quest_kids/services/user_settings_service.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -48,14 +50,27 @@ class MockAssetSource extends AssetSource {
   Future<void> setOnPlayer(AudioPlayer player) async {}
 }
 
+class MockUserSettingsService extends Mock implements IUserSettingsService {
+  @override
+  Future<UserSettings> loadSettings() async {
+    return UserSettings();
+  }
+
+  @override
+  Future<void> saveSettings(UserSettings settings) async {}
+}
+
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  setUp(() {
+  setUp(() async {
     GetIt getIt = GetIt.instance;
 
+    final mockUserSettingsService = MockUserSettingsService();
+    final mockUserSettings = await mockUserSettingsService.loadSettings();
     final mockAudioPlayer = MockAudioPlayer();
-    getIt.registerSingleton<Registry>(Registry(mockAudioPlayer));
+    getIt.registerSingleton<Registry>(
+        Registry(mockAudioPlayer, mockUserSettings, mockUserSettingsService));
     getIt.registerSingleton<AudioPlayer>(mockAudioPlayer);
     getIt.registerSingleton<AssetSourceFactory>(
         (assetPath) => MockAssetSource(assetPath));
