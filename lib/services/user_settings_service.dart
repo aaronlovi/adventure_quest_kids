@@ -11,6 +11,7 @@ class UserSettingsService implements IUserSettingsService {
   static const _backgroundVolumeKey = 'backgroundVolume';
   static const _foregroundVolumeKey = 'foregroundVolume';
   static const _speechVolumeKey = 'speechVolume';
+  static const _speechRateKey = 'speechRate';
 
   @override
   Future<UserSettings> loadSettings() async {
@@ -22,6 +23,8 @@ class UserSettingsService implements IUserSettingsService {
           UserSettings.defaultForegroundVolume,
       speechVolume:
           prefs.getDouble(_speechVolumeKey) ?? UserSettings.defaultSpeechVolume,
+      speechRate:
+          prefs.getDouble(_speechRateKey) ?? UserSettings.defaultSpeechRate,
     );
   }
 
@@ -31,5 +34,6 @@ class UserSettingsService implements IUserSettingsService {
     prefs.setDouble(_backgroundVolumeKey, settings.backgroundVolume);
     prefs.setDouble(_foregroundVolumeKey, settings.foregroundVolume);
     prefs.setDouble(_speechVolumeKey, settings.speechVolume);
+    prefs.setDouble(_speechRateKey, settings.speechRate);
   }
 }

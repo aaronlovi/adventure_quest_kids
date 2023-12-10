@@ -22,7 +22,7 @@ Future<void> stopSpeech(Registry registry) async {
 Future<void> playSpeech(
   String speechAssetPath,
   final AssetSourceFactory assetSourceFactory,
-  Registry registry,
+  final Registry registry,
 ) async {
   if (speechAssetPath.isEmpty) return;
 
@@ -32,6 +32,7 @@ Future<void> playSpeech(
     AssetSource speechAsset = assetSourceFactory(speechAssetPath);
     await speechAsset.setOnPlayer(player);
     await player.setVolume(registry.speechVolume);
+    await player.setPlaybackRate(registry.speechRate);
     await player.play(speechAsset, mode: PlayerMode.lowLatency);
   } catch (e) {
     if (kDebugMode) {

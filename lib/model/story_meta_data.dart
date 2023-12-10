@@ -25,6 +25,8 @@ class StoryMetaData {
 
   String get soundsFolder => '$assetsFolder/sounds';
 
+  String get speechFolder => '$assetsFolder/speech';
+
   String get storyDataFolder => '$assetsFolder/story_data';
 
   String get fullTitle => subTitle.isEmpty ? title : '$title: $subTitle';

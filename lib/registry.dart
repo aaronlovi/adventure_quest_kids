@@ -35,6 +35,11 @@ class Registry {
     settings.speechVolume = volume;
   }
 
+  double get speechRate => settings.speechRate;
+  set speechRate(double rate) {
+    settings.speechRate = rate;
+  }
+
   Future<void> saveSettings() async {
     await _userSettingsService.saveSettings(settings);
   }

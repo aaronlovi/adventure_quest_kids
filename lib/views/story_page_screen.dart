@@ -13,26 +13,36 @@ import 'package:get_it/get_it.dart';
 import '../main.dart';
 import '../registry.dart';
 import '../utils/constants.dart';
+import '../utils/read_timestamp_file.dart';
 import 'animated_story_text.dart';
 import 'story_page_screen_common.dart';
 
 class StoryPageScreen extends StatefulWidget {
   final Story story;
   final StoryPage storyPage;
+  final RouteObserver<PageRoute> routeObserver;
+  final Registry registry;
 
-  const StoryPageScreen(this.story, this.storyPage, {super.key});
+  const StoryPageScreen(
+      this.story, this.storyPage, this.routeObserver, this.registry,
+      {super.key});
 
   @override
   StoryPageScreenState createState() => StoryPageScreenState();
 }
 
-class StoryPageScreenState extends State<StoryPageScreen> {
+class StoryPageScreenState extends State<StoryPageScreen> with RouteAware {
   late AudioPlayer _player;
-  final ValueNotifier<int> _currentWordIndex = ValueNotifier<int>(-1);
-  final Registry _registry;
-  Timer? _timer;
 
-  StoryPageScreenState() : _registry = GetIt.I.get<Registry>();
+  /// Set to true to cancel the speech animation
+  bool _cancelSpeechAnimation;
+
+  /// The index of the current word being spoken
+  final ValueNotifier<int> _currentWordIndex;
+
+  StoryPageScreenState()
+      : _cancelSpeechAnimation = false,
+        _currentWordIndex = ValueNotifier<int>(-1);
 
   String get _imagePath =>
       '${widget.story.imagesFolder}/${widget.storyPage.imageFileName}';
@@ -45,16 +55,38 @@ class StoryPageScreenState extends State<StoryPageScreen> {
 
     _player = GetIt.I.get<AudioPlayer>();
 
-    stopSpeech(_registry);
+    _cancelSpeechAnimation = false;
+    stopSpeech(widget.registry);
     _playPageLoadSound();
   }
 
   @override
   void dispose() {
+    _cancelSpeechAnimation = true;
+    stopSpeech(widget.registry);
     _currentWordIndex.dispose();
-    _timer?.cancel();
+    widget.routeObserver.unsubscribe(this);
     super.dispose();
     // _player.dispose();
+  }
+
+  /// Sets up the watcher that notices when the user navigates away from this page.
+  /// Then, this page can cancel its own speech animations.
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final route = ModalRoute.of(context);
+    if (route is PageRoute) {
+      widget.routeObserver.subscribe(this, route);
+    }
+  }
+
+  /// Cancels speech navigation since the user navigated away from this page.
+  @override
+  void didPushNext() {
+    // A new route was pushed on top of the current route.
+    _currentWordIndex.value = -1;
+    _cancelSpeechAnimation = true;
   }
 
   @override
@@ -128,6 +160,7 @@ class StoryPageScreenState extends State<StoryPageScreen> {
     var widgets = <Widget>[];
     _addStoryTextWidgets(widgets);
     _addStoryChoiceWidgets(context, widgets);
+    _addEndOfStoryWidgets(context, widgets);
 
     return Container(
       height: h * 0.4,
@@ -158,46 +191,49 @@ class StoryPageScreenState extends State<StoryPageScreen> {
     widgets.add(Center(child: pageTextWidget));
   }
 
-  List<Widget> _addStoryChoiceWidgets(
-    BuildContext context,
-    List<Widget> widgets,
-  ) {
+  void _addStoryChoiceWidgets(BuildContext context, List<Widget> widgets) {
     widgets.add(const SizedBox(height: 16));
 
     for (String choiceName in widget.storyPage.choices.keys) {
       StoryChoice choice = widget.storyPage.choices[choiceName]!;
+      StoryPage nextPage = widget.story.pages[choice.nextPageId]!;
+      StoryPageScreen nextScreen = StoryPageScreen(
+        widget.story,
+        nextPage,
+        widget.routeObserver,
+        widget.registry,
+      );
 
       widgets.add(const Padding(padding: EdgeInsets.only(top: 12)));
       widgets.add(ElevatedButton(
         style: ElevatedButton.styleFrom(padding: const EdgeInsets.all(8)),
-        onPressed: () {
-          StoryPage nextPage = widget.story.pages[choice.nextPageId]!;
-          pushRouteWithTransition(
-              context, StoryPageScreen(widget.story, nextPage));
-        },
+        onPressed: () => pushRouteWithTransition(context, nextScreen),
         child: Text(choice.text, textAlign: TextAlign.center),
       ));
     }
+  }
 
-    if (widget.storyPage.isTerminal) {
-      widgets.add(const Padding(padding: EdgeInsets.only(top: 12)));
-      widgets.add(const Text('The End',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)));
+  void _addEndOfStoryWidgets(BuildContext context, List<Widget> widgets) {
+    const paddingTop12 = Padding(padding: EdgeInsets.only(top: 12));
+    const paddingTop16 = Padding(padding: EdgeInsets.only(top: 16));
 
-      widgets.add(const Padding(padding: EdgeInsets.only(top: 12)));
-      widgets.add(ElevatedButton(
-        onPressed: () => popUntilNamedRoute(context, 'front-page'),
-        child: Text('Restart ${widget.story.title}'),
-      ));
+    if (!widget.storyPage.isTerminal) return;
 
-      widgets.add(const Padding(padding: EdgeInsets.only(top: 16)));
-      widgets.add(ElevatedButton(
-        onPressed: () => popUntilFirstRoute(context),
-        child: const Text('Back to Story List'),
-      ));
-    }
+    widgets.add(paddingTop12);
+    widgets.add(const Text('The End',
+        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)));
 
-    return widgets;
+    widgets.add(paddingTop12);
+    widgets.add(ElevatedButton(
+      onPressed: () => popUntilNamedRoute(context, Constants.frontPageRoute),
+      child: Text('Restart ${widget.story.title}'),
+    ));
+
+    widgets.add(paddingTop16);
+    widgets.add(ElevatedButton(
+      onPressed: () => popUntilFirstRoute(context),
+      child: const Text('Back to Story List'),
+    ));
   }
 
   Future<void> _playPageLoadSound() async {
@@ -206,7 +242,7 @@ class StoryPageScreenState extends State<StoryPageScreen> {
     try {
       var soundAsset = AssetSource(_soundPath);
       await soundAsset.setOnPlayer(_player);
-      await _player.setVolume(_registry.foregroundVolume);
+      await _player.setVolume(widget.registry.foregroundVolume);
       await _player.play(soundAsset);
     } catch (e) {
       if (kDebugMode) {
@@ -215,24 +251,71 @@ class StoryPageScreenState extends State<StoryPageScreen> {
     }
   }
 
-  void _startAnimation() {
-    List<String> words = widget.storyPage.text.split(' ');
-
-    _timer?.cancel();
+  Future<void> _startAnimation() async {
+    _cancelSpeechAnimation = false;
     _currentWordIndex.value = 0;
 
+    // Step 1: Get the list of words
+    List<String> words = widget.storyPage.text.split(' ');
+
+    // Step 2: Get the time between each spoken word
+    var durations = <Duration>[];
+    List<Duration> delays = await _getWordDelays(words, durations);
+
+    // Allow cancellation after an awaited method call
+    if (_cancelSpeechAnimation) return;
+
+    // Step 3: Play the speech
     if (widget.storyPage.speechFileName.isNotEmpty) {
       String speechAssetPath =
-          '${widget.story.soundsFolder}/${widget.storyPage.speechFileName}';
-      playSpeech(speechAssetPath, GetIt.I.get<AssetSourceFactory>(), _registry);
+          '${widget.story.speechFolder}/${widget.storyPage.speechFileName}';
+      playSpeech(
+          speechAssetPath, GetIt.I.get<AssetSourceFactory>(), widget.registry);
     }
 
-    _timer = Timer.periodic(Constants.oneSecond, (timer) {
-      if (_currentWordIndex.value < words.length - 1) {
-        _currentWordIndex.value++;
+    // Allow cancellation after playSpeech is invoked
+    if (_cancelSpeechAnimation) return;
+
+    // Step 4: Display each word after the corresponding delay
+    _currentWordIndex.value = 0;
+    for (int i = 0; i < words.length; i++) {
+      // Allow cancellation
+      if (_cancelSpeechAnimation) return;
+
+      await Future.delayed(delays[i]);
+
+      // Allow cancellation
+      if (_cancelSpeechAnimation) return;
+
+      _currentWordIndex.value = i + 1;
+    }
+
+    // Allow cancellation
+    if (_cancelSpeechAnimation) return;
+
+    _currentWordIndex.value = -1;
+  }
+
+  /// Calculate the delay before each word
+  Future<List<Duration>> _getWordDelays(
+    List<String> words,
+    List<Duration> durations,
+  ) async {
+    if (widget.storyPage.speechTimestampsFileName.isNotEmpty) {
+      String speechTimestampsAssetPath =
+          '${widget.story.speechFolder}/${widget.storyPage.speechTimestampsFileName}';
+      durations = await readTimestamps(
+          speechTimestampsAssetPath, widget.registry.speechRate);
+    }
+
+    // Calculate the delay before each word
+    return List<Duration>.generate(words.length, (i) {
+      if (i < durations.length - 1) {
+        return durations[i + 1] - durations[i];
+      } else if (i == durations.length - 1) {
+        return durations[i];
       } else {
-        timer.cancel();
-        _currentWordIndex.value = -1;
+        return Constants.halfSecond * (1.0 / widget.registry.speechRate);
       }
     });
   }

@@ -31,7 +31,7 @@ void main() {
       Story story = YamlFactory.toStory(storyMetaData, storyYamlMap);
 
       if (kDebugMode) {
-        print('Story: ${storyMetaData.title} (${storyMetaData.assetName}');
+        print('Story: ${storyMetaData.title} (${storyMetaData.assetName})');
       }
 
       // Basic checks
@@ -59,6 +59,24 @@ void main() {
         // Process the current page
 
         if (currentPage.choices.isEmpty) expect(currentPage.isTerminal, true);
+
+        // Check that if there is both speech and speech timestamps for this page, then the number of timestamps matches the number of words
+        if (currentPage.speechFileName.isNotEmpty &&
+            currentPage.speechTimestampsFileName.isNotEmpty) {
+          String speechTimestampsString = File(
+                  '${storyMetaData.speechFolder}/${currentPage.speechTimestampsFileName}')
+              .readAsStringSync();
+          List<String> speechTimestampsList =
+              speechTimestampsString.split('\n');
+          List<String> speechWordsList = currentPage.text.split(' ');
+
+          if (kDebugMode) {
+            print(
+                '\tSpeech: ${currentPage.speechFileName} (${speechWordsList.length} words) - ${currentPage.speechTimestampsFileName} (${speechTimestampsList.length} timestamps)');
+          }
+
+          expect(speechTimestampsList.length, speechWordsList.length);
+        }
 
         for (MapEntry<String, StoryChoice> choice
             in currentPage.choices.entries) {

@@ -95,6 +95,7 @@ flutter:
     - assets/icon/
     - assets/adventure_in_the_jungle/images/
     - assets/adventure_in_the_jungle/sounds/
+    - assets/adventure_in_the_jungle/speech/
     - assets/adventure_in_the_jungle/story_data/
     - assets/dinoquest_journey/images/
     - assets/dinoquest_journey/story_data/
@@ -104,6 +105,7 @@ flutter:
     - assets/space_odyssey/story_data/
     - assets/magic_forest_quest/images/
     - assets/magic_forest_quest/sounds/
+    - assets/magic_forest_quest/speech/
     - assets/magic_forest_quest/story_data/
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -3,9 +3,11 @@ import 'package:adventure_quest_kids/registry.dart';
 import 'package:adventure_quest_kids/utils/navigation_utils.dart';
 import 'package:adventure_quest_kids/utils/sound_utils.dart';
 import 'package:adventure_quest_kids/views/story_front_page_screen.dart';
-import 'package:adventure_quest_kids/views/user_settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+
+import '../main.dart';
+import '../utils/constants.dart';
 
 class MainScreen extends StatefulWidget {
   final Registry registry;
@@ -54,11 +56,7 @@ class MainScreenState extends State<MainScreen> {
       actions: [
         IconButton(
             icon: const Icon(Icons.settings),
-            onPressed: () => pushRouteWithTransition(
-                  context,
-                  SettingsScreen(),
-                  routeName: 'settings',
-                ))
+            onPressed: () => navigateToSettings(context))
       ],
     );
   }
@@ -76,11 +74,14 @@ class MainScreenState extends State<MainScreen> {
           return ListTile(
               leading: _getStoryListItemIcon(storyMetaData),
               title: Text(storyMetaData.fullTitle),
-              onTap: () => pushRouteWithTransition(
-                    context,
-                    StoryFrontPageScreen(storyMetadata: storyMetaData),
-                    routeName: 'front-page',
-                  ));
+              onTap: () => navigateToRoute(
+                  context,
+                  StoryFrontPageScreen(
+                      storyMetadata: storyMetaData,
+                      routeObserver: RouteObserver<PageRoute>(),
+                      assetSourceFactory: GetIt.I.get<AssetSourceFactory>(),
+                      registry: registry),
+                  Constants.frontPageRoute));
         });
   }
 

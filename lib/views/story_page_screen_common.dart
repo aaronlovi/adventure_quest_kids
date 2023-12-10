@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../utils/constants.dart';
 import '../utils/navigation_utils.dart';
 import 'app_bar_title_widget.dart';
-import 'user_settings_screen.dart';
 
 AppBar getAppBar(
   BuildContext context, {
@@ -14,7 +13,7 @@ AppBar getAppBar(
   return AppBar(
     leading: IconButton(
       icon: const Icon(Icons.arrow_back),
-      onPressed: () => Navigator.of(context).pop(),
+      onPressed: () => popOnce(context),
     ),
     titleSpacing: 0,
     title: AppBarTitleWidget(title: title, subTitle: subTitle),
@@ -36,7 +35,7 @@ List<Widget> getAppBarActionButtons(
       visualDensity: Constants.mostDense,
       padding: all2,
       tooltip: 'Start of story',
-      onPressed: () => popUntilNamedRoute(context, 'front-page'),
+      onPressed: () => navigateToStartOfStory(context),
       icon: const Icon(Icons.home),
     ));
 
@@ -47,7 +46,7 @@ List<Widget> getAppBarActionButtons(
     visualDensity: Constants.mostDense,
     padding: all2,
     tooltip: 'Story list',
-    onPressed: () => popUntilFirstRoute(context),
+    onPressed: () => navigateToStoryList(context),
     icon: const Icon(Icons.list),
   ));
 
@@ -57,11 +56,7 @@ List<Widget> getAppBarActionButtons(
     visualDensity: Constants.mostDense,
     padding: all2,
     tooltip: 'Settings',
-    onPressed: () => pushRouteWithTransition(
-      context,
-      SettingsScreen(),
-      routeName: 'settings',
-    ),
+    onPressed: () => navigateToSettings(context),
     icon: const Icon(Icons.settings),
   ));
 

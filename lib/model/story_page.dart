@@ -4,6 +4,7 @@ class StoryPage {
   final String imageFileName;
   final String soundFileName;
   final String speechFileName;
+  final String speechTimestampsFileName;
   final String text;
   final Map<String, StoryChoice> choices;
   final bool isTerminal;
@@ -12,6 +13,7 @@ class StoryPage {
     required this.imageFileName,
     required this.soundFileName,
     required this.speechFileName,
+    required this.speechTimestampsFileName,
     required this.text,
     required this.choices,
     this.isTerminal = false,

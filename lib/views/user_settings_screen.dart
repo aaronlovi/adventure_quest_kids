@@ -18,6 +18,7 @@ class SettingsScreenState extends State<SettingsScreen> {
   late double _backgroundVolume;
   late double _foregroundVolume;
   late double _speechVolume;
+  late double _speechRate;
   late bool _isDirty;
 
   @override
@@ -27,6 +28,7 @@ class SettingsScreenState extends State<SettingsScreen> {
     _backgroundVolume = widget.registry.backgroundVolume;
     _foregroundVolume = widget.registry.foregroundVolume;
     _speechVolume = widget.registry.speechVolume;
+    _speechRate = widget.registry.speechRate;
     _isDirty = false;
   }
 
@@ -57,6 +59,8 @@ class SettingsScreenState extends State<SettingsScreen> {
     _getForegroundVolumeSlider(widgets);
     _getSpeechVolumeLabel(widgets);
     _getSpeechVolumeSlider(widgets);
+    _getSpeechRateLabel(widgets);
+    _getSpeechRateSlider(widgets);
     _getSaveCancelButtons(context, widgets);
 
     return Padding(
@@ -119,6 +123,24 @@ class SettingsScreenState extends State<SettingsScreen> {
     ));
   }
 
+  void _getSpeechRateLabel(List<Widget> widgets) {
+    widgets
+        .add(Text('Speech Rate: ${(_speechRate * 100).toStringAsFixed(0)}%'));
+  }
+
+  void _getSpeechRateSlider(List<Widget> widgets) {
+    widgets.add(Slider(
+      value: _speechRate,
+      min: 0.5,
+      max: 1.25,
+      onChanged: (value) {
+        _speechRate = value;
+        _isDirty = true;
+        setState(() {});
+      },
+    ));
+  }
+
   void _getSaveCancelButtons(BuildContext context, List<Widget> widgets) {
     widgets.add(Row(mainAxisAlignment: MainAxisAlignment.center, children: [
       const Spacer(),
@@ -170,6 +192,7 @@ class SettingsScreenState extends State<SettingsScreen> {
     _backgroundVolume = widget.registry.backgroundVolume;
     _foregroundVolume = widget.registry.foregroundVolume;
     _speechVolume = widget.registry.speechVolume;
+    _speechRate = widget.registry.speechRate;
     _isDirty = false;
     if (closeAlertDialog) popOnce(context); // Close the alert dialog
     popOnce(context); // Close the SettingsScreen (this widget)
@@ -179,6 +202,7 @@ class SettingsScreenState extends State<SettingsScreen> {
     widget.registry.backgroundVolume = _backgroundVolume;
     widget.registry.foregroundVolume = _foregroundVolume;
     widget.registry.speechVolume = _speechVolume;
+    widget.registry.speechRate = _speechRate;
     await widget.registry.saveSettings();
     _isDirty = false;
     setState(() {});

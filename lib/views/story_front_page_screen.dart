@@ -4,7 +4,6 @@ import 'package:adventure_quest_kids/utils/navigation_utils.dart';
 import 'package:adventure_quest_kids/utils/sound_utils.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 
 import '../main.dart';
 import '../model/story.dart';
@@ -16,36 +15,40 @@ import 'story_page_screen_common.dart';
 
 class StoryFrontPageScreen extends StatefulWidget {
   final StoryMetaData storyMetadata;
+  final AssetSourceFactory assetSourceFactory;
+  final Registry registry;
+  final RouteObserver<PageRoute> routeObserver;
 
-  const StoryFrontPageScreen({super.key, required this.storyMetadata});
+  const StoryFrontPageScreen(
+      {super.key,
+      required this.storyMetadata,
+      required this.assetSourceFactory,
+      required this.registry,
+      required this.routeObserver});
 
   @override
   StoryFrontPageScreenState createState() => StoryFrontPageScreenState();
 }
 
 class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
-  final AssetSourceFactory _assetSourceFactory;
-  final Registry _registry;
   late AssetSource soundAsset;
 
-  StoryFrontPageScreenState()
-      : _assetSourceFactory = GetIt.I.get<AssetSourceFactory>(),
-        _registry = GetIt.I.get<Registry>();
+  StoryFrontPageScreenState();
 
   @override
   initState() {
     super.initState();
-    soundAsset = _assetSourceFactory(
+    soundAsset = widget.assetSourceFactory(
         '${widget.storyMetadata.soundsFolder}/${widget.storyMetadata.backgroundSoundFilename}');
-    _registry.currentStoryMetaData = widget.storyMetadata;
-    stopSpeech(_registry);
-    playStoryBackgroundSound(widget.storyMetadata, soundAsset, _registry);
+    widget.registry.currentStoryMetaData = widget.storyMetadata;
+    stopSpeech(widget.registry);
+    playStoryBackgroundSound(widget.storyMetadata, soundAsset, widget.registry);
   }
 
   @override
   void dispose() {
     super.dispose();
-    _registry.backgroundAudioPlayer.stop();
+    widget.registry.backgroundAudioPlayer.stop();
   }
 
   @override
@@ -130,11 +133,15 @@ class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
           style: ElevatedButton.styleFrom(padding: const EdgeInsets.all(24)),
           onPressed: () async {
             Story story = await YamlFactory.getStory(storyMetadata);
-            StoryPage storyPage = story.pages[storyMetadata.firstPageId]!;
 
             if (!context.mounted) return;
 
-            pushRouteWithTransition(context, StoryPageScreen(story, storyPage));
+            StoryPage storyPage = story.pages[storyMetadata.firstPageId]!;
+
+            pushRouteWithTransition(
+                context,
+                StoryPageScreen(
+                    story, storyPage, widget.routeObserver, widget.registry));
           },
           child: const Text('Begin Adventure',
               textAlign: TextAlign.center, style: TextStyle(fontSize: 16)),

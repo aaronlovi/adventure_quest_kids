@@ -16,4 +16,5 @@ class Story {
 
   String get imagesFolder => storyMetaData.imagesFolder;
   String get soundsFolder => storyMetaData.soundsFolder;
+  String get speechFolder => storyMetaData.speechFolder;
 }

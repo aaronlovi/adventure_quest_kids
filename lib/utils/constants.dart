@@ -7,7 +7,12 @@ abstract class Constants {
   );
 
   static const oneSecond = Duration(milliseconds: 1000);
+  static const halfSecond = Duration(milliseconds: 500);
+  static const twoHundredMilliseconds = Duration(milliseconds: 200);
   static const hundredMilliseconds = Duration(milliseconds: 100);
+
+  static const String frontPageRoute = 'front-page';
+  static const String settingsPageRoute = 'settings';
 }
 
 extension BuildContextExtensions on BuildContext {
