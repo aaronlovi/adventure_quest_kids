@@ -13,15 +13,7 @@ import 'package:yaml/yaml.dart';
 
 void main() {
   test('Load story data', () {
-    String metaDataYamlString =
-        File('assets/story_list.yaml').readAsStringSync();
-    YamlMap metaDataYamlMap = loadYaml(metaDataYamlString);
-    var storyMetaDataList = <StoryMetaData>[];
-    for (var storyItem in metaDataYamlMap['story_list'].keys) {
-      StoryMetaData storyMetaData =
-          getStoryMetadataFromYaml(metaDataYamlMap, storyItem);
-      storyMetaDataList.add(storyMetaData);
-    }
+    List<StoryMetaData> storyMetaDataList = _loadStoryMetaDataList();
 
     for (var storyMetaData in storyMetaDataList) {
       String storyYamlString =
@@ -48,6 +40,7 @@ void main() {
       var pageStack = <Tuple2<StoryPage, int>>[];
       pageStack.add(Tuple2<StoryPage, int>(firstPage, 1));
 
+      // Generally, does a DFS of the story graph, checking that all pages are reachable
       while (pageStack.isNotEmpty) {
         Tuple2<StoryPage, int> currentPageInfo = pageStack.removeLast();
         StoryPage currentPage = currentPageInfo.item1;
@@ -95,4 +88,35 @@ void main() {
       expect(pageIds, isEmpty);
     }
   });
+
+  test('Story metadata contains a valid set of terminal pages', () {
+    List<StoryMetaData> storyMetaDataList = _loadStoryMetaDataList();
+
+    for (var storyMetaData in storyMetaDataList) {
+      String storyYamlString =
+          File('${storyMetaData.storyDataFolder}/story_data.yaml')
+              .readAsStringSync();
+      YamlMap storyYamlMap = loadYaml(storyYamlString);
+      Story story = YamlFactory.toStory(storyMetaData, storyYamlMap);
+
+      Set<String> terminalPageIds = story.pages.entries
+          .where((e) => e.value.isTerminal)
+          .map((e) => e.key)
+          .toSet();
+
+      expect(setEquals(storyMetaData.terminalPageIds, terminalPageIds), true);
+    }
+  });
+}
+
+List<StoryMetaData> _loadStoryMetaDataList() {
+  String metaDataYamlString = File('assets/story_list.yaml').readAsStringSync();
+  YamlMap metaDataYamlMap = loadYaml(metaDataYamlString);
+  var storyMetaDataList = <StoryMetaData>[];
+  for (var storyItem in metaDataYamlMap['story_list'].keys) {
+    StoryMetaData storyMetaData =
+        getStoryMetadataFromYaml(metaDataYamlMap, storyItem);
+    storyMetaDataList.add(storyMetaData);
+  }
+  return storyMetaDataList;
 }

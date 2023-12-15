@@ -11,8 +11,9 @@ abstract class Constants {
   static const twoHundredMilliseconds = Duration(milliseconds: 200);
   static const hundredMilliseconds = Duration(milliseconds: 100);
 
-  static const String frontPageRoute = 'front-page';
-  static const String settingsPageRoute = 'settings';
+  static const String storyListRoute = '/story-list';
+  static const String frontPageRoute = '/front-page';
+  static const String settingsPageRoute = '/settings';
 }
 
 extension BuildContextExtensions on BuildContext {

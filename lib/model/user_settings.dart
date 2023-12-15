@@ -9,10 +9,15 @@ class UserSettings {
   double speechVolume;
   double speechRate;
 
-  UserSettings({
-    this.backgroundVolume = defaultBackgroundVolume,
-    this.foregroundVolume = defaultForegroundVolume,
-    this.speechVolume = defaultSpeechVolume,
-    this.speechRate = defaultSpeechRate,
-  });
+  /// Map from story name => set of visited terminal page ids.
+  /// The idea is to show the user whether they have gotten to the end of a story,
+  /// and whether they have seen every possible end of the story.
+  Map<String, Set<String>> terminalPagesVisited;
+
+  UserSettings(
+      {this.backgroundVolume = defaultBackgroundVolume,
+      this.foregroundVolume = defaultForegroundVolume,
+      this.speechVolume = defaultSpeechVolume,
+      this.speechRate = defaultSpeechRate,
+      this.terminalPagesVisited = const {}});
 }

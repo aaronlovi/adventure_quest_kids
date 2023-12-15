@@ -6,16 +6,20 @@ story_list:
     background_sound_filename: background-15s.mp3
     background_sound_volume_factor: 1.0
     background_sound_playback_rate: 0.75
+    terminal_page_ids: page4A,page4B,page4C,page4D,page4E,page4F,page4G,page4H,page4I,page4J,page4K,page4L,page4M,page4N,page4O,page4P,page4Q,page4R,page4S
   space_odyssey:
     title: Space Odyssey
     first_page: page1
+    terminal_page_ids: page4A,page4B,page4C,page4D,page4E,page4F,page4G,page4H,page4I,page4J,page4K,page4L,page4M,page4N,page4O
   mystery_mansion:
     title: Mystery Mansion
     first_page: page1
+    terminal_page_ids: page4A,page4B,page4C,page4D,page4E,page4F,page4G,page4H,page4I,page4J,page4K,page4L,page4M,page4N
   dinoquest_journey:
     title: "DinoQuest"
     subtitle: "Journey through the Jurassic"
     first_page: page1
+    terminal_page_ids: page4A,page4B,page4C,page4D,page4E,page4F,page4G,page4H,page4I,page4J,page4K,page4L,page4M,page4N,page4O,page4P,page4Q,page4R
   magic_forest_quest:
     title: "Magic Forest Quest"
     first_page: page1
@@ -23,4 +27,4 @@ story_list:
     background_sound_filename: background-8s.mp3
     background_sound_volume_factor: 1.0
     background_sound_playback_rate: 0.8
-
+    terminal_page_ids: page4A,page4B,page4C,page4D,page4E,page4F,page4G,page4H,page4I,page4J,page4K,page4L,page4M,page4N,page4O,page4P,page4Q,page4R

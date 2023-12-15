@@ -11,7 +11,7 @@ void popUntilNamedRoute(BuildContext context, String routeName) =>
 /// Pops the navigation stack until the first route is reached.
 /// This function is useful when you want to go back to the first page in your navigation stack.
 void popUntilFirstRoute(BuildContext context) =>
-    Navigator.popUntil(context, (route) => route.isFirst);
+    Navigator.popUntil(context, ModalRoute.withName(Constants.storyListRoute));
 
 /// Pops the navigation stack once.
 /// This function is useful when you want to go back to the previous page in your navigation stack.

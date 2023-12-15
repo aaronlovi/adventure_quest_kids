@@ -40,6 +40,17 @@ class Registry {
     settings.speechRate = rate;
   }
 
+  Set<String> getTerminalPagesVisited(String storyId) =>
+      settings.terminalPagesVisited[storyId] ?? {};
+
+  Future<void> setTerminalPageVisited(
+      String storyId, String terminalPageId) async {
+    settings.terminalPagesVisited
+        .putIfAbsent(storyId, () => {terminalPageId})
+        .add(terminalPageId);
+    await saveSettings();
+  }
+
   Future<void> saveSettings() async {
     await _userSettingsService.saveSettings(settings);
   }

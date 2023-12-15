@@ -4,9 +4,11 @@ class StoryMetaData {
   final String subTitle;
   final String firstPageId;
   final String listIcon;
+  final String storyId; // Key for this story in YAML file
   final String backgroundSoundFilename;
   final double backgroundVolumeAdjustmentFactor;
   final double backgroundSoundPlaybackRate;
+  final Set<String> terminalPageIds;
 
   StoryMetaData({
     required this.assetName,
@@ -14,9 +16,11 @@ class StoryMetaData {
     required this.firstPageId,
     required this.subTitle,
     required this.listIcon,
+    required this.storyId,
     required this.backgroundSoundFilename,
     required this.backgroundVolumeAdjustmentFactor,
     required this.backgroundSoundPlaybackRate,
+    required this.terminalPageIds,
   });
 
   String get assetsFolder => 'assets/$assetName';

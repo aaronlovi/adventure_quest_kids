@@ -50,7 +50,43 @@ class SettingsScreenState extends State<SettingsScreen> {
         title: const Text('Settings'));
   }
 
-  Padding _getBody(BuildContext context) {
+  void _onBackButtonPressed(BuildContext context) async {
+    if (!_isDirty) {
+      popOnce(context);
+      return;
+    }
+
+    await showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Unsaved Changes'),
+        content: const Text(
+            'You have unsaved changes. Are you sure you want to leave?'),
+        actions: <Widget>[
+          TextButton(
+            child: const Text('Yes'),
+            onPressed: () => _cancelChanges(context, closeAlertDialog: true),
+          ),
+          TextButton(
+            child: const Text('No'),
+            onPressed: () => popOnce(context),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _cancelChanges(BuildContext context, {bool closeAlertDialog = false}) {
+    _backgroundVolume = widget.registry.backgroundVolume;
+    _foregroundVolume = widget.registry.foregroundVolume;
+    _speechVolume = widget.registry.speechVolume;
+    _speechRate = widget.registry.speechRate;
+    _isDirty = false;
+    if (closeAlertDialog) popOnce(context); // Close the alert dialog
+    popOnce(context); // Close the SettingsScreen (this widget)
+  }
+
+  Widget _getBody(BuildContext context) {
     var widgets = <Widget>[];
 
     _getBackgroundVolumeLabel(widgets);
@@ -160,42 +196,6 @@ class SettingsScreenState extends State<SettingsScreen> {
               fit: BoxFit.scaleDown,
               child: Text(text, style: const TextStyle(fontSize: 16)),
             )));
-  }
-
-  void _onBackButtonPressed(BuildContext context) async {
-    if (!_isDirty) {
-      popOnce(context);
-      return;
-    }
-
-    await showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Unsaved Changes'),
-        content: const Text(
-            'You have unsaved changes. Are you sure you want to leave?'),
-        actions: <Widget>[
-          TextButton(
-            child: const Text('Yes'),
-            onPressed: () => _cancelChanges(context, closeAlertDialog: true),
-          ),
-          TextButton(
-            child: const Text('No'),
-            onPressed: () => popOnce(context),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _cancelChanges(BuildContext context, {bool closeAlertDialog = false}) {
-    _backgroundVolume = widget.registry.backgroundVolume;
-    _foregroundVolume = widget.registry.foregroundVolume;
-    _speechVolume = widget.registry.speechVolume;
-    _speechRate = widget.registry.speechRate;
-    _isDirty = false;
-    if (closeAlertDialog) popOnce(context); // Close the alert dialog
-    popOnce(context); // Close the SettingsScreen (this widget)
   }
 
   Future<void> _saveSettings() async {

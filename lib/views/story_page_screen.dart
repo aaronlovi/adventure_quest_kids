@@ -18,13 +18,14 @@ import 'animated_story_text.dart';
 import 'story_page_screen_common.dart';
 
 class StoryPageScreen extends StatefulWidget {
+  final String storyPageId;
   final Story story;
   final StoryPage storyPage;
   final RouteObserver<PageRoute> routeObserver;
   final Registry registry;
 
-  const StoryPageScreen(
-      this.story, this.storyPage, this.routeObserver, this.registry,
+  const StoryPageScreen(this.storyPageId, this.story, this.storyPage,
+      this.routeObserver, this.registry,
       {super.key});
 
   @override
@@ -52,6 +53,11 @@ class StoryPageScreenState extends State<StoryPageScreen> with RouteAware {
   @override
   void initState() {
     super.initState();
+
+    if (widget.storyPage.isTerminal) {
+      widget.registry.setTerminalPageVisited(
+          widget.story.storyMetaData.storyId, widget.storyPageId);
+    }
 
     _player = GetIt.I.get<AudioPlayer>();
 
@@ -84,6 +90,7 @@ class StoryPageScreenState extends State<StoryPageScreen> with RouteAware {
   /// Cancels speech navigation since the user navigated away from this page.
   @override
   void didPushNext() {
+    super.didPushNext();
     // A new route was pushed on top of the current route.
     _currentWordIndex.value = -1;
     _cancelSpeechAnimation = true;
@@ -198,6 +205,7 @@ class StoryPageScreenState extends State<StoryPageScreen> with RouteAware {
       StoryChoice choice = widget.storyPage.choices[choiceName]!;
       StoryPage nextPage = widget.story.pages[choice.nextPageId]!;
       StoryPageScreen nextScreen = StoryPageScreen(
+        choice.nextPageId,
         widget.story,
         nextPage,
         widget.routeObserver,

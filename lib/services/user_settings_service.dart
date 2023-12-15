@@ -16,6 +16,14 @@ class UserSettingsService implements IUserSettingsService {
   @override
   Future<UserSettings> loadSettings() async {
     final prefs = await SharedPreferences.getInstance();
+    Map<String, Set<String>> terminalPagesVisited = {};
+    for (var key in prefs.getKeys()) {
+      if (key.startsWith('terminal.')) {
+        terminalPagesVisited[key.substring(9)] =
+            prefs.getStringList(key)?.toSet() ?? {};
+      }
+    }
+
     return UserSettings(
       backgroundVolume: prefs.getDouble(_backgroundVolumeKey) ??
           UserSettings.defaultBackgroundVolume,
@@ -25,15 +33,20 @@ class UserSettingsService implements IUserSettingsService {
           prefs.getDouble(_speechVolumeKey) ?? UserSettings.defaultSpeechVolume,
       speechRate:
           prefs.getDouble(_speechRateKey) ?? UserSettings.defaultSpeechRate,
+      terminalPagesVisited: terminalPagesVisited,
     );
   }
 
   @override
   Future<void> saveSettings(UserSettings settings) async {
     final prefs = await SharedPreferences.getInstance();
-    prefs.setDouble(_backgroundVolumeKey, settings.backgroundVolume);
-    prefs.setDouble(_foregroundVolumeKey, settings.foregroundVolume);
-    prefs.setDouble(_speechVolumeKey, settings.speechVolume);
-    prefs.setDouble(_speechRateKey, settings.speechRate);
+    await prefs.setDouble(_backgroundVolumeKey, settings.backgroundVolume);
+    await prefs.setDouble(_foregroundVolumeKey, settings.foregroundVolume);
+    await prefs.setDouble(_speechVolumeKey, settings.speechVolume);
+    await prefs.setDouble(_speechRateKey, settings.speechRate);
+
+    for (var entry in settings.terminalPagesVisited.entries) {
+      await prefs.setStringList('terminal.${entry.key}', entry.value.toList());
+    }
   }
 }

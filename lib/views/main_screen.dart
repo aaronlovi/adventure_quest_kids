@@ -11,14 +11,16 @@ import '../utils/constants.dart';
 
 class MainScreen extends StatefulWidget {
   final Registry registry;
+  final RouteObserver<PageRoute> routeObserver;
 
-  MainScreen({super.key}) : registry = GetIt.I.get<Registry>();
+  MainScreen({super.key, required this.routeObserver})
+      : registry = GetIt.I.get<Registry>();
 
   @override
   MainScreenState createState() => MainScreenState();
 }
 
-class MainScreenState extends State<MainScreen> {
+class MainScreenState extends State<MainScreen> with RouteAware {
   late int _colorIndex;
 
   MainScreenState() : _colorIndex = 0;
@@ -27,6 +29,27 @@ class MainScreenState extends State<MainScreen> {
   void initState() {
     super.initState();
     stopSpeech(widget.registry);
+  }
+
+  @override
+  void dispose() {
+    widget.routeObserver.unsubscribe(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final route = ModalRoute.of(context);
+    if (route is PageRoute) {
+      widget.routeObserver.subscribe(this, route);
+    }
+  }
+
+  @override
+  void didPopNext() {
+    super.didPopNext();
+    setState(() {});
   }
 
   @override
@@ -71,8 +94,19 @@ class MainScreenState extends State<MainScreen> {
         itemBuilder: (content, index) {
           var storyName = storyNames[index];
           StoryMetaData storyMetaData = registry.storyList[storyName]!;
+          Set<String> terminalPagesVisited =
+              registry.getTerminalPagesVisited(storyName);
+          bool anyTerminalPagesVisited = terminalPagesVisited.isNotEmpty;
+          bool allTerminalPagesVisited = terminalPagesVisited.length ==
+              storyMetaData.terminalPageIds.length;
+          Icon trailingIcon = allTerminalPagesVisited
+              ? const Icon(Icons.check)
+              : anyTerminalPagesVisited
+                  ? const Icon(Icons.check_circle)
+                  : const Icon(Icons.check_box_outline_blank_outlined);
           return ListTile(
               leading: _getStoryListItemIcon(storyMetaData),
+              trailing: trailingIcon,
               title: Text(storyMetaData.fullTitle),
               onTap: () => navigateToRoute(
                   context,
