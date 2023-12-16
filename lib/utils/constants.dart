@@ -14,6 +14,16 @@ abstract class Constants {
   static const String storyListRoute = '/story-list';
   static const String frontPageRoute = '/front-page';
   static const String settingsPageRoute = '/settings';
+
+  static final iconColors = <Color>[
+    Colors.red,
+    Colors.blue,
+    Colors.purple,
+    Colors.orange,
+    Colors.teal,
+    Colors.pink,
+    Colors.indigo,
+  ];
 }
 
 extension BuildContextExtensions on BuildContext {

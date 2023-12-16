@@ -2,28 +2,29 @@ import 'package:adventure_quest_kids/model/story_meta_data.dart';
 import 'package:adventure_quest_kids/registry.dart';
 import 'package:adventure_quest_kids/utils/navigation_utils.dart';
 import 'package:adventure_quest_kids/utils/sound_utils.dart';
-import 'package:adventure_quest_kids/views/story_front_page_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 import '../main.dart';
 import '../utils/constants.dart';
+import 'story_list_item.dart';
 
 class MainScreen extends StatefulWidget {
   final Registry registry;
   final RouteObserver<PageRoute> routeObserver;
+  final AssetSourceFactory assetSourceFactory;
 
   MainScreen({super.key, required this.routeObserver})
-      : registry = GetIt.I.get<Registry>();
+      : registry = GetIt.I.get<Registry>(),
+        assetSourceFactory = GetIt.I.get<AssetSourceFactory>();
 
   @override
   MainScreenState createState() => MainScreenState();
 }
 
 class MainScreenState extends State<MainScreen> with RouteAware {
-  late int _colorIndex;
-
-  MainScreenState() : _colorIndex = 0;
+  Registry get registry => widget.registry;
+  AssetSourceFactory get assetSourceFactory => widget.assetSourceFactory;
 
   @override
   void initState() {
@@ -59,7 +60,7 @@ class MainScreenState extends State<MainScreen> with RouteAware {
 
     return Scaffold(
       appBar: _getAppBar(context),
-      body: _getBody(storyNames, registry, context),
+      body: _getBody(storyNames, context),
     );
   }
 
@@ -86,60 +87,39 @@ class MainScreenState extends State<MainScreen> with RouteAware {
 
   ListView _getBody(
     List<String> storyNames,
-    Registry registry,
     BuildContext context,
   ) {
     return ListView.builder(
         itemCount: storyNames.length,
         itemBuilder: (content, index) {
           var storyName = storyNames[index];
+          int colorIndex = index % Constants.iconColors.length;
+          final Color iconColor = Constants.iconColors[colorIndex];
           StoryMetaData storyMetaData = registry.storyList[storyName]!;
           Set<String> terminalPagesVisited =
               registry.getTerminalPagesVisited(storyName);
           bool anyTerminalPagesVisited = terminalPagesVisited.isNotEmpty;
           bool allTerminalPagesVisited = terminalPagesVisited.length ==
               storyMetaData.terminalPageIds.length;
-          Icon trailingIcon = allTerminalPagesVisited
-              ? const Icon(Icons.check)
+          String toolTipMsg = allTerminalPagesVisited
+              ? 'All endings visited\nCongratulations!'
               : anyTerminalPagesVisited
-                  ? const Icon(Icons.check_circle)
-                  : const Icon(Icons.check_box_outline_blank_outlined);
-          return ListTile(
-              leading: _getStoryListItemIcon(storyMetaData),
-              trailing: trailingIcon,
-              title: Text(storyMetaData.fullTitle),
-              onTap: () => navigateToRoute(
-                  context,
-                  StoryFrontPageScreen(
-                      storyMetadata: storyMetaData,
-                      routeObserver: RouteObserver<PageRoute>(),
-                      assetSourceFactory: GetIt.I.get<AssetSourceFactory>(),
-                      registry: registry),
-                  Constants.frontPageRoute));
+                  ? 'Some endings visited\nKeep exploring!'
+                  : 'No endings visited\nStart exploring!';
+          Icon trailingIcon = allTerminalPagesVisited
+              ? const Icon(Icons.done_all, color: Colors.green)
+              : anyTerminalPagesVisited
+                  ? Icon(Icons.book, color: iconColor)
+                  : Icon(Icons.bookmark_border, color: iconColor);
+          return StoryListItem(
+            icon: trailingIcon,
+            toolTipMsg: toolTipMsg,
+            storyMetaData: storyMetaData,
+            registry: registry,
+            assetSourceFactory: assetSourceFactory,
+            routeObserver: routeObserver,
+            iconColor: iconColor,
+          );
         });
-  }
-
-  Widget _getStoryListItemIcon(StoryMetaData storyMetaData) {
-    final iconColors = <Color>[
-      Colors.red,
-      Colors.green,
-      Colors.blue,
-      Colors.purple,
-      Colors.orange,
-      Colors.teal,
-      Colors.pink,
-      Colors.indigo,
-    ];
-
-    if (storyMetaData.listIcon.isEmpty) {
-      _colorIndex = (_colorIndex + 1) % iconColors.length;
-      return Icon(
-        Icons.book,
-        size: 40.0,
-        color: iconColors[_colorIndex],
-      );
-    } else {
-      return Image(image: AssetImage(storyMetaData.listIconFilename));
-    }
   }
 }
