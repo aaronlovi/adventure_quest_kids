@@ -76,14 +76,22 @@ class SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  void _cancelChanges(BuildContext context, {bool closeAlertDialog = false}) {
-    _backgroundVolume = widget.registry.backgroundVolume;
-    _foregroundVolume = widget.registry.foregroundVolume;
-    _speechVolume = widget.registry.speechVolume;
-    _speechRate = widget.registry.speechRate;
-    _isDirty = false;
+  void _cancelChanges(
+    BuildContext context, {
+    bool closeAlertDialog = false,
+    bool closeSettingsScreen = true,
+  }) {
+    setState(() {
+      _backgroundVolume = widget.registry.backgroundVolume;
+      _foregroundVolume = widget.registry.foregroundVolume;
+      _speechVolume = widget.registry.speechVolume;
+      _speechRate = widget.registry.speechRate;
+      _isDirty = false;
+    });
     if (closeAlertDialog) popOnce(context); // Close the alert dialog
-    popOnce(context); // Close the SettingsScreen (this widget)
+    if (closeSettingsScreen) {
+      popOnce(context); // Close the SettingsScreen (this widget)
+    }
   }
 
   Widget _getBody(BuildContext context) {
@@ -180,22 +188,38 @@ class SettingsScreenState extends State<SettingsScreen> {
   void _getSaveCancelButtons(BuildContext context, List<Widget> widgets) {
     widgets.add(Row(mainAxisAlignment: MainAxisAlignment.center, children: [
       const Spacer(),
-      _getOneLineFittedTextButton('Save'),
+      _getOneLineFittedTextButton('Save', context),
       const SizedBox(width: 16),
-      _getOneLineFittedTextButton('Cancel'),
+      _getOneLineFittedTextButton('Cancel', context, isCancelButton: true),
       const Spacer(),
     ]));
   }
 
-  Widget _getOneLineFittedTextButton(final String text) {
+  Widget _getOneLineFittedTextButton(
+    final String text,
+    BuildContext context, {
+    bool isCancelButton = false,
+  }) {
     return Expanded(
         child: ElevatedButton(
             style: ElevatedButton.styleFrom(padding: const EdgeInsets.all(2)),
-            onPressed: _isDirty ? _saveSettings : null,
+            onPressed: getButtonPressFn(isCancelButton, context),
             child: FittedBox(
               fit: BoxFit.scaleDown,
               child: Text(text, style: const TextStyle(fontSize: 16)),
             )));
+  }
+
+  void Function()? getButtonPressFn(bool isCancelButton, BuildContext context) {
+    if (!_isDirty && isCancelButton) {
+      return () => _cancelChanges(context, closeSettingsScreen: true);
+    }
+
+    if (!_isDirty) return null;
+
+    return isCancelButton
+        ? () => _cancelChanges(context, closeSettingsScreen: false)
+        : () => _saveSettings();
   }
 
   Future<void> _saveSettings() async {

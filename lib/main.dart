@@ -90,7 +90,7 @@ StoryMetaData getStoryMetadataFromYaml(YamlMap yamlMap, storyKey) {
 class MyApp extends StatefulWidget {
   final RouteObserver<PageRoute> routeObserver;
 
-  const MyApp({Key? key, required this.routeObserver}) : super(key: key);
+  const MyApp({super.key, required this.routeObserver});
 
   @override
   MyAppState createState() => MyAppState();
