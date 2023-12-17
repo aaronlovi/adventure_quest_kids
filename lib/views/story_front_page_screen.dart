@@ -141,11 +141,11 @@ class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
             pushRouteWithTransition(
                 context,
                 StoryPageScreen(
-                  storyMetadata.firstPageId,
-                  story,
-                  storyPage,
-                  widget.routeObserver,
-                  widget.registry,
+                  storyPageId: storyMetadata.firstPageId,
+                  story: story,
+                  storyPage: storyPage,
+                  routeObserver: widget.routeObserver,
+                  registry: widget.registry,
                 ));
           },
           child: const Text('Begin Adventure',
