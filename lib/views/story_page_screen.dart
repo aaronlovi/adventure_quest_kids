@@ -8,6 +8,7 @@ import 'package:adventure_quest_kids/utils/sound_utils.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 
 import '../main.dart';
@@ -16,6 +17,7 @@ import '../utils/constants.dart';
 import '../utils/read_timestamp_file.dart';
 import 'animated_story_text.dart';
 import 'story_page_screen_common.dart';
+import 'package:image/image.dart' as img;
 
 class StoryPageScreen extends StatefulWidget {
   final String storyPageId;
@@ -32,8 +34,15 @@ class StoryPageScreen extends StatefulWidget {
   StoryPageScreenState createState() => StoryPageScreenState();
 }
 
-class StoryPageScreenState extends State<StoryPageScreen> with RouteAware {
+class StoryPageScreenState extends State<StoryPageScreen>
+    with RouteAware, TickerProviderStateMixin {
+  final GlobalKey _containerKey;
+
   late AudioPlayer _player;
+  double? imageWidth;
+  double? imageHeight;
+  Offset? imageOffset;
+  List<Rect> animatedRectangles;
 
   /// Set to true to cancel the speech animation
   bool _cancelSpeechAnimation;
@@ -41,9 +50,15 @@ class StoryPageScreenState extends State<StoryPageScreen> with RouteAware {
   /// The index of the current word being spoken
   final ValueNotifier<int> _currentWordIndex;
 
+  final List<AnimationController> _controllers = [];
+  final List<Animation<Rect?>> _animations = [];
+  List<Uint8List> croppedImages = [];
+
   StoryPageScreenState()
       : _cancelSpeechAnimation = false,
-        _currentWordIndex = ValueNotifier<int>(-1);
+        _currentWordIndex = ValueNotifier<int>(-1),
+        _containerKey = GlobalKey(),
+        animatedRectangles = <Rect>[];
 
   String get _imagePath =>
       '${widget.story.imagesFolder}/${widget.storyPage.imageFileName}';
@@ -64,6 +79,101 @@ class StoryPageScreenState extends State<StoryPageScreen> with RouteAware {
     _cancelSpeechAnimation = false;
     stopSpeech(widget.registry);
     _playPageLoadSound();
+
+    WidgetsBinding.instance.addPostFrameCallback(_getImageBounds);
+  }
+
+  Future<void> _getImageBounds(Duration timeStamp) async {
+    final RenderBox containerBox =
+        _containerKey.currentContext!.findRenderObject() as RenderBox;
+    final containerSize = containerBox.size;
+
+    final ImageProvider imageProvider = AssetImage(_imagePath);
+    final ImageStream imageStream =
+        imageProvider.resolve(const ImageConfiguration());
+    final Completer<ImageInfo> completer = Completer<ImageInfo>();
+    late ImageStreamListener listener;
+    listener = ImageStreamListener((ImageInfo info, bool _) {
+      if (!completer.isCompleted) {
+        completer.complete(info);
+      }
+      imageStream.removeListener(listener);
+    });
+    imageStream.addListener(listener);
+    final ImageInfo imageInfo = await completer.future;
+    final imageSize = Size(
+      imageInfo.image.width.toDouble(),
+      imageInfo.image.height.toDouble(),
+    );
+
+    final double imageAspectRatio = imageSize.width / imageSize.height;
+    final double containerAspectRatio =
+        containerSize.width / containerSize.height;
+
+    if (imageAspectRatio > containerAspectRatio) {
+      // Image is wider than the container, so it's constrained by width
+      imageWidth = containerSize.width;
+      imageHeight = imageWidth! / imageAspectRatio;
+      imageOffset = Offset(0, (containerSize.height - imageHeight!) / 2);
+    } else {
+      // Image is taller than the container, so it's constrained by height
+      imageHeight = containerSize.height;
+      imageWidth = imageHeight! * imageAspectRatio;
+      imageOffset = Offset((containerSize.width - imageWidth!) / 2, 0);
+    }
+
+    animatedRectangles.clear();
+    for (Rect rect in widget.storyPage.rectangles) {
+      animatedRectangles.add(Rect.fromLTRB(
+          rect.left * imageWidth! + imageOffset!.dx,
+          rect.top * imageHeight! + imageOffset!.dy,
+          rect.right * imageWidth! + imageOffset!.dx,
+          rect.bottom * imageHeight! + imageOffset!.dy));
+    }
+
+    ByteData data = await rootBundle.load(_imagePath);
+    img.Image? image = img.decodeImage(data.buffer.asUint8List());
+    // Resize the image
+    img.Image resizedImage = img.copyResize(image!,
+        width: imageWidth!.round(), height: imageHeight!.round());
+
+    // Create a list to hold the cropped images
+    croppedImages.clear();
+
+    for (Rect rect in widget.storyPage.rectangles) {
+      // Calculate the coordinates and dimensions of the sub-image
+      int x = (rect.left * imageWidth!).round();
+      int y = (rect.top * imageHeight!).round();
+      int width = ((rect.right - rect.left) * imageWidth!).round();
+      int height = ((rect.bottom - rect.top) * imageHeight!).round();
+
+      // Crop the image
+      img.Image croppedImage =
+          img.copyCrop(resizedImage, x: x, y: y, width: width, height: height);
+
+      // Convert the cropped image to a byte array
+      Uint8List pngBytes = img.encodePng(croppedImage);
+
+      // Add the byte array to the list
+      croppedImages.add(pngBytes);
+    }
+
+    _controllers.clear();
+    _animations.clear();
+
+    for (var rect in animatedRectangles) {
+      var controller = AnimationController(
+        duration: const Duration(seconds: 1),
+        vsync: this,
+      );
+      var animation =
+          RectTween(begin: rect, end: rect.inflate(50.0)).animate(controller);
+
+      _controllers.add(controller);
+      _animations.add(animation);
+    }
+
+    setState(() {});
   }
 
   @override
@@ -72,8 +182,12 @@ class StoryPageScreenState extends State<StoryPageScreen> with RouteAware {
     stopSpeech(widget.registry);
     _currentWordIndex.dispose();
     widget.routeObserver.unsubscribe(this);
+
+    for (var controller in _controllers) {
+      controller.dispose();
+    }
+
     super.dispose();
-    // _player.dispose();
   }
 
   /// Sets up the watcher that notices when the user navigates away from this page.
@@ -124,37 +238,70 @@ class StoryPageScreenState extends State<StoryPageScreen> with RouteAware {
   }
 
   SizedBox _getStoryImageWidgets(double w, double h) {
+    var widgets = <Widget>[];
+    widgets.add(GestureDetector(
+      onTap: () {
+        for (var controller in _controllers) {
+          controller.forward().then((_) => controller.reverse());
+        }
+      },
+      child: Align(
+        alignment: Alignment.center,
+        child: Container(
+          key: _containerKey,
+          height: h * 0.4,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              fit: BoxFit.contain,
+              image: AssetImage(_imagePath),
+            ),
+          ),
+        ),
+      ),
+    ));
+    for (var w in _animations.asMap().entries.map((entry) {
+      int index = entry.key;
+      Animation<Rect?> animation = entry.value;
+      return AnimatedBuilder(
+        animation: animation,
+        builder: (context, child) {
+          return Positioned(
+            left: animation.value!.left,
+            top: animation.value!.top,
+            child: Image.memory(
+              croppedImages[index],
+              width: animation.value!.width,
+              height: animation.value!.height,
+              fit: BoxFit.contain,
+            ),
+          );
+        },
+      );
+    }).toList()) {
+      widgets.add(w);
+    }
+
+    widgets.add(
+      Positioned(
+        right: w * 0.1 / 2,
+        bottom: 0,
+        child: FloatingActionButton(
+          onPressed: _startAnimation,
+          tooltip: 'Read Aloud',
+          mini: true,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+          heroTag: null,
+          child: const Icon(Icons.play_arrow),
+        ),
+      ),
+    );
+
     return SizedBox(
       height: h * 0.4,
       child: Stack(
         alignment: Alignment.center,
-        children: <Widget>[
-          Align(
-            alignment: Alignment.center,
-            child: Container(
-              height: h * 0.4,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.contain,
-                  image: AssetImage(_imagePath),
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            right: w * 0.1 / 2,
-            bottom: 0,
-            child: FloatingActionButton(
-              onPressed: _startAnimation,
-              tooltip: 'Read Aloud',
-              mini: true,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30.0)),
-              heroTag: null,
-              child: const Icon(Icons.play_arrow),
-            ),
-          ),
-        ],
+        children: widgets,
       ),
     );
   }
