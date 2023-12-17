@@ -61,7 +61,9 @@ class StoryPageScreenState extends State<StoryPageScreen>
   final List<Uint8List> _imagesToAnimate;
 
   final List<AnimationController> _controllers;
-  final List<Animation<Rect?>> _animations;
+  final List<Animation<Rect?>> _sizeAnimations;
+  final List<Animation<Color?>> _colorAnimations;
+  final List<Animation<double>> _borderWidthAnimations;
 
   late AudioPlayer _player;
 
@@ -77,7 +79,9 @@ class StoryPageScreenState extends State<StoryPageScreen>
         _containerKey = GlobalKey(),
         _animatedRectangles = <Rect>[],
         _controllers = <AnimationController>[],
-        _animations = <Animation<Rect?>>[],
+        _sizeAnimations = <Animation<Rect?>>[],
+        _colorAnimations = <Animation<Color?>>[],
+        _borderWidthAnimations = <Animation<double>>[],
         _imagesToAnimate = <Uint8List>[];
 
   String get _imagePath =>
@@ -227,7 +231,9 @@ class StoryPageScreenState extends State<StoryPageScreen>
 
   void _calculateSubImageAnimations() {
     _controllers.clear();
-    _animations.clear();
+    _sizeAnimations.clear();
+    _colorAnimations.clear();
+    _borderWidthAnimations.clear();
 
     for (var rect in _animatedRectangles) {
       var controller = AnimationController(
@@ -237,11 +243,21 @@ class StoryPageScreenState extends State<StoryPageScreen>
 
       // Create a tween that will animate the sub-image
       // by expanding it to 35px larger than its original size
-      var animation =
+      var sizeAnimation =
           RectTween(begin: rect, end: rect.inflate(35.0)).animate(controller);
 
+      var colorAnimation = ColorTween(
+        begin: Colors.transparent,
+        end: Colors.white,
+      ).animate(controller);
+
+      var borderWidthAnimation =
+          Tween<double>(begin: 0, end: 4).animate(controller);
+
       _controllers.add(controller);
-      _animations.add(animation);
+      _sizeAnimations.add(sizeAnimation);
+      _colorAnimations.add(colorAnimation);
+      _borderWidthAnimations.add(borderWidthAnimation);
     }
   }
 
@@ -336,27 +352,40 @@ class StoryPageScreenState extends State<StoryPageScreen>
   }
 
   void _addSubImageAnimatedWidgets(List<Widget> widgets) {
-    for (var w in _animations.asMap().entries.map((entry) {
-      int index = entry.key;
-      Animation<Rect?> animation = entry.value;
+    for (var i = 0; i < _sizeAnimations.length; i++) {
+      Animation<Rect?> sizeAnimation = _sizeAnimations[i];
+      Animation<Color?> colorAnimation = _colorAnimations[i];
+      Animation<double> borderWidthAnimation = _borderWidthAnimations[i];
 
-      return AnimatedBuilder(
-        animation: animation,
+      var widget = AnimatedBuilder(
+        animation: Listenable.merge(
+            [sizeAnimation, colorAnimation, borderWidthAnimation]),
         builder: (context, child) {
           return Positioned(
-            left: animation.value!.left,
-            top: animation.value!.top,
-            child: Image.memory(
-              _imagesToAnimate[index],
-              width: animation.value!.width,
-              height: animation.value!.height,
-              fit: BoxFit.contain,
+            left: sizeAnimation.value!.left,
+            top: sizeAnimation.value!.top,
+            child: GestureDetector(
+              onTap: () => _animateSubImages(),
+              child: Container(
+                width: sizeAnimation.value!.width,
+                height: sizeAnimation.value!.height,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: colorAnimation.value!,
+                    width: borderWidthAnimation.value,
+                  ),
+                ),
+                child: Image.memory(
+                  _imagesToAnimate[i],
+                  fit: BoxFit.contain,
+                ),
+              ),
             ),
           );
         },
       );
-    }).toList()) {
-      widgets.add(w);
+
+      widgets.add(widget);
     }
   }
 
