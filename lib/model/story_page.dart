@@ -8,6 +8,7 @@ class StoryPage {
   final String speechFileName;
   final String speechTimestampsFileName;
   final String text;
+  final Map<String, String> textByLanguage;
   final Map<String, StoryChoice> choices;
   final bool isTerminal;
   final List<Rect> rectangles;
@@ -18,6 +19,7 @@ class StoryPage {
     required this.speechFileName,
     required this.speechTimestampsFileName,
     required this.text,
+    this.textByLanguage = const <String, String>{},
     required this.choices,
     this.isTerminal = false,
     this.rectangles = const <Rect>[

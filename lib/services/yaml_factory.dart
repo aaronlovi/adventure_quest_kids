@@ -7,6 +7,7 @@ import 'package:yaml/yaml.dart';
 
 import '../model/story.dart';
 import '../model/story_meta_data.dart';
+import '../utils/locale_utils.dart';
 
 class YamlFactory {
   static Future<Story> getStory(
@@ -42,6 +43,13 @@ class YamlFactory {
     String text = yamlMap['text'];
     Map<String, StoryChoice> choices = {};
 
+    Map<String, String> textByLanguage = {};
+    for (var locale in supportedNonDefaultLocales) {
+      if (yamlMap['text-$locale'] != null) {
+        textByLanguage[locale] = yamlMap['text-$locale'];
+      }
+    }
+
     if (yamlMap['choices'] != null) {
       for (var choice in yamlMap['choices'].keys) {
         choices[choice] = _toStoryChoice(yamlMap['choices'][choice]);
@@ -61,6 +69,7 @@ class YamlFactory {
       speechFileName: speechFileName,
       speechTimestampsFileName: speechTimestampsFileName,
       text: text,
+      textByLanguage: textByLanguage,
       choices: choices,
       isTerminal: isTerminal,
     );

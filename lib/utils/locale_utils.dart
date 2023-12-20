@@ -1,6 +1,9 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
+const List<String> supportedLocales = ['en', 'fr'];
+const List<String> supportedNonDefaultLocales = ['fr'];
+
 Map<String, String> getLanguageMap(BuildContext context) {
   Map<String, String> languageMap = {
     'en': AppLocalizations.of(context)!.english,

@@ -6,6 +6,7 @@ pages:
 
   page1:
     text: "You find yourself in a dense jungle. What do you want to do?"
+    text-fr: "Vous retrouvez dans une jungle dense. Que voulez-vous faire?"
     imageFileName: "1.jpg"
     speechFileName: "1.mp3"
     speechTimestampsFileName: "1.timestamps.txt"

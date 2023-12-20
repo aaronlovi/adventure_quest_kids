@@ -89,6 +89,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
       '${widget.story.imagesFolder}/${widget.storyPage.imageFileName}';
   String get _soundPath =>
       '${widget.story.soundsFolder}/${widget.storyPage.soundFileName}';
+  String get currentLocale => widget.registry.localeName;
 
   @override
   void initState() {
@@ -439,7 +440,16 @@ class StoryPageScreenState extends State<StoryPageScreen>
   }
 
   void _addStoryTextWidgets(List<Widget> widgets) {
-    List<String> words = widget.storyPage.text.split(' ');
+    String getStoryText() {
+      if (widget.storyPage.textByLanguage.containsKey(currentLocale)) {
+        return widget.storyPage.textByLanguage[currentLocale]!;
+      } else {
+        return widget.storyPage.text;
+      }
+    }
+
+    String text = getStoryText();
+    List<String> words = text.split(' ');
 
     var pageTextWidget =
         AnimatedStoryText(words: words, currentWordIndex: _currentWordIndex);
