@@ -66,5 +66,10 @@
                 "format": "percentPattern"
             }
         }
-    }
+    },
+
+    "language": "Language",
+
+    "english": "English",
+    "french": "French"
 }

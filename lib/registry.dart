@@ -40,6 +40,11 @@ class Registry {
     settings.speechRate = rate;
   }
 
+  String get localeName => settings.localeName ?? 'en';
+  set localeName(String localeName) {
+    settings.localeName = localeName;
+  }
+
   Set<String> getTerminalPagesVisited(String storyId) =>
       settings.terminalPagesVisited[storyId] ?? {};
 

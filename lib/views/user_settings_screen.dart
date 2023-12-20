@@ -1,7 +1,9 @@
+import 'package:adventure_quest_kids/utils/locale_utils.dart';
 import 'package:adventure_quest_kids/utils/sound_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
 
 import '../registry.dart';
 import '../utils/navigation_utils.dart';
@@ -20,6 +22,7 @@ class SettingsScreenState extends State<SettingsScreen> {
   late double _foregroundVolume;
   late double _speechVolume;
   late double _speechRate;
+  late String _localeName;
   late bool _isDirty;
 
   @override
@@ -30,6 +33,7 @@ class SettingsScreenState extends State<SettingsScreen> {
     _foregroundVolume = widget.registry.foregroundVolume;
     _speechVolume = widget.registry.speechVolume;
     _speechRate = widget.registry.speechRate;
+    _localeName = widget.registry.localeName;
     _isDirty = false;
   }
 
@@ -87,6 +91,7 @@ class SettingsScreenState extends State<SettingsScreen> {
       _foregroundVolume = widget.registry.foregroundVolume;
       _speechVolume = widget.registry.speechVolume;
       _speechRate = widget.registry.speechRate;
+      _localeName = widget.registry.localeName;
       _isDirty = false;
     });
     if (closeAlertDialog) popOnce(context); // Close the alert dialog
@@ -106,6 +111,7 @@ class SettingsScreenState extends State<SettingsScreen> {
     _getSpeechVolumeSlider(widgets);
     _getSpeechRateLabel(widgets);
     _getSpeechRateSlider(widgets);
+    _getLocaleDropdown(widgets);
     _getSaveCancelButtons(context, widgets);
 
     return Padding(
@@ -186,18 +192,61 @@ class SettingsScreenState extends State<SettingsScreen> {
     ));
   }
 
-  void _getSaveCancelButtons(BuildContext context, List<Widget> widgets) {
-    widgets.add(Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-      const Spacer(),
-      _getOneLineFittedTextButton(AppLocalizations.of(context)!.save, context),
-      const SizedBox(width: 16),
-      _getOneLineFittedTextButton(
-        AppLocalizations.of(context)!.cancel,
-        context,
-        isCancelButton: true,
+  void _getLocaleDropdown(List<Widget> widgets) {
+    Map<String, String> languageMap = getLanguageMap(context);
+
+    widgets.add(
+      Row(
+        children: [
+          const Spacer(),
+          Text('${AppLocalizations.of(context)!.language}:'),
+          const SizedBox(width: 16),
+          DropdownButton<String>(
+            value: _localeName,
+            icon: const Icon(Icons.arrow_downward),
+            padding: const EdgeInsets.only(left: 8, right: 8),
+            iconSize: 24,
+            elevation: 16,
+            style: const TextStyle(color: Colors.deepPurple),
+            underline: Container(
+              height: 2,
+              color: Colors.deepPurpleAccent,
+            ),
+            onChanged: (String? newValue) {
+              _localeName = newValue!;
+              _isDirty = true;
+              setState(() {});
+            },
+            items: languageMap.entries.map<DropdownMenuItem<String>>(
+                (MapEntry<String, String> entry) {
+              return DropdownMenuItem<String>(
+                value: entry.key,
+                child: Text(entry.value),
+              );
+            }).toList(),
+          ),
+          const Spacer(),
+        ],
       ),
-      const Spacer(),
-    ]));
+    );
+  }
+
+  void _getSaveCancelButtons(BuildContext context, List<Widget> widgets) {
+    widgets.add(const SizedBox(height: 20));
+    widgets.add(
+      Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        const Spacer(),
+        _getOneLineFittedTextButton(
+            AppLocalizations.of(context)!.save, context),
+        const SizedBox(width: 16),
+        _getOneLineFittedTextButton(
+          AppLocalizations.of(context)!.cancel,
+          context,
+          isCancelButton: true,
+        ),
+        const Spacer(),
+      ]),
+    );
   }
 
   Widget _getOneLineFittedTextButton(
@@ -232,6 +281,9 @@ class SettingsScreenState extends State<SettingsScreen> {
     widget.registry.foregroundVolume = _foregroundVolume;
     widget.registry.speechVolume = _speechVolume;
     widget.registry.speechRate = _speechRate;
+    widget.registry.localeName = _localeName;
+    Provider.of<LocaleProvider>(context, listen: false)
+        .setLocale(Locale(widget.registry.localeName));
     await widget.registry.saveSettings();
     _isDirty = false;
     setState(() {});

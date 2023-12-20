@@ -27,5 +27,10 @@
     "background_volume_n0": "Volume de fond: {volume}",
     "foreground_volume_n0": "Volume de premier plan: {volume}",
     "speech_volume_n0": "Volume de la parole: {volume}",
-    "speech_rate_n0": "Débit de parole: {rate}"
+    "speech_rate_n0": "Débit de parole: {rate}",
+
+    "language": "Langue",
+
+    "english": "Anglais",
+    "french": "Français"
 }

@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
 import 'package:yaml/yaml.dart';
 
 import 'model/story_meta_data.dart';
 import 'model/user_settings.dart';
 import 'registry.dart';
 import 'utils/constants.dart';
+import 'utils/locale_utils.dart';
 import 'views/main_screen.dart';
 
 typedef AssetSourceFactory = AssetSource Function(String assetPath);
@@ -43,7 +45,12 @@ Future<void> main() async {
   // Load the list of stories
   await loadStoryList();
 
-  runApp(MyApp(routeObserver: routeObserver));
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => LocaleProvider(),
+      child: MyApp(routeObserver: routeObserver),
+    ),
+  );
 }
 
 Future<void> loadStoryList() async {
@@ -108,34 +115,37 @@ class MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Adventure Quest Kids',
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
-        navigatorObservers: [widget.routeObserver],
-        theme: ThemeData(
-          // This is the theme of your application.
-          //
-          // TRY THIS: Try running your application with "flutter run". You'll see
-          // the application has a blue toolbar. Then, without quitting the app,
-          // try changing the seedColor in the colorScheme below to Colors.green
-          // and then invoke "hot reload" (save your changes or press the "hot
-          // reload" button in a Flutter-supported IDE, or press "r" if you used
-          // the command line to start the app).
-          //
-          // Notice that the counter didn't reset back to zero; the application
-          // state is not lost during the reload. To reset the state, use hot
-          // restart instead.
-          //
-          // This works for code too, not just values: Most code changes can be
-          // tested with just a hot reload.
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        initialRoute: Constants.storyListRoute,
-        routes: {
-          Constants.storyListRoute: (context) =>
-              MainScreen(routeObserver: routeObserver),
-        });
+    return Consumer<LocaleProvider>(builder: (context, localeProvider, child) {
+      return MaterialApp(
+          title: 'Adventure Quest Kids',
+          locale: localeProvider.locale,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          navigatorObservers: [widget.routeObserver],
+          theme: ThemeData(
+            // This is the theme of your application.
+            //
+            // TRY THIS: Try running your application with "flutter run". You'll see
+            // the application has a blue toolbar. Then, without quitting the app,
+            // try changing the seedColor in the colorScheme below to Colors.green
+            // and then invoke "hot reload" (save your changes or press the "hot
+            // reload" button in a Flutter-supported IDE, or press "r" if you used
+            // the command line to start the app).
+            //
+            // Notice that the counter didn't reset back to zero; the application
+            // state is not lost during the reload. To reset the state, use hot
+            // restart instead.
+            //
+            // This works for code too, not just values: Most code changes can be
+            // tested with just a hot reload.
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
+          ),
+          initialRoute: Constants.storyListRoute,
+          routes: {
+            Constants.storyListRoute: (context) =>
+                MainScreen(routeObserver: routeObserver),
+          });
+    });
   }
 }

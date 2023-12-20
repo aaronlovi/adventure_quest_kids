@@ -8,6 +8,7 @@ class UserSettings {
   double foregroundVolume;
   double speechVolume;
   double speechRate;
+  String? localeName;
 
   /// Map from story name => set of visited terminal page ids.
   /// The idea is to show the user whether they have gotten to the end of a story,
@@ -19,5 +20,6 @@ class UserSettings {
       this.foregroundVolume = defaultForegroundVolume,
       this.speechVolume = defaultSpeechVolume,
       this.speechRate = defaultSpeechRate,
+      this.localeName,
       this.terminalPagesVisited = const {}});
 }

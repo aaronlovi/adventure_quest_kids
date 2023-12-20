@@ -44,6 +44,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: any
+  provider: ^6.1.1
   # just_audio: ^0.9.17
 
 dev_dependencies:
