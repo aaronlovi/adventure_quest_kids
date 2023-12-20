@@ -4,6 +4,7 @@ import 'package:adventure_quest_kids/utils/navigation_utils.dart';
 import 'package:adventure_quest_kids/utils/sound_utils.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../main.dart';
 import '../model/story.dart';
@@ -148,8 +149,9 @@ class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
                   registry: widget.registry,
                 ));
           },
-          child: const Text('Begin Adventure',
-              textAlign: TextAlign.center, style: TextStyle(fontSize: 16)),
+          child: Text(AppLocalizations.of(context)!.begin_adventure,
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 16)),
         ),
       ),
     );

@@ -2,6 +2,7 @@ import 'package:adventure_quest_kids/services/user_settings_service.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
 import 'package:yaml/yaml.dart';
 
@@ -109,6 +110,8 @@ class MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Adventure Quest Kids',
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         navigatorObservers: [widget.routeObserver],
         theme: ThemeData(
           // This is the theme of your application.

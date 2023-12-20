@@ -35,6 +35,9 @@ class StoryListItem extends StatefulWidget {
 
 class StoryListItemState extends State<StoryListItem>
     with SingleTickerProviderStateMixin, RouteAware {
+  final int _maxAnimationDurationMsec = 5001;
+  final int _minAnimationDurationMsec = 1000;
+
   late final AnimationController _controller;
   late final Animation<double> _animation;
 
@@ -52,7 +55,9 @@ class StoryListItemState extends State<StoryListItem>
 
     // Create an animation that will take between 1 and 6 seconds to complete
     _controller = AnimationController(
-      duration: Duration(milliseconds: Random().nextInt(5001) + 1000),
+      duration: Duration(
+          milliseconds: Random().nextInt(_maxAnimationDurationMsec) +
+              _minAnimationDurationMsec),
       vsync: this,
     );
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../utils/constants.dart';
 import '../utils/navigation_utils.dart';
@@ -34,7 +35,7 @@ List<Widget> getAppBarActionButtons(
     widgets.add(IconButton(
       visualDensity: Constants.mostDense,
       padding: all2,
-      tooltip: 'Start of story',
+      tooltip: AppLocalizations.of(context)!.start_of_story,
       onPressed: () => navigateToStartOfStory(context),
       icon: const Icon(Icons.home),
     ));
@@ -45,7 +46,7 @@ List<Widget> getAppBarActionButtons(
   widgets.add(IconButton(
     visualDensity: Constants.mostDense,
     padding: all2,
-    tooltip: 'Story list',
+    tooltip: AppLocalizations.of(context)!.story_list,
     onPressed: () => navigateToStoryList(context),
     icon: const Icon(Icons.list),
   ));
@@ -55,7 +56,7 @@ List<Widget> getAppBarActionButtons(
   widgets.add(IconButton(
     visualDensity: Constants.mostDense,
     padding: all2,
-    tooltip: 'Settings',
+    tooltip: AppLocalizations.of(context)!.settings,
     onPressed: () => navigateToSettings(context),
     icon: const Icon(Icons.settings),
   ));

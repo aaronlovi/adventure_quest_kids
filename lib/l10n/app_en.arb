@@ -1,0 +1,70 @@
+{
+    "@@locale": "en",
+
+    "adventure_quest_kids": "Adventure Quest Kids",
+    "@adventure_quest_kids": {
+        "description": "Application title"
+    },
+    "all_endings_visited": "All endings visited\nCongratulations!",
+    "some_endings_visited": "Some endings visited\nKeep exploring!",
+    "no_endings_visited": "No endings visited\nStart exploring!",
+    "begin_adventure": "Begin Adventure",
+
+    "start_of_story": "Start of story",
+    "story_list": "Story list",
+    "settings": "Settings",
+
+    "read_aloud": "Read Aloud",
+    "the_end": "The End",
+    "restart_s0": "Restart {story}",
+    "back_to_story_list": "Back to Story List",
+
+    "unsaved_changes": "Unsaved Changes",
+    "you_have_unsaved_changes__confirm": "You have unsaved changes. Are you sure you want to leave?",
+
+    "yes": "Yes",
+    "no": "No",
+    "save": "Save",
+    "cancel": "Cancel",
+
+    "background_volume_n0": "Background Volume: {volume}",
+    "@background_volume_n0": {
+        "description": "Background volume setting",
+        "placeholders": {
+            "volume": {
+                "type": "double",
+                "format": "percentPattern"
+            }
+        }
+    },
+    "foreground_volume_n0": "Foreground Volume: {volume}",
+    "@foreground_volume_n0": {
+        "description": "Foreground volume setting",
+        "placeholders": {
+            "volume": {
+                "type": "double",
+                "format": "percentPattern"
+            }
+        }
+    },
+    "speech_volume_n0": "Speech Volume: {volume}",
+    "@speech_volume_n0": {
+        "description": "Speech volume setting",
+        "placeholders": {
+            "volume": {
+                "type": "double",
+                "format": "percentPattern"
+            }
+        }
+    },
+    "speech_rate_n0": "Speech Rate: {rate}",
+    "@speech_rate_n0": {
+        "description": "Speech rate setting",
+        "placeholders": {
+            "rate": {
+                "type": "double",
+                "format": "percentPattern"
+            }
+        }
+    }
+}

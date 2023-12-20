@@ -1,6 +1,7 @@
 import 'package:adventure_quest_kids/utils/sound_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../registry.dart';
 import '../utils/navigation_utils.dart';
@@ -47,7 +48,7 @@ class SettingsScreenState extends State<SettingsScreen> {
           onPressed: () => _onBackButtonPressed(context),
         ),
         titleSpacing: 0,
-        title: const Text('Settings'));
+        title: Text(AppLocalizations.of(context)!.settings));
   }
 
   void _onBackButtonPressed(BuildContext context) async {
@@ -59,16 +60,16 @@ class SettingsScreenState extends State<SettingsScreen> {
     await showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Unsaved Changes'),
-        content: const Text(
-            'You have unsaved changes. Are you sure you want to leave?'),
+        title: Text(AppLocalizations.of(context)!.unsaved_changes),
+        content: Text(
+            AppLocalizations.of(context)!.you_have_unsaved_changes__confirm),
         actions: <Widget>[
           TextButton(
-            child: const Text('Yes'),
+            child: Text(AppLocalizations.of(context)!.yes),
             onPressed: () => _cancelChanges(context, closeAlertDialog: true),
           ),
           TextButton(
-            child: const Text('No'),
+            child: Text(AppLocalizations.of(context)!.no),
             onPressed: () => popOnce(context),
           ),
         ],
@@ -115,7 +116,7 @@ class SettingsScreenState extends State<SettingsScreen> {
 
   void _getBackgroundVolumeLabel(List<Widget> widgets) {
     widgets.add(Text(
-        'Background Volume: ${(_backgroundVolume * 100).toStringAsFixed(0)}%'));
+        AppLocalizations.of(context)!.background_volume_n0(_backgroundVolume)));
   }
 
   void _getBackgroundVolumeSlider(List<Widget> widgets) {
@@ -133,7 +134,7 @@ class SettingsScreenState extends State<SettingsScreen> {
 
   void _getForegroundVolumeLabel(List<Widget> widgets) {
     widgets.add(Text(
-        'Foreground Volume: ${(_foregroundVolume * 100).toStringAsFixed(0)}%'));
+        AppLocalizations.of(context)!.foreground_volume_n0(_foregroundVolume)));
   }
 
   void _getForegroundVolumeSlider(List<Widget> widgets) {
@@ -151,7 +152,7 @@ class SettingsScreenState extends State<SettingsScreen> {
 
   void _getSpeechVolumeLabel(List<Widget> widgets) {
     widgets.add(
-        Text('Speech Volume: ${(_speechVolume * 100).toStringAsFixed(0)}%'));
+        Text(AppLocalizations.of(context)!.speech_volume_n0(_speechVolume)));
   }
 
   void _getSpeechVolumeSlider(List<Widget> widgets) {
@@ -169,7 +170,7 @@ class SettingsScreenState extends State<SettingsScreen> {
 
   void _getSpeechRateLabel(List<Widget> widgets) {
     widgets
-        .add(Text('Speech Rate: ${(_speechRate * 100).toStringAsFixed(0)}%'));
+        .add(Text(AppLocalizations.of(context)!.speech_rate_n0(_speechRate)));
   }
 
   void _getSpeechRateSlider(List<Widget> widgets) {
@@ -188,9 +189,13 @@ class SettingsScreenState extends State<SettingsScreen> {
   void _getSaveCancelButtons(BuildContext context, List<Widget> widgets) {
     widgets.add(Row(mainAxisAlignment: MainAxisAlignment.center, children: [
       const Spacer(),
-      _getOneLineFittedTextButton('Save', context),
+      _getOneLineFittedTextButton(AppLocalizations.of(context)!.save, context),
       const SizedBox(width: 16),
-      _getOneLineFittedTextButton('Cancel', context, isCancelButton: true),
+      _getOneLineFittedTextButton(
+        AppLocalizations.of(context)!.cancel,
+        context,
+        isCancelButton: true,
+      ),
       const Spacer(),
     ]));
   }

@@ -3,6 +3,7 @@ import 'package:adventure_quest_kids/registry.dart';
 import 'package:adventure_quest_kids/utils/navigation_utils.dart';
 import 'package:adventure_quest_kids/utils/sound_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
 
 import '../main.dart';
@@ -75,8 +76,9 @@ class MainScreenState extends State<MainScreen> with RouteAware {
           height: 40,
         ),
       ),
-      title: const FittedBox(
-          fit: BoxFit.scaleDown, child: Text('Adventure Quest Kids')),
+      title: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(AppLocalizations.of(context)!.adventure_quest_kids)),
       actions: [
         IconButton(
             icon: const Icon(Icons.settings),
@@ -102,10 +104,10 @@ class MainScreenState extends State<MainScreen> with RouteAware {
           bool allTerminalPagesVisited = terminalPagesVisited.length ==
               storyMetaData.terminalPageIds.length;
           String toolTipMsg = allTerminalPagesVisited
-              ? 'All endings visited\nCongratulations!'
+              ? AppLocalizations.of(context)!.all_endings_visited
               : anyTerminalPagesVisited
-                  ? 'Some endings visited\nKeep exploring!'
-                  : 'No endings visited\nStart exploring!';
+                  ? AppLocalizations.of(context)!.some_endings_visited
+                  : AppLocalizations.of(context)!.no_endings_visited;
           Icon trailingIcon = allTerminalPagesVisited
               ? const Icon(Icons.done_all, color: Colors.green)
               : anyTerminalPagesVisited

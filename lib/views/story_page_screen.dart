@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:adventure_quest_kids/model/story.dart';
 import 'package:adventure_quest_kids/model/story_choice.dart';
@@ -396,7 +397,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
         bottom: 0,
         child: FloatingActionButton(
           onPressed: _startAnimation,
-          tooltip: 'Read Aloud',
+          tooltip: AppLocalizations.of(context)!.read_aloud,
           mini: true,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
@@ -476,20 +477,19 @@ class StoryPageScreenState extends State<StoryPageScreen>
     if (!widget.storyPage.isTerminal) return;
 
     widgets.add(paddingTop12);
-    widgets.add(const Text('The End',
-        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)));
+    widgets.add(Text(AppLocalizations.of(context)!.the_end,
+        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)));
 
     widgets.add(paddingTop12);
     widgets.add(ElevatedButton(
       onPressed: () => popUntilNamedRoute(context, Constants.frontPageRoute),
-      child: Text('Restart ${widget.story.title}'),
+      child: Text(AppLocalizations.of(context)!.restart_s0(widget.story.title)),
     ));
 
     widgets.add(paddingTop16);
     widgets.add(ElevatedButton(
-      onPressed: () => popUntilFirstRoute(context),
-      child: const Text('Back to Story List'),
-    ));
+        onPressed: () => popUntilFirstRoute(context),
+        child: Text(AppLocalizations.of(context)!.back_to_story_list)));
   }
 
   Future<void> _playPageLoadSound() async {

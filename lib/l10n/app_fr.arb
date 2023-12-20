@@ -1,0 +1,31 @@
+{
+    "@@locale": "fr",
+
+    "adventure_quest_kids": "Quête D'aventure Les Enfants",
+    "all_endings_visited": "Toutes les fins visitées\nfélicitations!",
+    "some_endings_visited": "Quelques fins visitées\nContinuez à explorer!",
+    "no_endings_visited": "Aucune fin visitée\nCommencez à explorer!",
+    "begin_adventure": "Commencer l'aventure",
+
+    "start_of_story": "Début de l'histoire",
+    "story_list": "Liste d'histoires",
+    "settings": "Paramètres",
+
+    "read_aloud": "Lit à voix haute",
+    "the_end": "La fin",
+    "restart_s0": "Redémarrer {story}",
+    "back_to_story_list": "Retour à la liste des histoires",
+
+    "unsaved_changes": "Modifications non enregistrées",
+    "you_have_unsaved_changes__confirm": "Vous avez des changements non enregistrés. Êtes-vous sûr de vouloir quitter?",
+
+    "yes": "Oui",
+    "no": "Non",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+
+    "background_volume_n0": "Volume de fond: {volume}",
+    "foreground_volume_n0": "Volume de premier plan: {volume}",
+    "speech_volume_n0": "Volume de la parole: {volume}",
+    "speech_rate_n0": "Débit de parole: {rate}"
+}
