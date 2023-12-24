@@ -1,7 +1,9 @@
 class StoryMetaData {
   final String assetName;
-  final String title;
-  final String subTitle;
+  final String _title;
+  final Map<String, String> _titleByLanguage;
+  final String _subTitle;
+  final Map<String, String> _subTitleByLanguage;
   final String firstPageId;
   final String listIcon;
   final String storyId; // Key for this story in YAML file
@@ -12,16 +14,21 @@ class StoryMetaData {
 
   StoryMetaData({
     required this.assetName,
-    required this.title,
+    required title,
+    required titleByLanguage,
     required this.firstPageId,
-    required this.subTitle,
+    required subTitle,
+    required subTitleByLanguage,
     required this.listIcon,
     required this.storyId,
     required this.backgroundSoundFilename,
     required this.backgroundVolumeAdjustmentFactor,
     required this.backgroundSoundPlaybackRate,
     required this.terminalPageIds,
-  });
+  })  : _title = title,
+        _titleByLanguage = titleByLanguage,
+        _subTitle = subTitle,
+        _subTitleByLanguage = subTitleByLanguage;
 
   String get assetsFolder => 'assets/$assetName';
 
@@ -33,7 +40,21 @@ class StoryMetaData {
 
   String get storyDataFolder => '$assetsFolder/story_data';
 
-  String get fullTitle => subTitle.isEmpty ? title : '$title: $subTitle';
+  // String get fullTitle => subTitle.isEmpty ? title : '$title: $subTitle';
+
+  String getFullTitle(String localeName) {
+    String title_ = getTitle(localeName);
+    String subTitle_ = getSubTitle(localeName);
+    return subTitle_.isEmpty ? title_ : '$title_: $subTitle_';
+  }
+
+  String getTitle(String localeName) {
+    return _titleByLanguage[localeName] ?? _title;
+  }
+
+  String getSubTitle(String localeName) {
+    return _subTitleByLanguage[localeName] ?? _subTitle;
+  }
 
   String get listIconFilename => '$imagesFolder/$listIcon';
 }

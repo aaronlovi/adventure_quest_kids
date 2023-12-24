@@ -72,13 +72,42 @@ class YamlFactory {
       textByLanguage: textByLanguage,
       choices: choices,
       isTerminal: isTerminal,
+      // rectangles: rectangles,
     );
   }
 
   static StoryChoice _toStoryChoice(YamlMap yamlMap) {
+    Rect? rectangle;
+    Color? borderColor;
+
+    Map<String, String> textByLanguage = {};
+    for (var locale in supportedNonDefaultLocales) {
+      if (yamlMap['text-$locale'] != null) {
+        textByLanguage[locale] = yamlMap['text-$locale'];
+      }
+    }
+
+    if (yamlMap['rectangle'] != null) {
+      var rectMap = yamlMap['rectangle'];
+      rectangle = Rect.fromLTRB(
+        rectMap['left'],
+        rectMap['top'],
+        rectMap['right'],
+        rectMap['bottom'],
+      );
+    }
+
+    if (yamlMap['borderColor'] != null) {
+      String colorString = yamlMap['borderColor'];
+      borderColor = Color(int.parse(colorString));
+    }
+
     return StoryChoice(
       text: yamlMap['text'],
       nextPageId: yamlMap['nextPageId'],
+      textByLanguage: textByLanguage,
+      rectangle: rectangle,
+      borderColor: borderColor,
     );
   }
 }

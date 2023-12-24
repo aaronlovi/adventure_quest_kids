@@ -6,174 +6,217 @@ pages:
 
   page1:
     text: "Welcome to the Magic Forest! You find a mysterious path. Where do you want to go?"
+    text-fr: "Bienvenue dans la forêt magique! Vous trouvez un chemin mystérieux. Où voulez-vous aller ?"
     imageFileName: "1.jpg"
     speechFileName: "1.mp3"
     choices:
       choice1:
         text: "Explore the Enchanted Grove"
+        text-fr: "Explorez le bosquet enchanté"
         nextPageId: "page2A"
       choice2:
         text: "Follow the Whimsical River"
+        text-fr: "Suivez la rivière fantaisiste"
         nextPageId: "page2B"
       choice3:
         text: "Enter the Mystic Meadow"
+        text-fr: "Entrez dans la prairie mystique"
         nextPageId: "page2C"
 
   # Level 2
 
   page2A:
     text: "You explore the Enchanted Grove, where magical creatures reside. What's your next move?"
+    text-fr: "Vous explorez le bosquet enchanté, où résident des créatures magiques. Quel est votre prochain mouvement ?"
     imageFileName: "2a.jpg"
     speechFileName: "2a.mp3"
     choices:
       choice1:
         text: "Meet the talking squirrels"
+        text-fr: "Rencontrez les écureuils qui parlent"
         nextPageId: "page3A"
       choice2:
         text: "Discover a hidden fairy circle"
+        text-fr: "Découvrez un cercle de fées caché"
         nextPageId: "page3B"
       choice3:
         text: "Climb the Giant Oak Tree"
+        text-fr: "Grimpez sur le chêne géant"
         nextPageId: "page3C"
 
   page2B:
     text: "You follow the Whimsical River, its water sparkling with magic. What's your next adventure?"
+    text-fr: "Vous suivez la rivière fantaisiste, son eau scintillant de magie. Quelle est votre prochaine aventure ?"
     imageFileName: "2b.jpg"
     speechFileName: "2b.mp3"
     choices:
       choice1:
         text: "Ride on a friendly water sprite"
+        text-fr: "Montez sur un sprite d'eau amical"
         nextPageId: "page3D"
       choice2:
         text: "Explore the Crystal Cave behind the waterfall"
+        text-fr: "Explorez la grotte de cristal derrière la cascade"
         nextPageId: "page3E"
       choice3:
         text: "Build a bridge with magical stones"
+        text-fr: "Construisez un pont avec des pierres magiques"
         nextPageId: "page3F"
 
   page2C:
     text: "You enter the Mystic Meadow, where flowers bloom in different colors. What's your next move?"
+    text-fr: "Vous entrez dans la prairie mystique, où les fleurs fleurissent dans différentes couleurs. Quel est votre prochain mouvement ?"
     imageFileName: "2c.jpg"
     speechFileName: "2c.mp3"
     choices:
       choice1:
         text: "Dance with the Meadow Fairies"
+        text-fr: "Dansez avec les fées de la prairie"
         nextPageId: "page3G"
       choice2:
         text: "Follow the Glow Butterflies"
+        text-fr: "Suivez les papillons lumineux"
         nextPageId: "page3H"
       choice3:
         text: "Rest under the Enchanted Tree"
+        text-fr: "Reposez-vous sous l'arbre enchanté"
         nextPageId: "page3I"
 
   # Level 3
 
   page3A:
     text: "You meet the talking squirrels who offer to guide you. What's your next move?"
+    text-fr: "Vous rencontrez les écureuils qui parlent qui vous proposent de vous guider. Quel est votre prochain mouvement ?"
     imageFileName: "3a.jpg"
     speechFileName: "3a.mp3"
     choices:
       choice1:
         text: "Follow the squirrel guide to the Hidden Glade"
+        text-fr: "Suivez le guide de l'écureuil jusqu'à la clairière cachée"
         nextPageId: "page4A"
       choice2:
         text: "Ask the squirrels about the Magic Crystal location"
+        text-fr: "Demandez aux écureuils l'emplacement du cristal magique"
         nextPageId: "page4B"
 
   page3B:
     text: "You discover a hidden fairy circle. The fairies invite you to join their dance. What's your next adventure?"
+    text-fr: "Vous découvrez un cercle de fées caché. Les fées vous invitent à rejoindre leur danse. Quelle est votre prochaine aventure ?"
     imageFileName: "3b.jpg"
     speechFileName: "3b.mp3"
     choices:
       choice1:
         text: "Join the fairy dance"
+        text-fr: "Rejoignez la danse des fées"
         nextPageId: "page4C"
       choice2:
         text: "Ask the fairies about the Magic Crystal location"
+        text-fr: "Demandez aux fées l'emplacement du cristal magique"
         nextPageId: "page4D"
 
   page3C:
     text: "You climb the Giant Oak Tree and spot a magical panorama. What's your next move?"
+    text-fr: "Vous montez sur le chêne géant et repérez un panorama magique. Quel est votre prochain mouvement ?"
     imageFileName: "3c.jpg"
     speechFileName: "3c.mp3"
     choices:
       choice1:
         text: "Slide down with a magical leaf"
+        text-fr: "Glissez avec une feuille magique"
         nextPageId: "page4E"
       choice2:
         text: "Ask the ancient tree about the Magic Crystal location"
+        text-fr: "Demandez à l'ancien arbre l'emplacement du cristal magique"
         nextPageId: "page4F"
 
   page3D:
     text: "You ride on a friendly water sprite, feeling the magic of the river. What's your next adventure?"
+    text-fr: "Vous montez sur un sprite d'eau amical, ressentant la magie de la rivière. Quelle est votre prochaine aventure ?"
     imageFileName: "3d.jpg"
     speechFileName: "3d.mp3"
     choices:
       choice1:
         text: "Explore the underwater Crystal Cavern"
+        text-fr: "Explorez la grotte de cristal sous-marine"
         nextPageId: "page4G"
       choice2:
         text: "Ask the water sprite about the Magic Crystal location"
+        text-fr: "Demandez au sprite d'eau l'emplacement du cristal magique"
         nextPageId: "page4H"
 
   page3E:
     text: "You explore the Crystal Cave behind the waterfall, discovering shimmering crystals. What's your next move?"
+    text-fr: "Vous explorez la grotte de cristal derrière la cascade, découvrant des cristaux scintillants. Quel est votre prochain mouvement ?"
     imageFileName: "3e.jpg"
     speechFileName: "3e.mp3"
     choices:
       choice1:
         text: "Gather some magical crystals"
+        text-fr: "Rassemblez quelques cristaux magiques"
         nextPageId: "page4I"
       choice2:
         text: "Ask the cave spirits about the Magic Crystal location"
+        text-fr: "Demandez aux esprits de la grotte l'emplacement du cristal magique"
         nextPageId: "page4J"
 
   page3F:
     text: "You build a bridge with magical stones, creating a path across the river. What's your next adventure?"
+    text-fr: "Vous construisez un pont avec des pierres magiques, créant un chemin à travers la rivière. Quelle est votre prochaine aventure ?"
     imageFileName: "3f.jpg"
     speechFileName: "3f.mp3"
     choices:
       choice1:
         text: "Cross the bridge to the Whispering Woods"
+        text-fr: "Traversez le pont jusqu'au bois chuchotant"
         nextPageId: "page4K"
       choice2:
         text: "Ask the stones about the Magic Crystal location"
+        text-fr: "Demandez aux pierres l'emplacement du cristal magique"
         nextPageId: "page4L"
 
   page3G:
     text: "You dance with the Meadow Fairies, creating a symphony of colors. What's your next move?"
+    text-fr: "Vous dansez avec les fées de la prairie, créant une symphonie de couleurs. Quel est votre prochain mouvement ?"
     imageFileName: "3g.jpg"
     speechFileName: "3g.mp3"
     choices:
       choice1:
         text: "Follow the Glow Butterflies to the Starlight Glade"
+        text-fr: "Suivez les papillons lumineux jusqu'à la clairière de la lumière des étoiles"
         nextPageId: "page4M"
       choice2:
         text: "Ask the fairies about the Magic Crystal location"
+        text-fr: "Demandez aux fées l'emplacement du cristal magique"
         nextPageId: "page4N"
 
   page3H:
     text: "You follow the Glow Butterflies, who lead you to a magical clearing. What's your next adventure?"
+    text-fr: "Vous suivez les papillons lumineux, qui vous mènent à une clairière magique. Quelle est votre prochaine aventure ?"
     imageFileName: "3h.jpg"
     speechFileName: "3h.mp3"
     choices:
       choice1:
         text: "Watch the Glow Butterflies create a constellation"
+        text-fr: "Regardez les papillons lumineux créer une constellation"
         nextPageId: "page4O"
       choice2:
         text: "Ask the Glow Butterflies about the Magic Crystal location"
+        text-fr: "Demandez aux papillons lumineux l'emplacement du cristal magique"
         nextPageId: "page4P"
 
   page3I:
     text: "You rest under the Enchanted Tree, feeling its soothing magic. What's your next move?"
+    text-fr: "Vous vous reposez sous l'arbre enchanté, ressentant sa magie apaisante. Quel est votre prochain mouvement ?"
     imageFileName: "3i.jpg"
     speechFileName: "3i.mp3"
     choices:
       choice1:
         text: "Listen to the whispers of the Enchanted Tree"
+        text-fr: "Écoutez les murmures de l'arbre enchanté"
         nextPageId: "page4Q"
       choice2:
         text: "Ask the tree about the Magic Crystal location"
+        text-fr: "Demandez à l'arbre l'emplacement du cristal magique"
         nextPageId: "page4R"
 
 
@@ -181,108 +224,126 @@ pages:
 
   page4A:
     text: "You follow the squirrel guide to the Hidden Glade, where the Magic Crystal awaits. Congratulations, you're a Hidden Glade Discoverer!"
+    text-fr: "Vous suivez le guide de l'écureuil jusqu'à la clairière cachée, où le cristal magique vous attend. Félicitations, vous êtes un découvreur de clairière cachée!"
     isTerminal: true
     imageFileName: "4a.jpg"
     speechFileName: "4a.mp3"
 
   page4B:
     text: "You ask the squirrels about the Magic Crystal location. They guide you to the Whispering Woods, where the crystal awaits. Congratulations, you're a Crystal Seeker!"
+    text-fr: "Vous demandez aux écureuils l'emplacement du cristal magique. Ils vous guident vers le bois chuchotant, où le cristal vous attend. Félicitations, vous êtes un chercheur de cristaux!"
     isTerminal: true
     imageFileName: "4b.jpg"
     speechFileName: "4b.mp3"
 
   page4C:
     text: "You join the fairy dance and receive a Magic Crystal as a gift. Congratulations, you're a Crystal Dancer!"
+    text-fr: "Vous rejoignez la danse des fées et recevez un cristal magique en cadeau. Félicitations, vous êtes un danseur de cristal!"
     isTerminal: true
     imageFileName: "4c.jpg"
     speechFileName: "4c.mp3"
 
   page4D:
     text: "You ask the fairies about the Magic Crystal location. They guide you to the Starlight Glade, where the crystal awaits. Congratulations, you're a Starlight Explorer!"
+    text-fr: "Vous demandez aux fées l'emplacement du cristal magique. Ils vous guident vers la clairière de la lumière des étoiles, où le cristal vous attend. Félicitations, vous êtes un explorateur de la lumière des étoiles!"
     isTerminal: true
     imageFileName: "4d.jpg"
     speechFileName: "4d.mp3"
 
   page4E:
     text: "You slide down with a magical leaf and find the Magic Crystal at the base of the Giant Oak Tree. Congratulations, you're a Crystal Slider!"
+    text-fr: "Vous glissez avec une feuille magique et trouvez le cristal magique à la base du chêne géant. Félicitations, vous êtes un coulisseur de cristal!"
     isTerminal: true
     imageFileName: "4e.jpg"
     speechFileName: "4e.mp3"
 
   page4F:
     text: "You ask the ancient tree about the Magic Crystal location. The tree points you to the Crystal Cave, where the crystal awaits. Congratulations, you're a Crystal Sage!"
+    text-fr: "Vous demandez à l'ancien arbre l'emplacement du cristal magique. L'arbre vous indique la grotte de cristal, où le cristal vous attend. Félicitations, vous êtes un sage de cristal!"
     isTerminal: true
     imageFileName: "4f.jpg"
     speechFileName: "4f.mp3"
 
   page4G:
     text: "You explore the underwater Crystal Cavern, finding the Magic Crystal sparkling in its depths. Congratulations, you're a Crystal Diver!"
+    text-fr: "Vous explorez la grotte de cristal sous-marine, trouvant le cristal magique scintillant dans ses profondeurs. Félicitations, vous êtes un plongeur de cristal!"
     isTerminal: true
     imageFileName: "4g.jpg"
     speechFileName: "4g.mp3"
 
   page4H:
     text: "You ask the water sprite about the Magic Crystal location. The sprite leads you to the Crystal Cave, where the crystal awaits. Congratulations, you're a Crystal Seeker!"
+    text-fr: "Vous demandez au sprite d'eau l'emplacement du cristal magique. Le sprite vous conduit à la grotte de cristal, où le cristal vous attend. Félicitations, vous êtes un chercheur de cristaux!"
     isTerminal: true
     imageFileName: "4h.jpg"
     speechFileName: "4h.mp3"
 
   page4I:
     text: "You gather some magical crystals from the Crystal Cave. Congratulations, you're a Crystal Gatherer!"
+    text-fr: "Vous rassemblez quelques cristaux magiques de la grotte de cristal. Félicitations, vous êtes un collecteur de cristaux!"
     isTerminal: true
     imageFileName: "4i.jpg"
     speechFileName: "4i.mp3"
 
   page4J:
     text: "You ask the cave spirits about the Magic Crystal location. They guide you to the Whispering Woods, where the crystal awaits. Congratulations, you're a Crystal Seeker!"
+    text-fr: "Vous demandez aux esprits de la grotte l'emplacement du cristal magique. Ils vous guident vers le bois chuchotant, où le cristal vous attend. Félicitations, vous êtes un chercheur de cristaux!"
     isTerminal: true
     imageFileName: "4j.jpg"
     speechFileName: "4j.mp3"
 
   page4K:
     text: "You cross the bridge to the Whispering Woods, where the Magic Crystal awaits. Congratulations, you're a Whispering Woods Explorer!"
+    text-fr: "Vous traversez le pont jusqu'au bois chuchotant, où le cristal magique vous attend. Félicitations, vous êtes un explorateur du bois chuchotant!"
     isTerminal: true
     imageFileName: "4k.jpg"
     speechFileName: "4k.mp3"
 
   page4L:
     text: "You ask the stones about the Magic Crystal location. They guide you to the Hidden Glade, where the crystal awaits. Congratulations, you're a Crystal Seeker!"
+    text-fr: "Vous demandez aux pierres l'emplacement du cristal magique. Ils vous guident vers la clairière cachée, où le cristal vous attend. Félicitations, vous êtes un chercheur de cristaux!"
     isTerminal: true
     imageFileName: "4l.jpg"
     speechFileName: "4l.mp3"
 
   page4M:
     text: "You follow the Glow Butterflies to the Starlight Glade, where the Magic Crystal awaits. Congratulations, you're a Starlight Explorer!"
+    text-fr: "Vous suivez les papillons lumineux jusqu'à la clairière de la lumière des étoiles, où le cristal magique vous attend. Félicitations, vous êtes un explorateur de la lumière des étoiles!"
     isTerminal: true
     imageFileName: "4m.jpg"
     speechFileName: "4m.mp3"
 
   page4N:
     text: "You ask the fairies about the Magic Crystal location. They guide you to the Hidden Glade, where the crystal awaits. Congratulations, you're a Crystal Seeker!"
+    text-fr: "Vous demandez aux fées l'emplacement du cristal magique. Ils vous guident vers la clairière cachée, où le cristal vous attend. Félicitations, vous êtes un chercheur de cristaux!"
     isTerminal: true
     imageFileName: "4n.jpg"
     speechFileName: "4n.mp3"
 
   page4O:
     text: "You watch the Glow Butterflies create a constellation, revealing the Magic Crystal at its center. Congratulations, you're a Crystal Stargazer!"
+    text-fr: "Vous regardez les papillons lumineux créer une constellation, révélant le cristal magique au centre. Félicitations, vous êtes un Crystal Stargazer!"
     isTerminal: true
     imageFileName: "4o.jpg"
     speechFileName: "4o.mp3"
 
   page4P:
     text: "You ask the Glow Butterflies about the Magic Crystal location. They guide you to the Whispering Woods, where the crystal awaits. Congratulations, you're a Crystal Seeker!"
+    text-fr: "Vous demandez aux papillons lumineux l'emplacement du cristal magique. Ils vous guident vers le bois chuchotant, où le cristal vous attend. Félicitations, vous êtes un chercheur de cristaux!"
     isTerminal: true
     imageFileName: "4p.jpg"
     speechFileName: "4p.mp3"
 
   page4Q:
     text: "You listen to the whispers of the Enchanted Tree, and it grants you the Magic Crystal. Congratulations, you're a Crystal Listener!"
+    text-fr: "Vous écoutez les murmures de l'arbre enchanté, et il vous accorde le cristal magique. Félicitations, vous êtes un auditeur de cristal!"
     isTerminal: true
     imageFileName: "4q.jpg"
     speechFileName: "4q.mp3"
 
   page4R:
     text: "You ask the tree about the Magic Crystal location. The tree points you to the Mystic Meadow, where the crystal awaits. Congratulations, you're a Crystal Seeker!"
+    text-fr: "Vous demandez à l'arbre l'emplacement du cristal magique. L'arbre vous indique la prairie mystique, où le cristal vous attend. Félicitations, vous êtes un chercheur de cristaux!"
     isTerminal: true
     imageFileName: "4r.jpg"
     speechFileName: "4r.mp3"

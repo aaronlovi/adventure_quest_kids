@@ -57,6 +57,8 @@ class StoryPageScreenState extends State<StoryPageScreen>
   /// the player taps the story image
   final List<Rect> _animatedRectangles;
 
+  final List<Color> _rectangleBorderColors;
+
   /// The cropped sub-images that will be animated when the player taps the
   /// story image
   final List<Uint8List> _imagesToAnimate;
@@ -79,6 +81,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
         _currentWordIndex = ValueNotifier<int>(-1),
         _containerKey = GlobalKey(),
         _animatedRectangles = <Rect>[],
+        _rectangleBorderColors = <Color>[],
         _controllers = <AnimationController>[],
         _sizeAnimations = <Animation<Rect?>>[],
         _colorAnimations = <Animation<Color?>>[],
@@ -193,8 +196,14 @@ class StoryPageScreenState extends State<StoryPageScreen>
 
   void _calculateSubImageActualCoordinates() {
     _animatedRectangles.clear();
-    for (Rect rect in widget.storyPage.rectangles) {
+    _rectangleBorderColors.clear();
+    for (final choice in widget.storyPage.choices.values) {
+      if (choice.rectangle == null) continue;
+
+      _rectangleBorderColors.add(choice.borderColor ?? Colors.white);
+
       // Translate the 0..1 based rectangles to actual screen coordinates
+      final rect = choice.rectangle!;
       _animatedRectangles.add(Rect.fromLTRB(
           rect.left * _imageWidth! + _imageOffset!.dx,
           rect.top * _imageHeight! + _imageOffset!.dy,
@@ -212,8 +221,11 @@ class StoryPageScreenState extends State<StoryPageScreen>
     // Create a list to hold the cropped images
     _imagesToAnimate.clear();
 
-    for (Rect rect in widget.storyPage.rectangles) {
+    for (final choice in widget.storyPage.choices.values) {
+      if (choice.rectangle == null) continue;
+
       // Calculate the coordinates and dimensions of the sub-image
+      final rect = choice.rectangle!;
       int x = (rect.left * _imageWidth!).round();
       int y = (rect.top * _imageHeight!).round();
       int width = ((rect.right - rect.left) * _imageWidth!).round();
@@ -237,7 +249,10 @@ class StoryPageScreenState extends State<StoryPageScreen>
     _colorAnimations.clear();
     _borderWidthAnimations.clear();
 
-    for (var rect in _animatedRectangles) {
+    for (var i = 0; i < _animatedRectangles.length; i++) {
+      final rect = _animatedRectangles[i];
+      final borderColor = _rectangleBorderColors[i];
+
       var controller = AnimationController(
         duration: const Duration(seconds: 1),
         vsync: this,
@@ -250,7 +265,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
 
       var colorAnimation = ColorTween(
         begin: Colors.transparent,
-        end: Colors.white,
+        end: borderColor,
       ).animate(controller);
 
       var borderWidthAnimation =
@@ -305,8 +320,8 @@ class StoryPageScreenState extends State<StoryPageScreen>
         child: Hero(
             tag: 'appBar',
             child: getAppBar(context,
-                title: widget.story.title,
-                subTitle: widget.story.subTitle,
+                title: widget.story.getTitle(currentLocale),
+                subTitle: widget.story.getTitle(currentLocale),
                 isStartPage: false)));
   }
 
@@ -369,8 +384,10 @@ class StoryPageScreenState extends State<StoryPageScreen>
             child: GestureDetector(
               onTap: () => _animateSubImages(),
               child: Container(
-                width: sizeAnimation.value!.width,
-                height: sizeAnimation.value!.height,
+                width:
+                    sizeAnimation.value!.width - 2 * borderWidthAnimation.value,
+                height: sizeAnimation.value!.height -
+                    2 * borderWidthAnimation.value,
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: colorAnimation.value!,
@@ -379,7 +396,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
                 ),
                 child: Image.memory(
                   _imagesToAnimate[i],
-                  fit: BoxFit.contain,
+                  fit: BoxFit.fill,
                 ),
               ),
             ),
@@ -395,7 +412,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
     widgets.add(
       Positioned(
         right: w * 0.1 / 2,
-        bottom: 0,
+        bottom: 5,
         child: FloatingActionButton(
           onPressed: _startAnimation,
           tooltip: AppLocalizations.of(context)!.read_aloud,
@@ -460,6 +477,14 @@ class StoryPageScreenState extends State<StoryPageScreen>
   void _addStoryChoiceWidgets(BuildContext context, List<Widget> widgets) {
     widgets.add(const SizedBox(height: 16));
 
+    String getStoryChoiceText(StoryChoice choice) {
+      if (choice.textByLanguage.containsKey(currentLocale)) {
+        return choice.textByLanguage[currentLocale]!;
+      } else {
+        return choice.text;
+      }
+    }
+
     for (String choiceName in widget.storyPage.choices.keys) {
       StoryChoice choice = widget.storyPage.choices[choiceName]!;
       StoryPage nextPage = widget.story.pages[choice.nextPageId]!;
@@ -473,9 +498,14 @@ class StoryPageScreenState extends State<StoryPageScreen>
 
       widgets.add(const Padding(padding: EdgeInsets.only(top: 12)));
       widgets.add(ElevatedButton(
-        style: ElevatedButton.styleFrom(padding: const EdgeInsets.all(8)),
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.all(8),
+          side: BorderSide(
+            color: choice.borderColor?.withOpacity(0.9) ?? Colors.transparent,
+          ),
+        ),
         onPressed: () => pushRouteWithTransition(context, nextScreen),
-        child: Text(choice.text, textAlign: TextAlign.center),
+        child: Text(getStoryChoiceText(choice), textAlign: TextAlign.center),
       ));
     }
   }
@@ -493,7 +523,8 @@ class StoryPageScreenState extends State<StoryPageScreen>
     widgets.add(paddingTop12);
     widgets.add(ElevatedButton(
       onPressed: () => popUntilNamedRoute(context, Constants.frontPageRoute),
-      child: Text(AppLocalizations.of(context)!.restart_s0(widget.story.title)),
+      child: Text(AppLocalizations.of(context)!
+          .restart_s0(widget.story.getTitle(currentLocale))),
     ));
 
     widgets.add(paddingTop16);

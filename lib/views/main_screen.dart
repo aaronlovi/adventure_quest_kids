@@ -87,10 +87,7 @@ class MainScreenState extends State<MainScreen> with RouteAware {
     );
   }
 
-  ListView _getBody(
-    List<String> storyNames,
-    BuildContext context,
-  ) {
+  ListView _getBody(List<String> storyNames, BuildContext context) {
     return ListView.builder(
         itemCount: storyNames.length,
         itemBuilder: (content, index) {

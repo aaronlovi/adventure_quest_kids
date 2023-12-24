@@ -7,12 +7,15 @@ pages:
   page1:
     imageFileName: cover_image.jpg
     text: "You're in a spaceship. What do you want to do?"
+    text-fr: "Vous êtes dans un vaisseau spatial. Que voulez-vous faire?"
     choices:
       choice1:
         text: "Blast off!"
+        text-fr: "Décoller!"
         nextPageId: "page2A"
       choice2:
         text: "Countdown!"
+        text-fr: "Compte à rebours!"
         nextPageId: "page2B"
 
   # Level 2
@@ -20,29 +23,37 @@ pages:
   page2A:
     imageFileName: cover_image.jpg
     text: "You blast off and land on the moon. What's your next move?"
+    text-fr: "Vous décollez et atterrissez sur la lune. Quelle est votre prochaine étape?"
     choices:
       choice1:
         text: "Jump on the moon"
+        text-fr: "Sauter sur la lune"
         nextPageId: "page3A"
       choice2:
         text: "Collect moon rocks"
+        text-fr: "Collecter des roches lunaires"
         nextPageId: "page3B"
       choice3:
         text: "Do a moonwalk"
+        text-fr: "Faire une marche lunaire"
         nextPageId: "page3C"
 
   page2B:
     imageFileName: cover_image.jpg
     text: "You start a countdown and zoom into space. You find a colorful planet. What's your next adventure?"
+    text-fr: "Vous commencez un compte à rebours et vous vous précipitez dans l'espace. Vous trouvez une planète colorée. Quelle est votre prochaine aventure?"
     choices:
       choice1:
         text: "Explore the planet"
+        text-fr: "Explorez la planète"
         nextPageId: "page3D"
       choice2:
         text: "Build a space fort"
+        text-fr: "Construire un fort spatial"
         nextPageId: "page3E"
       choice3:
         text: "Have a space picnic"
+        text-fr: "Avoir un pique-nique spatial"
         nextPageId: "page3F"
 
   # Level 3
@@ -50,76 +61,97 @@ pages:
   page3A:
     imageFileName: cover_image.jpg
     text: "You jump on the moon. It's bouncy! What's your next move?"
+    text-fr: "Vous sautez sur la lune. C'est rebondissant! Quelle est votre prochaine étape?"
     choices:
       choice1:
         text: "Do a space dance"
+        text-fr: "Faire une danse spatiale"
         nextPageId: "page4A"
       choice2:
         text: "Look for space animals"
+        text-fr: "Chercher des animaux spatiaux"
         nextPageId: "page4B"
 
   page3B:
     imageFileName: cover_image.jpg
     text: "You collect moon rocks. They sparkle! What's your next move?"
+    text-fr: "Vous collectez des roches lunaires. Ils scintillent! Quelle est votre prochaine étape?"
     choices:
       choice1:
         text: "Build a space castle"
+        text-fr: "Construire un château spatial"
         nextPageId: "page4C"
       choice2:
         text: "Have a space picnic"
+        text-fr: "Avoir un pique-nique spatial"
         nextPageId: "page4D"
 
   page3C:
     imageFileName: cover_image.jpg
     text: "You do a moonwalk. It's fun! What's your next move?"
+    text-fr: "Vous faites une marche lunaire. C'est amusant! Quelle est votre prochaine étape?"
     choices:
       choice1:
         text: "Sing a space song"
+        text-fr: "Chantez une chanson spatiale"
         nextPageId: "page4E"
       choice2:
         text: "Look for space animals"
+        text-fr: "Chercher des animaux spatiaux"
         nextPageId: "page4F"
 
   page3D:
     imageFileName: cover_image.jpg
     text: "You explore the colorful planet. It's full of surprises! What's your next adventure?"
+    text-fr: "Vous explorez la planète colorée. C'est plein de surprises! Quelle est votre prochaine aventure?"
     choices:
       choice1:
         text: "Meet a space queen"
+        text-fr: "Rencontrer une reine de l'espace"
         nextPageId: "page4G"
       choice2:
         text: "Find a space treasure"
+        text-fr: "Trouver un trésor spatial"
         nextPageId: "page4H"
       choice3:
         text: "Play space games"
+        text-fr: "Jouer à des jeux spatiaux"
         nextPageId: "page4I"
 
   page3E:
     imageFileName: cover_image.jpg
     text: "You build a space fort. It has a slide and swings. What's your next move?"
+    text-fr: "Vous construisez un fort spatial. Il a une glissade et des balançoires. Quelle est votre prochaine étape?"
     choices:
       choice1:
         text: "Slide down the space slide"
+        text-fr: "Glissez sur la glissade spatiale"
         nextPageId: "page4J"
       choice2:
         text: "Invite space friends"
+        text-fr: "Invitez des amis de l'espace"
         nextPageId: "page4K"
       choice3:
         text: "Explore the space fort"
+        text-fr: "Explorez le fort spatial"
         nextPageId: "page4L"
 
   page3F:
     imageFileName: cover_image.jpg
     text: "You have a space picnic. Yummy snacks! What's your next move?"
+    text-fr: "Vous avez un pique-nique spatial. Collations délicieuses! Quelle est votre prochaine étape?"
     choices:
       choice1:
         text: "Visit a space castle"
+        text-fr: "Visitez un château spatial"
         nextPageId: "page4M"
       choice2:
         text: "Zoom to a new galaxy"
+        text-fr: "Zoom vers une nouvelle galaxie"
         nextPageId: "page4N"
       choice3:
         text: "Have a space race"
+        text-fr: "Avoir une course spatiale"
         nextPageId: "page4O"
 
   # Level 4 (Terminal Pages)
@@ -127,74 +159,89 @@ pages:
   page4A:
     imageFileName: cover_image.jpg
     text: "You do a space dance. It's out of this world! Congratulations, you're a space dancing superstar!"
+    text-fr: "Vous faites une danse spatiale. C'est hors de ce monde! Félicitations, vous êtes une superstar de la danse spatiale!"
     isTerminal: true
 
   page4B:
     imageFileName: cover_image.jpg
     text: "You look for space animals. They invite you to a dance party. Congratulations, you're the life of the space party!"
+    text-fr: "Vous cherchez des animaux spatiaux. Ils vous invitent à une fête dansante. Félicitations, vous êtes la vie de la fête spatiale!"
     isTerminal: true
 
   page4C:
     imageFileName: cover_image.jpg
     text: "You build a space castle with moon rocks. It becomes a space palace. Congratulations, you're a space architect!"
+    text-fr: "Vous construisez un château spatial avec des roches lunaires. Il devient un palais spatial. Félicitations, vous êtes un architecte spatial!"
     isTerminal: true
 
   page4D:
     imageFileName: cover_image.jpg
     text: "You have a space picnic with delicious snacks. Congratulations, you're a space picnic expert!"
+    text-fr: "Vous avez un pique-nique spatial avec des collations délicieuses. Félicitations, vous êtes un expert du pique-nique spatial!"
     isTerminal: true
 
   page4E:
     imageFileName: cover_image.jpg
     text: "You sing a space song. It echoes through the galaxy. Congratulations, you're a space singing sensation!"
+    text-fr: "Vous chantez une chanson spatiale. Il résonne à travers la galaxie. Félicitations, vous êtes une sensation de chant spatial!"
     isTerminal: true
 
   page4F:
     imageFileName: cover_image.jpg
     text: "You look for space animals. They join your space dance. Congratulations, you're a space dance choreographer!"
+    text-fr: "Vous cherchez des animaux spatiaux. Ils rejoignent votre danse spatiale. Félicitations, vous êtes un chorégraphe de danse spatiale!"
     isTerminal: true
 
   page4G:
     imageFileName: cover_image.jpg
     text: "You meet a space queen and dance in her space palace. Congratulations, you're a space royal dancer!"
+    text-fr: "Vous rencontrez une reine de l'espace et dansez dans son palais spatial. Félicitations, vous êtes un danseur royal de l'espace!"
     isTerminal: true
 
   page4H:
     imageFileName: cover_image.jpg
     text: "You find a space treasure on the colorful planet. Congratulations, you're a space treasure hunter!"
+    text-fr: "Vous trouvez un trésor spatial sur la planète colorée. Félicitations, vous êtes un chasseur de trésors spatial!"
     isTerminal: true
 
   page4I:
     imageFileName: cover_image.jpg
     text: "You play space games on the colorful planet. Congratulations, you're a space games champion!"
+    text-fr: "Vous jouez à des jeux spatiaux sur la planète colorée. Félicitations, vous êtes un champion des jeux spatiaux!"
     isTerminal: true
 
   page4J:
     imageFileName: cover_image.jpg
     text: "You slide down the space slide of your fort. Congratulations, you're a space sliding pro!"
+    text-fr: "Vous glissez sur la glissade spatiale de votre fort. Félicitations, vous êtes un pro de la glisse spatiale!"
     isTerminal: true
 
   page4K:
     imageFileName: cover_image.jpg
     text: "You invite space friends to your fort. Congratulations, you're a space party planner!"
+    text-fr: "Vous invitez des amis de l'espace à votre fort. Félicitations, vous êtes un organisateur de fêtes spatiales!"
     isTerminal: true
 
   page4L:
     imageFileName: cover_image.jpg
     text: "You explore the space fort's secret passages. They lead to a hidden space garden. Congratulations, you're a space explorer!"
+    text-fr: "Vous explorez les passages secrets du fort spatial. Ils mènent à un jardin spatial caché. Félicitations, vous êtes un explorateur spatial!"
     isTerminal: true
 
   page4M:
     imageFileName: cover_image.jpg
     text: "You visit a space castle after your picnic. Congratulations, you're a space castle explorer!"
+    text-fr: "Vous visitez un château spatial après votre pique-nique. Félicitations, vous êtes un explorateur de château spatial!"
     isTerminal: true
 
   page4N:
     imageFileName: cover_image.jpg
     text: "You zoom to a new galaxy after your picnic. Congratulations, you're a space galaxy adventurer!"
+    text-fr: "Vous zoomez vers une nouvelle galaxie après votre pique-nique. Félicitations, vous êtes un aventurier de la galaxie spatiale!"
     isTerminal: true
 
   page4O:
     imageFileName: cover_image.jpg
     text: "You have a space race after your picnic. Congratulations, you're a space racing champion!"
+    text-fr: "Vous avez une course spatiale après votre pique-nique. Félicitations, vous êtes un champion de course spatial!"
     isTerminal: true

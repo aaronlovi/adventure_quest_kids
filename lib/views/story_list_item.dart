@@ -48,6 +48,7 @@ class StoryListItemState extends State<StoryListItem>
   RouteObserver<PageRoute<dynamic>> get routeObserver => widget.routeObserver;
   Registry get registry => widget.registry;
   AssetSourceFactory get assetSourceFactory => widget.assetSourceFactory;
+  String get localeName => registry.localeName;
 
   @override
   void initState() {
@@ -112,7 +113,7 @@ class StoryListItemState extends State<StoryListItem>
     return ListTile(
       leading: _getLeadingIcon(),
       trailing: _getTrailingIcon(),
-      title: Text(storyMetaData.fullTitle),
+      title: Text(storyMetaData.getFullTitle(localeName)),
       onTap: () => navigateToRoute(
         context,
         StoryFrontPageScreen(

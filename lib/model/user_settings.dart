@@ -1,9 +1,11 @@
 class UserSettings {
+  static const int version1 = 1;
   static const double defaultBackgroundVolume = 0.3;
   static const double defaultForegroundVolume = 0.8;
   static const double defaultSpeechVolume = 0.7;
   static const double defaultSpeechRate = 0.9;
 
+  int version;
   double backgroundVolume;
   double foregroundVolume;
   double speechVolume;
@@ -15,11 +17,13 @@ class UserSettings {
   /// and whether they have seen every possible end of the story.
   Map<String, Set<String>> terminalPagesVisited;
 
-  UserSettings(
-      {this.backgroundVolume = defaultBackgroundVolume,
-      this.foregroundVolume = defaultForegroundVolume,
-      this.speechVolume = defaultSpeechVolume,
-      this.speechRate = defaultSpeechRate,
-      this.localeName,
-      this.terminalPagesVisited = const {}});
+  UserSettings({
+    this.version = version1,
+    this.backgroundVolume = defaultBackgroundVolume,
+    this.foregroundVolume = defaultForegroundVolume,
+    this.speechVolume = defaultSpeechVolume,
+    this.speechRate = defaultSpeechRate,
+    this.localeName,
+    this.terminalPagesVisited = const {},
+  });
 }

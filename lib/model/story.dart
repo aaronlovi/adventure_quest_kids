@@ -8,9 +8,11 @@ class Story {
 
   Story(this.storyMetaData, this.pages);
 
-  String get title => storyMetaData.title;
-  String get subTitle => storyMetaData.subTitle;
-  String get fullTitle => storyMetaData.fullTitle;
+  String getTitle(String localeName) => storyMetaData.getTitle(localeName);
+  String getSubTitle(String localeName) =>
+      storyMetaData.getSubTitle(localeName);
+  String getFullTitle(String localeName) =>
+      storyMetaData.getFullTitle(localeName);
 
   String get firstPageId => storyMetaData.firstPageId;
 

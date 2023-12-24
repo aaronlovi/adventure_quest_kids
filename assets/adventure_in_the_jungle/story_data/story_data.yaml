@@ -13,191 +13,296 @@ pages:
     soundFileName: "418337__sieuamthanh__tu-hu-1.mp3"
     choices:
       choice1:
-        text: "Follow the winding path"
-        nextPageId: "page2A"
-      choice2:
         text: "Climb the tall tree"
+        text-fr: "Grimper l'arbre"
         nextPageId: "page2B"
+        rectangle: { left: 0.61, right: 0.88, top: 0.20, bottom: 0.60 }
+        borderColor: '0xFF00FF00'
+      choice2:
+        text: "Follow the winding path"
+        text-fr: "Suivre le chemin sinueux"
+        nextPageId: "page2A"
+        rectangle: { left: 0.37, right: 0.80, top: 0.67, bottom: 0.77 }
+        borderColor: '0xFFFF0000'
       choice3:
         text: "Listen to jungle sounds"
+        text-fr: "Écouter les sons de la jungle"
         nextPageId: "page2C"
+        rectangle: { left: 0.10, right: 0.30, top: 0.25, bottom: 0.40 }
+        borderColor: '0xFF3333FF'
 
   # Level 2
 
   page2A:
     text: "You follow the winding path deeper into the jungle. What's your next move?"
+    text-fr: "Vous suivez le chemin sinueux plus profondément dans la jungle. Quel est votre prochain mouvement?"
     imageFileName: "2a.jpg"
     speechFileName: "2a.mp3"
     speechTimestampsFileName: "2a.timestamps.txt"
     choices:
       choice1:
-        text: "Discover a hidden waterfall"
-        nextPageId: "page3A"
-      choice2:
-        text: "Spot colorful birds"
-        nextPageId: "page3B"
-      choice3:
         text: "Explore a mysterious cave"
+        text-fr: "Explorer une grotte mystérieuse"
         nextPageId: "page3C"
+        rectangle: { left: 0.30, right: 0.53, top: 0.32, bottom: 0.54 }
+        borderColor: '0xFF3333FF'
+      choice2:
+        text: "Discover a hidden waterfall"
+        text-fr: "Découvrir une cascade cachée"
+        nextPageId: "page3A"
+        rectangle: { left: 0.56, right: 0.64, top: 0.31, bottom: 0.62 }
+        borderColor: '0xFFFF0000'
+      choice3:
+        text: "Spot colorful birds"
+        text-fr: "Repérer des oiseaux colorés"
+        nextPageId: "page3B"
+        rectangle: { left: 0.02, right: 0.37, top: 0.05, bottom: 0.29 }
+        borderColor: '0xFF00FF00'
 
   page2B:
     text: "You climb the tall tree and see the jungle from above. What's your next adventure?"
+    text-fr: "Vous grimpez l'arbre et voyez la jungle d'en haut. Quelle est votre prochaine aventure?"
     imageFileName: "2b.jpg"
     speechFileName: "2b.mp3"
     speechTimestampsFileName: "2b.timestamps.txt"
     choices:
       choice1:
-        text: "Swing from the vines"
-        nextPageId: "page3D"
-      choice2:
         text: "Spot a family of monkeys"
+        text-fr: "Repérer une famille de singes"
         nextPageId: "page3E"
-      choice3:
+        rectangle: { left: 0.23, right: 0.47, top: 0.10, bottom: 0.28 }
+        borderColor: '0xFFFF0000'
+      choice2:
         text: "Slide down the tree trunk"
+        text-fr: "Glisser sur le tronc de l'arbre"
         nextPageId: "page3F"
+        rectangle: { left: 0.60, right: 0.90, top: 0.50, bottom: 0.90 }
+        borderColor: '0xFF3333FF'
+      choice3:
+        text: "Swing from the vines"
+        text-fr: "Se balancer sur les lianes"
+        nextPageId: "page3D"
+        rectangle: { left: 0.46, right: 0.60, top: 0.32, bottom: 0.62 }
+        borderColor: '0xFF00FF00'
 
   page2C:
     text: "You listen to jungle sounds and hear a distant roar. What's your next move?"
+    text-fr: "Vous écoutez les sons de la jungle et entendez un rugissement au loin. Quel est votre prochain mouvement?"
     imageFileName: "2c.jpg"
     speechFileName: "2c.mp3"
     speechTimestampsFileName: "2c.timestamps.txt"
     choices:
       choice1:
         text: "Follow the roar to find the source"
+        text-fr: "Suivre le rugissement pour\ntrouver la source"
         nextPageId: "page3G"
+        rectangle: { left: 0.52, right: 0.63, top: 0.51, bottom: 0.70 }
+        borderColor: '0xFF3333FF'
       choice2:
-        text: "Build a shelter for the night"
-        nextPageId: "page3H"
-      choice3:
         text: "Climb a tree for safety"
+        text-fr: "Grimper un arbre pour se mettre en sécurité"
         nextPageId: "page3I"
+        rectangle: { left: 0.68, right: 0.83, top: 0.16, bottom: 0.44 }
+        borderColor: '0xFF00FF00'
+      choice3:
+        text: "Build a shelter for the night"
+        text-fr: "Construire un abri pour la nuit"
+        nextPageId: "page3H"
+        rectangle: { left: 0.76, right: 0.99, top: 0.45, bottom: 0.66 }
+        borderColor: '0xFFFF0000'
 
   # Level 3
 
   page3A:
     text: "You discover a hidden waterfall. It sparkles in the sunlight. What's your next move?"
+    text-fr: "Vous découvrez une cascade cachée. Il brille au soleil. Quel est votre prochain mouvement?"
     imageFileName: "3a.jpg"
     speechFileName: "3a.mp3"
     speechTimestampsFileName: "3a.timestamps.txt"
     choices:
       choice1:
-        text: "Take a refreshing swim"
-        nextPageId: "page4A"
-      choice2:
         text: "Climb behind the waterfall"
+        text-fr: "Grimper derrière la cascade"
         nextPageId: "page4B"
+        rectangle: { left: 0.46, right: 0.68, top: 0.29, bottom: 0.60 }
+      choice2:
+        text: "Take a refreshing swim"
+        text-fr: "Prendre un bain rafraîchissant"
+        nextPageId: "page4A"
+        rectangle: { left: 0.35, right: 0.84, top: 0.77, bottom: 0.83 }
+        borderColor: '0xFF00FF00'
 
   page3B:
     text: "You spot colorful birds. They lead you to a magical clearing. What's your next adventure?"
+    text-fr: "Vous repérez des oiseaux colorés. Ils vous conduisent à une clairière magique. Quelle est votre prochaine aventure?"
     imageFileName: "3b.jpg"
     speechFileName: "3b.mp3"
     speechTimestampsFileName: "3b.timestamps.txt"
     choices:
       choice1:
         text: "Join the birds in a dance"
+        text-fr: "Rejoindre les oiseaux dans une danse"
         nextPageId: "page4C"
+        rectangle: { left: 0.05, right: 0.43, top: 0.69, bottom: 0.91 }
+        borderColor: '0xFF00FF00'
       choice2:
         text: "Discover a hidden nest"
+        text-fr: "Découvrir un nid caché"
         nextPageId: "page4D"
+        rectangle: { left: 0.22, right: 0.35, top: 0.25, bottom: 0.40 }
+        borderColor: '0xFFFF0000'
       choice3:
         text: "Listen to the bird songs"
+        text-fr: "Écouter les chants d'oiseaux"
         nextPageId: "page4E"
+        rectangle: { left: 0.58, right: 0.84, top: 0.05, bottom: 0.45 }
+        borderColor: '0xFF3333FF'
 
   page3C:
     text: "You explore a mysterious cave. It's filled with glowing crystals. What's your next move?"
+    text-fr: "Vous explorez une grotte mystérieuse. Il est rempli de cristaux lumineux. Quel est votre prochain mouvement?"
     imageFileName: "3c.jpg"
     speechFileName: "3c.mp3"
     speechTimestampsFileName: "3c.timestamps.txt"
     choices:
       choice1:
-        text: "Collect the glowing crystals"
-        nextPageId: "page4F"
-      choice2:
         text: "Follow a secret tunnel"
+        text-fr: "Suivre un tunnel secret"
         nextPageId: "page4G"
+        rectangle: { left: 0.34, right: 0.50, top: 0.40, bottom: 0.66 }
+        borderColor: '0xFFFF0000'
+      choice2:
+        text: "Collect the glowing crystals"
+        text-fr: "Collecter les cristaux lumineux"
+        nextPageId: "page4F"
+        rectangle: { left: 0.01, right: 0.34, top: 0.50, bottom: 0.95 }
+        borderColor: '0xFF3333FF'
 
   page3D:
     text: "You swing from the vines with skill. What's your next adventure?"
+    text-fr: "Vous vous balancez sur les vignes avec compétence. Quelle est votre prochaine aventure?"
     imageFileName: "3d.jpg"
     speechFileName: "3d.mp3"
     speechTimestampsFileName: "3d.timestamps.txt"
     choices:
       choice1:
         text: "Discover a hidden treehouse"
+        text-fr: "Découvrir une cabane dans les arbres cachée"
         nextPageId: "page4H"
+        rectangle: { left: 0.58, right: 0.77, top: 0.24, bottom: 0.47 }
+        borderColor: '0xFFFF0000'
       choice2:
         text: "Race through the jungle canopy"
+        text-fr: "Courir à travers la canopée de la jungle"
         nextPageId: "page4I"
+        rectangle: { left: 0.06, right: 0.56, top: 0.03, bottom: 0.23 }
+        borderColor: '0xFF00FF00'
 
   page3E:
     text: "You spot a family of monkeys playing. What's your next move?"
+    text-fr: "Vous repérez une famille de singes qui jouent. Quel est votre prochain mouvement?"
     imageFileName: "3e.jpg"
     speechFileName: "3e.mp3"
     speechTimestampsFileName: "3e.timestamps.txt"
     choices:
       choice1:
         text: "Join the monkey fun"
+        text-fr: "Rejoindre le singe amusant"
         nextPageId: "page4J"
+        rectangle: { left: 0.37, right: 0.86, top: 0.24, bottom: 0.75 }
+        borderColor: '0xFF3333FF'
       choice2:
         text: "Share your snacks with the monkeys"
+        text-fr: "Partager vos collations avec les singes"
         nextPageId: "page4K"
+        rectangle: { left: 0.01, right: 0.14, top: 0.52, bottom: 0.84 }
+        borderColor: '0xFF00FF00'
 
   page3F:
     text: "You slide down the tree trunk with excitement. What's your next move?"
+    text-fr: "Vous glissez sur le tronc de l'arbre avec excitation. Quel est votre prochain mouvement?"
     imageFileName: "3f.jpg"
     speechFileName: "3f.mp3"
     speechTimestampsFileName: "3f.timestamps.txt"
     choices:
       choice1:
-        text: "Discover a hidden jungle slide"
-        nextPageId: "page4L"
-      choice2:
         text: "Build a treehouse"
+        text-fr: "Construire une cabane dans les arbres"
         nextPageId: "page4M"
+        rectangle: { left: 0.56, right: 0.80, top: 0.04, bottom: 0.35 }
+        borderColor: '0xFF00FF00'
+      choice2:
+        text: "Discover a hidden jungle slide"
+        text-fr: "Découvrir un toboggan de jungle caché"
+        nextPageId: "page4L"
+        rectangle: { left: 0.45, right: 0.92, top: 0.32, bottom: 0.73 }
+        borderColor: '0xFFFF0000'
 
   page3G:
     text: "You follow the roar and discover a majestic lion. What's your next adventure?"
+    text-fr: "Vous suivez le rugissement et découvrez un lion majestueux. Quelle est votre prochaine aventure?"
     imageFileName: "3g.jpg"
     speechFileName: "3g.mp3"
     speechTimestampsFileName: "3g.timestamps.txt"
     choices:
       choice1:
         text: "Offer a friendly gesture to the lion"
+        text-fr: "Offrir un geste amical au lion"
         nextPageId: "page4N"
+        rectangle: { left: 0.30, right: 0.64, top: 0.37, bottom: 0.80 }
+        borderColor: '0xFF3333FF'
       choice2:
         text: "Climb a tree for safety"
+        text-fr: "Grimper un arbre pour se mettre en sécurité"
         nextPageId: "page4O"
+        rectangle: { left: 0.01, right: 0.11, top: 0.10, bottom: 0.70 }
+        borderColor: '0xFFFF0000'
 
   page3H:
     text: "You build a shelter for the night. It's cozy. What's your next move?"
+    text-fr: "Vous construisez un abri pour la nuit. C'est confortable. Quel est votre prochain mouvement?"
     imageFileName: "3h.jpg"
     speechFileName: "3h.mp3"
     speechTimestampsFileName: "3h.timestamps.txt"
     choices:
       choice1:
         text: "Watch the stars from your shelter"
+        text-fr: "Regarder les étoiles de votre abri"
         nextPageId: "page4P"
+        rectangle: { left: 0.06, right: 0.63, top: 0.03, bottom: 0.20 }
+        borderColor: '0xFF3333FF'
       choice2:
         text: "Light a campfire"
+        text-fr: "Allumer un feu de camp"
         nextPageId: "page4Q"
+        rectangle: { left: 0.31, right: 0.50, top: 0.73, bottom: 0.90 }
+        borderColor: '0xFF00FF00'
 
   page3I:
     text: "You climb a tree for safety. From above, you see a magical glow. What's your next adventure?"
+    text-fr: "Vous grimpez un arbre pour vous mettre en sécurité. D'en haut, vous voyez une lueur magique. Quelle est votre prochaine aventure?"
     imageFileName: "3i.jpg"
     speechFileName: "3i.mp3"
     speechTimestampsFileName: "3i.timestamps.txt"
     choices:
       choice1:
         text: "Slide down the tree trunk to investigate"
+        text-fr: "Glisser sur le tronc de l'arbre pour enquêter"
         nextPageId: "page4R"
+        rectangle: { left: 0.37, right: 0.63, top: 0.60, bottom: 0.87 }
+        borderColor: '0xFF00FF00'
       choice2:
         text: "Continue climbing to the treetop"
+        text-fr: "Continuer à grimper jusqu'au sommet de l'arbre"
         nextPageId: "page4S"
+        rectangle: { left: 0.87, right: 0.99, top: 0.03, bottom: 0.36 }
+        borderColor: '0xFFFF0000'
 
   # Level 4 (Terminal Pages)
   
   page4A:
     text: "You take a refreshing swim in the hidden waterfall. Congratulations, you're a jungle water adventurer!"
+    text-fr: "Vous vous baignez dans la cascade cachée. Félicitations, vous êtes un aventurier de l'eau de la jungle!"
     isTerminal: true
     imageFileName: "4a.jpg"
     speechFileName: "4a.mp3"
@@ -205,6 +310,7 @@ pages:
 
   page4B:
     text: "You climb behind the waterfall and discover a secret cave. Congratulations, you're a waterfall explorer!"
+    text-fr: "Vous grimpez derrière la cascade et découvrez une grotte secrète. Félicitations, vous êtes un explorateur de cascades!"
     isTerminal: true
     imageFileName: "4b.jpg"
     speechFileName: "4b.mp3"
@@ -212,6 +318,7 @@ pages:
 
   page4C:
     text: "You join the birds in a dance. It's a magical moment. Congratulations, you're a jungle dance partner!"
+    text-fr: "Vous rejoignez les oiseaux dans une danse. C'est un moment magique. Félicitations, vous êtes un partenaire de danse de la jungle!"
     isTerminal: true
     imageFileName: "4c.jpg"
     speechFileName: "4c.mp3"
@@ -219,6 +326,7 @@ pages:
 
   page4D:
     text: "You discover a hidden nest in the magical clearing. Congratulations, you're a jungle nest detective!"
+    text-fr: "Vous découvrez un nid caché dans la clairière magique. Félicitations, vous êtes un détective de nid de jungle!"
     isTerminal: true
     imageFileName: "4d.jpg"
     speechFileName: "4d.mp3"
@@ -226,6 +334,7 @@ pages:
 
   page4E:
     text: "You listen to the bird songs and learn their melodies. Congratulations, you're a jungle song apprentice!"
+    text-fr: "Vous écoutez les chants d'oiseaux et apprenez leurs mélodies. Félicitations, vous êtes un apprenti chanteur de la jungle!"
     isTerminal: true
     imageFileName: "4e.jpg"
     speechFileName: "4e.mp3"
@@ -233,6 +342,7 @@ pages:
 
   page4F:
     text: "You collect the glowing crystals and feel their magical energy. Congratulations, you're a jungle crystal collector!"
+    text-fr: "Vous collectez les cristaux lumineux et ressentez leur énergie magique. Félicitations, vous êtes un collectionneur de cristaux de la jungle!"
     isTerminal: true
     imageFileName: "4f.jpg"
     speechFileName: "4f.mp3"
@@ -240,6 +350,7 @@ pages:
 
   page4G:
     text: "You follow a secret tunnel and discover a hidden chamber. Congratulations, you're a jungle explorer extraordinaire!"
+    text-fr: "Vous suivez un tunnel secret et découvrez une chambre cachée. Félicitations, vous êtes un explorateur extraordinaire de la jungle!"
     isTerminal: true
     imageFileName: "4g.jpg"
     speechFileName: "4g.mp3"
@@ -247,6 +358,7 @@ pages:
 
   page4H:
     text: "You discover a hidden treehouse and make it your jungle home. Congratulations, you're a jungle treehouse dweller!"
+    text-fr: "Vous découvrez une cabane dans les arbres cachée et en faites votre maison de la jungle. Félicitations, vous êtes un habitant de la jungle!"
     isTerminal: true
     imageFileName: "4h.jpg"
     speechFileName: "4h.mp3"
@@ -254,6 +366,7 @@ pages:
 
   page4I:
     text: "You race through the jungle canopy and feel the thrill of adventure. Congratulations, you're a jungle canopy racer!"
+    text-fr: "Vous courez à travers la canopée de la jungle et ressentez le frisson de l'aventure. Félicitations, vous êtes un coureur de canopée de jungle!"
     isTerminal: true
     imageFileName: "4i.jpg"
     speechFileName: "4i.mp3"
@@ -261,6 +374,7 @@ pages:
 
   page4J:
     text: "You join the monkey fun and swing through the trees. Congratulations, you're a jungle monkey companion!"
+    text-fr: "Vous rejoignez le singe amusant et vous balancez à travers les arbres. Félicitations, vous êtes un compagnon de singe de jungle!"
     isTerminal: true
     imageFileName: "4j.jpg"
     speechFileName: "4j.mp3"
@@ -268,6 +382,7 @@ pages:
 
   page4K:
     text: "You share your snacks with the monkeys and become their jungle friend. Congratulations, you're a jungle snack sharer!"
+    text-fr: "Vous partagez vos collations avec les singes et devenez leur ami de la jungle. Félicitations, vous êtes un partageur de collations de la jungle!"
     isTerminal: true
     imageFileName: "4k.jpg"
     speechFileName: "4k.mp3"
@@ -275,6 +390,7 @@ pages:
 
   page4L:
     text: "You discover a hidden jungle slide and slide into a magical pond. Congratulations, you're a jungle slider!"
+    text-fr: "Vous découvrez un toboggan de jungle caché et glissez dans un étang magique. Félicitations, vous êtes un coureur de jungle!"
     isTerminal: true
     imageFileName: "4l.jpg"
     speechFileName: "4l.mp3"
@@ -282,6 +398,7 @@ pages:
 
   page4M:
     text: "You build a treehouse and host jungle gatherings. Congratulations, you're a jungle treehouse architect!"
+    text-fr: "Vous construisez une cabane dans les arbres et organisez des rassemblements de la jungle. Félicitations, vous êtes un architecte de cabane dans les arbres de la jungle!"
     isTerminal: true
     imageFileName: "4m.jpg"
     speechFileName: "4m.mp3"
@@ -289,6 +406,7 @@ pages:
 
   page4N:
     text: "You offer a friendly gesture to the lion and become jungle friends. Congratulations, you're a jungle lion whisperer!"
+    text-fr: "Vous offrez un geste amical au lion et devenez des amis de la jungle. Félicitations, vous êtes un chuchoteur de lion de la jungle!"
     isTerminal: true
     imageFileName: "4n.jpg"
     speechFileName: "4n.mp3"
@@ -296,6 +414,7 @@ pages:
 
   page4O:
     text: "You climb a tree for safety and witness a jungle sunset. Congratulations, you're a jungle sunset observer!"
+    text-fr: "Vous grimpez un arbre pour vous mettre en sécurité et assistez à un coucher de soleil de la jungle. Félicitations, vous êtes un observateur de coucher de soleil de la jungle!"
     isTerminal: true
     imageFileName: "4o.jpg"
     speechFileName: "4o.mp3"
@@ -303,6 +422,7 @@ pages:
 
   page4P:
     text: "You watch the stars from your shelter and feel the magic of the jungle night. Congratulations, you're a jungle stargazer!"
+    text-fr: "Vous regardez les étoiles de votre abri et ressentez la magie de la nuit de la jungle. Félicitations, vous êtes un observateur d'étoiles de la jungle!"
     isTerminal: true
     imageFileName: "4p.jpg"
     speechFileName: "4p.mp3"
@@ -310,6 +430,7 @@ pages:
 
   page4Q:
     text: "You light a campfire and tell jungle stories. Congratulations, you're a jungle storyteller!"
+    text-fr: "Vous allumez un feu de camp et racontez des histoires de la jungle. Félicitations, vous êtes un conteur de la jungle!"
     isTerminal: true
     imageFileName: "4q.jpg"
     speechFileName: "4q.mp3"
@@ -317,6 +438,7 @@ pages:
 
   page4R:
     text: "You slide down the tree trunk to investigate and discover a hidden treasure. Congratulations, you're a jungle treasure hunter!"
+    text-fr: "Vous glissez sur le tronc de l'arbre pour enquêter et découvrez un trésor caché. Félicitations, vous êtes un chasseur de trésors de la jungle!"
     isTerminal: true
     imageFileName: "4r.jpg"
     speechFileName: "4r.mp3"
@@ -324,6 +446,7 @@ pages:
 
   page4S:
     text: "You continue climbing to the treetop and see the entire jungle. Congratulations, you're a jungle heights conqueror!"
+    text-fr: "Vous continuez à grimper jusqu'au sommet de l'arbre et voyez toute la jungle. Félicitations, vous êtes un conquérant de la jungle!"
     isTerminal: true
     imageFileName: "4s.jpg"
     speechFileName: "4s.mp3"

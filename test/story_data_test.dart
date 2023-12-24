@@ -23,7 +23,8 @@ void main() {
       Story story = YamlFactory.toStory(storyMetaData, storyYamlMap);
 
       if (kDebugMode) {
-        print('Story: ${storyMetaData.title} (${storyMetaData.assetName})');
+        print(
+            'Story: ${storyMetaData.getTitle('')} (${storyMetaData.assetName})');
       }
 
       // Basic checks

@@ -20,12 +20,13 @@ class StoryFrontPageScreen extends StatefulWidget {
   final Registry registry;
   final RouteObserver<PageRoute> routeObserver;
 
-  const StoryFrontPageScreen(
-      {super.key,
-      required this.storyMetadata,
-      required this.assetSourceFactory,
-      required this.registry,
-      required this.routeObserver});
+  const StoryFrontPageScreen({
+    super.key,
+    required this.storyMetadata,
+    required this.assetSourceFactory,
+    required this.registry,
+    required this.routeObserver,
+  });
 
   @override
   StoryFrontPageScreenState createState() => StoryFrontPageScreenState();
@@ -35,6 +36,8 @@ class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
   late AssetSource soundAsset;
 
   StoryFrontPageScreenState();
+
+  String get localeName => widget.registry.localeName;
 
   @override
   initState() {
@@ -61,8 +64,8 @@ class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
     return Scaffold(
         appBar: getAppBar(
           context,
-          title: storyMetadata.title,
-          subTitle: storyMetadata.subTitle,
+          title: storyMetadata.getTitle(localeName),
+          subTitle: storyMetadata.getSubTitle(localeName),
           isStartPage: true,
         ),
         body: _getBodyWidgets(w, h, context, storyMetadata));
@@ -108,18 +111,19 @@ class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
     bodyChildWidgets.add(
       Center(
         child: Text(
-          storyMetadata.title,
+          storyMetadata.getTitle(localeName),
           textAlign: TextAlign.center,
           style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
       ),
     );
 
-    if (storyMetadata.subTitle.isNotEmpty) {
+    final String subTitle = storyMetadata.getSubTitle(localeName);
+    if (subTitle.isNotEmpty) {
       bodyChildWidgets.add(
         Center(
           child: Text(
-            storyMetadata.subTitle,
+            subTitle,
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
           ),
         ),

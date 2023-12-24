@@ -48,7 +48,10 @@ Future<void> main() async {
   runApp(
     ChangeNotifierProvider(
       create: (context) => LocaleProvider(),
-      child: MyApp(routeObserver: routeObserver),
+      child: MyApp(
+        routeObserver: routeObserver,
+        registry: getIt.get<Registry>(),
+      ),
     ),
   );
 }
@@ -80,10 +83,26 @@ StoryMetaData getStoryMetadataFromYaml(YamlMap yamlMap, storyKey) {
   Set<String> terminalPageIds =
       (entry['terminal_page_ids'] as String?)?.split(',').toSet() ?? {};
 
+  Map<String, String> titleByLanguage = {};
+  for (var locale in supportedNonDefaultLocales) {
+    if (entry['title-$locale'] != null) {
+      titleByLanguage[locale] = entry['title-$locale'];
+    }
+  }
+
+  Map<String, String> subTitleByLanguage = {};
+  for (var locale in supportedNonDefaultLocales) {
+    if (entry['subtitle-$locale'] != null) {
+      subTitleByLanguage[locale] = entry['subtitle-$locale'];
+    }
+  }
+
   final storyMetaData = StoryMetaData(
     assetName: storyKey,
     title: title,
+    titleByLanguage: titleByLanguage,
     subTitle: subTitle,
+    subTitleByLanguage: subTitleByLanguage,
     firstPageId: firstPage,
     listIcon: listIcon,
     storyId: storyKey,
@@ -97,14 +116,25 @@ StoryMetaData getStoryMetadataFromYaml(YamlMap yamlMap, storyKey) {
 
 class MyApp extends StatefulWidget {
   final RouteObserver<PageRoute> routeObserver;
+  final Registry registry;
 
-  const MyApp({super.key, required this.routeObserver});
+  const MyApp({super.key, required this.routeObserver, required this.registry});
 
   @override
   MyAppState createState() => MyAppState();
 }
 
 class MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<LocaleProvider>(context, listen: false)
+          .setLocale(Locale(widget.registry.localeName));
+    });
+  }
+
   @override
   void dispose() {
     GetIt.I<AudioPlayer>().dispose();

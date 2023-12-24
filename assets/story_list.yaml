@@ -1,6 +1,7 @@
 story_list:
   adventure_in_the_jungle:
     title: Adventure in the Jungle
+    title-fr: Aventure dans la jungle
     first_page: page1
     icon: list-icon.png
     background_sound_filename: background-15s.mp3
@@ -9,19 +10,25 @@ story_list:
     terminal_page_ids: page4A,page4B,page4C,page4D,page4E,page4F,page4G,page4H,page4I,page4J,page4K,page4L,page4M,page4N,page4O,page4P,page4Q,page4R,page4S
   space_odyssey:
     title: Space Odyssey
+    title-fr: Odyssée Spatiale
     first_page: page1
     terminal_page_ids: page4A,page4B,page4C,page4D,page4E,page4F,page4G,page4H,page4I,page4J,page4K,page4L,page4M,page4N,page4O
   mystery_mansion:
     title: Mystery Mansion
+    title-fr: "Manoir Mystère"
     first_page: page1
     terminal_page_ids: page4A,page4B,page4C,page4D,page4E,page4F,page4G,page4H,page4I,page4J,page4K,page4L,page4M,page4N
   dinoquest_journey:
     title: "DinoQuest"
+    title-fr: "DinoQuest"
     subtitle: "Journey through the Jurassic"
+    subtitle-fr: "Voyage à travers le Jurassique"
     first_page: page1
+    icon: list-icon.png
     terminal_page_ids: page4A,page4B,page4C,page4D,page4E,page4F,page4G,page4H,page4I,page4J,page4K,page4L,page4M,page4N,page4O,page4P,page4Q,page4R
   magic_forest_quest:
     title: "Magic Forest Quest"
+    title-fr: "Magic Forest Quest"
     first_page: page1
     icon: list-icon.png
     background_sound_filename: background-8s.mp3

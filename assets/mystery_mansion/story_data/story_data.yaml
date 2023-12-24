@@ -6,78 +6,98 @@ pages:
 
   page1:
     text: "You're in front of a mysterious mansion. What do you want to do?"
+    text-fr: "Vous êtes devant un manoir mystérieux. Que voulez-vous faire?"
     imageFileName: "cover_image.jpg"
     choices:
       choice1:
         text: "Enter the mansion"
+        text-fr: "Entrez dans le manoir"
         nextPageId: "page2A"
       choice2:
         text: "Ring the doorbell"
+        text-fr: "Sonner à la porte"
         nextPageId: "page2B"
 
   # Level 2
 
   page2A:
     text: "You enter the mansion. It's dark inside. What's your next move?"
+    text-fr: "Vous entrez dans le manoir. Il fait sombre à l'intérieur. Quelle est votre prochaine étape?"
     imageFileName: "cover_image.jpg"
     choices:
       choice1:
         text: "Explore the grand hallway"
+        text-fr: "Explorez le grand hall"
         nextPageId: "page3A"
       choice2:
         text: "Check the spooky library"
+        text-fr: "Vérifiez la bibliothèque effrayante"
         nextPageId: "page3B"
       choice3:
         text: "Go up the creaky stairs"
+        text-fr: "Montez les escaliers grinçants"
         nextPageId: "page3C"
 
   page2B:
     text: "You ring the doorbell, and the door slowly opens. What's your next move?"
+    text-fr: "Vous sonnez à la porte et la porte s'ouvre lentement. Quelle est votre prochaine étape?"
     imageFileName: "cover_image.jpg"
     choices:
       choice1:
         text: "Step inside cautiously"
+        text-fr: "Entrez prudemment"
         nextPageId: "page3D"
       choice2:
         text: "Call out 'Hello'"
+        text-fr: "Appelez 'Bonjour'"
         nextPageId: "page3E"
       choice3:
         text: "Wait outside"
+        text-fr: "Attendez dehors"
         nextPageId: "page3F"
 
   # Level 3
 
   page3A:
     text: "You explore the grand hallway. It has many doors. What's your next move?"
+    text-fr: "Vous explorez le grand hall. Il a beaucoup de portes. Quelle est votre prochaine étape?"
     imageFileName: "cover_image.jpg"
     choices:
       choice1:
         text: "Open the golden door"
+        text-fr: "Ouvrez la porte dorée"
         nextPageId: "page4A"
       choice2:
         text: "Investigate the mysterious painting"
+        text-fr: "Enquêter sur la peinture mystérieuse"
         nextPageId: "page4B"
 
   page3B:
     text: "You check the spooky library. There are ancient books. What's your next adventure?"
+    text-fr: "Vous vérifiez la bibliothèque effrayante. Il y a des livres anciens. Quelle est votre prochaine aventure?"
     imageFileName: "cover_image.jpg"
     choices:
       choice1:
         text: "Read the dusty spellbook"
+        text-fr: "Lisez le livre de sorts poussiéreux"
         nextPageId: "page4C"
       choice2:
         text: "Search for hidden passages"
+        text-fr: "Recherche de passages cachés"
         nextPageId: "page4D"
 
   page3C:
     text: "You go up the creaky stairs. They lead to a dark corridor. What's your next move?"
+    text-fr: "Vous montez les escaliers grinçants. Ils mènent à un couloir sombre. Quelle est votre prochaine étape?"
     imageFileName: "cover_image.jpg"
     choices:
       choice1:
         text: "Enter the mysterious room"
+        text-fr: "Entrez dans la pièce mystérieuse"
         nextPageId: "page4E"
       choice2:
         text: "Follow the flickering candlelight"
+        text-fr: "Suivez la lumière vacillante de la bougie"
         nextPageId: "page4F"
       choice3:
         text: "Go back downstairs"
@@ -85,108 +105,132 @@ pages:
 
   page3D:
     text: "You step inside cautiously. The room is filled with antique furniture. What's your next adventure?"
+    text-fr: "Vous entrez prudemment. La pièce est remplie de meubles anciens. Quelle est votre prochaine aventure?"
     imageFileName: "cover_image.jpg"
     choices:
       choice1:
         text: "Examine the dusty piano"
+        text-fr: "Examinez le piano poussiéreux"
         nextPageId: "page4H"
       choice2:
         text: "Check the old portraits"
+        text-fr: "Vérifiez les vieux portraits"
         nextPageId: "page4I"
 
   page3E:
     text: "You call out 'Hello.' No response. What's your next move?"
+    text-fr: "Vous appelez 'Bonjour'. Pas de réponse. Quelle est votre prochaine étape?"
     imageFileName: "cover_image.jpg"
     choices:
       choice1:
         text: "Continue exploring the mansion"
+        text-fr: "Continuez à explorer le manoir"
         nextPageId: "page4J"
       choice2:
         text: "Check the backyard"
+        text-fr: "Vérifiez la cour arrière"
         nextPageId: "page4K"
 
   page3F:
     text: "You wait outside. The door slowly closes. What's your next adventure?"
+    text-fr: "Vous attendez dehors. La porte se ferme lentement. Quelle est votre prochaine aventure?"
     imageFileName: "cover_image.jpg"
     choices:
       choice1:
         text: "Knock on the door again"
+        text-fr: "Frappez à nouveau à la porte"
         nextPageId: "page4L"
       choice2:
         text: "Look through the windows"
+        text-fr: "Regardez par les fenêtres"
         nextPageId: "page4M"
       choice3:
         text: "Leave the mansion"
+        text-fr: "Quittez le manoir"
         nextPageId: "page4N"
 
   # Level 4 (Terminal Pages)
 
   page4A:
     text: "You open the golden door and discover a hidden treasure room. Congratulations, you're a master treasure hunter!"
+    text-fr: "Vous ouvrez la porte dorée et découvrez une salle au trésor cachée. Félicitations, vous êtes un maître chasseur de trésors!"
     isTerminal: true
     imageFileName: "cover_image.jpg"
 
   page4B:
     text: "You investigate the mysterious painting and find a secret passage. Congratulations, you're a skilled detective!"
+    text-fr: "Vous enquêtez sur la peinture mystérieuse et trouvez un passage secret. Félicitations, vous êtes un détective qualifié!"
     isTerminal: true
     imageFileName: "cover_image.jpg"
 
   page4C:
     text: "You read the dusty spellbook and gain magical powers. Congratulations, you're a mystical wizard!"
+    text-fr: "Vous lisez le livre de sorts poussiéreux et gagnez des pouvoirs magiques. Félicitations, vous êtes un sorcier mystique!"
     isTerminal: true
     imageFileName: "cover_image.jpg"
 
   page4D:
     text: "You search for hidden passages and unveil a hidden library. Congratulations, you're a secret librarian!"
+    text-fr: "Vous recherchez des passages cachés et dévoilez une bibliothèque cachée. Félicitations, vous êtes un bibliothécaire secret!"
     isTerminal: true
     imageFileName: "cover_image.jpg"
 
   page4E:
     text: "You enter the mysterious room and solve a puzzle. Congratulations, you're a puzzle-solving expert!"
+    text-fr: "Vous entrez dans la pièce mystérieuse et résolvez une énigme. Félicitations, vous êtes un expert en résolution de problèmes!"
     isTerminal: true
     imageFileName: "cover_image.jpg"
 
   page4F:
     text: "You follow the flickering candlelight and discover a haunted ballroom. Congratulations, you're a brave ghost hunter!"
+    text-fr: "Vous suivez la lumière vacillante de la bougie et découvrez une salle de bal hantée. Félicitations, vous êtes un chasseur de fantômes courageux!"
     isTerminal: true
     imageFileName: "cover_image.jpg"
 
   page4G:
     text: "You go back downstairs and exit the mansion. Congratulations, you're a cautious adventurer!"
+    text-fr: "Vous redescendez et sortez du manoir. Félicitations, vous êtes un aventurier prudent!"
     isTerminal: true
     imageFileName: "cover_image.jpg"
 
   page4H:
     text: "You examine the dusty piano and play a haunting melody. Congratulations, you're a musical maestro!"
+    text-fr: "Vous examinez le piano poussiéreux et jouez une mélodie hantée. Félicitations, vous êtes un maestro musical!"
     isTerminal: true
     imageFileName: "cover_image.jpg"
 
   page4I:
     text: "You check the old portraits and reveal a family secret. Congratulations, you're a skilled investigator!"
+    text-fr: "Vous vérifiez les vieux portraits et révélez un secret de famille. Félicitations, vous êtes un enquêteur qualifié!"
     isTerminal: true
     imageFileName: "cover_image.jpg"
 
   page4J:
     text: "You continue exploring the mansion and uncover its mysteries. Congratulations, you're a true explorer!"
+    text-fr: "Vous continuez à explorer le manoir et découvrez ses mystères. Félicitations, vous êtes un vrai explorateur!"
     isTerminal: true
     imageFileName: "cover_image.jpg"
 
   page4K:
     text: "You check the backyard and find a hidden garden. Congratulations, you're a nature detective!"
+    text-fr: "Vous vérifiez la cour arrière et trouvez un jardin caché. Félicitations, vous êtes un détective de la nature!"
     isTerminal: true
     imageFileName: "cover_image.jpg"
 
   page4L:
     text: "You knock on the door again and meet the mysterious owner. Congratulations, you're a persistent investigator!"
+    text-fr: "Vous frappez à nouveau à la porte et rencontrez le mystérieux propriétaire. Félicitations, vous êtes un enquêteur persistant!"
     isTerminal: true
     imageFileName: "cover_image.jpg"
 
   page4M:
     text: "You look through the windows and see a magical night sky. Congratulations, you're a stargazing enthusiast!"
+    text-fr: "Vous regardez par les fenêtres et voyez un ciel nocturne magique. Félicitations, vous êtes un passionné d'observation des étoiles!"
     isTerminal: true
     imageFileName: "cover_image.jpg"
 
   page4N:
     text: "You leave the mansion and venture into the moonlit night. Congratulations, you're an adventurer with a sense of mystery!"
+    text-fr: "Vous quittez le manoir et vous aventurez dans la nuit éclairée par la lune. Félicitations, vous êtes un aventurier avec un sens du mystère!"
     isTerminal: true
     imageFileName: "cover_image.jpg"
