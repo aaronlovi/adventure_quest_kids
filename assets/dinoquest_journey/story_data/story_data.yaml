@@ -56,9 +56,10 @@ pages:
         borderColor: '0xFFEEE96D'
 
   page2B:
-    text: "You cross the vast plains where dinosaurs roam freely. What's your next adventure?"
-    text-fr: "Vous traversez les vastes plaines où les dinosaures errent librement. Quelle est votre prochaine aventure?"
-    imageFileName: "2b.jpg"
+    text: You cross the vast plains where dinosaurs roam freely. What's your next adventure?
+    text-fr: Vous traversez les vastes plaines où les dinosaures errent librement. Quelle est votre prochaine aventure?
+    imageFileName: 2b.jpg
+    speechFileName: 2b.mp3
     choices:
       choice1:
         text: "Encounter a herd of velociraptors"
@@ -264,20 +265,22 @@ pages:
         borderColor: '0xFF00AA00'
 
   page3I:
-    text: "You rest under the Enchanted Tree, feeling its soothing magic. What's your next move?"
-    text-fr: "Vous vous reposez sous l'arbre enchanté, sentant sa magie apaisante. Quel est votre prochain mouvement?"
-    imageFileName: "3i.jpg"
+    text: "You venture deeper into the lush jungle, surrounded by towering prehistoric trees. Suddenly, you stumble upon a hidden treasure chest half-buried in the soil. What do you do?"
+    text-fr: "Vous vous aventurez plus profondément dans la jungle luxuriante, entourée d'arbres préhistoriques imposants. Soudain, vous tombez sur un coffre au trésor caché à moitié enterré dans le sol. Que fais-tu?"
+    imageFileName: 3i.jpg
     speechFileName: 3i.mp3
     choices:
       choice1:
-        text: "Listen to the whispers of the Enchanted Tree"
-        text-fr: "Écoutez les murmures de l'arbre enchanté"
-        nextPageId: "page4Q"
+        text: "Leave it and continue exploring"
+        text-fr: "Laissez-le et continuez à explorer"
+        nextPageId: "page4T"
+        rectangle: { left: 0.43, right: 0.59, top: 0.50, bottom: 0.73 }
         borderColor: '0xFFEEE96D'
       choice2:
-        text: "Ask the tree about the Magic Crystal location"
-        text-fr: "Demandez à l'arbre l'emplacement du cristal magique"
-        nextPageId: "page4R"
+        text: "Open the treasure chest"
+        text-fr: "Ouvrez le coffre au trésor"
+        nextPageId: "page4S"
+        rectangle: { left: 0.58, right: 0.89, top: 0.63, bottom: 0.89 }
         borderColor: '0xFF00AA00'
 
   # Level 4 (Terminal Pages)
@@ -405,5 +408,19 @@ pages:
     text: "You continue exploring the cave system and find a hidden dino-sanctuary. Congratulations, you're a cave sanctuary discoverer!"
     text-fr: "Vous continuez à explorer le système de grottes et trouvez un sanctuaire de dinosaures caché. Félicitations, vous êtes un découvreur de sanctuaire de grotte!"
     isTerminal: true
-    imageFileName: "cover_image.jpg"
-    speechFileName: cover_image.mp3
+    imageFileName: "4r.jpg"
+    speechFileName: 4r.mp3
+  
+  page4S:
+    text: "You carefully open the treasure chest and find it filled with sparkling gemstones and ancient artifacts. Congratulations, you're a legendary treasure hunter!"
+    text-fr: "Vous ouvrez soigneusement le coffre au trésor et le trouvez rempli de pierres précieuses scintillantes et d'artefacts anciens. Votre découverte vous rend riche et célèbre, et vous devenez un archéologue renommé. Félicitations, vous avez terminé votre DinoQuest!"
+    isTerminal: true
+    imageFileName: 4s.jpg
+    speechFileName: 4s.mp3
+
+  page4T:
+    text: "You leave the treasure chest alone and continue exploring. You find a friendly dinosaur that guides you safely back home. Congratulations, you're a fearless explorer with a faithful dino companion!"
+    text-fr: "Vous laissez le coffre au trésor tranquille et continuez à explorer. Vous trouvez un dinosaure amical qui vous guide en toute sécurité chez vous. Félicitations, vous êtes un explorateur intrépide avec un compagnon de dinosaure fidèle! Votre découverte vous rend riche et célèbre, et vous devenez un archéologue renommé. Félicitations, vous avez terminé votre DinoQuest!"
+    isTerminal: true
+    imageFileName: 4t.jpg
+    speechFileName: 4t.mp3
