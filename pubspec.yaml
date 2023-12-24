@@ -105,6 +105,7 @@ flutter:
     - assets/adventure_in_the_jungle/speech/
     - assets/adventure_in_the_jungle/story_data/
     - assets/dinoquest_journey/images/
+    - assets/dinoquest_journey/speech/
     - assets/dinoquest_journey/story_data/
     - assets/mystery_mansion/images/
     - assets/mystery_mansion/story_data/

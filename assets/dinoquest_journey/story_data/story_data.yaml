@@ -8,38 +8,52 @@ pages:
     text: "You find yourself in a prehistoric world filled with dinosaurs. What do you want to do?"
     text-fr: "Vous vous retrouvez dans un monde préhistorique rempli de dinosaures. Que voulez-vous faire?"
     imageFileName: "1.jpg"
+    speechFileName: "1.mp3"
     choices:
       choice1:
         text: "Explore the dense jungle"
         text-fr: "Explorez la jungle dense"
         nextPageId: "page2A"
+        rectangle: { left: 0.04, right: 0.43, top: 0.45, bottom: 0.65 }
+        borderColor: '0xFF00AA00'
       choice2:
-        text: "Cross the vast plains"
-        text-fr: "Traversez les vastes plaines"
-        nextPageId: "page2B"
-      choice3:
         text: "Climb the rocky mountains"
         text-fr: "Grimpez les montagnes rocheuses"
         nextPageId: "page2C"
+        rectangle: { left: 0.75, right: 0.88, top: 0.15, bottom: 0.44 }
+        borderColor: '0xFFAA494F'
+      choice3:
+        text: "Cross the vast plains"
+        text-fr: "Traversez les vastes plaines"
+        nextPageId: "page2B"
+        rectangle: { left: 0.62, right: 0.97, top: 0.51, bottom: 0.65 }
+        borderColor: '0xFFEEE96D'
 
   # Level 2
   page2A:
     text: "You explore the dense jungle, home to various dinosaurs. What's your next move?"
     text-fr: "Vous explorez la jungle dense, foyer de divers dinosaures. Quel est votre prochain mouvement?"
     imageFileName: "2a.jpg"
+    speechFileName: "2a.mp3"
     choices:
       choice1:
-        text: "Discover a hidden dinosaur nest"
-        text-fr: "Découvrez un nid de dinosaures caché"
-        nextPageId: "page3A"
-      choice2:
         text: "Observe a group of herbivores"
         text-fr: "Observer un groupe d'herbivores"
         nextPageId: "page3B"
+        rectangle: { left: 0.08, right: 0.62, top: 0.26, bottom: 0.58 }
+        borderColor: '0xFFAA494F'
+      choice2:
+        text: "Discover a hidden dinosaur nest"
+        text-fr: "Découvrez un nid de dinosaures caché"
+        nextPageId: "page3A"
+        rectangle: { left: 0.21, right: 0.67, top: 0.69, bottom: 0.88 }
+        borderColor: '0xFF00AA00'
       choice3:
         text: "Navigate through dinosaur vines"
         text-fr: "Naviguez à travers les vignes de dinosaures"
         nextPageId: "page3C"
+        rectangle: { left: 0.56, right: 0.96, top: 0.05, bottom: 0.36 }
+        borderColor: '0xFFEEE96D'
 
   page2B:
     text: "You cross the vast plains where dinosaurs roam freely. What's your next adventure?"
@@ -50,32 +64,45 @@ pages:
         text: "Encounter a herd of velociraptors"
         text-fr: "Rencontrer un troupeau de vélociraptors"
         nextPageId: "page3D"
+        rectangle: { left: 0.46, right: 0.96, top: 0.35, bottom: 0.65 }
+        borderColor: '0xFFAA494F'
       choice2:
         text: "Search for a watering hole"
         text-fr: "Recherchez un point d'eau"
         nextPageId: "page3E"
+        rectangle: { left: 0.45, right: 0.96, top: 0.75, bottom: 0.92 }
+        borderColor: '0xFFEEE96D'
       choice3:
         text: "Follow a distant roar"
         text-fr: "Suivre un rugissement lointain"
         nextPageId: "page3F"
+        rectangle: { left: 0.05, right: 0.26, top: 0.20, bottom: 0.40 }
+        borderColor: '0xFF00AA00'
 
   page2C:
     text: "You climb the rocky mountains, where flying dinosaurs soar above. What's your next move?"
     text-fr: "Vous escaladez les montagnes rocheuses, où les dinosaures volants planent au-dessus. Quel est votre prochain mouvement?"
     imageFileName: "2c.jpg"
+    speechFileName: 2c.mp3
     choices:
       choice1:
         text: "Glide with the pterodactyls"
         text-fr: "Glissez avec les ptérodactyles"
         nextPageId: "page3G"
+        rectangle: { left: 0.46, right: 0.98, top: 0.08, bottom: 0.39 }
+        borderColor: '0xFFAA494F'
       choice2:
         text: "Explore the mountain caves"
         text-fr: "Explorez les grottes de montagne"
         nextPageId: "page3H"
+        rectangle: { left: 0.02, right: 0.12, top: 0.57, bottom: 0.73 }
+        borderColor: '0xFF00AA00'
       choice3:
         text: "Descend to the dinosaur-filled valley"
         text-fr: "Descendez dans la vallée remplie de dinosaures"
         nextPageId: "page3I"
+        rectangle: { left: 0.53, right: 0.97, top: 0.74, bottom: 0.95 }
+        borderColor: '0xFFEEE96D'
 
   # Level 3
 
@@ -83,135 +110,175 @@ pages:
     text: "You discover a hidden dinosaur nest. It's filled with dinosaur eggs. What's your next move?"
     text-fr: "Vous découvrez un nid de dinosaures caché. Il est rempli d'œufs de dinosaures. Quel est votre prochain mouvement?"
     imageFileName: "3a.jpg"
+    speechFileName: 3a.mp3
     choices:
       choice1:
         text: "Observe the baby dinosaurs hatching"
         text-fr: "Observer l'éclosion des bébés dinosaures"
         nextPageId: "page4A"
+        rectangle: { left: 0.35, right: 0.74, top: 0.52, bottom: 0.77 }
+        borderColor: '0xFF00AA00'
       choice2:
         text: "Gently touch a dinosaur egg"
         text-fr: "Touchez doucement un œuf de dinosaure"
         nextPageId: "page4B"
+        borderColor: '0xFFEEE96D'
       choice3:
         text: "Quietly leave the nest and explore more"
         text-fr: "Quittez silencieusement le nid et explorez plus"
         nextPageId: "page4C"
+        borderColor: '0xFFAA494F'
 
   page3B:
     text: "You observe a group of herbivores peacefully grazing. What's your next adventure?"
     text-fr: "Vous observez un groupe d'herbivores paissant paisiblement. Quelle est votre prochaine aventure?"
     imageFileName: "3b.jpg"
+    speechFileName: 3b.mp3
     choices:
       choice1:
         text: "Join the herbivores and mimic their eating habits"
         text-fr: "Rejoignez les herbivores et imitez leurs habitudes alimentaires"
         nextPageId: "page4D"
+        rectangle: { left: 0.48, right: 0.92, top: 0.23, bottom: 0.44 }
+        borderColor: '0xFF00AA00'
       choice2:
         text: "Follow them to a hidden oasis"
         text-fr: "Suivez-les jusqu'à une oasis cachée"
         nextPageId: "page4E"
+        rectangle: { left: 0.40, right: 0.72, top: 0.62, bottom: 0.73 }
+        borderColor: '0xFFEEE96D'
       choice3:
         text: "Climb a tree to watch from above"
         text-fr: "Grimpez dans un arbre pour regarder d'en haut"
         nextPageId: "page4F"
+        rectangle: { left: 0.02, right: 0.18, top: 0.08, bottom: 0.57 }
+        borderColor: '0xFFAA494F'
 
   page3C:
     text: "You navigate through dinosaur vines. They lead to a mysterious clearing. What's your next move?"
     text-fr: "Vous naviguez à travers les vignes de dinosaures. Ils mènent à une clairière mystérieuse. Quel est votre prochain mouvement?"
     imageFileName: "3c.jpg"
+    speechFileName: 3c.mp3
     choices:
       choice1:
-        text: "Discover a hidden dinosaur community"
-        text-fr: "Découvrez une communauté de dinosaures cachée"
-        nextPageId: "page4G"
-      choice2:
         text: "Follow the vines deeper into the jungle"
         text-fr: "Suivez les vignes plus profondément dans la jungle"
         nextPageId: "page4H"
+        rectangle: { left: 0.06, right: 0.53, top: 0.05, bottom: 0.26 }
+        borderColor: '0xFFEEE96D'
+      choice2:
+        text: "Discover a hidden dinosaur community"
+        text-fr: "Découvrez une communauté de dinosaures cachée"
+        nextPageId: "page4G"
+        rectangle: { left: 0.46, right: 0.77, top: 0.24, bottom: 0.54 }
+        borderColor: '0xFF00AA00'
 
   page3D:
     text: "You encounter a herd of velociraptors. They seem curious. What's your next adventure?"
     text-fr: "Vous rencontrez un troupeau de vélociraptors. Ils semblent curieux. Quelle est votre prochaine aventure?"
     imageFileName: "3d.jpg"
+    speechFileName: 3d.mp3
     choices:
       choice1:
         text: "Stand still and observe them"
         text-fr: "Restez immobile et observez-les"
         nextPageId: "page4I"
+        borderColor: '0xFF00AA00'
       choice2:
         text: "Slowly back away and find another route"
         text-fr: "Reculez lentement et trouvez un autre itinéraire"
         nextPageId: "page4J"
+        borderColor: '0xFFEEE96D'
 
   page3E:
     text: "You search for a watering hole and find a dinosaur oasis. What's your next move?"
     text-fr: "Vous recherchez un point d'eau et trouvez une oasis de dinosaures. Quel est votre prochain mouvement?"
     imageFileName: "3e.jpg"
+    speechFileName: 3e.mp3
     choices:
       choice1:
-        text: "Join the dinosaurs for a refreshing drink"
-        text-fr: "Rejoignez les dinosaures pour une boisson rafraîchissante"
-        nextPageId: "page4K"
-      choice2:
         text: "Explore the surrounding area"
         text-fr: "Explorez les environs"
         nextPageId: "page4L"
+        rectangle: { left: 0.32, right: 0.65, top: 0.42, bottom: 0.57 }
+        borderColor: '0xFFAA494F'
+      choice2:
+        text: "Join the dinosaurs for a refreshing drink"
+        text-fr: "Rejoignez les dinosaures pour une boisson rafraîchissante"
+        nextPageId: "page4K"
+        rectangle: { left: 0.09, right: 0.56, top: 0.63, bottom: 0.85 }
+        borderColor: '0xFFEEE96D'
 
   page3F:
     text: "You follow a distant roar and discover a mighty T-Rex. What's your next adventure?"
     text-fr: "Vous suivez un rugissement lointain et découvrez un puissant T-Rex. Quelle est votre prochaine aventure?"
     imageFileName: "3f.jpg"
+    speechFileName: 3f.mp3
     choices:
       choice1:
         text: "Observe the T-Rex from a safe distance"
         text-fr: "Observez le T-Rex à distance de sécurité"
         nextPageId: "page4M"
+        borderColor: '0xFF00AA00'
       choice2:
         text: "Quietly retreat without being noticed"
         text-fr: "Retraite silencieuse sans être remarqué"
         nextPageId: "page4N"
+        borderColor: '0xFFEEE96D'
 
   page3G:
     text: "You glide with the pterodactyls over the mountains. What's your next move?"
     text-fr: "Vous planez avec les ptérodactyles sur les montagnes. Quel est votre prochain mouvement?"
     imageFileName: "3g.jpg"
+    speechFileName: 3g.mp3
     choices:
       choice1:
         text: "Land on a high mountain peak"
         text-fr: "Atterrir sur un pic de montagne élevé"
         nextPageId: "page4O"
+        rectangle: { left: 0.02, right: 0.13, top: 0.16, bottom: 0.40 }
+        borderColor: '0xFFAA494F'
       choice2:
         text: "Dive down to explore the valley below"
         text-fr: "Plongez pour explorer la vallée ci-dessous"
         nextPageId: "page4P"
+        rectangle: { left: 0.40, right: 0.70, top: 0.73, bottom: 0.96 }
+        borderColor: '0xFFEEE96D'
 
   page3H:
     text: "You explore the mountain caves and discover ancient dinosaur paintings. What's your next adventure?"
     text-fr: "Vous explorez les grottes de montagne et découvrez des peintures de dinosaures anciens. Quelle est votre prochaine aventure?"
     imageFileName: "3h.jpg"
+    speechFileName: 3h.mp3
     choices:
       choice1:
         text: "Try to decipher the meaning of the paintings"
         text-fr: "Essayez de déchiffrer la signification des peintures"
         nextPageId: "page4Q"
+        rectangle: { left: 0.68, right: 0.98, top: 0.08, bottom: 0.40 }
+        borderColor: '0xFFEEE96D'
       choice2:
         text: "Continue exploring the cave system"
         text-fr: "Continuez à explorer le système de grottes"
         nextPageId: "page4R"
+        borderColor: '0xFF00AA00'
 
   page3I:
     text: "You rest under the Enchanted Tree, feeling its soothing magic. What's your next move?"
     text-fr: "Vous vous reposez sous l'arbre enchanté, sentant sa magie apaisante. Quel est votre prochain mouvement?"
     imageFileName: "3i.jpg"
+    speechFileName: 3i.mp3
     choices:
       choice1:
         text: "Listen to the whispers of the Enchanted Tree"
         text-fr: "Écoutez les murmures de l'arbre enchanté"
         nextPageId: "page4Q"
+        borderColor: '0xFFEEE96D'
       choice2:
         text: "Ask the tree about the Magic Crystal location"
         text-fr: "Demandez à l'arbre l'emplacement du cristal magique"
         nextPageId: "page4R"
+        borderColor: '0xFF00AA00'
 
   # Level 4 (Terminal Pages)
 
@@ -220,105 +287,123 @@ pages:
     text-fr: "Vous observez l'éclosion des bébés dinosaures et assistez au miracle de la nouvelle vie. Félicitations, vous êtes un gardien de la nurserie de dinosaures!"
     isTerminal: true
     imageFileName: "4a.jpg"
+    speechFileName: 4a.mp3
 
   page4B:
     text: "You gently touch a dinosaur egg, and it responds with a gentle vibration. Congratulations, you're a dino-whisperer!"
     text-fr: "Vous touchez doucement un œuf de dinosaure, et il répond par une douce vibration. Félicitations, vous êtes un chuchoteur de dinosaures!"
     isTerminal: true
     imageFileName: "4b.jpg"
+    speechFileName: 4b.mp3
 
   page4C:
     text: "You quietly leave the nest and continue exploring. You discover a hidden canyon. Congratulations, you're a canyon explorer!"
     text-fr: "Vous quittez silencieusement le nid et continuez à explorer. Vous découvrez un canyon caché. Félicitations, vous êtes un explorateur de canyon!"
     isTerminal: true
     imageFileName: "4c.jpg"
+    speechFileName: 4c.mp3
 
   page4D:
     text: "You join the herbivores and mimic their eating habits, creating a bond. Congratulations, you're a herbivore companion!"
     text-fr: "Vous rejoignez les herbivores et imitez leurs habitudes alimentaires, créant un lien. Félicitations, vous êtes un compagnon herbivore!"
     isTerminal: true
     imageFileName: "4d.jpg"
+    speechFileName: 4d.mp3
 
   page4E:
     text: "You follow the herbivores to a hidden oasis and discover a peaceful haven. Congratulations, you're an oasis explorer!"
     text-fr: "Vous suivez les herbivores jusqu'à une oasis cachée et découvrez un havre de paix. Félicitations, vous êtes un explorateur d'oasis!"
     isTerminal: true
     imageFileName: "4e.jpg"
+    speechFileName: 4e.mp3
 
   page4F:
     text: "You climb a tree to watch the herbivores from above. Congratulations, you're a tree-perched observer!"
     text-fr: "Vous grimpez dans un arbre pour observer les herbivores d'en haut. Félicitations, vous êtes un observateur perché sur un arbre!"
     isTerminal: true
     imageFileName: "4f.jpg"
+    speechFileName: 4f.mp3
 
   page4G:
     text: "You discover a hidden dinosaur community and become part of their prehistoric world. Congratulations, you're a dino-community member!"
     text-fr: "Vous découvrez une communauté de dinosaures cachée et faites partie de leur monde préhistorique. Félicitations, vous êtes un membre de la communauté de dinosaures!"
     isTerminal: true
     imageFileName: "4g.jpg"
+    speechFileName: 4g.mp3
 
   page4H:
     text: "You follow the vines deeper into the jungle and uncover a hidden dinosaur temple. Congratulations, you're a jungle temple explorer!"
     text-fr: "Vous suivez les vignes plus profondément dans la jungle et découvrez un temple de dinosaures caché. Félicitations, vous êtes un explorateur de temple de jungle!"
     isTerminal: true
     imageFileName: "4h.jpg"
+    speechFileName: 4h.mp3
 
   page4I:
     text: "You stand still and observe the velociraptors. They acknowledge your presence and move on. Congratulations, you're a dino-observer!"
     text-fr: "Vous restez immobile et observez les vélociraptors. Ils reconnaissent votre présence et passent à autre chose. Félicitations, vous êtes un dino-observateur!"
     isTerminal: true
     imageFileName: "4i.jpg"
+    speechFileName: 4i.mp3
 
   page4J:
     text: "You slowly back away from the velociraptors and find an alternate path. Congratulations, you're a dino-safety expert!"
     text-fr: "Vous reculez lentement des vélociraptors et trouvez un chemin alternatif. Félicitations, vous êtes un expert en sécurité dino!"
     isTerminal: true
     imageFileName: "4j.jpg"
+    speechFileName: 4j.mp3
 
   page4K:
     text: "You join the dinosaurs for a refreshing drink at the oasis. Congratulations, you're a dino-oasis companion!"
     text-fr: "Vous rejoignez les dinosaures pour une boisson rafraîchissante à l'oasis. Félicitations, vous êtes un compagnon d'oasis de dinosaures!"
     isTerminal: true
     imageFileName: "4k.jpg"
+    speechFileName: 4k.mp3
 
   page4L:
     text: "You explore the surrounding area and discover dinosaur footprints leading to a hidden cave. Congratulations, you're a cave explorer!"
     text-fr: "Vous explorez les environs et découvrez des empreintes de dinosaures menant à une grotte cachée. Félicitations, vous êtes un explorateur de grotte!"
     isTerminal: true
     imageFileName: "4l.jpg"
+    speechFileName: 4l.mp3
 
   page4M:
     text: "You observe the T-Rex from a safe distance and marvel at its majesty. Congratulations, you're a T-Rex admirer!"
     text-fr: "Vous observez le T-Rex à distance de sécurité et vous émerveillez de sa majesté. Félicitations, vous êtes un admirateur de T-Rex!"
     isTerminal: true
     imageFileName: "4m.jpg"
+    speechFileName: 4m.mp3
 
   page4N:
     text: "You quietly retreat without being noticed by the T-Rex. Congratulations, you're a stealthy dino-explorer!"
     text-fr: "Vous vous retirez silencieusement sans être remarqué par le T-Rex. Félicitations, vous êtes un explorateur de dinosaures furtif!"
     isTerminal: true
     imageFileName: "4n.jpg"
+    speechFileName: 4n.mp3
 
   page4O:
     text: "You land on a high mountain peak and enjoy the breathtaking view. Congratulations, you're a mountain explorer!"
     text-fr: "Vous atterrissez sur un pic de montagne élevé et profitez de la vue imprenable. Félicitations, vous êtes un explorateur de montagne!"
     isTerminal: true
     imageFileName: "4o.jpg"
+    speechFileName: 4o.mp3
 
   page4P:
     text: "You dive down to explore the valley below and discover a hidden dino-canyon. Congratulations, you're a valley explorer!"
     text-fr: "Vous plongez pour explorer la vallée ci-dessous et découvrez un canyon de dinosaures caché. Félicitations, vous êtes un explorateur de vallée!"
     isTerminal: true
     imageFileName: "4p.jpg"
+    speechFileName: 4p.mp3
 
   page4Q:
     text: "You try to decipher the meaning of the ancient dinosaur paintings and uncover a prehistoric secret. Congratulations, you're a dino-historian!"
     text-fr: "Vous essayez de déchiffrer la signification des peintures de dinosaures anciens et découvrez un secret préhistorique. Félicitations, vous êtes un dino-historien!"
     isTerminal: true
     imageFileName: "4q.jpg"
+    speechFileName: 4q.mp3
 
   page4R:
     text: "You continue exploring the cave system and find a hidden dino-sanctuary. Congratulations, you're a cave sanctuary discoverer!"
     text-fr: "Vous continuez à explorer le système de grottes et trouvez un sanctuaire de dinosaures caché. Félicitations, vous êtes un découvreur de sanctuaire de grotte!"
     isTerminal: true
     imageFileName: "cover_image.jpg"
+    speechFileName: cover_image.mp3
