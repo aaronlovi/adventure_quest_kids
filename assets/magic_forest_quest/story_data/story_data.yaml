@@ -14,14 +14,20 @@ pages:
         text: "Explore the Enchanted Grove"
         text-fr: "Explorez le bosquet enchanté"
         nextPageId: "page2A"
+        rectangle: { left: 0.52, right: 0.94, top: 0.21, bottom: 0.55 }
+        borderColor: '0xFF00AA00'
       choice2:
         text: "Follow the Whimsical River"
         text-fr: "Suivez la rivière fantaisiste"
         nextPageId: "page2B"
+        rectangle: { left: 0.02, right: 0.51, top: 0.79, bottom: 0.92 }
+        borderColor: '0xFFAA494F'
       choice3:
         text: "Enter the Mystic Meadow"
         text-fr: "Entrez dans la prairie mystique"
         nextPageId: "page2C"
+        rectangle: { left: 0.02, right: 0.39, top: 0.39, bottom: 0.56 }
+        borderColor: '0xFFEEE96D'
 
   # Level 2
 
@@ -35,14 +41,20 @@ pages:
         text: "Meet the talking squirrels"
         text-fr: "Rencontrez les écureuils qui parlent"
         nextPageId: "page3A"
+        rectangle: { left: 0.02, right: 0.24, top: 0.05, bottom: 0.33 }
+        borderColor: '0xFFEEE96D'
       choice2:
-        text: "Discover a hidden fairy circle"
-        text-fr: "Découvrez un cercle de fées caché"
-        nextPageId: "page3B"
-      choice3:
         text: "Climb the Giant Oak Tree"
         text-fr: "Grimpez sur le chêne géant"
         nextPageId: "page3C"
+        rectangle: { left: 0.63, right: 0.90, top: 0.18, bottom: 0.50 }
+        borderColor: '0xFF00AA00'
+      choice3:
+        text: "Discover a hidden fairy circle"
+        text-fr: "Découvrez un cercle de fées caché"
+        nextPageId: "page3B"
+        rectangle: { left: 0.44, right: 0.92, top: 0.60, bottom: 0.82 }
+        borderColor: '0xFFAA494F'
 
   page2B:
     text: "You follow the Whimsical River, its water sparkling with magic. What's your next adventure?"
@@ -54,14 +66,20 @@ pages:
         text: "Ride on a friendly water sprite"
         text-fr: "Montez sur un sprite d'eau amical"
         nextPageId: "page3D"
+        rectangle: { left: 0.05, right: 0.25, top: 0.38, bottom: 0.55 }
+        borderColor: '0xFFEEE96D'
       choice2:
         text: "Explore the Crystal Cave behind the waterfall"
         text-fr: "Explorez la grotte de cristal derrière la cascade"
         nextPageId: "page3E"
+        rectangle: { left: 0.52, right: 0.82, top: 0.05, bottom: 0.35 }
+        borderColor: '0xFF00AA00'
       choice3:
         text: "Build a bridge with magical stones"
         text-fr: "Construisez un pont avec des pierres magiques"
         nextPageId: "page3F"
+        rectangle: { left: 0.32, right: 0.88, top: 0.55, bottom: 0.72 }
+        borderColor: '0xFFAA494F'
 
   page2C:
     text: "You enter the Mystic Meadow, where flowers bloom in different colors. What's your next move?"
@@ -73,14 +91,20 @@ pages:
         text: "Dance with the Meadow Fairies"
         text-fr: "Dansez avec les fées de la prairie"
         nextPageId: "page3G"
+        rectangle: { left: 0.65, right: 0.93, top: 0.57, bottom: 0.80 }
+        borderColor: '0xFFEEE96D'
       choice2:
         text: "Follow the Glow Butterflies"
         text-fr: "Suivez les papillons lumineux"
         nextPageId: "page3H"
+        rectangle: { left: 0.32, right: 0.70, top: 0.04, bottom: 0.25 }
+        borderColor: '0xFF00AA00'
       choice3:
         text: "Rest under the Enchanted Tree"
         text-fr: "Reposez-vous sous l'arbre enchanté"
         nextPageId: "page3I"
+        rectangle: { left: 0.14, right: 0.49, top: 0.48, bottom: 0.76 }
+        borderColor: '0xFFAA494F'
 
   # Level 3
 
@@ -94,10 +118,12 @@ pages:
         text: "Follow the squirrel guide to the Hidden Glade"
         text-fr: "Suivez le guide de l'écureuil jusqu'à la clairière cachée"
         nextPageId: "page4A"
+        borderColor: '0xFF00AA00'
       choice2:
         text: "Ask the squirrels about the Magic Crystal location"
         text-fr: "Demandez aux écureuils l'emplacement du cristal magique"
         nextPageId: "page4B"
+        borderColor: '0xFFAA494F'
 
   page3B:
     text: "You discover a hidden fairy circle. The fairies invite you to join their dance. What's your next adventure?"
@@ -109,10 +135,12 @@ pages:
         text: "Join the fairy dance"
         text-fr: "Rejoignez la danse des fées"
         nextPageId: "page4C"
+        borderColor: '0xFFEEE96D'
       choice2:
         text: "Ask the fairies about the Magic Crystal location"
         text-fr: "Demandez aux fées l'emplacement du cristal magique"
         nextPageId: "page4D"
+        borderColor: '0xFFAA494F'
 
   page3C:
     text: "You climb the Giant Oak Tree and spot a magical panorama. What's your next move?"
@@ -124,10 +152,12 @@ pages:
         text: "Slide down with a magical leaf"
         text-fr: "Glissez avec une feuille magique"
         nextPageId: "page4E"
+        borderColor: '0xFF00AA00'
       choice2:
         text: "Ask the ancient tree about the Magic Crystal location"
         text-fr: "Demandez à l'ancien arbre l'emplacement du cristal magique"
         nextPageId: "page4F"
+        borderColor: '0xFFAA494F'
 
   page3D:
     text: "You ride on a friendly water sprite, feeling the magic of the river. What's your next adventure?"
@@ -139,10 +169,12 @@ pages:
         text: "Explore the underwater Crystal Cavern"
         text-fr: "Explorez la grotte de cristal sous-marine"
         nextPageId: "page4G"
+        borderColor: '0xFFEEE96D'
       choice2:
         text: "Ask the water sprite about the Magic Crystal location"
         text-fr: "Demandez au sprite d'eau l'emplacement du cristal magique"
         nextPageId: "page4H"
+        borderColor: '0xFFAA494F'
 
   page3E:
     text: "You explore the Crystal Cave behind the waterfall, discovering shimmering crystals. What's your next move?"
@@ -154,10 +186,14 @@ pages:
         text: "Gather some magical crystals"
         text-fr: "Rassemblez quelques cristaux magiques"
         nextPageId: "page4I"
+        rectangle: { left: 0.75, right: 0.98, top: 0.76, bottom: 0.98 }
+        borderColor: '0xFFEEE96D'
       choice2:
         text: "Ask the cave spirits about the Magic Crystal location"
         text-fr: "Demandez aux esprits de la grotte l'emplacement du cristal magique"
         nextPageId: "page4J"
+        rectangle: { left: 0.77, right: 0.98, top: 0.45, bottom: 0.78 }
+        borderColor: '0xFFAA494F'
 
   page3F:
     text: "You build a bridge with magical stones, creating a path across the river. What's your next adventure?"
@@ -169,10 +205,12 @@ pages:
         text: "Cross the bridge to the Whispering Woods"
         text-fr: "Traversez le pont jusqu'au bois chuchotant"
         nextPageId: "page4K"
+        borderColor: '0xFFEEE96D'
       choice2:
         text: "Ask the stones about the Magic Crystal location"
         text-fr: "Demandez aux pierres l'emplacement du cristal magique"
         nextPageId: "page4L"
+        borderColor: '0xFFAA494F'
 
   page3G:
     text: "You dance with the Meadow Fairies, creating a symphony of colors. What's your next move?"
@@ -184,10 +222,14 @@ pages:
         text: "Follow the Glow Butterflies to the Starlight Glade"
         text-fr: "Suivez les papillons lumineux jusqu'à la clairière de la lumière des étoiles"
         nextPageId: "page4M"
+        rectangle: { left: 0.60, right: 0.84, top: 0.21, bottom: 0.38 }
+        borderColor: '0xFFEEE96D'
       choice2:
         text: "Ask the fairies about the Magic Crystal location"
         text-fr: "Demandez aux fées l'emplacement du cristal magique"
         nextPageId: "page4N"
+        rectangle: { left: 0.74, right: 0.93, top: 0.47, bottom: 0.78 }
+        borderColor: '0xFFAA494F'
 
   page3H:
     text: "You follow the Glow Butterflies, who lead you to a magical clearing. What's your next adventure?"
@@ -199,10 +241,14 @@ pages:
         text: "Watch the Glow Butterflies create a constellation"
         text-fr: "Regardez les papillons lumineux créer une constellation"
         nextPageId: "page4O"
+        rectangle: { left: 0.47, right: 0.86, top: 0.11, bottom: 0.45 }
+        borderColor: '0xFFEEE96D'
       choice2:
-        text: "Ask the Glow Butterflies about the Magic Crystal location"
-        text-fr: "Demandez aux papillons lumineux l'emplacement du cristal magique"
+        text: "Ask the Glow Butterflies about the\nMagic Crystal location"
+        text-fr: "Demandez aux papillons lumineux\nl'emplacement du cristal magique"
         nextPageId: "page4P"
+        rectangle: { left: 0.63, right: 0.98, top: 0.66, bottom: 0.98 }
+        borderColor: '0xFFAA494F'
 
   page3I:
     text: "You rest under the Enchanted Tree, feeling its soothing magic. What's your next move?"
@@ -214,11 +260,12 @@ pages:
         text: "Listen to the whispers of the Enchanted Tree"
         text-fr: "Écoutez les murmures de l'arbre enchanté"
         nextPageId: "page4Q"
+        borderColor: '0xFFEEE96D'
       choice2:
         text: "Ask the tree about the Magic Crystal location"
         text-fr: "Demandez à l'arbre l'emplacement du cristal magique"
         nextPageId: "page4R"
-
+        borderColor: '0xFFAA494F'
 
   # Level 4 (Terminal Pages)
 
