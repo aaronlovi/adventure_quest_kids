@@ -40,12 +40,10 @@ dependencies:
   tuple: ^2.0.0
   audioplayers: ^5.2.1
   shared_preferences: ^2.2.2
-  image: ^4.1.3
   flutter_localizations:
     sdk: flutter
   intl: any
   provider: ^6.1.1
-  # just_audio: ^0.9.17
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:adventure_quest_kids/model/story.dart';
 import 'package:adventure_quest_kids/model/story_choice.dart';
@@ -9,11 +8,11 @@ import 'package:adventure_quest_kids/utils/sound_utils.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
-import 'package:image/image.dart' as img;
 
 import '../main.dart';
+import '../particles/particle.dart';
 import '../registry.dart';
 import '../utils/constants.dart';
 import '../utils/read_timestamp_file.dart';
@@ -44,6 +43,8 @@ class StoryPageScreenState extends State<StoryPageScreen>
     with RouteAware, TickerProviderStateMixin {
   final GlobalKey _containerKey;
 
+  final animationDuration = const Duration(seconds: 1);
+
   /// The width of the story image as it will actually appear on the screen
   double? _imageWidth;
 
@@ -53,20 +54,12 @@ class StoryPageScreenState extends State<StoryPageScreen>
   /// The offset of the story image as it will actually appear on the screen
   Offset? _imageOffset;
 
-  /// The rectangles, in actual screen coordinates, that will be animated when
-  /// the player taps the story image
-  final List<Rect> _animatedRectangles;
+  /// The rectangles, in actual screen coordinates, that will contain the
+  /// particles that will be animated when the player taps the story image.
+  final List<(Rect, Color)> _animatedRectangles;
 
-  final List<Color> _rectangleBorderColors;
-
-  /// The cropped sub-images that will be animated when the player taps the
-  /// story image
-  final List<Uint8List> _imagesToAnimate;
-
-  final List<AnimationController> _controllers;
-  final List<Animation<Rect?>> _sizeAnimations;
-  final List<Animation<Color?>> _colorAnimations;
-  final List<Animation<double>> _borderWidthAnimations;
+  /// Used to animate the particles in the story image
+  late AnimationController _controller;
 
   late AudioPlayer _player;
 
@@ -80,13 +73,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
       : _cancelSpeechAnimation = false,
         _currentWordIndex = ValueNotifier<int>(-1),
         _containerKey = GlobalKey(),
-        _animatedRectangles = <Rect>[],
-        _rectangleBorderColors = <Color>[],
-        _controllers = <AnimationController>[],
-        _sizeAnimations = <Animation<Rect?>>[],
-        _colorAnimations = <Animation<Color?>>[],
-        _borderWidthAnimations = <Animation<double>>[],
-        _imagesToAnimate = <Uint8List>[];
+        _animatedRectangles = <(Rect, Color)>[];
 
   String get _imagePath =>
       '${widget.story.imagesFolder}/${widget.storyPage.imageFileName}';
@@ -110,27 +97,26 @@ class StoryPageScreenState extends State<StoryPageScreen>
     _playPageLoadSound();
 
     // Wait until the image is loaded before calculating the image bounds.
-    // Image bounds are used to calculate the bounds of the cropped sub-images
-    // that will get animated when the player taps the story page image.
+    // Image bounds are used to calculate the bounds of the rectangles
+    // containing the particles that will get animated when the player
+    // taps the story page image.
     WidgetsBinding.instance.addPostFrameCallback(_calcImageTapAnimations);
   }
 
   @override
   void dispose() {
     _cancelSpeechAnimation = true;
+    _controller.dispose();
     stopSpeech(widget.registry);
     _currentWordIndex.dispose();
     widget.routeObserver.unsubscribe(this);
 
-    for (var controller in _controllers) {
-      controller.dispose();
-    }
-
     super.dispose();
   }
 
-  /// Calculates the bounds of the image and the cropped sub-images.
-  /// The cropped sub-images are used to animate the story page image.
+  /// Calculates the bounds of the image and the rectangles.
+  /// The rectanles contain the particles that will be animated when the player
+  /// taps the story image.
   Future<void> _calcImageTapAnimations(Duration timeStamp) async {
     final RenderBox containerBox =
         _containerKey.currentContext!.findRenderObject() as RenderBox;
@@ -146,6 +132,8 @@ class StoryPageScreenState extends State<StoryPageScreen>
     final double imageAspectRatio = imageSize.width / imageSize.height;
     final double containerAspectRatio =
         containerSize.width / containerSize.height;
+
+    _controller = AnimationController(duration: animationDuration, vsync: this);
 
     if (imageAspectRatio > containerAspectRatio) {
       // Image is wider than the container, so it's constrained by width
@@ -164,16 +152,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
           '_imageOffset: $_imageOffset');
     }
 
-    _calculateSubImageActualCoordinates();
-
-    ByteData data = await rootBundle.load(_imagePath);
-    img.Image? image = img.decodeImage(data.buffer.asUint8List());
-    // Resize the image
-    img.Image resizedImage = img.copyResize(image!,
-        width: _imageWidth!.round(), height: _imageHeight!.round());
-
-    _calculateImagesToAnimate(resizedImage);
-    _calculateSubImageAnimations();
+    _calculateRectanglesActualCoordinates();
 
     setState(() {});
   }
@@ -194,87 +173,25 @@ class StoryPageScreenState extends State<StoryPageScreen>
     return await completer.future;
   }
 
-  void _calculateSubImageActualCoordinates() {
+  void _calculateRectanglesActualCoordinates() {
     _animatedRectangles.clear();
-    _rectangleBorderColors.clear();
     for (final choice in widget.storyPage.choices.values) {
       if (choice.rectangle == null) continue;
 
-      _rectangleBorderColors.add(choice.borderColor ?? Colors.white);
-
       // Translate the 0..1 based rectangles to actual screen coordinates
-      final rect = choice.rectangle!;
-      _animatedRectangles.add(Rect.fromLTRB(
-          rect.left * _imageWidth! + _imageOffset!.dx,
-          rect.top * _imageHeight! + _imageOffset!.dy,
-          rect.right * _imageWidth! + _imageOffset!.dx,
-          rect.bottom * _imageHeight! + _imageOffset!.dy));
+      final rect_ = choice.rectangle!;
+      final rect = Rect.fromLTRB(
+          rect_.left * _imageWidth! + _imageOffset!.dx,
+          rect_.top * _imageHeight! + _imageOffset!.dy,
+          rect_.right * _imageWidth! + _imageOffset!.dx,
+          rect_.bottom * _imageHeight! + _imageOffset!.dy);
+
+      _animatedRectangles.add((rect, choice.borderColor ?? Colors.white));
 
       if (kDebugMode) {
         print(
             'rect: $rect, _animatedRectangles.last: ${_animatedRectangles.last}');
       }
-    }
-  }
-
-  void _calculateImagesToAnimate(img.Image resizedImage) {
-    // Create a list to hold the cropped images
-    _imagesToAnimate.clear();
-
-    for (final choice in widget.storyPage.choices.values) {
-      if (choice.rectangle == null) continue;
-
-      // Calculate the coordinates and dimensions of the sub-image
-      final rect = choice.rectangle!;
-      int x = (rect.left * _imageWidth!).round();
-      int y = (rect.top * _imageHeight!).round();
-      int width = ((rect.right - rect.left) * _imageWidth!).round();
-      int height = ((rect.bottom - rect.top) * _imageHeight!).round();
-
-      // Crop the image
-      img.Image croppedImage =
-          img.copyCrop(resizedImage, x: x, y: y, width: width, height: height);
-
-      // Convert the cropped image to a byte array
-      Uint8List pngBytes = img.encodePng(croppedImage);
-
-      // Add the byte array to the list
-      _imagesToAnimate.add(pngBytes);
-    }
-  }
-
-  void _calculateSubImageAnimations() {
-    _controllers.clear();
-    _sizeAnimations.clear();
-    _colorAnimations.clear();
-    _borderWidthAnimations.clear();
-
-    for (var i = 0; i < _animatedRectangles.length; i++) {
-      final rect = _animatedRectangles[i];
-      final borderColor = _rectangleBorderColors[i];
-
-      var controller = AnimationController(
-        duration: const Duration(seconds: 1),
-        vsync: this,
-      );
-
-      // Create a tween that will animate the sub-image
-      // by expanding it to 35px larger than its original size
-      var sizeAnimation =
-          RectTween(begin: rect, end: rect.inflate(35.0)).animate(controller);
-
-      var colorAnimation = ColorTween(
-        begin: Colors.transparent,
-        end: borderColor,
-      ).animate(controller);
-
-      var borderWidthAnimation =
-          Tween<double>(begin: 0, end: 4).animate(controller);
-
-      _controllers.add(controller);
-      _sizeAnimations.add(sizeAnimation);
-      _colorAnimations.add(colorAnimation);
-      _borderWidthAnimations.add(borderWidthAnimation);
     }
   }
 
@@ -333,7 +250,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
       child: _getStoryImage(h),
     ));
 
-    _addSubImageAnimatedWidgets(widgets);
+    // _addSubImageAnimatedWidgets(widgets);
 
     _addPlaySpeechActionButton(widgets, w);
 
@@ -347,65 +264,44 @@ class StoryPageScreenState extends State<StoryPageScreen>
   }
 
   void _animateSubImages() {
-    for (var controller in _controllers) {
-      controller.forward().then((_) => controller.reverse());
-    }
+    // for (var controller in _controllers) {
+    //   controller.forward().then((_) => controller.reverse());
+    // }
+    _controller.forward(from: 0).then((_) => _controller.reverse());
   }
 
   Widget _getStoryImage(double h) {
-    return Align(
-      alignment: Alignment.center,
-      child: Container(
-        key: _containerKey,
-        height: h * 0.4,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            fit: BoxFit.contain,
-            image: AssetImage(_imagePath),
-          ),
-        ),
-      ),
-    );
-  }
-
-  void _addSubImageAnimatedWidgets(List<Widget> widgets) {
-    for (var i = 0; i < _sizeAnimations.length; i++) {
-      Animation<Rect?> sizeAnimation = _sizeAnimations[i];
-      Animation<Color?> colorAnimation = _colorAnimations[i];
-      Animation<double> borderWidthAnimation = _borderWidthAnimations[i];
-
-      var widget = AnimatedBuilder(
-        animation: Listenable.merge(
-            [sizeAnimation, colorAnimation, borderWidthAnimation]),
-        builder: (context, child) {
-          return Positioned(
-            left: sizeAnimation.value!.left,
-            top: sizeAnimation.value!.top,
-            child: GestureDetector(
-              onTap: () => _animateSubImages(),
-              child: Container(
-                width:
-                    sizeAnimation.value!.width - 2 * borderWidthAnimation.value,
-                height: sizeAnimation.value!.height -
-                    2 * borderWidthAnimation.value,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: colorAnimation.value!,
-                    width: borderWidthAnimation.value,
-                  ),
-                ),
-                child: Image.memory(
-                  _imagesToAnimate[i],
-                  fit: BoxFit.fill,
-                ),
+    return Stack(
+      children: [
+        Align(
+          alignment: Alignment.center,
+          child: Container(
+            key: _containerKey,
+            height: h * 0.4,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.contain,
+                image: AssetImage(_imagePath),
               ),
             ),
+          ),
+        ),
+        ..._animatedRectangles.map((entry) {
+          final rectangle = entry.$1;
+          final color = entry.$2;
+          final particles = generateParticles(
+            rectangle: rectangle,
+            count: 30,
+            minSize: 3,
+            maxSize: 8,
+            color: color,
+            animationDuration: animationDuration,
           );
-        },
-      );
 
-      widgets.add(widget);
-    }
+          return ParticleField(controller: _controller, particles: particles);
+        }),
+      ],
+    );
   }
 
   void _addPlaySpeechActionButton(List<Widget> widgets, double w) {
