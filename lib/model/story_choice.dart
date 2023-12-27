@@ -1,4 +1,4 @@
-import 'dart:ui';
+import 'package:flutter/material.dart';
 
 class StoryChoice {
   final String text;
@@ -6,6 +6,7 @@ class StoryChoice {
   final String nextPageId;
   final Rect? rectangle;
   final Color? borderColor;
+  final IconData? icon;
 
   const StoryChoice({
     required this.text,
@@ -13,5 +14,6 @@ class StoryChoice {
     this.textByLanguage = const <String, String>{},
     this.rectangle,
     this.borderColor,
+    this.icon,
   });
 }

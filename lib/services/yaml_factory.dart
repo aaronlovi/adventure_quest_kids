@@ -2,11 +2,13 @@ import 'dart:io';
 
 import 'package:adventure_quest_kids/model/story_choice.dart';
 import 'package:adventure_quest_kids/model/story_page.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yaml/yaml.dart';
 
 import '../model/story.dart';
 import '../model/story_meta_data.dart';
+import '../utils/icons_utils.dart';
 import '../utils/locale_utils.dart';
 
 class YamlFactory {
@@ -100,6 +102,20 @@ class YamlFactory {
     if (yamlMap['borderColor'] != null) {
       String colorString = yamlMap['borderColor'];
       borderColor = Color(int.parse(colorString));
+    }
+
+    if (yamlMap['icon'] != null) {
+      String iconString = yamlMap['icon'];
+      IconData icon = getIconFromString(iconString);
+
+      return StoryChoice(
+        text: yamlMap['text'],
+        nextPageId: yamlMap['nextPageId'],
+        textByLanguage: textByLanguage,
+        rectangle: rectangle,
+        borderColor: borderColor,
+        icon: icon,
+      );
     }
 
     return StoryChoice(

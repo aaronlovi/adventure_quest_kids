@@ -11,8 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
 
+import '../fx/particle_animations.dart';
 import '../main.dart';
-import '../particles/particle.dart';
 import '../registry.dart';
 import '../utils/constants.dart';
 import '../utils/read_timestamp_file.dart';
@@ -43,7 +43,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
     with RouteAware, TickerProviderStateMixin {
   final GlobalKey _containerKey;
 
-  final animationDuration = const Duration(seconds: 1);
+  final animationDuration = const Duration(milliseconds: 1400);
 
   /// The width of the story image as it will actually appear on the screen
   double? _imageWidth;
@@ -56,7 +56,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
 
   /// The rectangles, in actual screen coordinates, that will contain the
   /// particles that will be animated when the player taps the story image.
-  final List<(Rect, Color)> _animatedRectangles;
+  final List<(Rect, Color, StoryChoice)> _animatedRectangles;
 
   /// Used to animate the particles in the story image
   late AnimationController _controller;
@@ -69,11 +69,14 @@ class StoryPageScreenState extends State<StoryPageScreen>
   /// The index of the current word being spoken
   final ValueNotifier<int> _currentWordIndex;
 
+  final ValueNotifier<List<Particle>> _particles =
+      ValueNotifier<List<Particle>>([]);
+
   StoryPageScreenState()
       : _cancelSpeechAnimation = false,
         _currentWordIndex = ValueNotifier<int>(-1),
         _containerKey = GlobalKey(),
-        _animatedRectangles = <(Rect, Color)>[];
+        _animatedRectangles = <(Rect, Color, StoryChoice)>[];
 
   String get _imagePath =>
       '${widget.story.imagesFolder}/${widget.storyPage.imageFileName}';
@@ -91,6 +94,8 @@ class StoryPageScreenState extends State<StoryPageScreen>
     }
 
     _player = GetIt.I.get<AudioPlayer>();
+
+    _controller = AnimationController(duration: animationDuration, vsync: this);
 
     _cancelSpeechAnimation = false;
     stopSpeech(widget.registry);
@@ -132,8 +137,6 @@ class StoryPageScreenState extends State<StoryPageScreen>
     final double imageAspectRatio = imageSize.width / imageSize.height;
     final double containerAspectRatio =
         containerSize.width / containerSize.height;
-
-    _controller = AnimationController(duration: animationDuration, vsync: this);
 
     if (imageAspectRatio > containerAspectRatio) {
       // Image is wider than the container, so it's constrained by width
@@ -186,7 +189,8 @@ class StoryPageScreenState extends State<StoryPageScreen>
           rect_.right * _imageWidth! + _imageOffset!.dx,
           rect_.bottom * _imageHeight! + _imageOffset!.dy);
 
-      _animatedRectangles.add((rect, choice.borderColor ?? Colors.white));
+      _animatedRectangles
+          .add((rect, choice.borderColor ?? Colors.white, choice));
 
       if (kDebugMode) {
         print(
@@ -250,8 +254,6 @@ class StoryPageScreenState extends State<StoryPageScreen>
       child: _getStoryImage(h),
     ));
 
-    // _addSubImageAnimatedWidgets(widgets);
-
     _addPlaySpeechActionButton(widgets, w);
 
     return SizedBox(
@@ -264,10 +266,27 @@ class StoryPageScreenState extends State<StoryPageScreen>
   }
 
   void _animateSubImages() {
-    // for (var controller in _controllers) {
-    //   controller.forward().then((_) => controller.reverse());
-    // }
-    _controller.forward(from: 0).then((_) => _controller.reverse());
+    _generateParticles();
+    _controller.forward(from: 0);
+  }
+
+  void _generateParticles() {
+    _particles.value = _animatedRectangles.expand((entry) {
+      final rectangle = entry.$1;
+      final color = entry.$2;
+      final storyChoice = entry.$3;
+
+      return generateIconParticles(
+        rectangle: rectangle,
+        count: 8,
+        minSize: 20,
+        maxSize: 30,
+        icon: storyChoice.icon ?? Icons.circle,
+        color: color,
+        initialOpacity: 0.7,
+        finalOpacity: 0,
+      );
+    }).toList();
   }
 
   Widget _getStoryImage(double h) {
@@ -286,20 +305,26 @@ class StoryPageScreenState extends State<StoryPageScreen>
             ),
           ),
         ),
-        ..._animatedRectangles.map((entry) {
-          final rectangle = entry.$1;
-          final color = entry.$2;
-          final particles = generateParticles(
-            rectangle: rectangle,
-            count: 30,
-            minSize: 3,
-            maxSize: 8,
-            color: color,
-            animationDuration: animationDuration,
-          );
-
-          return ParticleField(controller: _controller, particles: particles);
-        }),
+        ValueListenableBuilder(
+          valueListenable: _particles,
+          builder: (context, value, child) {
+            return ParticleField(controller: _controller, particles: value);
+          },
+        ),
+        // AnimatedRectangleWidget(
+        //   controller: _controller,
+        //   rectangles: _animatedRectangles.map((entry) {
+        //     return AnimatedRectangle(
+        //       rectangle: entry.$1,
+        //       initialBorderColor: entry.$2,
+        //       finalBorderColor: entry.$2,
+        //       initialBorderWidth: 4,
+        //       finalBorderWidth: 0,
+        //       initialOpacity: 0.7,
+        //       finalOpacity: 0,
+        //     );
+        //   }).toList(),
+        // ),
       ],
     );
   }
@@ -381,6 +406,24 @@ class StoryPageScreenState extends State<StoryPageScreen>
       }
     }
 
+    Widget getStoryButtonTextWidgets(StoryChoice choice) {
+      String text = getStoryChoiceText(choice);
+      if (choice.icon == null) {
+        return Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [Text(text, textAlign: TextAlign.center)]);
+      } else {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(choice.icon),
+            const SizedBox(width: 8),
+            Text(text, textAlign: TextAlign.center),
+          ],
+        );
+      }
+    }
+
     for (String choiceName in widget.storyPage.choices.keys) {
       StoryChoice choice = widget.storyPage.choices[choiceName]!;
       StoryPage nextPage = widget.story.pages[choice.nextPageId]!;
@@ -401,7 +444,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
           ),
         ),
         onPressed: () => pushRouteWithTransition(context, nextScreen),
-        child: Text(getStoryChoiceText(choice), textAlign: TextAlign.center),
+        child: getStoryButtonTextWidgets(choice),
       ));
     }
   }
