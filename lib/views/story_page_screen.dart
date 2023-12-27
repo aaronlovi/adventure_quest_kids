@@ -498,7 +498,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
     // Step 3: Play the speech
     final String speechFileName = getSpeechFileName();
     if (speechFileName.isNotEmpty) {
-      String speechAssetPath = '${widget.story.speechFolder}/${speechFileName}';
+      String speechAssetPath = '${widget.story.speechFolder}/$speechFileName';
       playSpeech(
           speechAssetPath, GetIt.I.get<AssetSourceFactory>(), widget.registry);
     }
