@@ -7,6 +7,7 @@ class StoryPage {
   final String speechTimestampsFileName;
   final String text;
   final Map<String, String> textByLanguage;
+  final Map<String, String> speechByLanguage;
   final Map<String, StoryChoice> choices;
   final bool isTerminal;
 
@@ -17,6 +18,7 @@ class StoryPage {
     required this.speechTimestampsFileName,
     required this.text,
     this.textByLanguage = const <String, String>{},
+    this.speechByLanguage = const <String, String>{},
     required this.choices,
     this.isTerminal = false,
   });

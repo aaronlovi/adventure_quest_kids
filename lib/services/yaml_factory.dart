@@ -52,6 +52,13 @@ class YamlFactory {
       }
     }
 
+    Map<String, String> speechByLanguage = {};
+    for (var locale in supportedNonDefaultLocales) {
+      if (yamlMap['speechFileName-$locale'] != null) {
+        speechByLanguage[locale] = yamlMap['speechFileName-$locale'];
+      }
+    }
+
     if (yamlMap['choices'] != null) {
       for (var choice in yamlMap['choices'].keys) {
         choices[choice] = _toStoryChoice(yamlMap['choices'][choice]);
@@ -72,9 +79,9 @@ class YamlFactory {
       speechTimestampsFileName: speechTimestampsFileName,
       text: text,
       textByLanguage: textByLanguage,
+      speechByLanguage: speechByLanguage,
       choices: choices,
       isTerminal: isTerminal,
-      // rectangles: rectangles,
     );
   }
 

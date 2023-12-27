@@ -311,20 +311,6 @@ class StoryPageScreenState extends State<StoryPageScreen>
             return ParticleField(controller: _controller, particles: value);
           },
         ),
-        // AnimatedRectangleWidget(
-        //   controller: _controller,
-        //   rectangles: _animatedRectangles.map((entry) {
-        //     return AnimatedRectangle(
-        //       rectangle: entry.$1,
-        //       initialBorderColor: entry.$2,
-        //       finalBorderColor: entry.$2,
-        //       initialBorderWidth: 4,
-        //       finalBorderWidth: 0,
-        //       initialOpacity: 0.7,
-        //       finalOpacity: 0,
-        //     );
-        //   }).toList(),
-        // ),
       ],
     );
   }
@@ -491,6 +477,14 @@ class StoryPageScreenState extends State<StoryPageScreen>
     _cancelSpeechAnimation = false;
     _currentWordIndex.value = 0;
 
+    String getSpeechFileName() {
+      if (widget.storyPage.speechByLanguage.containsKey(currentLocale)) {
+        return widget.storyPage.speechByLanguage[currentLocale]!;
+      } else {
+        return widget.storyPage.speechFileName;
+      }
+    }
+
     // Step 1: Get the list of words
     List<String> words = widget.storyPage.text.split(' ');
 
@@ -502,9 +496,9 @@ class StoryPageScreenState extends State<StoryPageScreen>
     if (_cancelSpeechAnimation) return;
 
     // Step 3: Play the speech
-    if (widget.storyPage.speechFileName.isNotEmpty) {
-      String speechAssetPath =
-          '${widget.story.speechFolder}/${widget.storyPage.speechFileName}';
+    final String speechFileName = getSpeechFileName();
+    if (speechFileName.isNotEmpty) {
+      String speechAssetPath = '${widget.story.speechFolder}/${speechFileName}';
       playSpeech(
           speechAssetPath, GetIt.I.get<AssetSourceFactory>(), widget.registry);
     }
