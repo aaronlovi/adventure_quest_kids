@@ -364,15 +364,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
   }
 
   void _addStoryTextWidgets(List<Widget> widgets) {
-    String getStoryText() {
-      if (widget.storyPage.textByLanguage.containsKey(currentLocale)) {
-        return widget.storyPage.textByLanguage[currentLocale]!;
-      } else {
-        return widget.storyPage.text;
-      }
-    }
-
-    String text = getStoryText();
+    String text = _getStoryPageText();
     List<String> words = text.split(' ');
 
     var pageTextWidget =
@@ -486,7 +478,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
     }
 
     // Step 1: Get the list of words
-    List<String> words = widget.storyPage.text.split(' ');
+    List<String> words = _getStoryPageText().split(' ');
 
     // Step 2: Get the time between each spoken word
     var durations = <Duration>[];
@@ -526,16 +518,35 @@ class StoryPageScreenState extends State<StoryPageScreen>
     _currentWordIndex.value = -1;
   }
 
+  String _getStoryPageText() {
+    if (widget.storyPage.textByLanguage.containsKey(currentLocale)) {
+      return widget.storyPage.textByLanguage[currentLocale]!;
+    } else {
+      return widget.storyPage.text;
+    }
+  }
+
   /// Calculate the delay before each word
   Future<List<Duration>> _getWordDelays(
     List<String> words,
     List<Duration> durations,
   ) async {
-    if (widget.storyPage.speechTimestampsFileName.isNotEmpty) {
-      String speechTimestampsAssetPath =
-          '${widget.story.speechFolder}/${widget.storyPage.speechTimestampsFileName}';
+    String getSpeechTimestampsFileName() {
+      if (widget.storyPage.speechTimestampsByLanguage
+          .containsKey(currentLocale)) {
+        return widget.storyPage.speechTimestampsByLanguage[currentLocale]!;
+      } else {
+        return widget.storyPage.speechTimestampsFileName;
+      }
+    }
+
+    var speechTimestampsFileName = getSpeechTimestampsFileName();
+
+    if (speechTimestampsFileName.isNotEmpty) {
+      String speechTimestampsAssetFullPath =
+          '${widget.story.speechFolder}/$speechTimestampsFileName';
       durations = await readTimestamps(
-          speechTimestampsAssetPath, widget.registry.speechRate);
+          speechTimestampsAssetFullPath, widget.registry.speechRate);
     }
 
     // Calculate the delay before each word

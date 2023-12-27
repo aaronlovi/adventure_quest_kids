@@ -10,7 +10,8 @@ pages:
     imageFileName: "1.jpg"
     speechFileName: "1.mp3"
     speechFileName-fr: "1-fr.mp3"
-    speechTimestampsFileName: "1.timestamps.txt"
+    speechTimestampsFileName: 1.timestamps.txt
+    speechTimestampsFileName-fr: 1-fr.timestamps.txt
     soundFileName: "418337__sieuamthanh__tu-hu-1.mp3"
     choices:
       choice1:
@@ -43,7 +44,8 @@ pages:
     imageFileName: "2a.jpg"
     speechFileName: "2a.mp3"
     speechFileName-fr: "2a-fr.mp3"
-    speechTimestampsFileName: "2a.timestamps.txt"
+    speechTimestampsFileName: 2a.timestamps.txt
+    speechTimestampsFileName-fr: 2a-fr.timestamps.txt
     choices:
       choice1:
         text: "Explore a mysterious cave"
@@ -73,7 +75,8 @@ pages:
     imageFileName: "2b.jpg"
     speechFileName: "2b.mp3"
     speechFileName-fr: "2b-fr.mp3"
-    speechTimestampsFileName: "2b.timestamps.txt"
+    speechTimestampsFileName: 2b.timestamps.txt
+    speechTimestampsFileName-fr: 2b-fr.timestamps.txt
     choices:
       choice1:
         text: "Spot a family of monkeys"
@@ -103,7 +106,8 @@ pages:
     imageFileName: "2c.jpg"
     speechFileName: "2c.mp3"
     speechFileName-fr: "2c-fr.mp3"
-    speechTimestampsFileName: "2c.timestamps.txt"
+    speechTimestampsFileName: 2c.timestamps.txt
+    speechTimestampsFileName-fr: 2c-fr.timestamps.txt
     choices:
       choice1:
         text: "Follow the roar to find the source"
@@ -135,7 +139,8 @@ pages:
     imageFileName: "3a.jpg"
     speechFileName: "3a.mp3"
     speechFileName-fr: "3a-fr.mp3"
-    speechTimestampsFileName: "3a.timestamps.txt"
+    speechTimestampsFileName: 3a.timestamps.txt
+    speechTimestampsFileName-fr: 3a-fr.timestamps.txt
     choices:
       choice1:
         text: "Climb behind the waterfall"
@@ -158,7 +163,8 @@ pages:
     imageFileName: "3b.jpg"
     speechFileName: "3b.mp3"
     speechFileName-fr: "3b-fr.mp3"
-    speechTimestampsFileName: "3b.timestamps.txt"
+    speechTimestampsFileName: 3b.timestamps.txt
+    speechTimestampsFileName-fr: 3b-fr.timestamps.txt
     choices:
       choice1:
         text: "Join the birds in a dance"
@@ -188,7 +194,8 @@ pages:
     imageFileName: "3c.jpg"
     speechFileName: "3c.mp3"
     speechFileName-fr: "3c-fr.mp3"
-    speechTimestampsFileName: "3c.timestamps.txt"
+    speechTimestampsFileName: 3c.timestamps.txt
+    speechTimestampsFileName-fr: 3c-fr.timestamps.txt
     choices:
       choice1:
         text: "Follow a secret tunnel"
@@ -211,7 +218,8 @@ pages:
     imageFileName: "3d.jpg"
     speechFileName: "3d.mp3"
     speechFileName-fr: "3d-fr.mp3"
-    speechTimestampsFileName: "3d.timestamps.txt"
+    speechTimestampsFileName: 3d.timestamps.txt
+    speechTimestampsFileName-fr: 3d-fr.timestamps.txt
     choices:
       choice1:
         text: "Discover a hidden treehouse"
@@ -234,7 +242,8 @@ pages:
     imageFileName: "3e.jpg"
     speechFileName: "3e.mp3"
     speechFileName-fr: "3e-fr.mp3"
-    speechTimestampsFileName: "3e.timestamps.txt"
+    speechTimestampsFileName: 3e.timestamps.txt
+    speechTimestampsFileName-fr: 3e-fr.timestamps.txt
     choices:
       choice1:
         text: "Join the monkey fun"
@@ -257,7 +266,8 @@ pages:
     imageFileName: "3f.jpg"
     speechFileName: "3f.mp3"
     speechFileName-fr: "3f-fr.mp3"
-    speechTimestampsFileName: "3f.timestamps.txt"
+    speechTimestampsFileName: 3f.timestamps.txt
+    speechTimestampsFileName-fr: 3f-fr.timestamps.txt
     choices:
       choice1:
         text: "Build a treehouse"
@@ -280,7 +290,8 @@ pages:
     imageFileName: "3g.jpg"
     speechFileName: "3g.mp3"
     speechFileName-fr: "3g-fr.mp3"
-    speechTimestampsFileName: "3g.timestamps.txt"
+    speechTimestampsFileName: 3g.timestamps.txt
+    speechTimestampsFileName-fr: 3g-fr.timestamps.txt
     choices:
       choice1:
         text: "Offer a friendly gesture to the lion"
@@ -303,7 +314,8 @@ pages:
     imageFileName: "3h.jpg"
     speechFileName: "3h.mp3"
     speechFileName-fr: "3h-fr.mp3"
-    speechTimestampsFileName: "3h.timestamps.txt"
+    speechTimestampsFileName: 3h.timestamps.txt
+    speechTimestampsFileName-fr: 3h-fr.timestamps.txt
     choices:
       choice1:
         text: "Watch the stars from your shelter"
@@ -326,7 +338,8 @@ pages:
     imageFileName: "3i.jpg"
     speechFileName: "3i.mp3"
     speechFileName-fr: "3i-fr.mp3"
-    speechTimestampsFileName: "3i.timestamps.txt"
+    speechTimestampsFileName: 3i.timestamps.txt
+    speechTimestampsFileName-fr: 3i-fr.timestamps.txt
     choices:
       choice1:
         text: "Slide down the tree trunk to investigate"
@@ -352,7 +365,8 @@ pages:
     imageFileName: "4a.jpg"
     speechFileName: "4a.mp3"
     speechFileName-fr: "4a-fr.mp3"
-    speechTimestampsFileName: "4a.timestamps.txt"
+    speechTimestampsFileName: 4a.timestamps.txt
+    speechTimestampsFileName-fr: 4a-fr.timestamps.txt
 
   page4B:
     text: "You climb behind the waterfall and discover a secret cave. Congratulations, you're a waterfall explorer!"
@@ -361,7 +375,8 @@ pages:
     imageFileName: "4b.jpg"
     speechFileName: "4b.mp3"
     speechFileName-fr: "4b-fr.mp3"
-    speechTimestampsFileName: "4b.timestamps.txt"
+    speechTimestampsFileName: 4b.timestamps.txt
+    speechTimestampsFileName-fr: 4b-fr.timestamps.txt
 
   page4C:
     text: "You join the birds in a dance. It's a magical moment. Congratulations, you're a jungle dance partner!"
@@ -370,7 +385,8 @@ pages:
     imageFileName: "4c.jpg"
     speechFileName: "4c.mp3"
     speechFileName-fr: "4c-fr.mp3"
-    speechTimestampsFileName: "4c.timestamps.txt"
+    speechTimestampsFileName: 4c.timestamps.txt
+    speechTimestampsFileName-fr: 4c-fr.timestamps.txt
 
   page4D:
     text: "You discover a hidden nest in the magical clearing. Congratulations, you're a jungle nest detective!"
@@ -379,7 +395,8 @@ pages:
     imageFileName: "4d.jpg"
     speechFileName: "4d.mp3"
     speechFileName-fr: "4d-fr.mp3"
-    speechTimestampsFileName: "4d.timestamps.txt"
+    speechTimestampsFileName: 4d.timestamps.txt
+    speechTimestampsFileName-fr: 4d-fr.timestamps.txt
 
   page4E:
     text: "You listen to the bird songs and learn their melodies. Congratulations, you're a jungle song apprentice!"
@@ -388,7 +405,8 @@ pages:
     imageFileName: "4e.jpg"
     speechFileName: "4e.mp3"
     speechFileName-fr: "4e-fr.mp3"
-    speechTimestampsFileName: "4e.timestamps.txt"
+    speechTimestampsFileName: 4e.timestamps.txt
+    speechTimestampsFileName-fr: 4e-fr.timestamps.txt
 
   page4F:
     text: "You collect the glowing crystals and feel their magical energy. Congratulations, you're a jungle crystal collector!"
@@ -397,7 +415,8 @@ pages:
     imageFileName: "4f.jpg"
     speechFileName: "4f.mp3"
     speechFileName-fr: "4f-fr.mp3"
-    speechTimestampsFileName: "4f.timestamps.txt"
+    speechTimestampsFileName: 4f.timestamps.txt
+    speechTimestampsFileName-fr: 4f-fr.timestamps.txt
 
   page4G:
     text: "You follow a secret tunnel and discover a hidden chamber. Congratulations, you're a jungle explorer extraordinaire!"
@@ -406,7 +425,8 @@ pages:
     imageFileName: "4g.jpg"
     speechFileName: "4g.mp3"
     speechFileName-fr: "4g-fr.mp3"
-    speechTimestampsFileName: "4g.timestamps.txt"
+    speechTimestampsFileName: 4g.timestamps.txt
+    speechTimestampsFileName-fr: 4g-fr.timestamps.txt
 
   page4H:
     text: "You discover a hidden treehouse and make it your jungle home. Congratulations, you're a jungle treehouse dweller!"
@@ -415,7 +435,8 @@ pages:
     imageFileName: "4h.jpg"
     speechFileName: "4h.mp3"
     speechFileName-fr: "4h-fr.mp3"
-    speechTimestampsFileName: "4h.timestamps.txt"
+    speechTimestampsFileName: 4h.timestamps.txt
+    speechTimestampsFileName-fr: 4h-fr.timestamps.txt
 
   page4I:
     text: "You race through the jungle canopy and feel the thrill of adventure. Congratulations, you're a jungle canopy racer!"
@@ -424,7 +445,8 @@ pages:
     imageFileName: "4i.jpg"
     speechFileName: "4i.mp3"
     speechFileName-fr: "4i-fr.mp3"
-    speechTimestampsFileName: "4i.timestamps.txt"
+    speechTimestampsFileName: 4i.timestamps.txt
+    speechTimestampsFileName-fr: 4i-fr.timestamps.txt
 
   page4J:
     text: "You join the monkey fun and swing through the trees. Congratulations, you're a jungle monkey companion!"
@@ -433,7 +455,8 @@ pages:
     imageFileName: "4j.jpg"
     speechFileName: "4j.mp3"
     speechFileName-fr: "4j-fr.mp3"
-    speechTimestampsFileName: "4j.timestamps.txt"
+    speechTimestampsFileName: 4j.timestamps.txt
+    speechTimestampsFileName-fr: 4j-fr.timestamps.txt
 
   page4K:
     text: "You share your snacks with the monkeys and become their jungle friend. Congratulations, you're a jungle snack sharer!"
@@ -442,7 +465,8 @@ pages:
     imageFileName: "4k.jpg"
     speechFileName: "4k.mp3"
     speechFileName-fr: "4k-fr.mp3"
-    speechTimestampsFileName: "4k.timestamps.txt"
+    speechTimestampsFileName: 4k.timestamps.txt
+    speechTimestampsFileName-fr: 4k-fr.timestamps.txt
 
   page4L:
     text: "You discover a hidden jungle slide and slide into a magical pond. Congratulations, you're a jungle slider!"
@@ -451,7 +475,8 @@ pages:
     imageFileName: "4l.jpg"
     speechFileName: "4l.mp3"
     speechFileName-fr: "4l-fr.mp3"
-    speechTimestampsFileName: "4l.timestamps.txt"
+    speechTimestampsFileName: 4l.timestamps.txt
+    speechTimestampsFileName-fr: 4l-fr.timestamps.txt
 
   page4M:
     text: "You build a treehouse and host jungle gatherings. Congratulations, you're a jungle treehouse architect!"
@@ -460,7 +485,8 @@ pages:
     imageFileName: "4m.jpg"
     speechFileName: "4m.mp3"
     speechFileName-fr: "4m-fr.mp3"
-    speechTimestampsFileName: "4m.timestamps.txt"
+    speechTimestampsFileName: 4m.timestamps.txt
+    speechTimestampsFileName-fr: 4m-fr.timestamps.txt
 
   page4N:
     text: "You offer a friendly gesture to the lion and become jungle friends. Congratulations, you're a jungle lion whisperer!"
@@ -469,7 +495,8 @@ pages:
     imageFileName: "4n.jpg"
     speechFileName: "4n.mp3"
     speechFileName-fr: "4n-fr.mp3"
-    speechTimestampsFileName: "4n.timestamps.txt"
+    speechTimestampsFileName: 4n.timestamps.txt
+    speechTimestampsFileName-fr: 4n-fr.timestamps.txt
 
   page4O:
     text: "You climb a tree for safety and witness a jungle sunset. Congratulations, you're a jungle sunset observer!"
@@ -478,7 +505,8 @@ pages:
     imageFileName: "4o.jpg"
     speechFileName: "4o.mp3"
     speechFileName-fr: "4o-fr.mp3"
-    speechTimestampsFileName: "4o.timestamps.txt"
+    speechTimestampsFileName: 4o.timestamps.txt
+    speechTimestampsFileName-fr: 4o-fr.timestamps.txt
 
   page4P:
     text: "You watch the stars from your shelter and feel the magic of the jungle night. Congratulations, you're a jungle stargazer!"
@@ -487,7 +515,8 @@ pages:
     imageFileName: "4p.jpg"
     speechFileName: "4p.mp3"
     speechFileName-fr: "4p-fr.mp3"
-    speechTimestampsFileName: "4p.timestamps.txt"
+    speechTimestampsFileName: 4p.timestamps.txt
+    speechTimestampsFileName-fr: 4p-fr.timestamps.txt
 
   page4Q:
     text: "You light a campfire and tell jungle stories. Congratulations, you're a jungle storyteller!"
@@ -496,7 +525,8 @@ pages:
     imageFileName: "4q.jpg"
     speechFileName: "4q.mp3"
     speechFileName-fr: "4q-fr.mp3"
-    speechTimestampsFileName: "4q.timestamps.txt"
+    speechTimestampsFileName: 4q.timestamps.txt
+    speechTimestampsFileName-fr: 4q-fr.timestamps.txt
 
   page4R:
     text: "You slide down the tree trunk to investigate and discover a hidden treasure. Congratulations, you're a jungle treasure hunter!"
@@ -505,7 +535,8 @@ pages:
     imageFileName: "4r.jpg"
     speechFileName: "4r.mp3"
     speechFileName-fr: "4r-fr.mp3"
-    speechTimestampsFileName: "4r.timestamps.txt"
+    speechTimestampsFileName: 4r.timestamps.txt
+    speechTimestampsFileName-fr: 4r-fr.timestamps.txt
 
   page4S:
     text: "You continue climbing to the treetop and see the entire jungle. Congratulations, you're a jungle heights conqueror!"
@@ -514,4 +545,5 @@ pages:
     imageFileName: "4s.jpg"
     speechFileName: "4s.mp3"
     speechFileName-fr: "4s-fr.mp3"
-    speechTimestampsFileName: "4s.timestamps.txt"
+    speechTimestampsFileName: 4s.timestamps.txt
+    speechTimestampsFileName-fr: 4s-fr.timestamps.txt

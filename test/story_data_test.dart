@@ -11,6 +11,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:tuple/tuple.dart';
 import 'package:yaml/yaml.dart';
 
+/// Tests that check that the story data, and localized versions are valid
 void main() {
   test('Load story data', () {
     List<StoryMetaData> storyMetaDataList = _loadStoryMetaDataList();
@@ -54,23 +55,10 @@ void main() {
 
         if (currentPage.choices.isEmpty) expect(currentPage.isTerminal, true);
 
-        // Check that if there is both speech and speech timestamps for this page, then the number of timestamps matches the number of words
-        if (currentPage.speechFileName.isNotEmpty &&
-            currentPage.speechTimestampsFileName.isNotEmpty) {
-          String speechTimestampsString = File(
-                  '${storyMetaData.speechFolder}/${currentPage.speechTimestampsFileName}')
-              .readAsStringSync();
-          List<String> speechTimestampsList =
-              speechTimestampsString.split('\n');
-          List<String> speechWordsList = currentPage.text.split(' ');
-
-          if (kDebugMode) {
-            print(
-                '\tSpeech: ${currentPage.speechFileName} (${speechWordsList.length} words) - ${currentPage.speechTimestampsFileName} (${speechTimestampsList.length} timestamps)');
-          }
-
-          expect(speechTimestampsList.length, speechWordsList.length);
-        }
+        // Checks that the current page's number of words matches the number
+        // of per-word speech timestamps for default and all localized versions
+        // of the page
+        _ensureNumTimestampsMatchesNumWords(storyMetaData, currentPage);
 
         for (MapEntry<String, StoryChoice> choice
             in currentPage.choices.entries) {
@@ -108,6 +96,84 @@ void main() {
       expect(setEquals(storyMetaData.terminalPageIds, terminalPageIds), true);
     }
   });
+}
+
+/// Checks that if there is both speech and speech timestamps for this page,
+/// then the number of timestamps matches the number of words
+void _ensureNumTimestampsMatchesNumWords(
+  StoryMetaData storyMetaData,
+  StoryPage currentPage,
+) {
+  _validatedLocalizedSpeechAndTimestamps(storyMetaData, currentPage);
+  _validateDefaultLanguageSpeechAndTimestamps(storyMetaData, currentPage);
+}
+
+/// Checks that if there is both speech and speech timestamps for this page,
+/// then the number of timestamps matches the number of words for each
+/// localized version of the page
+void _validatedLocalizedSpeechAndTimestamps(
+  StoryMetaData storyMetaData,
+  StoryPage currentPage,
+) {
+  for (var languageKey in currentPage.speechByLanguage.keys) {
+    _checkSpeechTimestampsMatchWordCount(
+        storyMetaData, currentPage, languageKey);
+  }
+}
+
+/// Checks that if there is both speech and speech timestamps for this page,
+/// then the number of timestamps matches the number of words for the default
+/// language version of the page
+void _validateDefaultLanguageSpeechAndTimestamps(
+  StoryMetaData storyMetaData,
+  StoryPage currentPage,
+) {
+  if (currentPage.speechFileName.isNotEmpty &&
+      currentPage.speechTimestampsFileName.isNotEmpty) {
+    _checkSpeechTimestampsMatchWordCount(storyMetaData, currentPage);
+  }
+}
+
+/// Checks that the number of timestamps matches the number of words
+/// for the given page and language
+void _checkSpeechTimestampsMatchWordCount(
+  StoryMetaData storyMetaData,
+  StoryPage currentPage, [
+  String? languageKey,
+]) {
+  if (languageKey != null) {
+    // Check that the localized version exists
+    expect(
+      currentPage.speechTimestampsByLanguage.containsKey(languageKey),
+      true,
+    );
+    expect(
+      currentPage.textByLanguage.containsKey(languageKey),
+      true,
+    );
+  }
+
+  final String speechTimestampsFileName = languageKey != null
+      ? currentPage.speechTimestampsByLanguage[languageKey]!
+      : currentPage.speechTimestampsFileName;
+  final String speechTimestampsString =
+      File('${storyMetaData.speechFolder}/$speechTimestampsFileName')
+          .readAsStringSync();
+
+  final List<String> speechTimestampsList = speechTimestampsString.split('\n');
+  final List<String> speechWordsList = languageKey != null
+      ? currentPage.textByLanguage[languageKey]!.split(' ')
+      : currentPage.text.split(' ');
+
+  if (kDebugMode) {
+    var speechFileName = languageKey != null
+        ? currentPage.speechByLanguage[languageKey]
+        : currentPage.speechFileName;
+    print('\tSpeech: $speechFileName (${speechWordsList.length} words)'
+        ' - $speechTimestampsFileName (${speechTimestampsList.length} timestamps)');
+  }
+
+  expect(speechTimestampsList.length, speechWordsList.length);
 }
 
 List<StoryMetaData> _loadStoryMetaDataList() {
