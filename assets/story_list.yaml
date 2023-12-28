@@ -47,3 +47,9 @@ story_list:
     background_sound_volume_factor: 1.0
     background_sound_playback_rate: 0.8
     terminal_page_ids: page4A,page4B,page4C,page4D,page4E,page4F,page4G,page4H,page4I,page4J,page4K,page4L,page4M,page4N,page4O,page4P,page4Q,page4R
+    gradient_top_color: '0xFF800080' # purple
+    gradient_bottom_color: '0xFFADD8E6' # light Blue
+    highlighted_word_glow_color: '0xFF00FF00' # green
+    story_choice_button_background_color: '0xFFFFEFD5' # beige
+    story_choice_button_foreground_color: '0xFF800080' # purple
+    story_text_color: '0xFFFFFFDD' # light yellow
