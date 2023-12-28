@@ -8,6 +8,12 @@ story_list:
     background_sound_volume_factor: 1.0
     background_sound_playback_rate: 0.75
     terminal_page_ids: page4A,page4B,page4C,page4D,page4E,page4F,page4G,page4H,page4I,page4J,page4K,page4L,page4M,page4N,page4O,page4P,page4Q,page4R,page4S
+    gradient_top_color: '0xFF008000' # green
+    gradient_bottom_color: '0xFF87CEEB' # yellow
+    highlighted_word_glow_color: '0xFF800080' # purple
+    story_choice_button_background_color: '0xFFFFCBA4' # orange
+    story_choice_button_foreground_color: '0xFF8B4513' # white
+    story_text_color: '0xFFF5F5DC' # beige
   space_odyssey:
     title: Space Odyssey
     title-fr: Odyssée Spatiale
@@ -26,6 +32,12 @@ story_list:
     first_page: page1
     icon: list-icon.png
     terminal_page_ids: page4A,page4B,page4C,page4D,page4E,page4F,page4G,page4H,page4I,page4J,page4K,page4L,page4M,page4N,page4O,page4P,page4Q,page4R,page4S,page4T
+    gradient_top_color: '0xFF008000' # green
+    gradient_bottom_color: '0xFF8B4513' # brown
+    highlighted_word_glow_color: '0xFF0000FF' # blue
+    story_choice_button_background_color: '0xFFFFFACD' # yellow
+    story_choice_button_foreground_color: '0xFF8B4513' # brown
+    story_text_color: '0xFFFFFFDD' # light yellow
   magic_forest_quest:
     title: "Magic Forest Quest"
     title-fr: "Magic Forest Quest"

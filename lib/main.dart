@@ -97,6 +97,27 @@ StoryMetaData getStoryMetadataFromYaml(YamlMap yamlMap, storyKey) {
     }
   }
 
+  Color gradientTopColor = entry['gradient_top_color'] == null
+      ? Constants.mainScreenTopGradientColor
+      : Color(int.parse(entry['gradient_top_color']));
+  Color gradientBottomColor = entry['gradient_bottom_color'] == null
+      ? Constants.mainScreenBottomGradientColor
+      : Color(int.parse(entry['gradient_bottom_color']));
+  Color highlightedWordGlowColor = entry['highlighted_word_glow_color'] == null
+      ? Constants.defaultHighlightedWordGlowColor
+      : Color(int.parse(entry['highlighted_word_glow_color']));
+  Color storyChoiceButtonBackgroundColor =
+      entry['story_choice_button_background_color'] == null
+          ? Constants.defaultStoryChoiceButtonBackgroundColor
+          : Color(int.parse(entry['story_choice_button_background_color']));
+  Color storyChoiceButtonForegroundColor =
+      entry['story_choice_button_foreground_color'] == null
+          ? Constants.defaultStoryChoiceButtonForegroundColor
+          : Color(int.parse(entry['story_choice_button_foreground_color']));
+  Color storyTextColor = entry['story_text_color'] == null
+      ? Constants.defaultStoryTextColor
+      : Color(int.parse(entry['story_text_color']));
+
   final storyMetaData = StoryMetaData(
     assetName: storyKey,
     title: title,
@@ -110,6 +131,12 @@ StoryMetaData getStoryMetadataFromYaml(YamlMap yamlMap, storyKey) {
     backgroundVolumeAdjustmentFactor: backgroundSoundVolumeFactor,
     backgroundSoundPlaybackRate: backgroundSoundPlaybackRate,
     terminalPageIds: terminalPageIds,
+    gradientTopColor: gradientTopColor,
+    gradientBottomColor: gradientBottomColor,
+    highlightedWordGlowColor: highlightedWordGlowColor,
+    storyChoiceButtonBackgroundColor: storyChoiceButtonBackgroundColor,
+    storyChoiceButtonForegroundColor: storyChoiceButtonForegroundColor,
+    storyTextColor: storyTextColor,
   );
   return storyMetaData;
 }

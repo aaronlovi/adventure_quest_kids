@@ -62,16 +62,18 @@ class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
     final storyMetadata = widget.storyMetadata;
 
     return Scaffold(
+        extendBodyBehindAppBar: true,
         appBar: getAppBar(
           context,
           title: storyMetadata.getTitle(localeName),
           subTitle: storyMetadata.getSubTitle(localeName),
           isStartPage: true,
+          foregroundColor: storyMetadata.storyTextColor,
         ),
         body: _getBodyWidgets(w, h, context, storyMetadata));
   }
 
-  Column _getBodyWidgets(
+  Widget _getBodyWidgets(
     final double w,
     final double h,
     BuildContext context,
@@ -79,27 +81,42 @@ class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
   ) {
     var bodyChildWidgets = _createBodyChildWidgets(storyMetadata, context);
 
-    return Column(
-      children: [
-        // Top half: Container for Image
-        Container(
-            height: h * 0.4,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                  fit: BoxFit.contain,
-                  image: AssetImage(
-                      '${storyMetadata.imagesFolder}/cover_image.jpg')),
-            )),
-        // Bottom half: Text and Choices
-        Container(
-          height: h * 0.4,
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: bodyChildWidgets,
-          ),
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            storyMetadata.gradientTopColor,
+            storyMetadata.gradientBottomColor,
+          ],
         ),
-      ],
+      ),
+      child: Column(
+        children: [
+          const Padding(
+            padding: EdgeInsets.only(top: 56.0), // Add padding here
+          ),
+          // Top half: Container for Image
+          Container(
+              height: h * 0.4,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    fit: BoxFit.contain,
+                    image: AssetImage(
+                        '${storyMetadata.imagesFolder}/cover_image.jpg')),
+              )),
+          // Bottom half: Text and Choices
+          Container(
+            height: h * 0.4,
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: bodyChildWidgets,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -113,7 +130,11 @@ class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
         child: Text(
           storyMetadata.getTitle(localeName),
           textAlign: TextAlign.center,
-          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: storyMetadata.storyTextColor,
+          ),
         ),
       ),
     );
@@ -124,7 +145,11 @@ class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
         Center(
           child: Text(
             subTitle,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              color: storyMetadata.storyTextColor,
+            ),
           ),
         ),
       );
@@ -135,7 +160,11 @@ class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
       // Add your choice buttons/widgets here
       Center(
         child: ElevatedButton(
-          style: ElevatedButton.styleFrom(padding: const EdgeInsets.all(24)),
+          style: ElevatedButton.styleFrom(
+            padding: const EdgeInsets.all(24),
+            backgroundColor: storyMetadata.storyChoiceButtonBackgroundColor,
+            foregroundColor: storyMetadata.storyChoiceButtonForegroundColor,
+          ),
           onPressed: () async {
             Story story = await YamlFactory.getStory(storyMetadata);
 
@@ -153,9 +182,14 @@ class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
                   registry: widget.registry,
                 ));
           },
-          child: Text(AppLocalizations.of(context)!.begin_adventure,
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 16)),
+          child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            const Icon(Icons.play_arrow_outlined, size: 32),
+            const SizedBox(width: 8),
+            Flexible(
+                child: Text(AppLocalizations.of(context)!.begin_adventure,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 20)))
+          ]),
         ),
       ),
     );

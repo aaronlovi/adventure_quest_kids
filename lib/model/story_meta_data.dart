@@ -1,3 +1,7 @@
+import 'dart:ui';
+
+import '../utils/constants.dart';
+
 class StoryMetaData {
   final String assetName;
   final String _title;
@@ -11,6 +15,12 @@ class StoryMetaData {
   final double backgroundVolumeAdjustmentFactor;
   final double backgroundSoundPlaybackRate;
   final Set<String> terminalPageIds;
+  final Color gradientTopColor;
+  final Color gradientBottomColor;
+  final Color highlightedWordGlowColor;
+  final Color storyChoiceButtonBackgroundColor;
+  final Color storyChoiceButtonForegroundColor;
+  final Color storyTextColor;
 
   StoryMetaData({
     required this.assetName,
@@ -25,6 +35,14 @@ class StoryMetaData {
     required this.backgroundVolumeAdjustmentFactor,
     required this.backgroundSoundPlaybackRate,
     required this.terminalPageIds,
+    this.gradientTopColor = Constants.mainScreenTopGradientColor,
+    this.gradientBottomColor = Constants.mainScreenBottomGradientColor,
+    this.highlightedWordGlowColor = Constants.defaultHighlightedWordGlowColor,
+    this.storyChoiceButtonBackgroundColor =
+        Constants.defaultStoryChoiceButtonBackgroundColor,
+    this.storyChoiceButtonForegroundColor =
+        Constants.defaultStoryChoiceButtonForegroundColor,
+    this.storyTextColor = Constants.defaultStoryTextColor,
   })  : _title = title,
         _titleByLanguage = titleByLanguage,
         _subTitle = subTitle,

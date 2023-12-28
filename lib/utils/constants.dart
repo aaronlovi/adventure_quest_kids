@@ -24,6 +24,13 @@ abstract class Constants {
     Colors.pink,
     Colors.indigo,
   ];
+
+  static const Color mainScreenTopGradientColor = Color(0xff123456);
+  static const Color mainScreenBottomGradientColor = Color(0xff6789ab);
+  static const Color defaultHighlightedWordGlowColor = Colors.yellow;
+  static const Color defaultStoryChoiceButtonBackgroundColor = Colors.white;
+  static const Color defaultStoryChoiceButtonForegroundColor = Colors.black;
+  static const Color defaultStoryTextColor = Colors.white;
 }
 
 extension BuildContextExtensions on BuildContext {

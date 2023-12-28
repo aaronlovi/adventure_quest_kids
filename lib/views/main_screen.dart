@@ -60,6 +60,7 @@ class MainScreenState extends State<MainScreen> with RouteAware {
     List<String> storyNames = registry.storyList.keys.toList()..sort();
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: _getAppBar(context),
       body: _getBody(storyNames, context),
     );
@@ -67,6 +68,7 @@ class MainScreenState extends State<MainScreen> with RouteAware {
 
   AppBar _getAppBar(BuildContext context) {
     return AppBar(
+      backgroundColor: Colors.transparent,
       leading: Padding(
         padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
         child: Image.asset(
@@ -78,7 +80,10 @@ class MainScreenState extends State<MainScreen> with RouteAware {
       ),
       title: FittedBox(
           fit: BoxFit.scaleDown,
-          child: Text(AppLocalizations.of(context)!.adventure_quest_kids)),
+          child: Text(
+            AppLocalizations.of(context)!.adventure_quest_kids,
+            style: const TextStyle(color: Colors.white),
+          )),
       actions: [
         IconButton(
             icon: const Icon(Icons.settings),
@@ -87,38 +92,49 @@ class MainScreenState extends State<MainScreen> with RouteAware {
     );
   }
 
-  ListView _getBody(List<String> storyNames, BuildContext context) {
-    return ListView.builder(
-        itemCount: storyNames.length,
-        itemBuilder: (content, index) {
-          var storyName = storyNames[index];
-          int colorIndex = index % Constants.iconColors.length;
-          final Color iconColor = Constants.iconColors[colorIndex];
-          StoryMetaData storyMetaData = registry.storyList[storyName]!;
-          Set<String> terminalPagesVisited =
-              registry.getTerminalPagesVisited(storyName);
-          bool anyTerminalPagesVisited = terminalPagesVisited.isNotEmpty;
-          bool allTerminalPagesVisited = terminalPagesVisited.length ==
-              storyMetaData.terminalPageIds.length;
-          String toolTipMsg = allTerminalPagesVisited
-              ? AppLocalizations.of(context)!.all_endings_visited
-              : anyTerminalPagesVisited
-                  ? AppLocalizations.of(context)!.some_endings_visited
-                  : AppLocalizations.of(context)!.no_endings_visited;
-          Icon trailingIcon = allTerminalPagesVisited
-              ? const Icon(Icons.done_all, color: Colors.green)
-              : anyTerminalPagesVisited
-                  ? Icon(Icons.book, color: iconColor)
-                  : Icon(Icons.bookmark_border, color: iconColor);
-          return StoryListItem(
-            icon: trailingIcon,
-            toolTipMsg: toolTipMsg,
-            storyMetaData: storyMetaData,
-            registry: registry,
-            assetSourceFactory: assetSourceFactory,
-            routeObserver: routeObserver,
-            iconColor: iconColor,
-          );
-        });
+  Widget _getBody(List<String> storyNames, BuildContext context) {
+    return Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Constants.mainScreenTopGradientColor,
+              Constants.mainScreenBottomGradientColor
+            ],
+          ),
+        ),
+        child: ListView.builder(
+            itemCount: storyNames.length,
+            itemBuilder: (content, index) {
+              var storyName = storyNames[index];
+              int colorIndex = index % Constants.iconColors.length;
+              final Color iconColor = Constants.iconColors[colorIndex];
+              StoryMetaData storyMetaData = registry.storyList[storyName]!;
+              Set<String> terminalPagesVisited =
+                  registry.getTerminalPagesVisited(storyName);
+              bool anyTerminalPagesVisited = terminalPagesVisited.isNotEmpty;
+              bool allTerminalPagesVisited = terminalPagesVisited.length ==
+                  storyMetaData.terminalPageIds.length;
+              String toolTipMsg = allTerminalPagesVisited
+                  ? AppLocalizations.of(context)!.all_endings_visited
+                  : anyTerminalPagesVisited
+                      ? AppLocalizations.of(context)!.some_endings_visited
+                      : AppLocalizations.of(context)!.no_endings_visited;
+              Icon trailingIcon = allTerminalPagesVisited
+                  ? const Icon(Icons.done_all, color: Colors.green)
+                  : anyTerminalPagesVisited
+                      ? Icon(Icons.book, color: iconColor)
+                      : Icon(Icons.bookmark_border, color: iconColor);
+              return StoryListItem(
+                icon: trailingIcon,
+                toolTipMsg: toolTipMsg,
+                storyMetaData: storyMetaData,
+                registry: registry,
+                assetSourceFactory: assetSourceFactory,
+                routeObserver: routeObserver,
+                iconColor: iconColor,
+              );
+            }));
   }
 }

@@ -10,21 +10,33 @@ AppBar getAppBar(
   required String title,
   required String subTitle,
   required bool isStartPage,
+  Color foregroundColor = Colors.white,
 }) {
   return AppBar(
+    backgroundColor: Colors.transparent,
+    elevation: 0,
     leading: IconButton(
-      icon: const Icon(Icons.arrow_back),
+      icon: Icon(Icons.arrow_back, color: foregroundColor),
       onPressed: () => popOnce(context),
     ),
     titleSpacing: 0,
-    title: AppBarTitleWidget(title: title, subTitle: subTitle),
-    actions: getAppBarActionButtons(context, isStartPage: isStartPage),
+    title: AppBarTitleWidget(
+      title: title,
+      subTitle: subTitle,
+      foregroundColor: foregroundColor,
+    ),
+    actions: getAppBarActionButtons(
+      context,
+      isStartPage: isStartPage,
+      foregroundColor: foregroundColor,
+    ),
   );
 }
 
 List<Widget> getAppBarActionButtons(
   BuildContext context, {
   required bool isStartPage,
+  Color foregroundColor = Colors.white,
 }) {
   const right8 = Padding(padding: EdgeInsets.only(right: 8));
   const all2 = EdgeInsets.all(2);
@@ -37,7 +49,7 @@ List<Widget> getAppBarActionButtons(
       padding: all2,
       tooltip: AppLocalizations.of(context)!.start_of_story,
       onPressed: () => navigateToStartOfStory(context),
-      icon: const Icon(Icons.home),
+      icon: Icon(Icons.home, color: foregroundColor),
     ));
 
     widgets.add(right8);
@@ -48,7 +60,7 @@ List<Widget> getAppBarActionButtons(
     padding: all2,
     tooltip: AppLocalizations.of(context)!.story_list,
     onPressed: () => navigateToStoryList(context),
-    icon: const Icon(Icons.list),
+    icon: Icon(Icons.list, color: foregroundColor),
   ));
 
   widgets.add(right8);
@@ -58,7 +70,7 @@ List<Widget> getAppBarActionButtons(
     padding: all2,
     tooltip: AppLocalizations.of(context)!.settings,
     onPressed: () => navigateToSettings(context),
-    icon: const Icon(Icons.settings),
+    icon: Icon(Icons.settings, color: foregroundColor),
   ));
 
   widgets.add(right8);

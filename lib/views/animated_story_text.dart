@@ -5,9 +5,16 @@ import 'story_text.dart';
 class AnimatedStoryText extends StatelessWidget {
   final List<String> words;
   final ValueNotifier<int> currentWordIndex;
+  final Color highlightedWordGlowColor;
+  final Color textColor;
 
-  const AnimatedStoryText(
-      {super.key, required this.words, required this.currentWordIndex});
+  const AnimatedStoryText({
+    super.key,
+    required this.words,
+    required this.currentWordIndex,
+    required this.highlightedWordGlowColor,
+    required this.textColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +24,7 @@ class AnimatedStoryText extends StatelessWidget {
         const textStyle = TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w500,
-          color: Colors.black,
+          color: Colors.white,
         );
 
         return RichText(
@@ -30,9 +37,12 @@ class AnimatedStoryText extends StatelessWidget {
               return [
                 WidgetSpan(
                   child: StoryText(
-                      word: word,
-                      index: index,
-                      currentWordIndex: currentWordIndex),
+                    word: word,
+                    index: index,
+                    currentWordIndex: currentWordIndex,
+                    highlightedWordGlowColor: highlightedWordGlowColor,
+                    textColor: textColor,
+                  ),
                 ),
                 const TextSpan(text: ' '),
               ];

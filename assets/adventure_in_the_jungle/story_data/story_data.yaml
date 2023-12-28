@@ -18,14 +18,14 @@ pages:
         text: "Climb the tall tree"
         text-fr: "Grimper l'arbre"
         nextPageId: "page2B"
-        rectangle: { left: 0.61, right: 0.88, top: 0.20, bottom: 0.60 }
-        borderColor: '0xFF00FF00'
+        rectangle: { left: 0.61, right: 0.88, top: 0.02, bottom: 0.70 }
+        borderColor: '0xFFFFA500'
         icon: nature
       choice2:
         text: "Follow the winding path"
         text-fr: "Suivre le chemin sinueux"
         nextPageId: "page2A"
-        rectangle: { left: 0.37, right: 0.80, top: 0.67, bottom: 0.77 }
+        rectangle: { left: 0.37, right: 0.80, top: 0.62, bottom: 0.82 }
         borderColor: '0xFFFF0000'
         icon: map
       choice3:
@@ -33,7 +33,7 @@ pages:
         text-fr: "Écouter les sons de la jungle"
         nextPageId: "page2C"
         rectangle: { left: 0.10, right: 0.30, top: 0.25, bottom: 0.40 }
-        borderColor: '0xFF3333FF'
+        borderColor: '0xFF800080'
         icon: music_note
 
   # Level 2
@@ -59,14 +59,14 @@ pages:
         text-fr: "Découvrir une cascade cachée"
         nextPageId: "page3A"
         rectangle: { left: 0.61, right: 0.69, top: 0.31, bottom: 0.62 }
-        borderColor: '0xFF3333FF'
+        borderColor: '0xFF800080'
         icon: landscape
       choice3:
         text: "Spot colorful birds"
         text-fr: "Repérer des oiseaux colorés"
         nextPageId: "page3B"
         rectangle: { left: 0.02, right: 0.37, top: 0.05, bottom: 0.29 }
-        borderColor: '0xFF00FF00'
+        borderColor: '0xFFFFA500'
         icon: pets
 
   page2B:
@@ -90,14 +90,14 @@ pages:
         text-fr: "Glisser sur le tronc de l'arbre"
         nextPageId: "page3F"
         rectangle: { left: 0.60, right: 0.90, top: 0.50, bottom: 0.90 }
-        borderColor: '0xFF3333FF'
+        borderColor: '0xFF800080'
         icon: nature
       choice3:
         text: "Swing from the vines"
         text-fr: "Se balancer sur les lianes"
         nextPageId: "page3D"
         rectangle: { left: 0.50, right: 0.64, top: 0.32, bottom: 0.70 }
-        borderColor: '0xFF00FF00'
+        borderColor: '0xFFFFA500'
         icon: grass
 
   page2C:
@@ -121,14 +121,14 @@ pages:
         text-fr: "Grimper un arbre pour se mettre en sécurité"
         nextPageId: "page3I"
         rectangle: { left: 0.68, right: 0.83, top: 0.16, bottom: 0.44 }
-        borderColor: '0xFF00FF00'
+        borderColor: '0xFFFFA500'
         icon: nature
       choice3:
         text: "Build a shelter for the night"
         text-fr: "Construire un abri pour la nuit"
         nextPageId: "page3H"
         rectangle: { left: 0.76, right: 0.99, top: 0.45, bottom: 0.66 }
-        borderColor: '0xFF3333FF'
+        borderColor: '0xFF800080'
         icon: terrain
 
   # Level 3
@@ -147,14 +147,14 @@ pages:
         text-fr: "Grimper derrière la cascade"
         nextPageId: "page4B"
         rectangle: { left: 0.46, right: 0.68, top: 0.29, bottom: 0.60 }
-        borderColor: '0xFF3333FF'
+        borderColor: '0xFF800080'
         icon: landscape
       choice2:
         text: "Take a refreshing swim"
         text-fr: "Prendre un bain rafraîchissant"
         nextPageId: "page4A"
         rectangle: { left: 0.25, right: 0.84, top: 0.55, bottom: 0.85 }
-        borderColor: '0xFF00FF00'
+        borderColor: '0xFFFFA500'
         icon: pool
 
   page3B:
@@ -171,7 +171,7 @@ pages:
         text-fr: "Rejoindre les oiseaux dans une danse"
         nextPageId: "page4C"
         rectangle: { left: 0.05, right: 0.43, top: 0.69, bottom: 0.91 }
-        borderColor: '0xFF00FF00'
+        borderColor: '0xFFFFA500'
         icon: pets
       choice2:
         text: "Discover a hidden nest"
@@ -185,7 +185,7 @@ pages:
         text-fr: "Écouter les chants d'oiseaux"
         nextPageId: "page4E"
         rectangle: { left: 0.58, right: 0.84, top: 0.05, bottom: 0.45 }
-        borderColor: '0xFF3333FF'
+        borderColor: '0xFF800080'
         icon: music_note
 
   page3C:
@@ -209,7 +209,7 @@ pages:
         text-fr: "Collecter les cristaux lumineux"
         nextPageId: "page4F"
         rectangle: { left: 0.01, right: 0.34, top: 0.50, bottom: 0.95 }
-        borderColor: '0xFF3333FF'
+        borderColor: '0xFF800080'
         icon: emoji_objects
 
   page3D:
@@ -233,7 +233,7 @@ pages:
         text-fr: "Courir à travers la canopée de la jungle"
         nextPageId: "page4I"
         rectangle: { left: 0.06, right: 0.56, top: 0.03, bottom: 0.23 }
-        borderColor: '0xFF00FF00'
+        borderColor: '0xFFFFA500'
         icon: landscape
 
   page3E:
@@ -250,14 +250,14 @@ pages:
         text-fr: "Rejoindre le singe amusant"
         nextPageId: "page4J"
         rectangle: { left: 0.37, right: 0.86, top: 0.24, bottom: 0.75 }
-        borderColor: '0xFF3333FF'
+        borderColor: '0xFF800080'
         icon: pets
       choice2:
         text: "Share your snacks with the monkeys"
         text-fr: "Partager vos collations avec les singes"
         nextPageId: "page4K"
         rectangle: { left: 0.01, right: 0.14, top: 0.52, bottom: 0.84 }
-        borderColor: '0xFF00FF00'
+        borderColor: '0xFFFFA500'
         icon: fastfood
 
   page3F:
@@ -274,7 +274,7 @@ pages:
         text-fr: "Construire une cabane dans les arbres"
         nextPageId: "page4M"
         rectangle: { left: 0.56, right: 0.80, top: 0.04, bottom: 0.35 }
-        borderColor: '0xFF00FF00'
+        borderColor: '0xFFFFA500'
         icon: home_work
       choice2:
         text: "Discover a hidden jungle slide"
@@ -298,7 +298,7 @@ pages:
         text-fr: "Offrir un geste amical au lion"
         nextPageId: "page4N"
         rectangle: { left: 0.30, right: 0.64, top: 0.37, bottom: 0.80 }
-        borderColor: '0xFF3333FF'
+        borderColor: '0xFF800080'
         icon: thumb_up
       choice2:
         text: "Climb a tree for safety"
@@ -321,8 +321,8 @@ pages:
         text: "Watch the stars from your shelter"
         text-fr: "Regarder les étoiles de votre abri"
         nextPageId: "page4P"
-        rectangle: { left: 0.06, right: 0.63, top: 0.03, bottom: 0.20 }
-        borderColor: '0xFF3333FF'
+        rectangle: { left: 0.02, right: 0.63, top: 0.02, bottom: 0.30 }
+        borderColor: '0xFF800080'
         icon: stars
       choice2:
         text: "Light a campfire"
@@ -346,7 +346,7 @@ pages:
         text-fr: "Glisser sur le tronc de l'arbre pour enquêter"
         nextPageId: "page4R"
         rectangle: { left: 0.37, right: 0.63, top: 0.60, bottom: 0.87 }
-        borderColor: '0xFF00FF00'
+        borderColor: '0xFFFFA500'
         icon: nature
       choice2:
         text: "Continue climbing to the treetop"

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:adventure_quest_kids/model/story.dart';
 import 'package:adventure_quest_kids/model/story_choice.dart';
+import 'package:adventure_quest_kids/model/story_meta_data.dart';
 import 'package:adventure_quest_kids/model/story_page.dart';
 import 'package:adventure_quest_kids/utils/navigation_utils.dart';
 import 'package:adventure_quest_kids/utils/sound_utils.dart';
@@ -83,6 +84,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
   String get _soundPath =>
       '${widget.story.soundsFolder}/${widget.storyPage.soundFileName}';
   String get currentLocale => widget.registry.localeName;
+  StoryMetaData get _storyMetaData => widget.story.storyMetaData;
 
   @override
   void initState() {
@@ -225,12 +227,26 @@ class StoryPageScreenState extends State<StoryPageScreen>
     final double h = context.height;
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: _getAppBar(context),
-      body: Column(
-        children: [
-          _getStoryImageWidgets(w, h),
-          _getStoryTextAndChoicesWidgets(w, h, context),
-        ],
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              _storyMetaData.gradientTopColor,
+              _storyMetaData.gradientBottomColor,
+            ],
+          ),
+        ),
+        child: Column(
+          children: [
+            const SizedBox(height: kToolbarHeight),
+            _getStoryImageWidgets(w, h),
+            _getStoryTextAndChoicesWidgets(w, h, context),
+          ],
+        ),
       ),
     );
   }
@@ -240,10 +256,13 @@ class StoryPageScreenState extends State<StoryPageScreen>
         preferredSize: const Size.fromHeight(kToolbarHeight),
         child: Hero(
             tag: 'appBar',
-            child: getAppBar(context,
-                title: widget.story.getTitle(currentLocale),
-                subTitle: widget.story.getTitle(currentLocale),
-                isStartPage: false)));
+            child: getAppBar(
+              context,
+              title: widget.story.getTitle(currentLocale),
+              subTitle: widget.story.getSubTitle(currentLocale),
+              isStartPage: false,
+              foregroundColor: _storyMetaData.storyTextColor,
+            )));
   }
 
   Widget _getStoryImageWidgets(double w, double h) {
@@ -330,6 +349,8 @@ class StoryPageScreenState extends State<StoryPageScreen>
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
           heroTag: null,
+          backgroundColor: _storyMetaData.storyChoiceButtonBackgroundColor,
+          foregroundColor: _storyMetaData.storyChoiceButtonForegroundColor,
           child: const Icon(Icons.play_arrow),
         ),
       ),
@@ -370,8 +391,12 @@ class StoryPageScreenState extends State<StoryPageScreen>
     String text = _getStoryPageText();
     List<String> words = text.split(' ');
 
-    var pageTextWidget =
-        AnimatedStoryText(words: words, currentWordIndex: _currentWordIndex);
+    var pageTextWidget = AnimatedStoryText(
+      words: words,
+      currentWordIndex: _currentWordIndex,
+      highlightedWordGlowColor: _storyMetaData.highlightedWordGlowColor,
+      textColor: _storyMetaData.storyTextColor,
+    );
 
     widgets.add(Center(child: pageTextWidget));
   }
@@ -399,7 +424,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
           children: [
             Icon(choice.icon),
             const SizedBox(width: 8),
-            Text(text, textAlign: TextAlign.center),
+            Flexible(child: Text(text, textAlign: TextAlign.center)),
           ],
         );
       }
@@ -420,8 +445,11 @@ class StoryPageScreenState extends State<StoryPageScreen>
       widgets.add(ElevatedButton(
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.all(8),
+          backgroundColor: _storyMetaData.storyChoiceButtonBackgroundColor,
+          foregroundColor: _storyMetaData.storyChoiceButtonForegroundColor,
           side: BorderSide(
             color: choice.borderColor?.withOpacity(0.9) ?? Colors.transparent,
+            width: 2.0,
           ),
         ),
         onPressed: () => pushRouteWithTransition(context, nextScreen),
@@ -438,10 +466,19 @@ class StoryPageScreenState extends State<StoryPageScreen>
 
     widgets.add(paddingTop12);
     widgets.add(Text(AppLocalizations.of(context)!.the_end,
-        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)));
+        style: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          color: _storyMetaData.storyTextColor,
+        )));
 
     widgets.add(paddingTop12);
     widgets.add(ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.all(8),
+        backgroundColor: _storyMetaData.storyChoiceButtonBackgroundColor,
+        foregroundColor: _storyMetaData.storyChoiceButtonForegroundColor,
+      ),
       onPressed: () => popUntilNamedRoute(context, Constants.frontPageRoute),
       child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         const Icon(Icons.home),
@@ -453,6 +490,11 @@ class StoryPageScreenState extends State<StoryPageScreen>
 
     widgets.add(paddingTop16);
     widgets.add(ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.all(8),
+        backgroundColor: _storyMetaData.storyChoiceButtonBackgroundColor,
+        foregroundColor: _storyMetaData.storyChoiceButtonForegroundColor,
+      ),
       onPressed: () => popUntilFirstRoute(context),
       child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         const Icon(Icons.list),

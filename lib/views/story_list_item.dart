@@ -113,7 +113,10 @@ class StoryListItemState extends State<StoryListItem>
     return ListTile(
       leading: _getLeadingIcon(),
       trailing: _getTrailingIcon(),
-      title: Text(storyMetaData.getFullTitle(localeName)),
+      title: Text(
+        storyMetaData.getFullTitle(localeName),
+        style: const TextStyle(color: Colors.white),
+      ),
       onTap: () => navigateToRoute(
         context,
         StoryFrontPageScreen(

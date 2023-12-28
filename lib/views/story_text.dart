@@ -4,19 +4,24 @@ class StoryText extends StatelessWidget {
   final String word;
   final int index;
   final ValueNotifier<int> currentWordIndex;
+  final Color highlightedWordGlowColor;
+  final Color textColor;
 
-  const StoryText(
-      {super.key,
-      required this.word,
-      required this.index,
-      required this.currentWordIndex});
+  const StoryText({
+    super.key,
+    required this.word,
+    required this.index,
+    required this.currentWordIndex,
+    required this.highlightedWordGlowColor,
+    required this.textColor,
+  });
 
   @override
   Widget build(BuildContext context) {
-    const normalTextStyle = TextStyle(
+    final normalTextStyle = TextStyle(
       fontSize: 16,
       fontWeight: FontWeight.w500,
-      color: Colors.black,
+      color: textColor,
     );
 
     final highlightedTextStyle =
@@ -34,13 +39,15 @@ class StoryText extends StatelessWidget {
           opacity: opacity,
           duration: const Duration(milliseconds: 500),
           child: Container(
-            decoration: BoxDecoration(boxShadow: [
-              BoxShadow(
-                  color: Colors.yellow.withOpacity(0.6),
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: const Offset(0, 3))
-            ]),
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                    color: highlightedWordGlowColor.withOpacity(0.6),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: const Offset(0, 3))
+              ],
+            ),
             child: Text(word, style: highlightedTextStyle),
           ),
         ),
