@@ -10,7 +10,7 @@
     "resize-images": "node resizeImages.js ../../assets/magic_forest_quest/images/originals/ ../../assets/magic_forest_quest/images/",
     "mp4-to-mp3": "node convertWavToMp3.js ../../assets/adventure_in_the_jungle/speech/originals-fr/ ../../assets/adventure_in_the_jungle/speech/",
     "get-timestamps": "node audioTimestampRecorder.js ../../assets/adventure_in_the_jungle/speech/3f-fr.mp3 ../../assets/adventure_in_the_jungle/speech/3f-fr.timestamps.txt",
-    "adventure-dfs": "node yamlAdventureNavigator.js ../../assets/adventure_in_the_jungle/story_data/story_data.yaml"
+    "adventure-dfs": "node yamlAdventureNavigator.js ../../assets/dinoquest_journey/story_data/story_data.yaml"
   },
   "keywords": [],
   "author": "",

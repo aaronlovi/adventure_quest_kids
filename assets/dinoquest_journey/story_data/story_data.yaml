@@ -14,20 +14,23 @@ pages:
         text: "Explore the dense jungle"
         text-fr: "Explorez la jungle dense"
         nextPageId: "page2A"
-        rectangle: { left: 0.04, right: 0.43, top: 0.45, bottom: 0.65 }
+        rectangle: { left: 0.04, right: 0.43, top: 0.35, bottom: 0.65 }
         borderColor: '0xFF00AA00'
+        icon: grass
       choice2:
         text: "Climb the rocky mountains"
         text-fr: "Grimpez les montagnes rocheuses"
         nextPageId: "page2C"
-        rectangle: { left: 0.75, right: 0.88, top: 0.15, bottom: 0.44 }
-        borderColor: '0xFFAA494F'
+        rectangle: { left: 0.65, right: 0.88, top: 0.15, bottom: 0.44 }
+        borderColor: '0xFFFF0000'
+        icon: terrain
       choice3:
         text: "Cross the vast plains"
         text-fr: "Traversez les vastes plaines"
         nextPageId: "page2B"
         rectangle: { left: 0.62, right: 0.97, top: 0.51, bottom: 0.65 }
         borderColor: '0xFFEEE96D'
+        icon: view_comfy
 
   # Level 2
   page2A:
@@ -41,19 +44,22 @@ pages:
         text-fr: "Observer un groupe d'herbivores"
         nextPageId: "page3B"
         rectangle: { left: 0.08, right: 0.62, top: 0.26, bottom: 0.58 }
-        borderColor: '0xFFAA494F'
+        borderColor: '0xFFFF0000'
+        icon: pets
       choice2:
         text: "Discover a hidden dinosaur nest"
         text-fr: "Découvrez un nid de dinosaures caché"
         nextPageId: "page3A"
-        rectangle: { left: 0.21, right: 0.67, top: 0.69, bottom: 0.88 }
-        borderColor: '0xFF00AA00'
+        rectangle: { left: 0.21, right: 0.67, top: 0.59, bottom: 0.88 }
+        borderColor: '0xFFEEE96D'
+        icon: home
       choice3:
         text: "Navigate through dinosaur vines"
         text-fr: "Naviguez à travers les vignes de dinosaures"
         nextPageId: "page3C"
         rectangle: { left: 0.56, right: 0.96, top: 0.05, bottom: 0.36 }
-        borderColor: '0xFFEEE96D'
+        borderColor: '0xFF00AA00'
+        icon: grass
 
   page2B:
     text: You cross the vast plains where dinosaurs roam freely. What's your next adventure?
@@ -66,19 +72,22 @@ pages:
         text-fr: "Rencontrer un troupeau de vélociraptors"
         nextPageId: "page3D"
         rectangle: { left: 0.46, right: 0.96, top: 0.35, bottom: 0.65 }
-        borderColor: '0xFFAA494F'
+        borderColor: '0xFFFF0000'
+        icon: pets
       choice2:
         text: "Search for a watering hole"
         text-fr: "Recherchez un point d'eau"
         nextPageId: "page3E"
         rectangle: { left: 0.45, right: 0.96, top: 0.75, bottom: 0.92 }
         borderColor: '0xFFEEE96D'
+        icon: local_drink
       choice3:
         text: "Follow a distant roar"
         text-fr: "Suivre un rugissement lointain"
         nextPageId: "page3F"
         rectangle: { left: 0.05, right: 0.26, top: 0.20, bottom: 0.40 }
         borderColor: '0xFF00AA00'
+        icon: volume_up
 
   page2C:
     text: "You climb the rocky mountains, where flying dinosaurs soar above. What's your next move?"
@@ -91,19 +100,22 @@ pages:
         text-fr: "Glissez avec les ptérodactyles"
         nextPageId: "page3G"
         rectangle: { left: 0.46, right: 0.98, top: 0.08, bottom: 0.39 }
-        borderColor: '0xFFAA494F'
+        borderColor: '0xFFFF0000'
+        icon: flight
       choice2:
         text: "Explore the mountain caves"
         text-fr: "Explorez les grottes de montagne"
         nextPageId: "page3H"
-        rectangle: { left: 0.02, right: 0.12, top: 0.57, bottom: 0.73 }
+        rectangle: { left: 0.02, right: 0.12, top: 0.37, bottom: 0.80 }
         borderColor: '0xFF00AA00'
+        icon: terrain
       choice3:
         text: "Descend to the dinosaur-filled valley"
         text-fr: "Descendez dans la vallée remplie de dinosaures"
         nextPageId: "page3I"
         rectangle: { left: 0.53, right: 0.97, top: 0.74, bottom: 0.95 }
         borderColor: '0xFFEEE96D'
+        icon: explore
 
   # Level 3
 
@@ -117,18 +129,21 @@ pages:
         text: "Observe the baby dinosaurs hatching"
         text-fr: "Observer l'éclosion des bébés dinosaures"
         nextPageId: "page4A"
-        rectangle: { left: 0.35, right: 0.74, top: 0.52, bottom: 0.77 }
+        rectangle: { left: 0.25, right: 0.74, top: 0.52, bottom: 0.77 }
         borderColor: '0xFF00AA00'
+        icon: egg
       choice2:
         text: "Gently touch a dinosaur egg"
         text-fr: "Touchez doucement un œuf de dinosaure"
         nextPageId: "page4B"
         borderColor: '0xFFEEE96D'
+        icon: egg
       choice3:
         text: "Quietly leave the nest and explore more"
         text-fr: "Quittez silencieusement le nid et explorez plus"
         nextPageId: "page4C"
-        borderColor: '0xFFAA494F'
+        borderColor: '0xFFFF0000'
+        icon: explore
 
   page3B:
     text: "You observe a group of herbivores peacefully grazing. What's your next adventure?"
@@ -142,18 +157,21 @@ pages:
         nextPageId: "page4D"
         rectangle: { left: 0.48, right: 0.92, top: 0.23, bottom: 0.44 }
         borderColor: '0xFF00AA00'
+        icon: restaurant
       choice2:
         text: "Follow them to a hidden oasis"
         text-fr: "Suivez-les jusqu'à une oasis cachée"
         nextPageId: "page4E"
         rectangle: { left: 0.40, right: 0.72, top: 0.62, bottom: 0.73 }
         borderColor: '0xFFEEE96D'
+        icon: water
       choice3:
         text: "Climb a tree to watch from above"
         text-fr: "Grimpez dans un arbre pour regarder d'en haut"
         nextPageId: "page4F"
-        rectangle: { left: 0.02, right: 0.18, top: 0.08, bottom: 0.57 }
-        borderColor: '0xFFAA494F'
+        rectangle: { left: 0.02, right: 0.18, top: 0.02, bottom: 0.67 }
+        borderColor: '0xFFFF0000'
+        icon: nature
 
   page3C:
     text: "You navigate through dinosaur vines. They lead to a mysterious clearing. What's your next move?"
@@ -167,12 +185,14 @@ pages:
         nextPageId: "page4H"
         rectangle: { left: 0.06, right: 0.53, top: 0.05, bottom: 0.26 }
         borderColor: '0xFFEEE96D'
+        icon: grass
       choice2:
         text: "Discover a hidden dinosaur community"
         text-fr: "Découvrez une communauté de dinosaures cachée"
         nextPageId: "page4G"
         rectangle: { left: 0.46, right: 0.77, top: 0.24, bottom: 0.54 }
         borderColor: '0xFF00AA00'
+        icon: pets
 
   page3D:
     text: "You encounter a herd of velociraptors. They seem curious. What's your next adventure?"
@@ -185,11 +205,13 @@ pages:
         text-fr: "Restez immobile et observez-les"
         nextPageId: "page4I"
         borderColor: '0xFF00AA00'
+        icon: pets
       choice2:
         text: "Slowly back away and find another route"
         text-fr: "Reculez lentement et trouvez un autre itinéraire"
         nextPageId: "page4J"
         borderColor: '0xFFEEE96D'
+        icon: explore
 
   page3E:
     text: "You search for a watering hole and find a dinosaur oasis. What's your next move?"
@@ -202,13 +224,15 @@ pages:
         text-fr: "Explorez les environs"
         nextPageId: "page4L"
         rectangle: { left: 0.32, right: 0.65, top: 0.42, bottom: 0.57 }
-        borderColor: '0xFFAA494F'
+        borderColor: '0xFF00AA00'
+        icon: explore
       choice2:
         text: "Join the dinosaurs for a refreshing drink"
         text-fr: "Rejoignez les dinosaures pour une boisson rafraîchissante"
         nextPageId: "page4K"
         rectangle: { left: 0.09, right: 0.56, top: 0.63, bottom: 0.85 }
         borderColor: '0xFFEEE96D'
+        icon: local_drink
 
   page3F:
     text: "You follow a distant roar and discover a mighty T-Rex. What's your next adventure?"
@@ -220,12 +244,16 @@ pages:
         text: "Observe the T-Rex from a safe distance"
         text-fr: "Observez le T-Rex à distance de sécurité"
         nextPageId: "page4M"
+        rectangle: { left: 0.02, right: 0.45, top: 0.10, bottom: 0.50 }
         borderColor: '0xFF00AA00'
+        icon: pets
       choice2:
         text: "Quietly retreat without being noticed"
         text-fr: "Retraite silencieuse sans être remarqué"
         nextPageId: "page4N"
+        rectangle: { left: 0.80, right: 0.98, top: 0.64, bottom: 0.95 }
         borderColor: '0xFFEEE96D'
+        icon: explore
 
   page3G:
     text: "You glide with the pterodactyls over the mountains. What's your next move?"
@@ -238,13 +266,15 @@ pages:
         text-fr: "Atterrir sur un pic de montagne élevé"
         nextPageId: "page4O"
         rectangle: { left: 0.02, right: 0.13, top: 0.16, bottom: 0.40 }
-        borderColor: '0xFFAA494F'
+        borderColor: '0xFFFF0000'
+        icon: terrain
       choice2:
         text: "Dive down to explore the valley below"
         text-fr: "Plongez pour explorer la vallée ci-dessous"
         nextPageId: "page4P"
         rectangle: { left: 0.40, right: 0.70, top: 0.73, bottom: 0.96 }
         borderColor: '0xFFEEE96D'
+        icon: explore
 
   page3H:
     text: "You explore the mountain caves and discover ancient dinosaur paintings. What's your next adventure?"
@@ -258,11 +288,14 @@ pages:
         nextPageId: "page4Q"
         rectangle: { left: 0.68, right: 0.98, top: 0.08, bottom: 0.40 }
         borderColor: '0xFFEEE96D'
+        icon: brush
       choice2:
         text: "Continue exploring the cave system"
         text-fr: "Continuez à explorer le système de grottes"
         nextPageId: "page4R"
+        rectangle: { left: 0.80, right: 0.98, top: 0.80, bottom: 0.98 }
         borderColor: '0xFF00AA00'
+        icon: terrain
 
   page3I:
     text: "You venture deeper into the lush jungle, surrounded by towering prehistoric trees. Suddenly, you stumble upon a hidden treasure chest half-buried in the soil. What do you do?"
@@ -276,12 +309,14 @@ pages:
         nextPageId: "page4T"
         rectangle: { left: 0.43, right: 0.59, top: 0.50, bottom: 0.73 }
         borderColor: '0xFFEEE96D'
+        icon: explore
       choice2:
         text: "Open the treasure chest"
         text-fr: "Ouvrez le coffre au trésor"
         nextPageId: "page4S"
         rectangle: { left: 0.58, right: 0.89, top: 0.63, bottom: 0.89 }
         borderColor: '0xFF00AA00'
+        icon: lock_open
 
   # Level 4 (Terminal Pages)
 
