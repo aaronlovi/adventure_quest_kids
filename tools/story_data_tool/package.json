@@ -8,8 +8,8 @@
     "dry-run": "node yamlModifier.js ../../assets/adventure_in_the_jungle/story_data/story_data.yaml",
     "trim-mp3": "node trimMp3File.js ../../assets/magic_forest_quest/sounds/originals/background.mp3 ../../assets/magic_forest_quest/sounds/background-8s.mp3 51 8",
     "resize-images": "node resizeImages.js ../../assets/magic_forest_quest/images/originals/ ../../assets/magic_forest_quest/images/",
-    "mp4-to-mp3": "node convertWavToMp3.js ../../assets/adventure_in_the_jungle/speech/originals-fr/ ../../assets/adventure_in_the_jungle/speech/",
-    "get-timestamps": "node audioTimestampRecorder.js ../../assets/adventure_in_the_jungle/speech/3f-fr.mp3 ../../assets/adventure_in_the_jungle/speech/3f-fr.timestamps.txt",
+    "mp4-to-mp3": "node convertWavToMp3.js ../../assets/dinoquest_journey/speech/originals-fr/ ../../assets/dinoquest_journey/speech/",
+    "get-timestamps": "node audioTimestampRecorder.js ../../assets/dinoquest_journey/speech/3i.mp3 ../../assets/dinoquest_journey/speech/3i.timestamps.txt",
     "adventure-dfs": "node yamlAdventureNavigator.js ../../assets/dinoquest_journey/story_data/story_data.yaml"
   },
   "keywords": [],
