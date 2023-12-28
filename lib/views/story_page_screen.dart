@@ -443,14 +443,23 @@ class StoryPageScreenState extends State<StoryPageScreen>
     widgets.add(paddingTop12);
     widgets.add(ElevatedButton(
       onPressed: () => popUntilNamedRoute(context, Constants.frontPageRoute),
-      child: Text(AppLocalizations.of(context)!
-          .restart_s0(widget.story.getTitle(currentLocale))),
+      child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        const Icon(Icons.home),
+        const SizedBox(width: 8),
+        Text(AppLocalizations.of(context)!
+            .restart_s0(widget.story.getTitle(currentLocale))),
+      ]),
     ));
 
     widgets.add(paddingTop16);
     widgets.add(ElevatedButton(
-        onPressed: () => popUntilFirstRoute(context),
-        child: Text(AppLocalizations.of(context)!.back_to_story_list)));
+      onPressed: () => popUntilFirstRoute(context),
+      child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        const Icon(Icons.list),
+        const SizedBox(width: 8),
+        Text(AppLocalizations.of(context)!.back_to_story_list),
+      ]),
+    ));
   }
 
   Future<void> _playPageLoadSound() async {
