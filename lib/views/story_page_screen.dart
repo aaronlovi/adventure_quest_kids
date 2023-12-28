@@ -305,6 +305,9 @@ class StoryPageScreenState extends State<StoryPageScreen>
             ),
           ),
         ),
+        // The particles that will be animated when the player taps the story image
+        // This is a ValueListenableBuilder because the particle effects are
+        // regenerated every time that the player taps the story image.
         ValueListenableBuilder(
           valueListenable: _particles,
           builder: (context, value, child) {

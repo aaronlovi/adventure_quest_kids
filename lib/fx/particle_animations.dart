@@ -207,7 +207,7 @@ List<IconParticle> generateIconParticles({
   required Color color,
   double initialOpacity = 1.0,
   double finalOpacity = 0.0,
-  double jitterFactor = 0.0,
+  double jitterFactor = 0.2,
 }) {
   final random = Random();
   return List.generate(count, (_) {
