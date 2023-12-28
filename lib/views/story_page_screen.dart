@@ -415,9 +415,9 @@ class StoryPageScreenState extends State<StoryPageScreen>
     Widget getStoryButtonTextWidgets(StoryChoice choice) {
       String text = getStoryChoiceText(choice);
       if (choice.icon == null) {
-        return Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [Text(text, textAlign: TextAlign.center)]);
+        return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Flexible(child: Text(text, textAlign: TextAlign.center))
+        ]);
       } else {
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
