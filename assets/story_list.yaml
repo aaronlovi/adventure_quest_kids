@@ -40,7 +40,7 @@ story_list:
     story_text_color: '0xFFFFFFDD' # light yellow
   magic_forest_quest:
     title: "Magic Forest Quest"
-    title-fr: "Magic Forest Quest"
+    title-fr: "Quête de la Forêt Magique"
     first_page: page1
     icon: list-icon.png
     background_sound_filename: background-8s.mp3
