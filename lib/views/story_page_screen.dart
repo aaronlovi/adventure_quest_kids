@@ -347,7 +347,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
         right: w * 0.1 / 2,
         bottom: 5,
         child: FloatingActionButton(
-          onPressed: _startAnimation,
+          onPressed: _startSpeechAnimation,
           tooltip: AppLocalizations.of(context)!.read_aloud,
           mini: true,
           shape:
@@ -523,19 +523,24 @@ class StoryPageScreenState extends State<StoryPageScreen>
     }
   }
 
-  Future<void> _startAnimation() async {
+  Future<void> _startSpeechAnimation() async {
+    if (_currentWordIndex.value != -1) return;
+
     _cancelSpeechAnimation = false;
     _currentWordIndex.value = 0;
 
-    String getSpeechFileName() {
-      if (widget.storyPage.speechByLanguage.containsKey(currentLocale)) {
-        return widget.storyPage.speechByLanguage[currentLocale]!;
-      } else {
-        return widget.storyPage.speechFileName;
-      }
+    try {
+      await _startSpeechAnimationCore();
+    } finally {
+      _currentWordIndex.value = -1;
     }
+  }
 
+  Future<void> _startSpeechAnimationCore() async {
     await stopSpeech(widget.registry);
+
+    // Allow cancellation after an awaited method call
+    if (_cancelSpeechAnimation) return;
 
     // Step 1: Get the list of words
     List<String> words = _getStoryPageText().split(' ');
@@ -548,7 +553,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
     if (_cancelSpeechAnimation) return;
 
     // Step 3: Play the speech
-    final String speechFileName = getSpeechFileName();
+    final String speechFileName = _getSpeechFileName();
     if (speechFileName.isNotEmpty) {
       String speechAssetPath = '${widget.story.speechFolder}/$speechFileName';
       playSpeech(
@@ -574,8 +579,14 @@ class StoryPageScreenState extends State<StoryPageScreen>
 
     // Allow cancellation
     if (_cancelSpeechAnimation) return;
+  }
 
-    _currentWordIndex.value = -1;
+  String _getSpeechFileName() {
+    if (widget.storyPage.speechByLanguage.containsKey(currentLocale)) {
+      return widget.storyPage.speechByLanguage[currentLocale]!;
+    } else {
+      return widget.storyPage.speechFileName;
+    }
   }
 
   String _getStoryPageText() {
