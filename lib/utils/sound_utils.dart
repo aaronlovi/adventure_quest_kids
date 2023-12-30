@@ -9,7 +9,7 @@ import 'package:flutter/foundation.dart';
 
 import '../main.dart';
 
-Future<void> stopSpeech(Registry registry) async {
+Future<void> stopSpeech(final Registry registry) async {
   try {
     var player = registry.speechAudioPlayer;
     await player.stop();

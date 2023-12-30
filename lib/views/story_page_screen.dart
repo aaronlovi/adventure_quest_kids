@@ -535,6 +535,8 @@ class StoryPageScreenState extends State<StoryPageScreen>
       }
     }
 
+    await stopSpeech(widget.registry);
+
     // Step 1: Get the list of words
     List<String> words = _getStoryPageText().split(' ');
 
@@ -556,7 +558,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
     // Allow cancellation after playSpeech is invoked
     if (_cancelSpeechAnimation) return;
 
-    // Step 4: Display each word after the corresponding delay
+    // Step 4: Highlight each word after the corresponding delay
     _currentWordIndex.value = 0;
     for (int i = 0; i < words.length; i++) {
       // Allow cancellation
