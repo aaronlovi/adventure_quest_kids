@@ -86,8 +86,10 @@ class MainScreenState extends State<MainScreen> with RouteAware {
           )),
       actions: [
         IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () => navigateToSettings(context))
+          icon: const Icon(Icons.settings),
+          onPressed: () => navigateToSettings(context),
+          color: Colors.white,
+        )
       ],
     );
   }

@@ -43,6 +43,7 @@ class StoryPageScreen extends StatefulWidget {
 class StoryPageScreenState extends State<StoryPageScreen>
     with RouteAware, TickerProviderStateMixin {
   final GlobalKey _containerKey;
+  final GlobalKey _appBarKey;
 
   final animationDuration = const Duration(milliseconds: 1400);
 
@@ -77,6 +78,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
       : _cancelSpeechAnimation = false,
         _currentWordIndex = ValueNotifier<int>(-1),
         _containerKey = GlobalKey(),
+        _appBarKey = GlobalKey(),
         _animatedRectangles = <(Rect, Color, StoryChoice)>[];
 
   String get _imagePath =>
@@ -225,6 +227,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
   Widget build(BuildContext context) {
     final double w = context.width;
     final double h = context.height;
+    final appBarHeight = MediaQuery.of(context).padding.top + kToolbarHeight;
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -242,7 +245,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
         ),
         child: Column(
           children: [
-            const SizedBox(height: kToolbarHeight),
+            SizedBox(height: appBarHeight),
             _getStoryImageWidgets(w, h),
             _getStoryTextAndChoicesWidgets(w, h, context),
           ],
@@ -258,6 +261,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
             tag: 'appBar',
             child: getAppBar(
               context,
+              key: _appBarKey,
               title: widget.story.getTitle(currentLocale),
               subTitle: widget.story.getSubTitle(currentLocale),
               isStartPage: false,

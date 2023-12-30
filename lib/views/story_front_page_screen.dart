@@ -34,8 +34,9 @@ class StoryFrontPageScreen extends StatefulWidget {
 
 class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
   late AssetSource soundAsset;
+  final GlobalKey _appBarKey;
 
-  StoryFrontPageScreenState();
+  StoryFrontPageScreenState() : _appBarKey = GlobalKey();
 
   String get localeName => widget.registry.localeName;
 
@@ -69,8 +70,12 @@ class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
           subTitle: storyMetadata.getSubTitle(localeName),
           isStartPage: true,
           foregroundColor: storyMetadata.storyTextColor,
+          key: _appBarKey,
         ),
-        body: _getBodyWidgets(w, h, context, storyMetadata));
+        body: LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) {
+          return _getBodyWidgets(w, h, context, storyMetadata);
+        }));
   }
 
   Widget _getBodyWidgets(
@@ -80,6 +85,7 @@ class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
     StoryMetaData storyMetadata,
   ) {
     var bodyChildWidgets = _createBodyChildWidgets(storyMetadata, context);
+    final appBarHeight = MediaQuery.of(context).padding.top + kToolbarHeight;
 
     return Container(
       decoration: BoxDecoration(
@@ -94,9 +100,7 @@ class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
       ),
       child: Column(
         children: [
-          const Padding(
-            padding: EdgeInsets.only(top: 56.0), // Add padding here
-          ),
+          SizedBox(height: appBarHeight),
           // Top half: Container for Image
           Container(
               height: h * 0.4,

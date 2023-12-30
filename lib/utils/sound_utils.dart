@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:adventure_quest_kids/model/story_meta_data.dart';
 import 'package:adventure_quest_kids/registry.dart';
@@ -13,9 +14,7 @@ Future<void> stopSpeech(Registry registry) async {
     var player = registry.speechAudioPlayer;
     await player.stop();
   } catch (e) {
-    if (kDebugMode) {
-      print('Error stopping speech: $e');
-    }
+    _log('Error stopping speech: $e');
   }
 }
 
@@ -33,11 +32,9 @@ Future<void> playSpeech(
     await speechAsset.setOnPlayer(player);
     await player.setVolume(registry.speechVolume);
     await player.setPlaybackRate(registry.speechRate);
-    await player.play(speechAsset, mode: PlayerMode.lowLatency);
+    await player.play(speechAsset, mode: PlayerMode.mediaPlayer);
   } catch (e) {
-    if (kDebugMode) {
-      print('Error playing speech: $e');
-    }
+    _log('Error playing speech: $e');
   }
 }
 
@@ -58,45 +55,57 @@ Future<void> playStoryBackgroundSound(
     // Create a loop that plays the sound, waits for it to complete, waits for an additional delay, and then repeats
     while (registry.currentStoryMetaData == storyMetaData) {
       // Check if the current story meta data is still the same
+
       await player.setPlaybackRate(storyMetaData.backgroundSoundPlaybackRate);
       await player.setVolume(0); // Start with volume 0
-      await player.play(soundAsset, mode: PlayerMode.lowLatency);
+      await player.play(soundAsset, mode: PlayerMode.mediaPlayer);
 
       // Fade in the volume over the period of 1 second
-      const fadeInDuration = Constants.oneSecond;
-      const stepTime = Constants.hundredMilliseconds;
+      const fadeInDuration = Constants.twoSeconds;
+      const stepTime = Constants.twoHundredMilliseconds;
       var steps = fadeInDuration.inMilliseconds ~/ stepTime.inMilliseconds;
       var volumeStep = registry.backgroundVolume *
           storyMetaData.backgroundVolumeAdjustmentFactor /
           steps;
-      for (var i = 0; i < steps; i++) {
+      var maxVolume = registry.backgroundVolume *
+          storyMetaData.backgroundVolumeAdjustmentFactor;
+
+      for (var i = 1; i <= steps; i++) {
         // Allow cancellation
         if (registry.currentStoryMetaData != storyMetaData) break;
 
         await Future.delayed(stepTime);
-        await player.setVolume((i + 1) * volumeStep);
+
+        var nextVolume = i * volumeStep;
+        await player.setVolume(min(maxVolume, nextVolume));
       }
+
+      await player.setVolume(maxVolume);
 
       // Allow cancellation
       if (registry.currentStoryMetaData != storyMetaData) break;
 
       // Wait for the audio to finish playing
       var completer = Completer();
-      StreamSubscription playerCompletionSubscription =
-          player.onPlayerComplete.listen((_) {});
 
-      playerCompletionSubscription = player.onPlayerComplete.listen((event) {
-        playerCompletionSubscription.cancel(); // Unregister the listener
+      StreamSubscription playerCompletionSubscription =
+          player.onPlayerComplete.listen((_) {
         completer.complete();
       });
+
       await completer.future;
+      playerCompletionSubscription.cancel();
 
       await Future.delayed(
-          const Duration(milliseconds: 500)); // Wait for an additional delay
+          const Duration(milliseconds: 100)); // Wait for an additional delay
     }
   } catch (e) {
-    if (kDebugMode) {
-      print('Error playing background sound: $e');
-    }
+    _log('Error playing background sound: $e');
+  }
+}
+
+void _log(String msg) {
+  if (kDebugMode) {
+    print(msg);
   }
 }

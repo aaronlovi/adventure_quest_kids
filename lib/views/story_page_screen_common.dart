@@ -10,9 +10,11 @@ AppBar getAppBar(
   required String title,
   required String subTitle,
   required bool isStartPage,
+  required GlobalKey<State<StatefulWidget>> key,
   Color foregroundColor = Colors.white,
 }) {
   return AppBar(
+    key: key,
     backgroundColor: Colors.transparent,
     elevation: 0,
     leading: IconButton(

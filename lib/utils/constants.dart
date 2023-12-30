@@ -6,10 +6,11 @@ abstract class Constants {
     vertical: VisualDensity.minimumDensity,
   );
 
-  static const oneSecond = Duration(milliseconds: 1000);
-  static const halfSecond = Duration(milliseconds: 500);
-  static const twoHundredMilliseconds = Duration(milliseconds: 200);
   static const hundredMilliseconds = Duration(milliseconds: 100);
+  static const twoHundredMilliseconds = Duration(milliseconds: 200);
+  static const halfSecond = Duration(milliseconds: 500);
+  static const oneSecond = Duration(milliseconds: 1000);
+  static const twoSeconds = Duration(milliseconds: 2000);
 
   static const String storyListRoute = '/story-list';
   static const String frontPageRoute = '/front-page';
