@@ -22,14 +22,16 @@ if (!existsSync(outputDirectoryPath)) {
     mkdirSync(outputDirectoryPath);
 }
 
-// Get a list of JFIF files in the input directory
-const jfifFiles = readdirSync(inputDirectoryPath)
-    .filter(file => extname(file).toLowerCase() === '.jfif');
+// Get a list of image files in the input directory
+const originalImageFiles = readdirSync(inputDirectoryPath)
+    .filter(file => ['.jfif', '.jpg', '.jpeg', '.png'].includes(extname(file).toLowerCase()));
 
-// Process each JFIF file
-jfifFiles.forEach(jfifFile => {
-    const inputFilePath = join(inputDirectoryPath, jfifFile);
-    const outputFilePath = join(outputDirectoryPath, basename(jfifFile, '.jfif') + '.jpg');
+// Process each image file
+originalImageFiles.forEach(originalImageFile => {
+    const inputFilePath = join(inputDirectoryPath, originalImageFile);
+    const extension = extname(originalImageFile);
+    const fileNameWithoutExtension = basename(originalImageFile, extension);
+    const outputFilePath = join(outputDirectoryPath, fileNameWithoutExtension + '.jpg');
 
 // Resize the image and save it as a JPEG file
 sharp(inputFilePath)
