@@ -62,14 +62,23 @@ pages:
         text: "Step inside cautiously"
         text-fr: "Entrez prudemment"
         nextPageId: "page3D"
+        rectangle: { left: 0.40, right: 0.67, top: 0.50, bottom: 0.85 }
+        borderColor: '0xFFFFA500' # orange
+        icon: report_problem
       choice2:
         text: "Call out 'Hello'"
         text-fr: "Appelez 'Bonjour'"
         nextPageId: "page3E"
+        rectangle: { left: 0.48, right: 0.62, top: 0.39, bottom: 0.55 }
+        borderColor: '0xFF00FF00' # green
+        icon: volume_up
       choice3:
         text: "Wait outside"
         text-fr: "Attendez dehors"
         nextPageId: "page3F"
+        rectangle: { left: 0.14, right: 0.40, top: 0.80, bottom: 0.98 }
+        borderColor: '0xFF00FFFF' # cyan
+        icon: location_on
 
   # Level 3
 
@@ -82,10 +91,16 @@ pages:
         text: "Open the golden door"
         text-fr: "Ouvrez la porte dorée"
         nextPageId: "page4A"
+        rectangle: { left: 0.77, right: 0.96, top: 0.36, bottom: 0.82 }
+        borderColor: '0xFF00FF00' # green
+        icon: door_sliding
       choice2:
         text: "Investigate the mysterious painting"
         text-fr: "Enquêter sur la peinture mystérieuse"
         nextPageId: "page4B"
+        rectangle: { left: 0.02, right: 0.13, top: 0.13, bottom: 0.47 }
+        borderColor: '0xFF00FFFF' # cyan
+        icon: search
 
   page3B:
     text: "You check the spooky library. There are ancient books. What's your next adventure?"
@@ -96,10 +111,16 @@ pages:
         text: "Read the dusty spellbook"
         text-fr: "Lisez le livre de sorts poussiéreux"
         nextPageId: "page4C"
+        rectangle: { left: 0.32, right: 0.72, top: 0.72, bottom: 0.95 }
+        borderColor: '0xFF00FFFF' # cyan
+        icon: book
       choice2:
         text: "Search for hidden passages"
         text-fr: "Recherche de passages cachés"
         nextPageId: "page4D"
+        rectangle: { left: 0.41, right: 0.65, top: 0.05, bottom: 0.44 }
+        borderColor: '0xFF00FF00' # green
+        icon: search
 
   page3C:
     text: "You go up the creaky stairs. They lead to a dark corridor. What's your next move?"
@@ -110,13 +131,22 @@ pages:
         text: "Enter the mysterious room"
         text-fr: "Entrez dans la pièce mystérieuse"
         nextPageId: "page4E"
+        rectangle: { left: 0.61, right: 0.76, top: 0.05, bottom: 0.33 }
+        borderColor: '0xFFFFA500' # orange
+        icon: meeting_room
       choice2:
         text: "Follow the flickering candlelight"
         text-fr: "Suivez la lumière vacillante de la bougie"
         nextPageId: "page4F"
+        rectangle: { left: 0.05, right: 0.22, top: 0.12, bottom: 0.30 }
+        borderColor: '0xFF00FFFF' # cyan
+        icon: candlestick_chart
       choice3:
         text: "Go back downstairs"
         nextPageId: "page4G"
+        rectangle: { left: 0.21, right: 0.45, top: 0.70, bottom: 0.91 }
+        borderColor: '0xFF00FF00' # green
+        icon: stairs_outlined
 
   page3D:
     text: "You step inside cautiously. The room is filled with antique furniture. What's your next adventure?"
@@ -127,10 +157,16 @@ pages:
         text: "Examine the dusty piano"
         text-fr: "Examinez le piano poussiéreux"
         nextPageId: "page4H"
+        rectangle: { left: 0.75, right: 0.98, top: 0.35, bottom: 0.80 }
+        borderColor: '0xFF00FFFF' # cyan
+        icon: music_note
       choice2:
         text: "Check the old portraits"
         text-fr: "Vérifiez les vieux portraits"
         nextPageId: "page4I"
+        rectangle: { left: 0.02, right: 0.38, top: 0.05, bottom: 0.50 }
+        borderColor: '0xFF00FF00' # green
+        icon: portrait
 
   page3E:
     text: "You call out 'Hello.' No response. What's your next move?"
@@ -141,10 +177,16 @@ pages:
         text: "Continue exploring the mansion"
         text-fr: "Continuez à explorer le manoir"
         nextPageId: "page4J"
+        rectangle: { left: 0.60, right: 0.98, top: 0.60, bottom: 0.87 }
+        borderColor: '0xFF00FFFF' # cyan
+        icon: explore
       choice2:
         text: "Check the backyard"
         text-fr: "Vérifiez la cour arrière"
         nextPageId: "page4K"
+        rectangle: { left: 0.17, right: 0.33, top: 0.32, bottom: 0.69 }
+        borderColor: '0xFF00FF00' # green
+        icon: nature_people
 
   page3F:
     text: "You wait outside. The door slowly closes. What's your next adventure?"
@@ -155,14 +197,23 @@ pages:
         text: "Knock on the door again"
         text-fr: "Frappez à nouveau à la porte"
         nextPageId: "page4L"
+        rectangle: { left: 0.40, right: 0.55, top: 0.35, bottom: 0.55 }
+        borderColor: '0xFFFFA500' # orange
+        icon: door_sliding
       choice2:
         text: "Explore the garden"
         text-fr: "Explorez le jardin"
         nextPageId: "page4M"
+        rectangle: { left: 0.05, right: 0.27, top: 0.45, bottom: 0.75 }
+        borderColor: '0xFF00FFFF' # cyan
+        icon: nature_people
       choice3:
         text: "Leave the mansion"
         text-fr: "Quittez le manoir"
         nextPageId: "page4N"
+        rectangle: { left: 0.25, right: 0.62, top: 0.75, bottom: 0.98 }
+        borderColor: '0xFF00FF00' # green
+        icon: exit_to_app
 
   # Level 4 (Terminal Pages)
 
