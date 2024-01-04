@@ -106,6 +106,7 @@ flutter:
     - assets/dinoquest_journey/speech/
     - assets/dinoquest_journey/story_data/
     - assets/mystery_mansion/images/
+    - assets/mystery_mansion/speech/
     - assets/mystery_mansion/story_data/
     - assets/space_odyssey/images/
     - assets/space_odyssey/story_data/

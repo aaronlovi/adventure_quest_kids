@@ -7,7 +7,9 @@ pages:
   page1:
     text: "You're in front of a mysterious mansion. What do you want to do?"
     text-fr: "Vous êtes devant un manoir mystérieux. Que voulez-vous faire?"
-    imageFileName: "1.jpg"
+    imageFileName: 1.jpg
+    speechFileName: 1.mp3
+    speechFileName-fr: 1-fr.mp3
     choices:
       choice1:
         text: "Enter the mansion"
@@ -29,7 +31,9 @@ pages:
   page2A:
     text: "You enter the mansion. It's dark inside. What's your next move?"
     text-fr: "Vous entrez dans le manoir. Il fait sombre à l'intérieur. Quelle est votre prochaine étape?"
-    imageFileName: "2a.jpg"
+    imageFileName: 2a.jpg
+    speechFileName: 2a.mp3
+    speechFileName-fr: 2a-fr.mp3
     choices:
       choice1:
         text: "Explore the grand hallway"
@@ -56,7 +60,9 @@ pages:
   page2B:
     text: "You ring the doorbell, and the door slowly opens. What's your next move?"
     text-fr: "Vous sonnez à la porte et la porte s'ouvre lentement. Quelle est votre prochaine étape?"
-    imageFileName: "2b.jpg"
+    imageFileName: 2b.jpg
+    speechFileName: 2b.mp3
+    speechFileName-fr: 2b-fr.mp3
     choices:
       choice1:
         text: "Step inside cautiously"
@@ -85,7 +91,9 @@ pages:
   page3A:
     text: "You explore the grand hallway. It has many doors. What's your next move?"
     text-fr: "Vous explorez le grand hall. Il a beaucoup de portes. Quelle est votre prochaine étape?"
-    imageFileName: "3a.jpg"
+    imageFileName: 3a.jpg
+    speechFileName: 3a.mp3
+    speechFileName-fr: 3a-fr.mp3
     choices:
       choice1:
         text: "Open the golden door"
@@ -105,7 +113,9 @@ pages:
   page3B:
     text: "You check the spooky library. There are ancient books. What's your next adventure?"
     text-fr: "Vous vérifiez la bibliothèque effrayante. Il y a des livres anciens. Quelle est votre prochaine aventure?"
-    imageFileName: "3b.jpg"
+    imageFileName: 3b.jpg
+    speechFileName: 3b.mp3
+    speechFileName-fr: 3b-fr.mp3
     choices:
       choice1:
         text: "Read the dusty spellbook"
@@ -125,7 +135,9 @@ pages:
   page3C:
     text: "You go up the creaky stairs. They lead to a dark corridor. What's your next move?"
     text-fr: "Vous montez les escaliers grinçants. Ils mènent à un couloir sombre. Quelle est votre prochaine étape?"
-    imageFileName: "3c.jpg"
+    imageFileName: 3c.jpg
+    speechFileName: 3c.mp3
+    speechFileName-fr: 3c-fr.mp3
     choices:
       choice1:
         text: "Enter the mysterious room"
@@ -151,7 +163,9 @@ pages:
   page3D:
     text: "You step inside cautiously. The room is filled with antique furniture. What's your next adventure?"
     text-fr: "Vous entrez prudemment. La pièce est remplie de meubles anciens. Quelle est votre prochaine aventure?"
-    imageFileName: "3d.jpg"
+    imageFileName: 3d.jpg
+    speechFileName: 3d.mp3
+    speechFileName-fr: 3d-fr.mp3
     choices:
       choice1:
         text: "Examine the dusty piano"
@@ -171,7 +185,9 @@ pages:
   page3E:
     text: "You call out 'Hello.' No response. What's your next move?"
     text-fr: "Vous appelez 'Bonjour'. Pas de réponse. Quelle est votre prochaine étape?"
-    imageFileName: "3e.jpg"
+    imageFileName: 3e.jpg
+    speechFileName: 3e.mp3
+    speechFileName-fr: 3e-fr.mp3
     choices:
       choice1:
         text: "Continue exploring the mansion"
@@ -191,7 +207,9 @@ pages:
   page3F:
     text: "You wait outside. The door slowly closes. What's your next adventure?"
     text-fr: "Vous attendez dehors. La porte se ferme lentement. Quelle est votre prochaine aventure?"
-    imageFileName: "3f.jpg"
+    imageFileName: 3f.jpg
+    speechFileName: 3f.mp3
+    speechFileName-fr: 3f-fr.mp3
     choices:
       choice1:
         text: "Knock on the door again"
@@ -221,82 +239,110 @@ pages:
     text: "You open the golden door and discover a hidden treasure room. Congratulations, you're a master treasure hunter!"
     text-fr: "Vous ouvrez la porte dorée et découvrez une salle au trésor cachée. Félicitations, vous êtes un maître chasseur de trésors!"
     isTerminal: true
-    imageFileName: "4a.jpg"
+    imageFileName: 4a.jpg
+    speechFileName: 4a.mp3
+    speechFileName-fr: 4a-fr.mp3
 
   page4B:
     text: "You investigate the mysterious painting and find a secret passage. Congratulations, you're a skilled detective!"
     text-fr: "Vous enquêtez sur la peinture mystérieuse et trouvez un passage secret. Félicitations, vous êtes un détective qualifié!"
     isTerminal: true
-    imageFileName: "4b.jpg"
+    imageFileName: 4b.jpg
+    speechFileName: 4b.mp3
+    speechFileName-fr: 4b-fr.mp3
 
   page4C:
     text: "You read the dusty spellbook and gain magical powers. Congratulations, you're a mystical wizard!"
     text-fr: "Vous lisez le livre de sorts poussiéreux et gagnez des pouvoirs magiques. Félicitations, vous êtes un sorcier mystique!"
     isTerminal: true
-    imageFileName: "4c.jpg"
+    imageFileName: 4c.jpg
+    speechFileName: 4c.mp3
+    speechFileName-fr: 4c-fr.mp3
 
   page4D:
     text: "You search for hidden passages and unveil a hidden library. Congratulations, you're a secret librarian!"
     text-fr: "Vous recherchez des passages cachés et dévoilez une bibliothèque cachée. Félicitations, vous êtes un bibliothécaire secret!"
     isTerminal: true
-    imageFileName: "4d.jpg"
+    imageFileName: 4d.jpg
+    speechFileName: 4d.mp3
+    speechFileName-fr: 4d-fr.mp3
 
   page4E:
     text: "You enter the mysterious room and solve a puzzle. Congratulations, you're a puzzle-solving expert!"
     text-fr: "Vous entrez dans la pièce mystérieuse et résolvez une énigme. Félicitations, vous êtes un expert en résolution de problèmes!"
     isTerminal: true
-    imageFileName: "4e.jpg"
+    imageFileName: 4e.jpg
+    speechFileName: 4e.mp3
+    speechFileName-fr: 4e-fr.mp3
 
   page4F:
     text: "You follow the flickering candlelight and discover a haunted ballroom. Congratulations, you're a brave ghost hunter!"
     text-fr: "Vous suivez la lumière vacillante de la bougie et découvrez une salle de bal hantée. Félicitations, vous êtes un chasseur de fantômes courageux!"
     isTerminal: true
-    imageFileName: "4f.jpg"
+    imageFileName: 4f.jpg
+    speechFileName: 4f.mp3
+    speechFileName-fr: 4f-fr.mp3
 
   page4G:
     text: "You go back downstairs and exit the mansion. Congratulations, you're a cautious adventurer!"
     text-fr: "Vous redescendez et sortez du manoir. Félicitations, vous êtes un aventurier prudent!"
     isTerminal: true
-    imageFileName: "4g.jpg"
+    imageFileName: 4g.jpg
+    speechFileName: 4g.mp3
+    speechFileName-fr: 4g-fr.mp3
 
   page4H:
     text: "You examine the dusty piano and play a haunting melody. Congratulations, you're a musical maestro!"
     text-fr: "Vous examinez le piano poussiéreux et jouez une mélodie hantée. Félicitations, vous êtes un maestro musical!"
     isTerminal: true
-    imageFileName: "4h.jpg"
+    imageFileName: 4h.jpg
+    speechFileName: 4h.mp3
+    speechFileName-fr: 4h-fr.mp3
 
   page4I:
     text: "You check the old portraits and reveal a family secret. Congratulations, you're a skilled investigator!"
     text-fr: "Vous vérifiez les vieux portraits et révélez un secret de famille. Félicitations, vous êtes un enquêteur qualifié!"
     isTerminal: true
-    imageFileName: "4i.jpg"
+    imageFileName: 4i.jpg
+    speechFileName: 4i.mp3
+    speechFileName-fr: 4i-fr.mp3
 
   page4J:
     text: "You continue exploring the mansion and uncover its mysteries. Congratulations, you're a true explorer!"
     text-fr: "Vous continuez à explorer le manoir et découvrez ses mystères. Félicitations, vous êtes un vrai explorateur!"
     isTerminal: true
-    imageFileName: "4j.jpg"
+    imageFileName: 4j.jpg
+    speechFileName: 4j.mp3
+    speechFileName-fr: 4j-fr.mp3
 
   page4K:
     text: "You check the backyard and find a hidden garden. Congratulations, you're a nature detective!"
     text-fr: "Vous vérifiez la cour arrière et trouvez un jardin caché. Félicitations, vous êtes un détective de la nature!"
     isTerminal: true
-    imageFileName: "4k.jpg"
+    imageFileName: 4k.jpg
+    speechFileName: 4k.mp3
+    speechFileName-fr: 4k-fr.mp3
 
   page4L:
     text: "You knock on the door again and meet the mysterious owner. Congratulations, you're a persistent investigator!"
     text-fr: "Vous frappez à nouveau à la porte et rencontrez le mystérieux propriétaire. Félicitations, vous êtes un enquêteur persistant!"
     isTerminal: true
-    imageFileName: "4l.jpg"
+    imageFileName: 4l.jpg
+    speechFileName: 4l.mp3
+    speechFileName-fr: 4l-fr.mp3
 
   page4M:
     text: "You discover the mansion's secret garden, full of mysterious plants and a hidden pond. Congratulations, you're a nature-loving explorer!"
     text-fr: "Vous découvrez le jardin secret du manoir, plein de plantes mystérieuses et d'un étang caché. Félicitations, vous êtes un explorateur amoureux de la nature!"
     isTerminal: true
-    imageFileName: "4m.jpg"
+    imageFileName: 4m.jpg
+    speechFileName: 4m.mp3
+    speechFileName-fr: 4m-fr.mp3
 
   page4N:
     text: "You leave the mansion and venture into the moonlit night. Congratulations, you're an adventurer with a sense of mystery!"
     text-fr: "Vous quittez le manoir et vous aventurez dans la nuit éclairée par la lune. Félicitations, vous êtes un aventurier avec un sens du mystère!"
     isTerminal: true
-    imageFileName: "4n.jpg"
+    imageFileName: 4n.jpg
+    speechFileName: 4n.mp3
+    speechFileName-fr: 4n-fr.mp3
