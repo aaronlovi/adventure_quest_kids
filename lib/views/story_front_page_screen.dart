@@ -125,10 +125,14 @@ class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
   }
 
   List<Widget> _createBodyChildWidgets(
-      StoryMetaData storyMetadata, BuildContext context) {
+    StoryMetaData storyMetadata,
+    BuildContext context,
+  ) {
     final bodyChildWidgets = <Widget>[];
 
-    // Text for this page
+    bodyChildWidgets.add(const Spacer());
+
+    // Title for the story
     bodyChildWidgets.add(
       Center(
         child: Text(
@@ -159,9 +163,10 @@ class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
       );
     }
 
-    bodyChildWidgets.add(const SizedBox(height: 16));
+    bodyChildWidgets.add(const Spacer());
+
     bodyChildWidgets.add(
-      // Add your choice buttons/widgets here
+      // Add the 'Begin Adventure' button here
       Center(
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
@@ -197,6 +202,8 @@ class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
         ),
       ),
     );
+
+    bodyChildWidgets.add(const Spacer());
 
     return bodyChildWidgets;
   }
