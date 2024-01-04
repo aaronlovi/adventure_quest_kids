@@ -16,6 +16,7 @@ import '../fx/particle_animations.dart';
 import '../main.dart';
 import '../registry.dart';
 import '../utils/constants.dart';
+import '../utils/disposal_tracking_value_notifier.dart';
 import '../utils/read_timestamp_file.dart';
 import 'animated_story_text.dart';
 import 'story_page_screen_common.dart';
@@ -69,14 +70,14 @@ class StoryPageScreenState extends State<StoryPageScreen>
   bool _cancelSpeechAnimation;
 
   /// The index of the current word being spoken
-  final ValueNotifier<int> _currentWordIndex;
+  final DisposalTrackingValueNotifier<int> _currentWordIndex;
 
   final ValueNotifier<List<Particle>> _particles =
       ValueNotifier<List<Particle>>([]);
 
   StoryPageScreenState()
       : _cancelSpeechAnimation = false,
-        _currentWordIndex = ValueNotifier<int>(-1),
+        _currentWordIndex = DisposalTrackingValueNotifier<int>(-1),
         _containerKey = GlobalKey(),
         _appBarKey = GlobalKey(),
         _animatedRectangles = <(Rect, Color, StoryChoice)>[];
@@ -532,7 +533,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
     try {
       await _startSpeechAnimationCore();
     } finally {
-      _currentWordIndex.value = -1;
+      if (!_currentWordIndex.isDisposed) _currentWordIndex.value = -1;
     }
   }
 
