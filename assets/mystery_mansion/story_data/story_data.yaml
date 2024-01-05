@@ -10,6 +10,8 @@ pages:
     imageFileName: 1.jpg
     speechFileName: 1.mp3
     speechFileName-fr: 1-fr.mp3
+    speechTimestampsFileName: 1.timestamps.txt
+    speechTimestampsFileName-fr: 1-fr.timestamps.txt
     choices:
       choice1:
         text: "Enter the mansion"
@@ -34,6 +36,8 @@ pages:
     imageFileName: 2a.jpg
     speechFileName: 2a.mp3
     speechFileName-fr: 2a-fr.mp3
+    speechTimestampsFileName: 2a.timestamps.txt
+    speechTimestampsFileName-fr: 2a-fr.timestamps.txt
     choices:
       choice1:
         text: "Explore the grand hallway"
@@ -63,6 +67,8 @@ pages:
     imageFileName: 2b.jpg
     speechFileName: 2b.mp3
     speechFileName-fr: 2b-fr.mp3
+    speechTimestampsFileName: 2b.timestamps.txt
+    speechTimestampsFileName-fr: 2b-fr.timestamps.txt
     choices:
       choice1:
         text: "Step inside cautiously"
@@ -94,6 +100,8 @@ pages:
     imageFileName: 3a.jpg
     speechFileName: 3a.mp3
     speechFileName-fr: 3a-fr.mp3
+    speechTimestampsFileName: 3a.timestamps.txt
+    speechTimestampsFileName-fr: 3a-fr.timestamps.txt
     choices:
       choice1:
         text: "Open the golden door"
@@ -116,6 +124,8 @@ pages:
     imageFileName: 3b.jpg
     speechFileName: 3b.mp3
     speechFileName-fr: 3b-fr.mp3
+    speechTimestampsFileName: 3b.timestamps.txt
+    speechTimestampsFileName-fr: 3b-fr.timestamps.txt
     choices:
       choice1:
         text: "Read the dusty spellbook"
@@ -138,6 +148,8 @@ pages:
     imageFileName: 3c.jpg
     speechFileName: 3c.mp3
     speechFileName-fr: 3c-fr.mp3
+    speechTimestampsFileName: 3c.timestamps.txt
+    speechTimestampsFileName-fr: 3c-fr.timestamps.txt
     choices:
       choice1:
         text: "Enter the mysterious room"
@@ -166,6 +178,8 @@ pages:
     imageFileName: 3d.jpg
     speechFileName: 3d.mp3
     speechFileName-fr: 3d-fr.mp3
+    speechTimestampsFileName: 3d.timestamps.txt
+    speechTimestampsFileName-fr: 3d-fr.timestamps.txt
     choices:
       choice1:
         text: "Examine the dusty piano"
@@ -188,6 +202,8 @@ pages:
     imageFileName: 3e.jpg
     speechFileName: 3e.mp3
     speechFileName-fr: 3e-fr.mp3
+    speechTimestampsFileName: 3e.timestamps.txt
+    speechTimestampsFileName-fr: 3e-fr.timestamps.txt
     choices:
       choice1:
         text: "Continue exploring the mansion"
@@ -210,6 +226,8 @@ pages:
     imageFileName: 3f.jpg
     speechFileName: 3f.mp3
     speechFileName-fr: 3f-fr.mp3
+    speechTimestampsFileName: 3f.timestamps.txt
+    speechTimestampsFileName-fr: 3f-fr.timestamps.txt
     choices:
       choice1:
         text: "Knock on the door again"
@@ -242,6 +260,8 @@ pages:
     imageFileName: 4a.jpg
     speechFileName: 4a.mp3
     speechFileName-fr: 4a-fr.mp3
+    speechTimestampsFileName: 4a.timestamps.txt
+    speechTimestampsFileName-fr: 4a-fr.timestamps.txt
 
   page4B:
     text: "You investigate the mysterious painting and find a secret passage. Congratulations, you're a skilled detective!"
@@ -250,6 +270,8 @@ pages:
     imageFileName: 4b.jpg
     speechFileName: 4b.mp3
     speechFileName-fr: 4b-fr.mp3
+    speechTimestampsFileName: 4b.timestamps.txt
+    speechTimestampsFileName-fr: 4b-fr.timestamps.txt
 
   page4C:
     text: "You read the dusty spellbook and gain magical powers. Congratulations, you're a mystical wizard!"
@@ -258,6 +280,8 @@ pages:
     imageFileName: 4c.jpg
     speechFileName: 4c.mp3
     speechFileName-fr: 4c-fr.mp3
+    speechTimestampsFileName: 4c.timestamps.txt
+    speechTimestampsFileName-fr: 4c-fr.timestamps.txt
 
   page4D:
     text: "You search for hidden passages and unveil a hidden library. Congratulations, you're a secret librarian!"
@@ -266,6 +290,8 @@ pages:
     imageFileName: 4d.jpg
     speechFileName: 4d.mp3
     speechFileName-fr: 4d-fr.mp3
+    speechTimestampsFileName: 4d.timestamps.txt
+    speechTimestampsFileName-fr: 4d-fr.timestamps.txt
 
   page4E:
     text: "You enter the mysterious room and solve a puzzle. Congratulations, you're a puzzle-solving expert!"
@@ -274,6 +300,8 @@ pages:
     imageFileName: 4e.jpg
     speechFileName: 4e.mp3
     speechFileName-fr: 4e-fr.mp3
+    speechTimestampsFileName: 4e.timestamps.txt
+    speechTimestampsFileName-fr: 4e-fr.timestamps.txt
 
   page4F:
     text: "You follow the flickering candlelight and discover a haunted ballroom. Congratulations, you're a brave ghost hunter!"
@@ -282,6 +310,8 @@ pages:
     imageFileName: 4f.jpg
     speechFileName: 4f.mp3
     speechFileName-fr: 4f-fr.mp3
+    speechTimestampsFileName: 4f.timestamps.txt
+    speechTimestampsFileName-fr: 4f-fr.timestamps.txt
 
   page4G:
     text: "You go back downstairs and exit the mansion. Congratulations, you're a cautious adventurer!"
@@ -290,6 +320,8 @@ pages:
     imageFileName: 4g.jpg
     speechFileName: 4g.mp3
     speechFileName-fr: 4g-fr.mp3
+    speechTimestampsFileName: 4g.timestamps.txt
+    speechTimestampsFileName-fr: 4g-fr.timestamps.txt
 
   page4H:
     text: "You examine the dusty piano and play a haunting melody. Congratulations, you're a musical maestro!"
@@ -298,6 +330,8 @@ pages:
     imageFileName: 4h.jpg
     speechFileName: 4h.mp3
     speechFileName-fr: 4h-fr.mp3
+    speechTimestampsFileName: 4h.timestamps.txt
+    speechTimestampsFileName-fr: 4h-fr.timestamps.txt
 
   page4I:
     text: "You check the old portraits and reveal a family secret. Congratulations, you're a skilled investigator!"
@@ -306,6 +340,8 @@ pages:
     imageFileName: 4i.jpg
     speechFileName: 4i.mp3
     speechFileName-fr: 4i-fr.mp3
+    speechTimestampsFileName: 4i.timestamps.txt
+    speechTimestampsFileName-fr: 4i-fr.timestamps.txt
 
   page4J:
     text: "You continue exploring the mansion and uncover its mysteries. Congratulations, you're a true explorer!"
@@ -314,6 +350,8 @@ pages:
     imageFileName: 4j.jpg
     speechFileName: 4j.mp3
     speechFileName-fr: 4j-fr.mp3
+    speechTimestampsFileName: 4j.timestamps.txt
+    speechTimestampsFileName-fr: 4j-fr.timestamps.txt
 
   page4K:
     text: "You check the backyard and find a hidden garden. Congratulations, you're a nature detective!"
@@ -322,6 +360,8 @@ pages:
     imageFileName: 4k.jpg
     speechFileName: 4k.mp3
     speechFileName-fr: 4k-fr.mp3
+    speechTimestampsFileName: 4k.timestamps.txt
+    speechTimestampsFileName-fr: 4k-fr.timestamps.txt
 
   page4L:
     text: "You knock on the door again and meet the mysterious owner. Congratulations, you're a persistent investigator!"
@@ -330,6 +370,8 @@ pages:
     imageFileName: 4l.jpg
     speechFileName: 4l.mp3
     speechFileName-fr: 4l-fr.mp3
+    speechTimestampsFileName: 4l.timestamps.txt
+    speechTimestampsFileName-fr: 4l-fr.timestamps.txt
 
   page4M:
     text: "You discover the mansion's secret garden, full of mysterious plants and a hidden pond. Congratulations, you're a nature-loving explorer!"
@@ -338,6 +380,8 @@ pages:
     imageFileName: 4m.jpg
     speechFileName: 4m.mp3
     speechFileName-fr: 4m-fr.mp3
+    speechTimestampsFileName: 4m.timestamps.txt
+    speechTimestampsFileName-fr: 4m-fr.timestamps.txt
 
   page4N:
     text: "You leave the mansion and venture into the moonlit night. Congratulations, you're an adventurer with a sense of mystery!"
@@ -346,3 +390,5 @@ pages:
     imageFileName: 4n.jpg
     speechFileName: 4n.mp3
     speechFileName-fr: 4n-fr.mp3
+    speechTimestampsFileName: 4n.timestamps.txt
+    speechTimestampsFileName-fr: 4n-fr.timestamps.txt

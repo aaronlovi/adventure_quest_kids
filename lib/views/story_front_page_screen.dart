@@ -86,6 +86,7 @@ class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
   ) {
     var bodyChildWidgets = _createBodyChildWidgets(storyMetadata, context);
     final appBarHeight = MediaQuery.of(context).padding.top + kToolbarHeight;
+    final mainContainerHeight = h - appBarHeight;
 
     return Container(
       decoration: BoxDecoration(
@@ -103,7 +104,7 @@ class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
           SizedBox(height: appBarHeight),
           // Top half: Container for Image
           Container(
-              height: h * 0.4,
+              height: mainContainerHeight * 0.49,
               decoration: BoxDecoration(
                 image: DecorationImage(
                     fit: BoxFit.contain,
@@ -112,7 +113,7 @@ class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
               )),
           // Bottom half: Text and Choices
           Container(
-            height: h * 0.4,
+            height: mainContainerHeight * 0.49,
             padding: const EdgeInsets.all(16),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

@@ -9,7 +9,7 @@
     "trim-mp3": "node trimMp3File.js ../../assets/magic_forest_quest/sounds/originals/background.mp3 ../../assets/magic_forest_quest/sounds/background-8s.mp3 51 8",
     "resize-images": "node resizeImages.js ../../assets/mystery_mansion/images/originals/ ../../assets/mystery_mansion/images/",
     "mp4-to-mp3": "node convertWavToMp3.js ../../assets/mystery_mansion/speech/originals-fr/ ../../assets/mystery_mansion/speech/",
-    "get-timestamps": "node audioTimestampRecorder.js ../../assets/magic_forest_quest/speech/4b.mp3 ../../assets/magic_forest_quest/speech/4b.timestamps.txt",
+    "get-timestamps": "node audioTimestampRecorder.js ../../assets/mystery_mansion/speech/4n-fr.mp3 ../../assets/mystery_mansion/speech/4n-fr.timestamps.txt",
     "adventure-dfs": "node yamlAdventureNavigator.js ../../assets/mystery_mansion/story_data/story_data.yaml"
   },
   "keywords": [],

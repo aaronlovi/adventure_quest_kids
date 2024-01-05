@@ -229,6 +229,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
     final double w = context.width;
     final double h = context.height;
     final appBarHeight = MediaQuery.of(context).padding.top + kToolbarHeight;
+    final mainContainerHeight = h - appBarHeight;
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -247,8 +248,8 @@ class StoryPageScreenState extends State<StoryPageScreen>
         child: Column(
           children: [
             SizedBox(height: appBarHeight),
-            _getStoryImageWidgets(w, h),
-            _getStoryTextAndChoicesWidgets(w, h, context),
+            _getStoryImageWidgets(w, mainContainerHeight),
+            _getStoryTextAndChoicesWidgets(w, mainContainerHeight, context),
           ],
         ),
       ),
@@ -281,7 +282,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
     _addPlaySpeechActionButton(widgets, w);
 
     return SizedBox(
-      height: h * 0.4,
+      height: h * 0.49,
       child: Stack(
         alignment: Alignment.center,
         children: widgets,
@@ -320,7 +321,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
           alignment: Alignment.center,
           child: Container(
             key: _containerKey,
-            height: h * 0.4,
+            height: h * 0.49,
             decoration: BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.contain,
@@ -368,12 +369,24 @@ class StoryPageScreenState extends State<StoryPageScreen>
     BuildContext context,
   ) {
     var widgets = <Widget>[];
+    widgets.add(const Spacer());
     _addStoryTextWidgets(widgets);
+    widgets.add(const Spacer());
     _addStoryChoiceWidgets(context, widgets);
     _addEndOfStoryWidgets(context, widgets);
+    widgets.add(const Spacer());
+
+    // // Insert a Spacer between each widget.
+    // var widgetsWithSpacing = <Widget>[];
+    // for (var i = 0; i < widgets.length; i++) {
+    //   widgetsWithSpacing.add(widgets[i]);
+    //   if (i < widgets.length - 1) {
+    //     widgetsWithSpacing.add(const Spacer());
+    //   }
+    // }
 
     return Container(
-      height: h * 0.4,
+      height: h * 0.49,
       padding: const EdgeInsets.fromLTRB(6, 8, 6, 0),
       child: LayoutBuilder(
         builder: (context, constraints) {
@@ -381,6 +394,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
             fit: BoxFit.scaleDown,
             child: SizedBox(
               width: constraints.maxWidth,
+              height: constraints.maxHeight,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: widgets,
@@ -407,8 +421,6 @@ class StoryPageScreenState extends State<StoryPageScreen>
   }
 
   void _addStoryChoiceWidgets(BuildContext context, List<Widget> widgets) {
-    widgets.add(const SizedBox(height: 16));
-
     String getStoryChoiceText(StoryChoice choice) {
       if (choice.textByLanguage.containsKey(currentLocale)) {
         return choice.textByLanguage[currentLocale]!;
@@ -435,6 +447,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
       }
     }
 
+    bool isFirst = true;
     for (String choiceName in widget.storyPage.choices.keys) {
       StoryChoice choice = widget.storyPage.choices[choiceName]!;
       StoryPage nextPage = widget.story.pages[choice.nextPageId]!;
@@ -446,7 +459,11 @@ class StoryPageScreenState extends State<StoryPageScreen>
         registry: widget.registry,
       );
 
-      widgets.add(const Padding(padding: EdgeInsets.only(top: 12)));
+      if (!isFirst) {
+        widgets.add(const Padding(padding: EdgeInsets.only(top: 12)));
+      }
+      isFirst = false;
+
       widgets.add(ElevatedButton(
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.all(8),

@@ -128,7 +128,7 @@ void main() {
     expect(tester.takeException(), isNull);
 
     await tester.tap(find.byType(ListTile).first);
-    await tester.pumpAndSettle();
+    await tester.pumpAndSettle(const Duration(seconds: 1));
 
     // Check for overflow errors
     expect(tester.takeException(), isNull);
