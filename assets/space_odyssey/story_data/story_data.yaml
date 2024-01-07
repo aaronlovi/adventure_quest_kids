@@ -5,243 +5,408 @@ pages:
   # Level 1
 
   page1:
-    imageFileName: cover_image.jpg
     text: "You're in a spaceship. What do you want to do?"
     text-fr: "Vous êtes dans un vaisseau spatial. Que voulez-vous faire?"
+    imageFileName: 1.jpg
+    speechFileName: 1.mp3
+    speechFileName-fr: 1-fr.mp3
+    speechTimestampsFileName: 1.timestamps.txt
+    speechTimestampsFileName-fr: 1-fr.timestamps.txt
     choices:
       choice1:
         text: "Blast off!"
         text-fr: "Décoller!"
         nextPageId: "page2A"
+        borderColor: '0xFFFFFF00' # bright yellow
+        rectangle: { left: 0.48, right: 0.73, top: 0.41, bottom: 0.52 }
+        icon: rocket_launch
       choice2:
         text: "Countdown!"
         text-fr: "Compte à rebours!"
         nextPageId: "page2B"
+        borderColor: '0xFF00FF00' # bright green
+        rectangle: { left: 0.38, right: 0.62, top: 0.77, bottom: 0.88 }
+        icon: timer
 
   # Level 2
 
   page2A:
-    imageFileName: cover_image.jpg
     text: "You blast off and land on the moon. What's your next move?"
     text-fr: "Vous décollez et atterrissez sur la lune. Quelle est votre prochaine étape?"
+    imageFileName: 2a.jpg
+    speechFileName: 2a.mp3
+    speechFileName-fr: 2a-fr.mp3
+    speechTimestampsFileName: 2a.timestamps.txt
+    speechTimestampsFileName-fr: 2a-fr.timestamps.txt
     choices:
       choice1:
         text: "Jump on the moon"
         text-fr: "Sauter sur la lune"
         nextPageId: "page3A"
+        borderColor: '0xFFFFFF00' # bright yellow
+        rectangle: { left: 0.25, right: 0.60, top: 0.86, bottom: 0.98 }
+        icon: airline_seat_legroom_extra
       choice2:
         text: "Collect moon rocks"
         text-fr: "Collecter des roches lunaires"
         nextPageId: "page3B"
+        borderColor: '0xFF00FF00' # bright green
+        rectangle: { left: 0.02, right: 0.28, top: 0.70, bottom: 0.86 }
+        icon: science
       choice3:
         text: "Do a moonwalk"
         text-fr: "Faire une marche lunaire"
         nextPageId: "page3C"
+        borderColor: '0xFFFF8C00' # dark orange
+        rectangle: { left: 0.37, right: 0.60, top: 0.70, bottom: 0.83 }
+        icon: directions_walk
 
   page2B:
-    imageFileName: cover_image.jpg
     text: "You start a countdown and zoom into space. You find a colorful planet. What's your next adventure?"
     text-fr: "Vous commencez un compte à rebours et vous vous précipitez dans l'espace. Vous trouvez une planète colorée. Quelle est votre prochaine aventure?"
+    imageFileName: 2b.jpg
+    speechFileName: 2b.mp3
+    speechFileName-fr: 2b-fr.mp3
+    speechTimestampsFileName: 2b.timestamps.txt
+    speechTimestampsFileName-fr: 2b-fr.timestamps.txt
     choices:
       choice1:
         text: "Explore the planet"
         text-fr: "Explorez la planète"
         nextPageId: "page3D"
+        borderColor: '0xFFFFFF00' # bright yellow
+        rectangle: { left: 0.10, right: 0.56, top: 0.23, bottom: 0.77 }
+        icon: explore
       choice2:
         text: "Build a space fort"
         text-fr: "Construire un fort spatial"
         nextPageId: "page3E"
+        borderColor: '0xFF00FF00' # bright green
+        rectangle: { left: 0.60, right: 0.83, top: 0.13, bottom: 0.42 }
+        icon: construction
       choice3:
         text: "Have a space picnic"
         text-fr: "Avoir un pique-nique spatial"
         nextPageId: "page3F"
+        borderColor: '0xFFFF8C00' # dark orange
+        rectangle: { left: 0.55, right: 0.98, top: 0.55, bottom: 0.93 }
+        icon: fastfood
 
   # Level 3
 
   page3A:
-    imageFileName: cover_image.jpg
     text: "You jump on the moon. It's bouncy! What's your next move?"
     text-fr: "Vous sautez sur la lune. C'est rebondissant! Quelle est votre prochaine étape?"
+    imageFileName: 3a.jpg
+    speechFileName: 3a.mp3
+    speechFileName-fr: 3a-fr.mp3
+    speechTimestampsFileName: 3a.timestamps.txt
+    speechTimestampsFileName-fr: 3a-fr.timestamps.txt
     choices:
       choice1:
         text: "Do a space dance"
         text-fr: "Faire une danse spatiale"
         nextPageId: "page4A"
+        borderColor: '0xFFFFFF00' # bright yellow
+        rectangle: { left: 0.50, right: 0.80, top: 0.70, bottom: 0.93 }
+        icon: music_note
       choice2:
         text: "Look for space animals"
         text-fr: "Chercher des animaux spatiaux"
         nextPageId: "page4B"
+        borderColor: '0xFF00FF00' # bright green
+        rectangle: { left: 0.17, right: 0.40, top: 0.75, bottom: 0.95 }
+        icon: pets
 
   page3B:
-    imageFileName: cover_image.jpg
     text: "You collect moon rocks. They sparkle! What's your next move?"
     text-fr: "Vous collectez des roches lunaires. Ils scintillent! Quelle est votre prochaine étape?"
+    imageFileName: 3b.jpg
+    speechFileName: 3b.mp3
+    speechFileName-fr: 3b-fr.mp3
+    speechTimestampsFileName: 3b.timestamps.txt
+    speechTimestampsFileName-fr: 3b-fr.timestamps.txt
     choices:
       choice1:
         text: "Build a space castle"
         text-fr: "Construire un château spatial"
         nextPageId: "page4C"
+        borderColor: '0xFFFFFF00' # bright yellow
+        rectangle: { left: 0.65, right: 0.98, top: 0.10, bottom: 0.56 }
+        icon: construction
       choice2:
         text: "Have a space picnic"
         text-fr: "Avoir un pique-nique spatial"
         nextPageId: "page4D"
+        borderColor: '0xFF00FF00' # bright green
+        rectangle: { left: 0.56, right: 0.98, top: 0.75, bottom: 0.98 }
+        icon: fastfood
 
   page3C:
-    imageFileName: cover_image.jpg
     text: "You do a moonwalk. It's fun! What's your next move?"
     text-fr: "Vous faites une marche lunaire. C'est amusant! Quelle est votre prochaine étape?"
+    imageFileName: 3c.jpg
+    speechFileName: 3c.mp3
+    speechFileName-fr: 3c-fr.mp3
+    speechTimestampsFileName: 3c.timestamps.txt
+    speechTimestampsFileName-fr: 3c-fr.timestamps.txt
     choices:
       choice1:
         text: "Sing a space song"
         text-fr: "Chantez une chanson spatiale"
         nextPageId: "page4E"
+        borderColor: '0xFF00FF00' # bright green
+        rectangle: { left: 0.50, right: 0.95, top: 0.02, bottom: 0.49 }
+        icon: music_note
       choice2:
         text: "Look for space animals"
         text-fr: "Chercher des animaux spatiaux"
         nextPageId: "page4F"
+        borderColor: '0xFFFFFF00' # bright yellow
+        rectangle: { left: 0.62, right: 0.98, top: 0.55, bottom: 0.85 }
+        icon: pets
 
   page3D:
-    imageFileName: cover_image.jpg
     text: "You explore the colorful planet. It's full of surprises! What's your next adventure?"
     text-fr: "Vous explorez la planète colorée. C'est plein de surprises! Quelle est votre prochaine aventure?"
+    imageFileName: 3d.jpg
+    speechFileName: 3d.mp3
+    speechFileName-fr: 3d-fr.mp3
+    speechTimestampsFileName: 3d.timestamps.txt
+    speechTimestampsFileName-fr: 3d-fr.timestamps.txt
     choices:
       choice1:
         text: "Meet a space queen"
         text-fr: "Rencontrer une reine de l'espace"
         nextPageId: "page4G"
+        borderColor: '0xFFFFFF00' # bright yellow
+        rectangle: { left: 0.48, right: 0.96, top: 0.08, bottom: 0.52 }
+        icon: emoji_people
       choice2:
         text: "Find a space treasure"
         text-fr: "Trouver un trésor spatial"
         nextPageId: "page4H"
+        borderColor: '0xFF00FF00' # bright green
+        rectangle: { left: 0.12, right: 0.37, top: 0.67, bottom: 0.90 }
+        icon: emoji_events
       choice3:
         text: "Play space games"
         text-fr: "Jouer à des jeux spatiaux"
         nextPageId: "page4I"
+        borderColor: '0xFFFF8C00' # dark orange
+        rectangle: { left: 0.40, right: 0.70, top: 0.78, bottom: 0.97 }
+        icon: sports_esports
 
   page3E:
-    imageFileName: cover_image.jpg
     text: "You build a space fort. It has a slide and swings. What's your next move?"
     text-fr: "Vous construisez un fort spatial. Il a une glissade et des balançoires. Quelle est votre prochaine étape?"
+    imageFileName: 3e.jpg
+    speechFileName: 3e.mp3
+    speechFileName-fr: 3e-fr.mp3
+    speechTimestampsFileName: 3e.timestamps.txt
+    speechTimestampsFileName-fr: 3e-fr.timestamps.txt
     choices:
       choice1:
         text: "Slide down the space slide"
         text-fr: "Glissez sur la glissade spatiale"
         nextPageId: "page4J"
+        borderColor: '0xFFFFFF00' # bright yellow
+        rectangle: { left: 0.30, right: 0.58, top: 0.60, bottom: 0.95 }
+        icon: play_arrow
       choice2:
         text: "Invite space friends"
         text-fr: "Invitez des amis de l'espace"
         nextPageId: "page4K"
+        borderColor: '0xFF00FF00' # bright green
+        rectangle: { left: 0.02, right: 0.28, top: 0.70, bottom: 0.95 }
+        icon: group_add
       choice3:
         text: "Explore the space fort"
         text-fr: "Explorez le fort spatial"
         nextPageId: "page4L"
+        borderColor: '0xFFFF8C00' # dark orange
+        rectangle: { left: 0.08, right: 0.40, top: 0.15, bottom: 0.43 }
+        icon: explore
 
   page3F:
-    imageFileName: cover_image.jpg
     text: "You have a space picnic. Yummy snacks! What's your next move?"
     text-fr: "Vous avez un pique-nique spatial. Collations délicieuses! Quelle est votre prochaine étape?"
+    imageFileName: 3f.jpg
+    speechFileName: 3f.mp3
+    speechFileName-fr: 3f-fr.mp3
+    speechTimestampsFileName: 3f.timestamps.txt
+    speechTimestampsFileName-fr: 3f-fr.timestamps.txt
     choices:
       choice1:
         text: "Visit a space castle"
         text-fr: "Visitez un château spatial"
         nextPageId: "page4M"
+        borderColor: '0xFFFFFF00' # bright yellow
+        rectangle: { left: 0.60, right: 0.98, top: 0.33, bottom: 0.62 }
+        icon: location_city
       choice2:
         text: "Zoom to a new galaxy"
         text-fr: "Zoom vers une nouvelle galaxie"
         nextPageId: "page4N"
+        borderColor: '0xFF00FF00' # bright green
+        rectangle: { left: 0.35, right: 0.77, top: 0.15, bottom: 0.31 }
+        icon: fast_forward
       choice3:
         text: "Have a space race"
         text-fr: "Avoir une course spatiale"
         nextPageId: "page4O"
+        borderColor: '0xFFFF8C00' # dark orange
+        rectangle: { left: 0.22, right: 0.73, top: 0.02, bottom: 0.15 }
+        icon: directions_run
 
   # Level 4 (Terminal Pages)
 
   page4A:
-    imageFileName: cover_image.jpg
     text: "You do a space dance. It's out of this world! Congratulations, you're a space dancing superstar!"
     text-fr: "Vous faites une danse spatiale. C'est hors de ce monde! Félicitations, vous êtes une superstar de la danse spatiale!"
     isTerminal: true
+    imageFileName: 4a.jpg
+    speechFileName: 4a.mp3
+    speechFileName-fr: 4a-fr.mp3
+    speechTimestampsFileName: 4a.timestamps.txt
+    speechTimestampsFileName-fr: 4a-fr.timestamps.txt
 
   page4B:
-    imageFileName: cover_image.jpg
     text: "You look for space animals. They invite you to a dance party. Congratulations, you're the life of the space party!"
     text-fr: "Vous cherchez des animaux spatiaux. Ils vous invitent à une fête dansante. Félicitations, vous êtes la vie de la fête spatiale!"
     isTerminal: true
+    imageFileName: 4b.jpg
+    speechFileName: 4b.mp3
+    speechFileName-fr: 4b-fr.mp3
+    speechTimestampsFileName: 4b.timestamps.txt
+    speechTimestampsFileName-fr: 4b-fr.timestamps.txt
 
   page4C:
-    imageFileName: cover_image.jpg
     text: "You build a space castle with moon rocks. It becomes a space palace. Congratulations, you're a space architect!"
     text-fr: "Vous construisez un château spatial avec des roches lunaires. Il devient un palais spatial. Félicitations, vous êtes un architecte spatial!"
     isTerminal: true
+    imageFileName: 4c.jpg
+    speechFileName: 4c.mp3
+    speechFileName-fr: 4c-fr.mp3
+    speechTimestampsFileName: 4c.timestamps.txt
+    speechTimestampsFileName-fr: 4c-fr.timestamps.txt
 
   page4D:
-    imageFileName: cover_image.jpg
     text: "You have a space picnic with delicious snacks. Congratulations, you're a space picnic expert!"
     text-fr: "Vous avez un pique-nique spatial avec des collations délicieuses. Félicitations, vous êtes un expert du pique-nique spatial!"
     isTerminal: true
+    imageFileName: 4d.jpg
+    speechFileName: 4d.mp3
+    speechFileName-fr: 4d-fr.mp3
+    speechTimestampsFileName: 4d.timestamps.txt
+    speechTimestampsFileName-fr: 4d-fr.timestamps.txt
 
   page4E:
-    imageFileName: cover_image.jpg
     text: "You sing a space song. It echoes through the galaxy. Congratulations, you're a space singing sensation!"
     text-fr: "Vous chantez une chanson spatiale. Il résonne à travers la galaxie. Félicitations, vous êtes une sensation de chant spatial!"
     isTerminal: true
+    imageFileName: 4e.jpg
+    speechFileName: 4e.mp3
+    speechFileName-fr: 4e-fr.mp3
+    speechTimestampsFileName: 4e.timestamps.txt
+    speechTimestampsFileName-fr: 4e-fr.timestamps.txt
 
   page4F:
-    imageFileName: cover_image.jpg
     text: "You look for space animals. They join your space dance. Congratulations, you're a space dance choreographer!"
     text-fr: "Vous cherchez des animaux spatiaux. Ils rejoignent votre danse spatiale. Félicitations, vous êtes un chorégraphe de danse spatiale!"
     isTerminal: true
+    imageFileName: 4f.jpg
+    speechFileName: 4f.mp3
+    speechFileName-fr: 4f-fr.mp3
+    speechTimestampsFileName: 4f.timestamps.txt
+    speechTimestampsFileName-fr: 4f-fr.timestamps.txt
 
   page4G:
-    imageFileName: cover_image.jpg
     text: "You meet a space queen and dance in her space palace. Congratulations, you're a space royal dancer!"
     text-fr: "Vous rencontrez une reine de l'espace et dansez dans son palais spatial. Félicitations, vous êtes un danseur royal de l'espace!"
     isTerminal: true
+    imageFileName: 4g.jpg
+    speechFileName: 4g.mp3
+    speechFileName-fr: 4g-fr.mp3
+    speechTimestampsFileName: 4g.timestamps.txt
+    speechTimestampsFileName-fr: 4g-fr.timestamps.txt
 
   page4H:
-    imageFileName: cover_image.jpg
     text: "You find a space treasure on the colorful planet. Congratulations, you're a space treasure hunter!"
     text-fr: "Vous trouvez un trésor spatial sur la planète colorée. Félicitations, vous êtes un chasseur de trésors spatial!"
     isTerminal: true
+    imageFileName: 4h.jpg
+    speechFileName: 4h.mp3
+    speechFileName-fr: 4h-fr.mp3
+    speechTimestampsFileName: 4h.timestamps.txt
+    speechTimestampsFileName-fr: 4h-fr.timestamps.txt
 
   page4I:
-    imageFileName: cover_image.jpg
     text: "You play space games on the colorful planet. Congratulations, you're a space games champion!"
     text-fr: "Vous jouez à des jeux spatiaux sur la planète colorée. Félicitations, vous êtes un champion des jeux spatiaux!"
     isTerminal: true
+    imageFileName: 4i.jpg
+    speechFileName: 4i.mp3
+    speechFileName-fr: 4i-fr.mp3
+    speechTimestampsFileName: 4i.timestamps.txt
+    speechTimestampsFileName-fr: 4i-fr.timestamps.txt
 
   page4J:
-    imageFileName: cover_image.jpg
     text: "You slide down the space slide of your fort. Congratulations, you're a space sliding pro!"
     text-fr: "Vous glissez sur la glissade spatiale de votre fort. Félicitations, vous êtes un pro de la glisse spatiale!"
     isTerminal: true
+    imageFileName: 4j.jpg
+    speechFileName: 4j.mp3
+    speechFileName-fr: 4j-fr.mp3
+    speechTimestampsFileName: 4j.timestamps.txt
+    speechTimestampsFileName-fr: 4j-fr.timestamps.txt
 
   page4K:
-    imageFileName: cover_image.jpg
     text: "You invite space friends to your fort. Congratulations, you're a space party planner!"
     text-fr: "Vous invitez des amis de l'espace à votre fort. Félicitations, vous êtes un organisateur de fêtes spatiales!"
     isTerminal: true
+    imageFileName: 4k.jpg
+    speechFileName: 4k.mp3
+    speechFileName-fr: 4k-fr.mp3
+    speechTimestampsFileName: 4k.timestamps.txt
+    speechTimestampsFileName-fr: 4k-fr.timestamps.txt
 
   page4L:
-    imageFileName: cover_image.jpg
     text: "You explore the space fort's secret passages. They lead to a hidden space garden. Congratulations, you're a space explorer!"
     text-fr: "Vous explorez les passages secrets du fort spatial. Ils mènent à un jardin spatial caché. Félicitations, vous êtes un explorateur spatial!"
     isTerminal: true
+    imageFileName: 4l.jpg
+    speechFileName: 4l.mp3
+    speechFileName-fr: 4l-fr.mp3
+    speechTimestampsFileName: 4l.timestamps.txt
+    speechTimestampsFileName-fr: 4l-fr.timestamps.txt
 
   page4M:
-    imageFileName: cover_image.jpg
     text: "You visit a space castle after your picnic. Congratulations, you're a space castle explorer!"
     text-fr: "Vous visitez un château spatial après votre pique-nique. Félicitations, vous êtes un explorateur de château spatial!"
     isTerminal: true
+    imageFileName: 4m.jpg
+    speechFileName: 4m.mp3
+    speechFileName-fr: 4m-fr.mp3
+    speechTimestampsFileName: 4m.timestamps.txt
+    speechTimestampsFileName-fr: 4m-fr.timestamps.txt
 
   page4N:
-    imageFileName: cover_image.jpg
     text: "You zoom to a new galaxy after your picnic. Congratulations, you're a space galaxy adventurer!"
     text-fr: "Vous zoomez vers une nouvelle galaxie après votre pique-nique. Félicitations, vous êtes un aventurier de la galaxie spatiale!"
     isTerminal: true
+    imageFileName: 4n.jpg
+    speechFileName: 4n.mp3
+    speechFileName-fr: 4n-fr.mp3
+    speechTimestampsFileName: 4n.timestamps.txt
+    speechTimestampsFileName-fr: 4n-fr.timestamps.txt
 
   page4O:
-    imageFileName: cover_image.jpg
     text: "You have a space race after your picnic. Congratulations, you're a space racing champion!"
     text-fr: "Vous avez une course spatiale après votre pique-nique. Félicitations, vous êtes un champion de course spatial!"
     isTerminal: true
+    imageFileName: 4o.jpg
+    speechFileName: 4o.mp3
+    speechFileName-fr: 4o-fr.mp3
+    speechTimestampsFileName: 4o.timestamps.txt
+    speechTimestampsFileName-fr: 4o-fr.timestamps.txt

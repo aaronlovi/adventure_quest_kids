@@ -109,6 +109,7 @@ flutter:
     - assets/mystery_mansion/speech/
     - assets/mystery_mansion/story_data/
     - assets/space_odyssey/images/
+    - assets/space_odyssey/speech/
     - assets/space_odyssey/story_data/
     - assets/magic_forest_quest/images/
     - assets/magic_forest_quest/sounds/
