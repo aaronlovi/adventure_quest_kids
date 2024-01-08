@@ -47,3 +47,4 @@ app.*.map.json
 linux/flutter/
 macos/Flutter/
 windows/flutter/
+android/gradle.properties
