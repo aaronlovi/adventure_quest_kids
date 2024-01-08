@@ -7,16 +7,19 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
 
 import '../main.dart';
+import '../utils/ad_state.dart';
 import '../utils/constants.dart';
 import 'story_list_item.dart';
 
 class MainScreen extends StatefulWidget {
   final Registry registry;
+  final AdState adState;
   final RouteObserver<PageRoute> routeObserver;
   final AssetSourceFactory assetSourceFactory;
 
   MainScreen({super.key, required this.routeObserver})
       : registry = GetIt.I.get<Registry>(),
+        adState = GetIt.I.get<AdState>(),
         assetSourceFactory = GetIt.I.get<AssetSourceFactory>();
 
   @override
@@ -25,6 +28,7 @@ class MainScreen extends StatefulWidget {
 
 class MainScreenState extends State<MainScreen> with RouteAware {
   Registry get registry => widget.registry;
+  AdState get adState => widget.adState;
   AssetSourceFactory get assetSourceFactory => widget.assetSourceFactory;
 
   @override
@@ -133,6 +137,7 @@ class MainScreenState extends State<MainScreen> with RouteAware {
                 toolTipMsg: toolTipMsg,
                 storyMetaData: storyMetaData,
                 registry: registry,
+                adState: adState,
                 assetSourceFactory: assetSourceFactory,
                 routeObserver: routeObserver,
                 iconColor: iconColor,

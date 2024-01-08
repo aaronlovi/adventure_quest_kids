@@ -55,6 +55,11 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        multiDexEnabled true
+        manifestPlaceholders = [
+            'google_ads_app_id': google_ads_app_id,
+            'applicationName': applicationName
+        ]
     }
 
     signingConfigs {

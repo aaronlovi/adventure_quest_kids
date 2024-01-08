@@ -5,6 +5,7 @@ import 'package:adventure_quest_kids/registry.dart';
 import 'package:flutter/material.dart';
 
 import '../main.dart';
+import '../utils/ad_state.dart';
 import '../utils/constants.dart';
 import '../utils/navigation_utils.dart';
 import 'story_front_page_screen.dart';
@@ -15,6 +16,7 @@ class StoryListItem extends StatefulWidget {
   final Color iconColor;
   final String toolTipMsg;
   final Registry registry;
+  final AdState adState;
   final AssetSourceFactory assetSourceFactory;
   final RouteObserver<PageRoute> routeObserver;
 
@@ -25,6 +27,7 @@ class StoryListItem extends StatefulWidget {
     required this.iconColor,
     required this.toolTipMsg,
     required this.registry,
+    required this.adState,
     required this.assetSourceFactory,
     required this.routeObserver,
   });
@@ -47,6 +50,7 @@ class StoryListItemState extends State<StoryListItem>
   StoryMetaData get storyMetaData => widget.storyMetaData;
   RouteObserver<PageRoute<dynamic>> get routeObserver => widget.routeObserver;
   Registry get registry => widget.registry;
+  AdState get adState => widget.adState;
   AssetSourceFactory get assetSourceFactory => widget.assetSourceFactory;
   String get localeName => registry.localeName;
 
@@ -124,6 +128,7 @@ class StoryListItemState extends State<StoryListItem>
           routeObserver: RouteObserver<PageRoute>(),
           assetSourceFactory: assetSourceFactory,
           registry: registry,
+          adState: adState,
         ),
         Constants.frontPageRoute,
       ),

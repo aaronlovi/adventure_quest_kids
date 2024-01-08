@@ -60,6 +60,51 @@ To get a local copy up and running, follow these steps:
     flutter run
     ```
 
+## Google Ads Setup
+
+This application uses Google Mobile Ads. To set up the ads, you need to add your Google Ads Application ID to the `gradle.properties` file in the `android` directory.
+
+1. Open the `android/gradle.properties` file.
+
+2. Add a new property with your Google Ads Application ID:
+
+```properties
+google_ads_app_id="your-google-ads-app-id"
+```
+Replace `your-google-ads-app-id` with your actual Google Ads Application ID.
+
+3. Save and close the gradle.properties file.
+
+Now, the Google Ads Application ID will be injected into the `AndroidManifest.xml` file at build time. Make sure to set the `google_ads_app_id` property on every machine where you build the app.
+
+Next, you need to set up your banner ad unit IDs. These IDs should be added to the `.env.debug` and `.env.release` files in the root of your project.
+
+1. Open the `.env.debug` file.
+
+2. Add a new property with your debug banner (usually one of the Google AdMob test ad unit ids) ad unit ID:
+
+```
+BANNER_AD_UNIT_ID="your-debug-banner-ad-unit-id"
+```
+
+Replace your-debug-banner-ad-unit-id with your actual debug banner ad unit ID.
+
+3. Open the `.env.release` file.
+
+4. Add a new property with your release banner ad unit ID:
+
+```
+BANNER_AD_UNIT_ID="your-release-banner-ad-unit-id"
+```
+
+Replace `your-release-banner-ad-unit-id` with your actual release banner ad unit ID.
+
+5. Save and close the `.env.debug` and `.env.release` files.
+
+Now, the banner ad unit IDs will be loaded from the .env files, and you can use different IDs for debug and release builds.
+
+Note: The `gradle.properties` file and the `.env` files are included in the `.gitignore` file, so they won't be committed to your repository. This keeps your Google Ads Application ID and banner ad unit IDs out of your public repository.
+
 ## License
 
 This source code is made available for reading and reference purposes only. You may not use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of this software without explicit permission from the author.

@@ -11,6 +11,7 @@ import '../model/story.dart';
 import '../model/story_meta_data.dart';
 import '../model/story_page.dart';
 import '../registry.dart';
+import '../utils/ad_state.dart';
 import 'story_page_screen.dart';
 import 'story_page_screen_common.dart';
 
@@ -19,6 +20,7 @@ class StoryFrontPageScreen extends StatefulWidget {
   final AssetSourceFactory assetSourceFactory;
   final Registry registry;
   final RouteObserver<PageRoute> routeObserver;
+  final AdState adState;
 
   const StoryFrontPageScreen({
     super.key,
@@ -26,6 +28,7 @@ class StoryFrontPageScreen extends StatefulWidget {
     required this.assetSourceFactory,
     required this.registry,
     required this.routeObserver,
+    required this.adState,
   });
 
   @override
@@ -190,6 +193,7 @@ class StoryFrontPageScreenState extends State<StoryFrontPageScreen> {
                   storyPage: storyPage,
                   routeObserver: widget.routeObserver,
                   registry: widget.registry,
+                  adState: widget.adState,
                 ));
           },
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [

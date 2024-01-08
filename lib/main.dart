@@ -1,15 +1,19 @@
 import 'package:adventure_quest_kids/services/user_settings_service.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:yaml/yaml.dart';
 
 import 'model/story_meta_data.dart';
 import 'model/user_settings.dart';
 import 'registry.dart';
+import 'utils/ad_state.dart';
 import 'utils/constants.dart';
 import 'utils/locale_utils.dart';
 import 'views/main_screen.dart';
@@ -25,7 +29,15 @@ AssetSource createAssetSource(String assetPath) {
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  await dotenv.load(
+      fileName: kDebugMode
+          ? 'assets/.config/.env.debug'
+          : 'assets/.config/.env.release');
+
   var getIt = GetIt.instance;
+
+  final initAdMobsFuture = MobileAds.instance.initialize();
+  getIt.registerSingleton<AdState>(AdState(initAdMobsFuture));
 
   // Remove the asset prefix for all audio players (the default is '/assets')
   AudioCache.instance = AudioCache(prefix: '');

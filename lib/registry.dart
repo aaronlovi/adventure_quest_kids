@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:adventure_quest_kids/model/user_settings.dart';
 import 'package:adventure_quest_kids/services/user_settings_service.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'model/story_meta_data.dart';
 
@@ -59,6 +62,10 @@ class Registry {
   Future<void> saveSettings() async {
     await _userSettingsService.saveSettings(settings);
   }
+
+  String get bannerAdUnitId => Platform.isAndroid
+      ? dotenv.env['ANDROID_BANNER_AD_UNIT_ID']!
+      : dotenv.env['IOS_BANNER_AD_UNIT_ID']!;
 
   void dispose() {
     backgroundAudioPlayer.dispose();

@@ -11,10 +11,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../fx/particle_animations.dart';
 import '../main.dart';
 import '../registry.dart';
+import '../utils/ad_state.dart';
 import '../utils/constants.dart';
 import '../utils/disposal_tracking_value_notifier.dart';
 import '../utils/read_timestamp_file.dart';
@@ -27,6 +29,7 @@ class StoryPageScreen extends StatefulWidget {
   final StoryPage storyPage;
   final RouteObserver<PageRoute> routeObserver;
   final Registry registry;
+  final AdState adState;
 
   const StoryPageScreen({
     super.key,
@@ -35,6 +38,7 @@ class StoryPageScreen extends StatefulWidget {
     required this.storyPage,
     required this.routeObserver,
     required this.registry,
+    required this.adState,
   });
 
   @override
@@ -75,12 +79,15 @@ class StoryPageScreenState extends State<StoryPageScreen>
   final ValueNotifier<List<Particle>> _particles =
       ValueNotifier<List<Particle>>([]);
 
+  late BannerAd? banner;
+
   StoryPageScreenState()
       : _cancelSpeechAnimation = false,
         _currentWordIndex = DisposalTrackingValueNotifier<int>(-1),
         _containerKey = GlobalKey(),
         _appBarKey = GlobalKey(),
-        _animatedRectangles = <(Rect, Color, StoryChoice)>[];
+        _animatedRectangles = <(Rect, Color, StoryChoice)>[],
+        banner = null;
 
   String get _imagePath =>
       '${widget.story.imagesFolder}/${widget.storyPage.imageFileName}';
@@ -88,6 +95,8 @@ class StoryPageScreenState extends State<StoryPageScreen>
       '${widget.story.soundsFolder}/${widget.storyPage.soundFileName}';
   String get currentLocale => widget.registry.localeName;
   StoryMetaData get _storyMetaData => widget.story.storyMetaData;
+  AdState get _adState => widget.adState;
+  String get _bannerAdUnitId => widget.registry.bannerAdUnitId;
 
   @override
   void initState() {
@@ -209,10 +218,22 @@ class StoryPageScreenState extends State<StoryPageScreen>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+
     final route = ModalRoute.of(context);
     if (route is PageRoute) {
       widget.routeObserver.subscribe(this, route);
     }
+
+    _adState.initialization.then((status) {
+      setState(() {
+        banner = BannerAd(
+          adUnitId: _bannerAdUnitId,
+          size: AdSize.banner,
+          request: const AdRequest(),
+          listener: _adState.adListener,
+        )..load();
+      });
+    });
   }
 
   /// Cancels speech navigation since the user navigated away from this page.
@@ -375,15 +396,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
     _addStoryChoiceWidgets(context, widgets);
     _addEndOfStoryWidgets(context, widgets);
     widgets.add(const Spacer());
-
-    // // Insert a Spacer between each widget.
-    // var widgetsWithSpacing = <Widget>[];
-    // for (var i = 0; i < widgets.length; i++) {
-    //   widgetsWithSpacing.add(widgets[i]);
-    //   if (i < widgets.length - 1) {
-    //     widgetsWithSpacing.add(const Spacer());
-    //   }
-    // }
+    _addMobAdBanner(context, widgets);
 
     return Container(
       height: h * 0.49,
@@ -457,6 +470,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
         storyPage: nextPage,
         routeObserver: widget.routeObserver,
         registry: widget.registry,
+        adState: widget.adState,
       );
 
       if (!isFirst) {
@@ -524,6 +538,15 @@ class StoryPageScreenState extends State<StoryPageScreen>
         Text(AppLocalizations.of(context)!.back_to_story_list),
       ]),
     ));
+  }
+
+  void _addMobAdBanner(BuildContext context, List<Widget> widgets) {
+    if (banner == null) {
+      widgets.add(const SizedBox(height: 50));
+      return;
+    }
+
+    widgets.add(SizedBox(height: 50, child: AdWidget(ad: banner!)));
   }
 
   Future<void> _playPageLoadSound() async {
