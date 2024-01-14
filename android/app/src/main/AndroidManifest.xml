@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="adventure_quest_kids"
+        android:label="Adventure Quest Kids"
         android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
