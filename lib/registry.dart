@@ -43,7 +43,8 @@ class Registry {
     settings.speechRate = rate;
   }
 
-  String get localeName => settings.localeName ?? 'en';
+  String get localeName =>
+      (settings.localeName?.isEmpty ?? true) ? 'en' : settings.localeName!;
   set localeName(String localeName) {
     settings.localeName = localeName;
   }
