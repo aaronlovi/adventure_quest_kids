@@ -196,6 +196,7 @@ class MyAppState extends State<MyApp> {
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
           navigatorObservers: [widget.routeObserver],
+          debugShowCheckedModeBanner: false,
           theme: ThemeData(
             // This is the theme of your application.
             //
