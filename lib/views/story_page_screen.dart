@@ -495,11 +495,11 @@ class StoryPageScreenState extends State<StoryPageScreen>
   }
 
   void _addEndOfStoryWidgets(BuildContext context, List<Widget> widgets) {
-    const paddingTop8 = Padding(padding: EdgeInsets.only(top: 8));
+    const paddingTop7 = Padding(padding: EdgeInsets.only(top: 7));
 
     if (!widget.storyPage.isTerminal) return;
 
-    widgets.add(paddingTop8);
+    widgets.add(paddingTop7);
     widgets.add(Text(AppLocalizations.of(context)!.the_end,
         style: TextStyle(
           fontSize: 18,
@@ -507,7 +507,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
           color: _storyMetaData.storyTextColor,
         )));
 
-    widgets.add(paddingTop8);
+    widgets.add(paddingTop7);
     widgets.add(ElevatedButton(
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.all(8),
@@ -523,7 +523,7 @@ class StoryPageScreenState extends State<StoryPageScreen>
       ]),
     ));
 
-    widgets.add(paddingTop8);
+    widgets.add(paddingTop7);
     widgets.add(ElevatedButton(
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.all(8),
