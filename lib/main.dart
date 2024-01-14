@@ -36,7 +36,12 @@ Future<void> main() async {
 
   var getIt = GetIt.instance;
 
-  final initAdMobsFuture = MobileAds.instance.initialize();
+  final initAdMobsFuture = MobileAds.instance.initialize().then((_) {
+    MobileAds.instance.updateRequestConfiguration(
+      RequestConfiguration(
+          tagForChildDirectedTreatment: TagForChildDirectedTreatment.yes),
+    );
+  });
   getIt.registerSingleton<AdState>(AdState(initAdMobsFuture));
 
   // Remove the asset prefix for all audio players (the default is '/assets')

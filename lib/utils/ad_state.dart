@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class AdState {
-  Future<InitializationStatus> initialization;
+  Future<Null> initialization;
 
   AdState(this.initialization);
 
