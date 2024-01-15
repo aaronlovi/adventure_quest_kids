@@ -5,6 +5,7 @@ import 'package:adventure_quest_kids/utils/sound_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../main.dart';
 import '../utils/ad_state.dart';
@@ -99,49 +100,68 @@ class MainScreenState extends State<MainScreen> with RouteAware {
   }
 
   Widget _getBody(List<String> storyNames, BuildContext context) {
-    return Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Constants.mainScreenTopGradientColor,
-              Constants.mainScreenBottomGradientColor
-            ],
-          ),
-        ),
-        child: ListView.builder(
-            itemCount: storyNames.length,
-            itemBuilder: (content, index) {
-              var storyName = storyNames[index];
-              int colorIndex = index % Constants.iconColors.length;
-              final Color iconColor = Constants.iconColors[colorIndex];
-              StoryMetaData storyMetaData = registry.storyList[storyName]!;
-              Set<String> terminalPagesVisited =
-                  registry.getTerminalPagesVisited(storyName);
-              bool anyTerminalPagesVisited = terminalPagesVisited.isNotEmpty;
-              bool allTerminalPagesVisited = terminalPagesVisited.length ==
-                  storyMetaData.terminalPageIds.length;
-              String toolTipMsg = allTerminalPagesVisited
-                  ? AppLocalizations.of(context)!.all_endings_visited
-                  : anyTerminalPagesVisited
-                      ? AppLocalizations.of(context)!.some_endings_visited
-                      : AppLocalizations.of(context)!.no_endings_visited;
-              Icon trailingIcon = allTerminalPagesVisited
-                  ? const Icon(Icons.done_all, color: Colors.green)
-                  : anyTerminalPagesVisited
-                      ? Icon(Icons.book, color: iconColor)
-                      : Icon(Icons.bookmark_border, color: iconColor);
-              return StoryListItem(
-                icon: trailingIcon,
-                toolTipMsg: toolTipMsg,
-                storyMetaData: storyMetaData,
-                registry: registry,
-                adState: adState,
-                assetSourceFactory: assetSourceFactory,
-                routeObserver: routeObserver,
-                iconColor: iconColor,
-              );
-            }));
+    return Stack(
+      children: [
+        Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Constants.mainScreenTopGradientColor,
+                  Constants.mainScreenBottomGradientColor
+                ],
+              ),
+            ),
+            child: ListView.builder(
+                itemCount: storyNames.length,
+                itemBuilder: (content, index) {
+                  var storyName = storyNames[index];
+                  int colorIndex = index % Constants.iconColors.length;
+                  final Color iconColor = Constants.iconColors[colorIndex];
+                  StoryMetaData storyMetaData = registry.storyList[storyName]!;
+                  Set<String> terminalPagesVisited =
+                      registry.getTerminalPagesVisited(storyName);
+                  bool anyTerminalPagesVisited =
+                      terminalPagesVisited.isNotEmpty;
+                  bool allTerminalPagesVisited = terminalPagesVisited.length ==
+                      storyMetaData.terminalPageIds.length;
+                  String toolTipMsg = allTerminalPagesVisited
+                      ? AppLocalizations.of(context)!.all_endings_visited
+                      : anyTerminalPagesVisited
+                          ? AppLocalizations.of(context)!.some_endings_visited
+                          : AppLocalizations.of(context)!.no_endings_visited;
+                  Icon trailingIcon = allTerminalPagesVisited
+                      ? const Icon(Icons.done_all, color: Colors.green)
+                      : anyTerminalPagesVisited
+                          ? Icon(Icons.book, color: iconColor)
+                          : Icon(Icons.bookmark_border, color: iconColor);
+                  return StoryListItem(
+                    icon: trailingIcon,
+                    toolTipMsg: toolTipMsg,
+                    storyMetaData: storyMetaData,
+                    registry: registry,
+                    adState: adState,
+                    assetSourceFactory: assetSourceFactory,
+                    routeObserver: routeObserver,
+                    iconColor: iconColor,
+                  );
+                })),
+        Positioned(
+            right: 0,
+            bottom: 0,
+            child: TextButton(
+                onPressed: () => _launchUrl(
+                    'https://app.enzuzo.com/policies/privacy/e1a6bd74-b2b6-11ee-82c3-83a96d2585d9'),
+                child: Text(AppLocalizations.of(context)!.privacy_policy,
+                    style: const TextStyle(color: Colors.white)))),
+      ],
+    );
+  }
+
+  Future<void> _launchUrl(url) async {
+    await canLaunchUrlString(url)
+        ? await launchUrlString(url)
+        : throw 'Could not launch $url';
   }
 }
