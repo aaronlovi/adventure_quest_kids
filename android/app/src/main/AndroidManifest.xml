@@ -1,4 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.imagination_and_logic.adventure_quest_kids">
     <application
         android:label="Adventure Quest Kids"
         android:icon="@mipmap/launcher_icon">
