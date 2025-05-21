@@ -1,3 +1,4 @@
+import 'package:adventure_quest_kids/l10n/app_localizations.dart';
 import 'package:adventure_quest_kids/main.dart';
 import 'package:adventure_quest_kids/model/user_settings.dart';
 import 'package:adventure_quest_kids/registry.dart';
@@ -6,7 +7,6 @@ import 'package:adventure_quest_kids/views/main_screen.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mocktail/mocktail.dart';

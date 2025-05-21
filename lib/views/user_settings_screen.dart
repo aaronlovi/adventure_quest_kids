@@ -1,7 +1,7 @@
+import 'package:adventure_quest_kids/l10n/app_localizations.dart';
 import 'package:adventure_quest_kids/utils/locale_utils.dart';
 import 'package:adventure_quest_kids/utils/sound_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 

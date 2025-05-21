@@ -1,10 +1,10 @@
+import 'package:adventure_quest_kids/l10n/app_localizations.dart';
 import 'package:adventure_quest_kids/services/yaml_factory.dart';
 import 'package:adventure_quest_kids/utils/constants.dart';
 import 'package:adventure_quest_kids/utils/navigation_utils.dart';
 import 'package:adventure_quest_kids/utils/sound_utils.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../main.dart';
 import '../model/story.dart';

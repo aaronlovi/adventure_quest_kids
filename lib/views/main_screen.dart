@@ -1,9 +1,9 @@
+import 'package:adventure_quest_kids/l10n/app_localizations.dart';
 import 'package:adventure_quest_kids/model/story_meta_data.dart';
 import 'package:adventure_quest_kids/registry.dart';
 import 'package:adventure_quest_kids/utils/navigation_utils.dart';
 import 'package:adventure_quest_kids/utils/sound_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 

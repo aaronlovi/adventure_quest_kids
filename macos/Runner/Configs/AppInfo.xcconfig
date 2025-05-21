@@ -8,7 +8,7 @@
 PRODUCT_NAME = adventure_quest_kids
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.example.adventureQuestKids
+PRODUCT_BUNDLE_IDENTIFIER = com.imagination_and_logic.adventureQuestKids
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2023 com.example. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2023 com.imagination_and_logic. All rights reserved.
