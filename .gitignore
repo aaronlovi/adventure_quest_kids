@@ -49,3 +49,7 @@ linux/flutter/
 macos/Flutter/
 windows/flutter/
 android/gradle.properties
+
+# Additional files to ignore
+.env.debug
+.env.release
